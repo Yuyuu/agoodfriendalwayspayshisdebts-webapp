@@ -7,5 +7,8 @@ module.exports = {
   unit: {
     reporters: "mocha",
     singleRun: true
+  },
+  watch: {
+    background: true
   }
 };

@@ -10,6 +10,7 @@ module.exports = function (grunt) {
   grunt.loadTasks("grunt/tasks");
 
   grunt.registerTask("test", ["jshint", "karma:unit"]);
+  grunt.registerTask("tdd", ["karma:watch:start", "watch"]);
 };
 
 function loadConfig(path) {
