@@ -7,6 +7,7 @@
   "author": "Vincent Tertre",
   "license": "MIT",
   "scripts": {
+    "postinstall": "./node_modules/.bin/bower install",
     "test": "./node_modules/.bin/grunt test"
   },
   "engines": {
@@ -56,5 +57,13 @@
     "sinon": "^1.12.1",
     "sinon-chai": "^2.6.0",
     "watchify": "^3.1.0"
-  }
+  },
+  "browser": {
+    "bootstrap": "./public/bower_components/bootstrap/dist/js/bootstrap.js",
+    "angular": "./public/bower_components/angular/angular.js",
+    "angular-resource": "./public/bower_components/angular-resource/angular-resource.js",
+    "angular-route": "./public/bower_components/angular-route/angular-route.js",
+    "angular-loading-bar": "./public/bower_components/angular-loading-bar/build/loading-bar.js"
+  },
+  "browserify-shim": "./shim.js"
 }
