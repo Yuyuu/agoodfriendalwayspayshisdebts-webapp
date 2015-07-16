@@ -1,16 +1,22 @@
 "use strict";
 
 module.exports = function (grunt) {
-  var config = {};
+  var config = {
+    pkg: grunt.file.readJSON("package.json"),
+    prod: grunt.option("prod") || false,
+    buildDir: "public/genere"
+  };
 
-  grunt.util._.extend(config, loadConfig("./grunt/tasks/options/"));
+  grunt.util._.extend(config, loadConfig("./grunt_tasks/options/"));
   grunt.initConfig(config);
 
   require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
-  grunt.loadTasks("grunt/tasks");
+  grunt.loadTasks("grunt_tasks");
 
   grunt.registerTask("test", ["jshint", "karma:unit"]);
   grunt.registerTask("tdd", ["karma:watch:start", "watch"]);
+  grunt.registerTask("buildApp", ["clean", "assets"]);
+  grunt.registerTask("default", ["clean", "jshint", "karma:unit"])
 };
 
 function loadConfig(path) {
