@@ -7,7 +7,7 @@
   "author": "Vincent Tertre",
   "license": "MIT",
   "scripts": {
-    "test": "echo 'No tests to run' && exit 1"
+    "test": "./node_modules/.bin/grunt test"
   },
   "engines": {
     "node": "0.12.x",
@@ -39,6 +39,7 @@
     "grunt-contrib-uglify": "^0.9.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-filerev": "^2.1.2",
+    "grunt-karma": "^0.12.0",
     "jshint-stylish": "^2.0.0",
     "karma": "^0.13.0",
     "karma-chai": "^0.1.0",
