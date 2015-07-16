@@ -1,0 +1,8 @@
+extends include/layout
+block content
+  .content
+    ng-view
+
+block js
+  script(src=revision("/genere/js/vendor.js"))
+  script(src=revision("/genere/js/app.js"))

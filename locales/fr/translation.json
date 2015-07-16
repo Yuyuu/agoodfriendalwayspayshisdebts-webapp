@@ -1,0 +1,13 @@
+{
+  "locale": "Français",
+  "app": {
+    "angularLocale": "français",
+    "global": {
+      "title": "Un bon ami paye toujours ses dettes"
+    },
+    "home": {
+      "title": "Un bon ami paye toujours ses dettes",
+      "pitch": "Organisez des événements et répartissez les dépenses entre les participants."
+    }
+  }
+}

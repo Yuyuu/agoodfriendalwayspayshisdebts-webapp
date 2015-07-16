@@ -1,0 +1,13 @@
+{
+  "locale": "English",
+  "app": {
+    "angularLocale": "anglais",
+    "global": {
+      "title": "A good friend always pays his debts"
+    },
+    "home": {
+      "title": "A good friend always pays his debts",
+      "pitch": "Organize events and split expenses between participants."
+    }
+  }
+}
