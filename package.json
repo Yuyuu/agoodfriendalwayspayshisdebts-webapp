@@ -1,0 +1,16 @@
+{
+  "name": "agoodfriendalwayspayshisdebts-webapp",
+  "version": "0.0.1",
+  "description": "Web application for agoodfriendalwayspayshisdebts.com",
+  "private": true,
+  "repository": "https://github.com/Yuyuu/agoodfriendalwayspayshisdebts-webapp.git",
+  "author": "Vincent Tertre",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo 'No tests to run' && exit 1"
+  },
+  "engines": {
+    "node": "0.12.x",
+    "npm": "2.13.x"
+  }
+}
