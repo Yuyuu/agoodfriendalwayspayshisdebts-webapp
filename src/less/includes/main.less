@@ -1,0 +1,45 @@
+@mainBrandColor: #2D97CC;
+@secondBrandColor: #296796;
+@thirdBrandColor: #DAE6E7;
+@inverseBrandColor: #FFFFFF;
+
+@linkColor: @mainBrandColor;
+@linkHoverColor: darken(@linkColor, 10%);
+@textColor: #5C5C5C;
+@headingsColor: @secondBrandColor;
+
+/* Override bootstrap default properties */
+body {
+  color: @textColor;
+  font-family: 'PT Sans', Helvetica, serif;
+}
+
+a {
+  color: @mainBrandColor;
+}
+a:hover,
+a:focus {
+  color: @linkHoverColor;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: @headingsColor;
+}
+
+.inverse {
+  background-color: @mainBrandColor;
+  color: @inverseBrandColor;
+
+  &.inverse-light {
+    background-color: @thirdBrandColor;
+  }
+
+  a {
+    color: @inverseBrandColor;
+
+    &:hover,
+    &:focus {
+      color: @linkHoverColor;
+    }
+  }
+}
