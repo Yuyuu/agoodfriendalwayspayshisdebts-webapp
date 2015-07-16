@@ -25,7 +25,6 @@
     "beforeEach": false,
     "afterEach": false,
     "it": false,
-    "xit": false,
-    "expect": false
+    "xit": false
   }
 }

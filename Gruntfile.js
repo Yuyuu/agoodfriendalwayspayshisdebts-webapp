@@ -13,10 +13,10 @@ module.exports = function (grunt) {
   require("matchdep").filterDev("grunt-*").forEach(grunt.loadNpmTasks);
   grunt.loadTasks("grunt_tasks");
 
-  grunt.registerTask("test", ["jshint", "karma:unit"]);
-  grunt.registerTask("tdd", ["karma:watch:start", "watch"]);
+  grunt.registerTask("test", ["jshint", "mochaTest:unit"]);
+  grunt.registerTask("tdd", ["clean", "dev"]);
   grunt.registerTask("buildApp", ["clean", "assets"]);
-  grunt.registerTask("default", ["clean", "jshint", "karma:unit"])
+  grunt.registerTask("default", ["clean", "jshint", "mochaTest:unit"])
 };
 
 function loadConfig(path) {
