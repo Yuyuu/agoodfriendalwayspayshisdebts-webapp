@@ -8,7 +8,12 @@
     "home": {
       "title": "Un bon ami paye toujours ses dettes",
       "pitch": "Organisez des événements et répartissez les dépenses entre les participants.",
-      "tyrion": "Tyrion Lannister approuve."
+      "tyrion": "Tyrion Lannister approuve.",
+      "errors": {
+        "EVENT_NAME_REQUIRED": "Vous devez spécifier un nom pour l'événement",
+        "PARTICIPANTS_REQUIRED": "Vous devez spécifier au moins un participant pour l'événement",
+        "CREATE_EVENT_DEFAULT_ERROR": "Désolé, un problème est survenu lors de la création de l'événement"
+      }
     }
   }
 }

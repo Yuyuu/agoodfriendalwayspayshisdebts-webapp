@@ -9,6 +9,8 @@ module.exports = function () {
   function configure($routeProvider) {
     $routeProvider
       .when("/", {
+        controller: "CreateEventController",
+        controllerAs: "model",
         templateUrl: "/templates/index"
       })
       .otherwise({

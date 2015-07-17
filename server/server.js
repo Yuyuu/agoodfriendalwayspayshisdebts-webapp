@@ -7,6 +7,7 @@ var i18n = require("i18next");
 var http = require("http");
 var serveStatic = require("serve-static");
 var morgan = require("morgan");
+var ProxyHelper = require("./proxy");
 var Router = require("./router");
 var revision = require("../revision");
 
@@ -29,6 +30,7 @@ function Server() {
 
   configureTranslation();
 
+  new ProxyHelper().configure(app);
   new Router().configure(app);
 
   this.start = function () {

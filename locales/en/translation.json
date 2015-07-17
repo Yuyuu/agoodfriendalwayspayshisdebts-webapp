@@ -8,7 +8,12 @@
     "home": {
       "title": "A good friend always pays his debts",
       "pitch": "Organize events and split expenses between participants.",
-      "tyrion": "Tyrion Lannister approves."
+      "tyrion": "Tyrion Lannister approves.",
+      "errors": {
+        "EVENT_NAME_REQUIRED": "You must specify a name for the event",
+        "PARTICIPANTS_REQUIRED": "You must specify at least one participant for the event",
+        "CREATE_EVENT_DEFAULT_ERROR": "Sorry, there was a problem creating the event"
+      }
     }
   }
 }
