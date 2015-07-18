@@ -9,10 +9,22 @@
       "title": "Un bon ami paye toujours ses dettes",
       "pitch": "Organisez des événements et répartissez les dépenses entre les participants.",
       "tyrion": "Tyrion Lannister approuve.",
-      "errors": {
-        "EVENT_NAME_REQUIRED": "Vous devez spécifier un nom pour l'événement",
-        "PARTICIPANTS_REQUIRED": "Vous devez spécifier au moins un participant pour l'événement",
-        "CREATE_EVENT_DEFAULT_ERROR": "Désolé, un problème est survenu lors de la création de l'événement"
+      "event_form": {
+        "event_name": "Nom de l'événement",
+        "event_name_ph": "Weekend à la plage",
+        "participant_name": "Nom du participant",
+        "participant_email": "Email du participant",
+        "participant_share": "Part",
+        "add_participant": "Ajouter un participant",
+        "remove_participant": "Supprimer ce participant",
+        "create": "Créer l'événement",
+        "field_required_help": "Champ requis",
+        "email_help": "Les emails sont utilisés pour envoyer des rappels et rien d'autre",
+        "errors": {
+          "EVENT_NAME_REQUIRED": "Vous devez spécifier un nom pour l'événement",
+          "PARTICIPANTS_REQUIRED": "Vous devez spécifier au moins un participant pour l'événement",
+          "CREATE_EVENT_DEFAULT_ERROR": "Désolé, un problème est survenu lors de la création de l'événement"
+        }
       }
     }
   }

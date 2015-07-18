@@ -13,34 +13,38 @@ main
           .row
             .col-sm-10.col-sm-offset-1
               .form-group(element-validation="eventForm.eventName")
-                label(for="inputEventName") * Event name
+                label(for="inputEventName") *&nbsp;
+                  = t("app.home.event_form.event_name")
                 input#inputEventName.form-control.input-lg(type="text" ng-model="model.event.name" name="eventName"
-                    placeholder="Weekend at the beach" required="")
+                    placeholder=t("app.home.event_form.event_name_ph") required="")
           .row(ng-cloak="" ng-repeat="participant in model.event.participants")
             .col-sm-4.col-sm-offset-1
               .form-group(element-validation="eventForm.participant{{$index}}Name")
-                label(for="inputParticipantName" ng-if="$first") * Participant name
+                label(for="inputParticipantName" ng-if="$first") *&nbsp;
+                  = t("app.home.event_form.participant_name")
                 input#inputParticipantName.form-control.input-lg(type="text" ng-model="participant.name"
-                    name="participant{{$index}}Name" placeholder="Rasheed" required="")
+                    name="participant{{$index}}Name" placeholder="Kim" required="")
             .col-sm-4
               .form-group
-                label(for="inputParticipantEmail" ng-if="$first") Participant email
+                label(for="inputParticipantEmail" ng-if="$first")= t("app.home.event_form.participant_email")
                 input#inputParticipantEmail.form-control.input-lg(type="email" ng-model="participant.email"
-                    placeholder="rasheed@email.com")
+                    placeholder="kim@email.com")
             .col-sm-2
               .form-group(element-validation="eventForm.participant{{$index}}Share")
-                label(for="inputParticipantShare" ng-if="$first") * Share
+                label(for="inputParticipantShare" ng-if="$first") *&nbsp;
+                  = t("app.home.event_form.participant_share")
                 input#inputParticipantShare.form-control.input-lg(type="number" ng-model="participant.share"
                     name="participant{{$index}}Share" required="" min="1")
             .col-sm-1(ng-if="!$first")
               .form-group
-                button.btn.btn-danger.btn-lg(type="button" aria-label="Remove participant"
-                    ng-click="model.removeParticipant($index)")
+                button.btn.btn-danger.btn-lg(type="button" aria-label=t("app.home.event_form.remove_participant")
+                    ng-click="model.removeParticipant($index)" title=t("app.home.event_form.remove_participant"))
                   span.glyphicon.glyphicon-minus(aria-hidden="true")
           .row
             .col-sm-10.col-sm-offset-1
               .form-group.text-right
-                button.btn.btn-default.btn-lg(type="button" ng-click="model.addParticipant()") Add a participant
+                button.btn.btn-default.btn-lg(type="button" ng-click="model.addParticipant()")
+                  = t("app.home.event_form.add_participant")
           .row
             .col-sm-10.col-sm-offset-1
               .alert.alert-danger(ng-cloak="", ng-if="model.errors")
@@ -48,6 +52,8 @@ main
           .row
             .col-sm-10.col-sm-offset-1
               .form-group
-                button.btn.btn-block.btn-primary.btn-lg(type="submit" ng-disabled="eventForm.$invalid || eventForm.$untouched") Create the event
-              p.help-block * Field required
-              p.help-block Emails are used to send reminders and nothing else
+                button.btn.btn-block.btn-primary.btn-lg(type="submit" ng-disabled="eventForm.$invalid || eventForm.$untouched")
+                  = t("app.home.event_form.create")
+              p.help-block *&nbsp;
+                = t("app.home.event_form.field_required_help")
+              p.help-block= t("app.home.event_form.email_help")
