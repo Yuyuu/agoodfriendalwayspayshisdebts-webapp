@@ -5,7 +5,7 @@ var proxyquire = require("proxyquire");
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("The element validation directive", function () {
+describe("The directive to validate elements", function () {
   var angularModule, scope, element, attributes, directive;
 
   beforeEach(function () {
@@ -45,7 +45,7 @@ describe("The element validation directive", function () {
     expect(domElement.addClass).to.have.been.calledWith("has-error");
   });
 
-  it("should remove the has-error class to the element if it is dirty and valid", function () {
+  it("should remove the has-error class from the element if it is dirty and valid", function () {
     var domElement = {removeClass: sinon.stub()};
     angularModule.element.withArgs(element).returns(domElement);
     directive.link(scope, element, attributes);
