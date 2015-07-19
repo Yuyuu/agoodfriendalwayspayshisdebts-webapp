@@ -52,7 +52,8 @@ main
           .row
             .col-sm-10.col-sm-offset-1
               .form-group
-                button.btn.btn-block.btn-primary.btn-lg(type="submit" ng-disabled="eventForm.$invalid || eventForm.$untouched")
+                button.btn.btn-block.btn-primary.btn-lg(type="submit" disable-on-request=""
+                    ng-disabled="eventForm.$invalid || eventForm.$untouched")
                   = t("app.home.event_form.create")
               p.help-block *&nbsp;
                 = t("app.home.event_form.field_required_help")
