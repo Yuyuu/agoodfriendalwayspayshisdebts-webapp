@@ -36,6 +36,10 @@ describe("The directive that disables an element while a request is pending", fu
     directive.link(scope, element, attributes, formController);
   });
 
+  it("should be defined", function () {
+    expect(directive).to.be.defined;
+  });
+
   it("should disable the element on submit if the form is valid", function () {
     formController.$valid = true;
 
