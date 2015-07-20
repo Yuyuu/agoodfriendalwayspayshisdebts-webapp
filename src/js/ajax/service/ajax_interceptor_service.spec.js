@@ -17,6 +17,10 @@ describe("The ajax interceptor", function () {
     interceptor = new AjaxInterceptorService($rootScope, $q, AppEvents);
   });
 
+  it("should be defined", function () {
+    expect(interceptor).to.be.defined;
+  });
+
   it("should emit the request started event when a request is intercepted", function () {
     interceptor.request({});
 
