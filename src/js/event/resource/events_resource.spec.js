@@ -21,10 +21,12 @@ describe("The resource for events", function () {
 
   it("should create the resource", function () {
     expect($resource).to.have.been.calledWith(
-      "/api/events",
-      {},
-      {create: {method: "POST"}}
+      "/api/events/:id",
+      {id: "@id"},
+      {
+        get: {method: "GET", isArray: false},
+        create: {method: "POST"}
+      }
     );
-    expect(resource).to.deep.equal({});
   });
 });

@@ -1,7 +1,9 @@
 module.exports = {
   "angular": {
     "exports": "angular",
-    "depends": {jquery: "jQuery"}
+    "depends": {
+      jquery: "jQuery"
+    }
   },
   "angular-resource": {
     "depends": {

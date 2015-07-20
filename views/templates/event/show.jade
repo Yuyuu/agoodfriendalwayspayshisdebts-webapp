@@ -1,0 +1,21 @@
+main
+  .jumbotron.inverse
+    .container
+      h1 {{model.event.name}}
+      p.lead= t("app.event.with")
+        | &nbsp;{{model.stringifyParticipantsNames()}}
+.container.purchase-board
+  .col-sm-6.col-sm-offset-3.col-xs-12
+    .panel.panel-default(ng-cloak="" ng-repeat="purchase in model.event.purchases")
+      .panel-heading
+        h4
+          span.text-bold {{purchase.amount | currency:'€':2}}
+          | &nbsp;- {{purchase.title}}
+      .panel-body
+        p= t("app.event.purchased_by")
+          | &nbsp;
+          span.text-bold {{purchase.purchaser}}
+        p= t("app.event.shared_between")
+          | &nbsp;
+          span.text-bold {{purchase.participants.join(", ")}}
+      .panel-footer(ng-if="purchase.description") {{purchase.description}}

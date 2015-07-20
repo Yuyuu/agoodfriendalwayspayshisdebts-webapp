@@ -29,6 +29,11 @@
           "CREATE_EVENT_DEFAULT_ERROR": "Désolé, un problème est survenu lors de la création de l'événement"
         }
       }
+    },
+    "event": {
+      "with": "Avec",
+      "purchased_by": "Achat effectué par",
+      "shared_between": "Dépense partagée entre"
     }
   }
 }

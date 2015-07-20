@@ -29,6 +29,11 @@
           "CREATE_EVENT_DEFAULT_ERROR": "Sorry, there was a problem creating the event"
         }
       }
+    },
+    "event": {
+      "with": "With",
+      "purchased_by": "Purchased by",
+      "shared_between": "Purchase shared between"
     }
   }
 }
