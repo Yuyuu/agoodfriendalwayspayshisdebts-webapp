@@ -19,10 +19,13 @@
         "remove_participant": "Supprimer ce participant",
         "create": "Créer l'événement",
         "field_required_help": "Champ requis",
-        "email_help": "Les emails sont utilisés pour envoyer des rappels et rien d'autre",
+        "email_help": "Les emails sont utilisés pour envoyer des rappels et rien d'autre.",
         "errors": {
           "EVENT_NAME_REQUIRED": "Vous devez spécifier un nom pour l'événement",
           "PARTICIPANTS_REQUIRED": "Vous devez spécifier au moins un participant pour l'événement",
+          "PARTICIPANT_NAME_REQUIRED": "Vous devez spécifier un nom pour chaque participant",
+          "PARTICIPANT_SHARE_REQUIRED": "Vous devez spécifier la part pour chaque participant",
+          "INVALID_SHARE": "La part de chaque participant doit être supérieure à 0",
           "CREATE_EVENT_DEFAULT_ERROR": "Désolé, un problème est survenu lors de la création de l'événement"
         }
       }

@@ -13,6 +13,8 @@
     "bootstrap": "~3.3.5",
     "angular-resource": "~1.4.0",
     "angular-route": "~1.4.0",
-    "angular-loading-bar": "~0.8.0"
+    "angular-sanitize": "~1.4.0",
+    "angular-loading-bar": "~0.8.0",
+    "ng-i18next": "~0.5.2"
   }
 }

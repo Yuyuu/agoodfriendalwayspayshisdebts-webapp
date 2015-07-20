@@ -15,6 +15,12 @@ module.exports = {
     },
     "exports": "angular.module('ngRoute').name"
   },
+  "angular-sanitize": {
+    "depends": {
+      "angular": "angular"
+    },
+    "exports": "angular.module('ngSanitize').name"
+  },
   "bootstrap": {
     "depends": {
       "jquery": "jQuery"
@@ -25,5 +31,11 @@ module.exports = {
       "angular": "angular"
     },
     "exports": "angular.module('angular-loading-bar').name"
+  },
+  "ng-i18next": {
+    "depends": {
+      "angular": "angular"
+    },
+    "exports": "angular.module('jm.i18next').name"
   }
 };
