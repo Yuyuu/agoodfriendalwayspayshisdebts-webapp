@@ -20,41 +20,6 @@ describe("The controller to create events", function () {
     expect(controller).to.be.defined;
   });
 
-  it("should invalidate the form if it is empty", function () {
-    var event = {name: "", participants: []};
-    var isValid = controller.eventIsValid(event);
-
-    expect(isValid).to.be.false;
-  });
-
-  it("should invalidate the form if no name is specified", function () {
-    var event = {name: "", participants: [{name: "Kim", email: "", share: 1}]};
-    var isValid = controller.eventIsValid(event);
-
-    expect(isValid).to.be.false;
-  });
-
-  it("should invalidate the form if a participant has no name", function () {
-    var event = {name: "Cool event", participants: [{name: "", email: "", share: 1}]};
-    var isValid = controller.eventIsValid(event);
-
-    expect(isValid).to.be.false;
-  });
-
-  it("should invalidate the form if a participant has a negative share", function () {
-    var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 0}]};
-    var isValid = controller.eventIsValid(event);
-
-    expect(isValid).to.be.false;
-  });
-
-  it("should invalidate the form if a participant has no name and a negative share", function () {
-    var event = {name: "Cool event", participants: [{name: "", email: "", share: 0}]};
-    var isValid = controller.eventIsValid(event);
-
-    expect(isValid).to.be.false;
-  });
-
   it("should add a participant to the list", function () {
     controller.addParticipant();
 

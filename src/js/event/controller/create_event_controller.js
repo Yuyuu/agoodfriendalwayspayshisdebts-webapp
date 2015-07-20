@@ -1,24 +1,13 @@
 "use strict";
 
-var _ = require("underscore");
-
 /* @ngInject */
 function CreateEventController(Events, $window) {
   var it = this;
   this.event = {name: "", participants: [{name:"", email: "", share: 1}]};
-  this.errors = undefined;
 
-  this.eventIsValid = eventIsValid;
   this.addParticipant = addParticipant;
   this.removeParticipant = removeParticipant;
   this.createEvent = createEvent;
-
-  function eventIsValid(event) {
-    var everyParticipantIsValid = _.every(event.participants, function (participant) {
-      return !!(participant.name && participant.share > 0);
-    });
-    return !!(event.name && everyParticipantIsValid);
-  }
 
   function addParticipant() {
     it.event.participants.push({name:"", email: "", share: 1});
@@ -29,19 +18,15 @@ function CreateEventController(Events, $window) {
   }
 
   function createEvent(event) {
-    if (eventIsValid(event)) {
-      event.participants = _.filter(event.participants, function (participant) {
-        return !!(participant.name && participant.share > 0);
-      });
-      Events.create(event, redirectToEventPage, handleCreationError);
-    }
+    delete it.errors;
+    Events.create(event, redirectToEventPage, extractMessagesFromError);
   }
 
   function redirectToEventPage(event) {
     $window.location = "#/events/" + event.id;
   }
 
-  function handleCreationError(error) {
+  function extractMessagesFromError(error) {
     it.errors = (error.status === 400) ? error.data.errors : [{message: "CREATE_EVENT_DEFAULT_ERROR"}];
   }
 }
