@@ -5,6 +5,12 @@ module.exports = {
       jquery: "jQuery"
     }
   },
+  "angular-animate": {
+    "depends": {
+      "angular": "angular"
+    },
+    "exports": "angular.module('ngAnimate').name"
+  },
   "angular-resource": {
     "depends": {
       "angular": "angular"

@@ -5,6 +5,12 @@
     "global": {
       "title": "A good friend always pays his debts"
     },
+    "notification": {
+      "PURCHASE_ADDED_SUCCESS": {
+        "title": "Done!",
+        "content": "The purchase has been added to the event successfully."
+      }
+    },
     "home": {
       "title": "A good friend always pays his debts",
       "pitch": "Organize events and split expenses between participants.",

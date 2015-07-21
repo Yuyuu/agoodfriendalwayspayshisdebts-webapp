@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function AddPurchaseController(Purchases) {
+function AddPurchaseController(Purchases, $alert) {
   var it = this;
 
   this.addPurchase = addPurchase;
@@ -13,6 +13,17 @@ function AddPurchaseController(Purchases) {
       purchase,
       function (addedPurchase) {
         event.purchases.push(addedPurchase);
+        $alert({
+          templateUrl: "/templates/alert/strap_alert",
+          type: "success",
+          placement: "top-right",
+          duration: 5,
+          container: "body",
+          dismissable: false,
+          title:"PURCHASE_ADDED_SUCCESS.title",
+          content: "PURCHASE_ADDED_SUCCESS.content",
+          show: true
+        });
       },
       extractMessagesFromError
     );

@@ -5,6 +5,12 @@
     "global": {
       "title": "Un bon ami paye toujours ses dettes"
     },
+    "notification": {
+      "PURCHASE_ADDED_SUCCESS": {
+        "title": "Ajout effectué !",
+        "content": "La dépense a été ajoutée à l'événement avec succès."
+      }
+    },
     "home": {
       "title": "Un bon ami paye toujours ses dettes",
       "pitch": "Organisez des événements et répartissez les dépenses entre les participants.",
