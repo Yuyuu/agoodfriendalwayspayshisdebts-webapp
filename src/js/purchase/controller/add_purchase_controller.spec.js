@@ -16,6 +16,7 @@ describe("The controller to add purchases", function () {
   beforeEach(function () {
     var AddPurchaseController = require("./add_purchase_controller");
     controller = new AddPurchaseController(Purchases, $alert);
+    controller.form = {$setPristine: sinon.spy(), $setUntouched: sinon.spy()};
   });
 
   it("should be defined", function () {
@@ -28,7 +29,22 @@ describe("The controller to add purchases", function () {
     expect(Purchases.add).to.have.been.calledWith(sinon.match.has("eventId", "123"));
   });
 
-  it("should add the new purchase to the event and emit an alert if it was successfully created", function () {
+  it("should clear the form if the purchase was successfully added", function () {
+    controller.purchase = purchase;
+    Purchases.add = function (data, successCb) {successCb(purchase);};
+
+    controller.addPurchase(event, purchase);
+
+    expect(controller.form.$setPristine).to.have.been.called;
+    expect(controller.form.$setUntouched).to.have.been.called;
+    expect(controller.purchase.label).to.be.undefined;
+    expect(controller.purchase.purchaser).to.be.undefined;
+    expect(controller.purchase.amount).to.be.undefined;
+    expect(controller.purchase.participants).to.have.length(0);
+    expect(controller.purchase.description).to.be.undefined;
+  });
+
+  it("should push the new purchase to the event and emit an alert if it was successfully added", function () {
     Purchases.add = function (data, successCb) {successCb(purchase);};
 
     controller.addPurchase(event, purchase);

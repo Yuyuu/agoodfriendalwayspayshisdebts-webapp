@@ -5,7 +5,7 @@ var angular = require("angular");
 /* @ngInject */
 function DisableOnRequestDirective(AppEvents) {
   function link(scope, element, attributes, formController) {
-    var formElement = angular.element("form[name=" + formController.$name + "]");
+    var formElement = angular.element("form[name='" + formController.$name + "']");
     formElement.on("submit", function () {
       if (formController.$valid) {
         angular.element(element).addClass("disabled");

@@ -1,14 +1,14 @@
-p.title= t("app.event.purchase_form.title")
-form.form-horizontal(name="purchaseForm" ng-controller="AddPurchaseController as pchCtrl" novalidate=""
+form.form-horizontal(name="pchCtrl.form" ng-controller="AddPurchaseController as pchCtrl" novalidate=""
     ng-submit="pchCtrl.addPurchase(model.event, pchCtrl.purchase)")
-  .form-group(element-validation="purchaseForm.purchaseTitle")
+  p.title= t("app.event.purchase_form.title")
+  .form-group(element-validation="pchCtrl.form.purchaseLabel")
     .col-xs-12
-      label(for="inputPurchaseTitle") *&nbsp;
+      label(for="inputPurchaseLabel") *&nbsp;
         = t("app.event.purchase_form.label")
-      input#inputPurchaseTitle.form-control(type="text" ng-model="pchCtrl.purchase.title"
-          name="purchaseTitle" placeholder=t("app.event.purchase_form.label_ph") required="")
+      input#inputPurchaseLabel.form-control(type="text" ng-model="pchCtrl.purchase.label"
+          name="purchaseLabel" placeholder=t("app.event.purchase_form.label_ph") required="")
   .form-group
-    .col-xs-6(element-validation="purchaseForm.purchaseAmount")
+    .col-xs-6(element-validation="pchCtrl.form.purchaseAmount")
       label(for="inputPurchaseAmount") *&nbsp;
         = t("app.event.purchase_form.amount")
       .input-group
@@ -16,14 +16,14 @@ form.form-horizontal(name="purchaseForm" ng-controller="AddPurchaseController as
         input#intputPurchaseAmount.form-control(ng-model="pchCtrl.purchase.amount" required=""
             placeholder=t("app.event.purchase_form.amount_ph") name="purchaseAmount" currency-validation="")
         .input-group-addon()= t("app.event.purchase_form.amount_precision")
-    .col-xs-6(element-validation="purchaseForm.purchasePurchaser")
+    .col-xs-6(element-validation="pchCtrl.form.purchasePurchaser")
       label(for="inputPurchasePurchaser") *&nbsp;
         = t("app.event.purchase_form.purchaser")
       br
       button#inputPurchasePurchaser.btn.btn-default(type="button" ng-model="pchCtrl.purchase.purchaser" bs-select=""
           data-placeholder=t("app.event.purchase_form.purchaser_ph") name="purchasePurchaser" required=""
           bs-options="participant.name as participant.name for participant in model.event.participants")
-      .form-group(element-validation="purchaseForm.purchaseParticipants")
+      .form-group(element-validation="pchCtrl.form.purchaseParticipants")
     .col-xs-12
       label(for="inputPurchaseParticipants") *&nbsp;
         = t("app.event.purchase_form.share_with.label")
@@ -45,7 +45,7 @@ form.form-horizontal(name="purchaseForm" ng-controller="AddPurchaseController as
         div(ng-repeat="error in pchCtrl.errors" ng-i18next="app.event.purchase_form.errors.{{error.message}}")
   .form-group
     .col-xs-12
-      button.btn.btn-block.btn-primary(type="submit" disable-on-request="" ng-disabled="purchaseForm.$invalid")
+      button.btn.btn-block.btn-primary(type="submit" disable-on-request="" ng-disabled="pchCtrl.form.$invalid")
         = t("app.event.purchase_form.submit")
   p.text-muted *&nbsp;
     = t("app.form.field_required_help")

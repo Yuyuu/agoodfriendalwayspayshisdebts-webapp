@@ -26,7 +26,7 @@ describe("The directive that disables an element while a request is pending", fu
   beforeEach(function () {
     formElement = listenerDecorator.decorate({});
     directiveElement = {addClass: sinon.spy(), removeClass: sinon.spy()};
-    angularModule.element.withArgs("form[name=form]").returns(formElement);
+    angularModule.element.withArgs("form[name='form']").returns(formElement);
     angularModule.element.withArgs(element).returns(directiveElement);
   });
 

@@ -13,7 +13,7 @@ main
       .panel-heading
         h4
           span.text-bold {{purchase.amount | currency:'€':2}}
-          | &nbsp;- {{purchase.title}}
+          | &nbsp;- {{purchase.label}}
       .panel-body
         p= t("app.event.purchased_by")
           | &nbsp;
