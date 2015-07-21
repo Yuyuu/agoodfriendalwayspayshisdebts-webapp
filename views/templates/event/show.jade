@@ -9,7 +9,7 @@ main
     .creation-panel(bs-affix="" data-offset-top="-20")
       include includes/create_purchase_form
   .col-sm-6.col-xs-12
-    .panel.panel-default(ng-cloak="" ng-repeat="purchase in model.event.purchases")
+    .panel.panel-default(ng-cloak="" ng-repeat="purchase in model.event.purchases | orderBy:$index:true")
       .panel-heading
         h4
           span.text-bold {{purchase.amount | currency:'€':2}}
