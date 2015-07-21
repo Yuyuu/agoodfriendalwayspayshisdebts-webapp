@@ -28,6 +28,12 @@ module.exports = {
       "jquery": "jQuery"
     }
   },
+  "angular-strap": {
+    "depends": {
+      "angular": "angular"
+    },
+    "exports": "angular.module('mgcrea.ngStrap').name"
+  },
   "angular-loading-bar": {
     "depends": {
       "angular": "angular"

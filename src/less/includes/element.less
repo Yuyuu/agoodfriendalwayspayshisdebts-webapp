@@ -26,6 +26,34 @@ main .jumbotron {
 .purchase-board {
   margin-top: 40px;
 
+  .affix {
+    top: 20px;
+  }
+
+  .creation-panel {
+    background-color: @thirdBrandColor;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    .title {
+      margin: 15px auto;
+      width: 75%;
+      font-size: 1.2em;
+      font-weight: 400;
+      text-align: center;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+
+    .form-group .help-block {
+      margin-bottom: 0;
+    }
+  }
+
   .panel-heading {
     color: @textColor;
     background-color: @thirdBrandColor;

@@ -5,7 +5,60 @@ main
       p.lead= t("app.event.with")
         | &nbsp;{{model.stringifyParticipantsNames()}}
 .container.purchase-board
-  .col-sm-6.col-sm-offset-3.col-xs-12
+  .col-sm-4.col-sm-offset-1.col-xs-12
+    .creation-panel(bs-affix="" data-offset-top="-20")
+      p.title= t("app.event.purchase_form.title")
+      form.form-horizontal(name="purchaseForm" ng-controller="AddPurchaseController as pchCtrl" novalidate=""
+          ng-submit="pchCtrl.addPurchase(model.event, pchCtrl.purchase)")
+        .form-group(element-validation="purchaseForm.purchaseTitle")
+          .col-xs-12
+            label(for="inputPurchaseTitle") *&nbsp;
+              = t("app.event.purchase_form.label")
+            input#inputPurchaseTitle.form-control(type="text" ng-model="pchCtrl.purchase.title"
+            name="purchaseTitle" placeholder=t("app.event.purchase_form.label_ph") required="")
+        .form-group
+          .col-xs-6(element-validation="purchaseForm.purchaseAmount")
+            label(for="inputPurchaseAmount") *&nbsp;
+              = t("app.event.purchase_form.amount")
+            .input-group
+              .input-group-addon €
+              input#intputPurchaseAmount.form-control(ng-model="pchCtrl.purchase.amount" required=""
+                  placeholder=t("app.event.purchase_form.amount_ph") name="purchaseAmount" currency-validation="")
+              .input-group-addon()= t("app.event.purchase_form.amount_precision")
+          .col-xs-6(element-validation="purchaseForm.purchasePurchaser")
+            label(for="inputPurchasePurchaser") *&nbsp;
+              = t("app.event.purchase_form.purchaser")
+            br
+            button#inputPurchasePurchaser.btn.btn-default(type="button" ng-model="pchCtrl.purchase.purchaser" bs-select=""
+                data-placeholder=t("app.event.purchase_form.purchaser_ph") name="purchasePurchaser" required=""
+                bs-options="participant.name as participant.name for participant in model.event.participants")
+            .form-group(element-validation="purchaseForm.purchaseParticipants")
+          .col-xs-12
+            label(for="inputPurchaseParticipants") *&nbsp;
+              = t("app.event.purchase_form.share_with.label")
+            br
+            button#inputPurchaseParticipants.btn.btn-default(type="button" ng-model="pchCtrl.purchase.participants"
+                bs-select="" data-multiple="1" data-all-none-buttons="true" name="purchaseParticipants"
+                data-all-text=t("app.event.purchase_form.share_with.all") required="" data-max-length="4"
+                data-none-text=t("app.event.purchase_form.share_with.none")
+                data-max-length-html=t("app.event.purchase_form.share_with.selected")
+                data-placeholder=t("app.event.purchase_form.share_with.ph")
+                bs-options="participant.name as participant.name for participant in model.event.participants")
+        .form-group
+          .col-xs-12
+            textarea.form-control(ng-model="pchCtrl.purchase.description" rows="3"
+                placeholder=t("app.event.purchase_form.description_ph"))
+        .row
+          .col-xs-12
+            .alert.alert-danger.text-center(ng-cloak="" ng-if="pchCtrl.errors")
+              div(ng-repeat="error in pchCtrl.errors" ng-i18next="app.event.purchase_form.errors.{{error.message}}")
+        .form-group
+          .col-xs-12
+            button.btn.btn-block.btn-primary(type="submit" disable-on-request="" ng-disabled="purchaseForm.$invalid")
+              = t("app.event.purchase_form.submit")
+        p.text-muted *&nbsp;
+          = t("app.form.field_required_help")
+  .col-sm-6.col-xs-12
     .panel.panel-default(ng-cloak="" ng-repeat="purchase in model.event.purchases")
       .panel-heading
         h4

@@ -58,6 +58,7 @@
     "angular-resource": "./public/bower_components/angular-resource/angular-resource.js",
     "angular-route": "./public/bower_components/angular-route/angular-route.js",
     "angular-sanitize": "./public/bower_components/angular-sanitize/angular-sanitize.js",
+    "angular-strap": "./public/bower_components/angular-strap/dist/angular-strap.js",
     "angular-loading-bar": "./public/bower_components/angular-loading-bar/build/loading-bar.js",
     "ng-i18next": "./public/bower_components/ng-i18next/dist/ng-i18next.js"
   },

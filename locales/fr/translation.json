@@ -18,7 +18,6 @@
         "add_participant": "Ajouter un participant",
         "remove_participant": "Supprimer ce participant",
         "create": "Créer l'événement",
-        "field_required_help": "Champ requis",
         "email_help": "Les emails sont utilisés pour envoyer des rappels et rien d'autre.",
         "errors": {
           "EVENT_NAME_REQUIRED": "Vous devez spécifier un nom pour l'événement",
@@ -33,7 +32,36 @@
     "event": {
       "with": "Avec",
       "purchased_by": "Achat effectué par",
-      "shared_between": "Dépense partagée entre"
+      "shared_between": "Dépense partagée entre",
+      "purchase_form": {
+        "title": "Ajouter une dépense",
+        "label": "Label",
+        "label_ph": "Courses pour le barbecue",
+        "purchaser": "Acheteur",
+        "purchaser_ph": "Choisir...",
+        "amount": "Somme dépensée",
+        "amount_ph": "12,56",
+        "amount_precision": ",00",
+        "share_with": {
+          "label": "Partager entre",
+          "all": "Tous",
+          "none": "Aucun",
+          "selected": "sélectionnés",
+          "ph": "Choisir parmi les participants..."
+        },
+        "description_ph": "Pour d'éventuelles précisions",
+        "submit": "Ajouter la dépense",
+        "errors": {
+          "PURCHASE_PURCHASER_REQUIRED": "Vous devez sélectionner un acheteur",
+          "PURCHASE_LABEL_REQUIRED": "Vous devez spécifier un label pour la dépense",
+          "PURCHASE_AMOUNT_REQUIRED": "Vous devez spécifier la somme de la dépense",
+          "INVALID_AMOUNT": "Le somme spécifiée doit être supérieure à 0",
+          "ADD_PURCHASE_DEFAULT_ERROR": "Désolé, la dépense n'a pas pu être ajoutée"
+        }
+      }
+    },
+    "form": {
+      "field_required_help": "Champ requis"
     }
   }
 }

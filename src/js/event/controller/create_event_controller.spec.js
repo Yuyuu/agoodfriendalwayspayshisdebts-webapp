@@ -32,7 +32,7 @@ describe("The controller to create events", function () {
     expect(controller.event.participants).to.have.length(0);
   });
 
-  it("should create the event if it is valid", function () {
+  it("should create the event", function () {
     var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
 
     controller.createEvent(event);
