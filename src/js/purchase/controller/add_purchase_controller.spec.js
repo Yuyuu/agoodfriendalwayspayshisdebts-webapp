@@ -4,18 +4,18 @@ var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The controller to add purchases", function () {
-  var event, purchase, Purchases, $alert, controller;
+  var event, purchase, Purchases, Notifications, controller;
 
   beforeEach(function () {
     event = {id: "123", purchases: []};
     purchase = {label: "Food", purchaser: "Kim", amount: 5, participants: ["Kim"], description: "Hmmm"};
     Purchases = {add: sinon.spy()};
-    $alert = sinon.spy();
+    Notifications = {success: sinon.spy()};
   });
 
   beforeEach(function () {
     var AddPurchaseController = require("./add_purchase_controller");
-    controller = new AddPurchaseController(Purchases, $alert);
+    controller = new AddPurchaseController(Purchases, Notifications);
     controller.form = {$setPristine: sinon.spy(), $setUntouched: sinon.spy()};
   });
 
@@ -44,13 +44,20 @@ describe("The controller to add purchases", function () {
     expect(controller.purchase.description).to.be.undefined;
   });
 
-  it("should push the new purchase to the event and emit an alert if it was successfully added", function () {
+  it("should push the new purchase to the event if it was successfully added", function () {
     Purchases.add = function (data, successCb) {successCb(purchase);};
 
     controller.addPurchase(event, purchase);
 
     expect(event.purchases[0].label).to.equal("Food");
-    expect($alert).to.have.been.called;
+  });
+
+  it("should emit a notification if the purchase was successfully added", function () {
+    Purchases.add = function (data, successCb) {successCb(purchase);};
+
+    controller.addPurchase(event, purchase);
+
+    expect(Notifications.success).to.have.been.calledWith("PURCHASE_ADDED_SUCCESS");
   });
 
   it("should not add any to the event if it was not created", function () {

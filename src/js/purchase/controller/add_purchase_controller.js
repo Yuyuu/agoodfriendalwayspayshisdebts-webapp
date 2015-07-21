@@ -3,7 +3,7 @@
 var _ = require("underscore");
 
 /* @ngInject */
-function AddPurchaseController(Purchases, $alert) {
+function AddPurchaseController(Purchases, Notifications) {
   var it = this;
   this.purchase = {
     label: undefined,
@@ -15,28 +15,15 @@ function AddPurchaseController(Purchases, $alert) {
 
   this.addPurchase = addPurchase;
 
-  var alertOptions = {
-    templateUrl: "/templates/alert/strap_alert",
-    type: "success",
-    placement: "top-right",
-    duration: 5,
-    container: "body",
-    dismissable: false,
-    title:"PURCHASE_ADDED_SUCCESS.title",
-    content: "PURCHASE_ADDED_SUCCESS.content",
-    show: true
-  };
-
   function addPurchase(event, purchase) {
     delete it.errors;
-    var purchasePassedToResource = _.extend({}, purchase);
-    purchasePassedToResource.eventId = event.id;
+    var purchasePassedToResource = _.extend({eventId: event.id}, purchase);
     Purchases.add(
       purchasePassedToResource,
       function (addedPurchase) {
         clearForm();
         event.purchases.push(addedPurchase);
-        $alert(alertOptions);
+        Notifications.success("PURCHASE_ADDED_SUCCESS");
       },
       extractMessagesFromError
     );
