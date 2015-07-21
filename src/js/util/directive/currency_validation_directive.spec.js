@@ -70,7 +70,7 @@ describe("The directive to validate currency input", function () {
     expect(result).to.not.be.ok;
   });
 
-  it("should invalidate numbers thousands groups separators", function () {
+  it("should invalidate numbers with thousands groups separators", function () {
     var result = modelController.$parsers[0]("1 234,23");
     expect(result).to.not.be.ok;
     result = modelController.$parsers[0]("1.234,23");
