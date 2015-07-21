@@ -1,5 +1,7 @@
 "use strict";
 
+var _ = require("underscore");
+
 /* @ngInject */
 function AddPurchaseController(Purchases, $alert) {
   var it = this;
@@ -8,9 +10,10 @@ function AddPurchaseController(Purchases, $alert) {
 
   function addPurchase(event, purchase) {
     delete it.errors;
-    purchase.eventId = event.id;
+    var purchasePassedToResource = _.extend({}, purchase);
+    purchasePassedToResource.eventId = event.id;
     Purchases.add(
-      purchase,
+      purchasePassedToResource,
       function (addedPurchase) {
         event.purchases.push(addedPurchase);
         $alert({

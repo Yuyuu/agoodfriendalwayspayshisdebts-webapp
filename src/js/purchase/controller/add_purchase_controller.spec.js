@@ -22,11 +22,10 @@ describe("The controller to add purchases", function () {
     expect(controller).to.be.defined;
   });
 
-  it("should extend the purchase with the event id and add the purchase", function () {
+  it("should pass the purchase with the event id to the resource", function () {
     controller.addPurchase(event, purchase);
 
-    expect(purchase.eventId).to.equal("123");
-    expect(Purchases.add).to.have.been.called;
+    expect(Purchases.add).to.have.been.calledWith(sinon.match.has("eventId", "123"));
   });
 
   it("should add the new purchase to the event and emit an alert if it was successfully created", function () {
