@@ -1,7 +1,7 @@
 body {
   margin:0;
   font-size: 14px;
-  padding-bottom: 70px;
+  padding-bottom: 30px;
 }
 
 main .jumbotron {
@@ -19,23 +19,32 @@ main .jumbotron {
   background-color: @thirdBrandColor;
   padding-bottom: 10px;
   padding-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-weight: bold;
+}
+
+#eventForm hr {
+  border-top: 5px solid #EEEEEE;
 }
 
 .purchase-board {
   margin-top: 40px;
 
-  .affix {
-    top: 20px;
+  @media (max-width: @screen-sm-max) {
+    .affix {
+      position: relative !important;
+      top: auto !important;
+      width: auto !important;
+    }
   }
 
   .creation-panel {
     background-color: @thirdBrandColor;
-    border: 1px solid #dddddd;
+    border: 1px solid @borderColor;
     border-radius: 3px;
     padding-left: 15px;
     padding-right: 15px;
+    margin-bottom: 30px;
 
     .title {
       margin: 15px auto;
