@@ -3,7 +3,11 @@
   "app": {
     "angularLocale": "français",
     "global": {
-      "title": "Un bon ami paye toujours ses dettes"
+      "title": "Un bon ami paye toujours ses dettes",
+      "footer": {
+        "made_by": "Créé par",
+        "twitter_account": "Compte twitter"
+      }
     },
     "notification": {
       "PURCHASE_ADDED_SUCCESS": {

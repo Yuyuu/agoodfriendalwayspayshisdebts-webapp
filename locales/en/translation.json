@@ -3,7 +3,11 @@
   "app": {
     "angularLocale": "anglais",
     "global": {
-      "title": "A good friend always pays his debts"
+      "title": "A good friend always pays his debts",
+      "footer": {
+        "made_by": "Made by",
+        "twitter_account": "Twitter account"
+      }
     },
     "notification": {
       "PURCHASE_ADDED_SUCCESS": {

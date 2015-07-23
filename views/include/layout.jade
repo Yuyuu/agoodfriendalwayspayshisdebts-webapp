@@ -15,5 +15,9 @@ html
   body(ng-app="app")
     header
     block content
-    footer
+    footer.page-footer
+      .container
+        hr
+        p= t("app.global.footer.made_by")
+          |  <a href="https://twitter.com/YouKnowUU" title="#{twitter_account}" class="external")>@YouKnowUU</a>.
     block js
