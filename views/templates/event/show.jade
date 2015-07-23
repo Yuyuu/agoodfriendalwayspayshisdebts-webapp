@@ -5,20 +5,21 @@ main
       p.lead= t("app.event.with")
         | &nbsp;{{model.stringifyParticipantsNames()}}
 .container.purchase-board
-  .col-md-4.col-md-offset-1.col-sm-6.col-xs-12
-    .creation-panel(bs-affix="" data-offset-top="-20")
-      include includes/create_purchase_form
-  .col-md-6.col-sm-6.col-xs-12
-    .panel.panel-default(ng-cloak="" ng-repeat="purchase in model.event.purchases | orderBy:$index:true")
-      .panel-heading
-        h4
-          span.text-bold {{purchase.amount | currency:'€':2}}
-          | &nbsp;- {{purchase.label}}
-      .panel-body
-        p= t("app.event.purchased_by")
-          | &nbsp;
-          span.text-bold {{purchase.purchaser}}
-        p= t("app.event.shared_between")
-          | &nbsp;
-          span.text-bold {{purchase.participants.join(", ")}}
-      .panel-footer(ng-if="purchase.description") {{purchase.description}}
+  .row
+    .col-md-4.col-md-offset-1.col-sm-6.col-xs-12(role="complementary")
+      .creation-panel(affix-element="" data-offset-top="-20")
+        include includes/create_purchase_form
+    .col-md-6.col-sm-6.col-xs-12(role="main")
+      .panel.panel-default(ng-cloak="" ng-repeat="purchase in model.event.purchases | orderBy:$index:true")
+        .panel-heading
+          h4
+            span.text-bold {{purchase.amount | currency:'€':2}}
+            | &nbsp;- {{purchase.label}}
+        .panel-body
+          p= t("app.event.purchased_by")
+            | &nbsp;
+            span.text-bold {{purchase.purchaser}}
+          p= t("app.event.shared_between")
+            | &nbsp;
+            span.text-bold {{purchase.participants.join(", ")}}
+        .panel-footer(ng-if="purchase.description") {{purchase.description}}
