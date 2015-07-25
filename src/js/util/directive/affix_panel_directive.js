@@ -4,22 +4,20 @@ var angular = require("angular");
 
 /* @ngInject */
 function AffixDirective($affix, $window) {
-  var it = this;
-  this.affix = null;
-
   function link(scope, element) {
+    var affix;
     var purchaseCreationPanelElement = angular.element(element);
     var purchasesListPanelElement = angular.element(".purchases-list-panel");
 
     scope.$watch(listPanelIsTallerThanCreationPanel, function (shouldApplyAffix) {
       if (shouldApplyAffix) {
-        it.affix = $affix(element, {
+        affix = $affix(element, {
           offsetTop: element.data("offset-top").toString(),
           offsetBottom: getPageFooterHeight().toString(),
           target: angular.element($window)
         });
       } else {
-        it.affix && it.affix.destroy();
+        affix && affix.destroy();
       }
     });
 
