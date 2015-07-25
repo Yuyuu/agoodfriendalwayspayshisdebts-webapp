@@ -5,6 +5,8 @@ var proxyquire = require("proxyquire");
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
+var watcherDecorator = require("../../../test/watcher_decorator");
+
 describe("The directive to validate elements", function () {
   var angularModule, scope, element, attributes, directive;
 
@@ -13,15 +15,7 @@ describe("The directive to validate elements", function () {
   });
 
   beforeEach(function () {
-    scope = {
-      watchers: {},
-      $watch: function (expression, callback) {scope.watchers[expression] = callback;},
-      change: function (valueToChange, newValue) {
-        var oldValue = scope[valueToChange];
-        scope[valueToChange] = newValue;
-        scope.watchers[valueToChange].call(null, newValue, oldValue);
-      }
-    };
+    scope = watcherDecorator.decorate({});
     element = {};
     attributes = {elementValidation: "elm"};
   });

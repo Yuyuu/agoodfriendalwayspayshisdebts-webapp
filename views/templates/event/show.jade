@@ -7,9 +7,9 @@ main
 .container.purchase-board
   .row
     .col-md-4.col-md-offset-1.col-sm-6.col-xs-12(role="complementary")
-      .creation-panel(affix-element="" data-offset-top="-20")
+      .purchase-creation-panel(affix-panel="" data-offset-top="-20")
         include includes/create_purchase_form
-    .col-md-6.col-sm-6.col-xs-12(role="main")
+    .col-md-6.col-sm-6.col-xs-12.purchases-list-panel(role="main")
       .panel.panel-default(ng-cloak="" ng-repeat="purchase in model.event.purchases | orderBy:$index:true")
         .panel-heading
           h4
