@@ -5,10 +5,11 @@ var proxyquire = require("proxyquire");
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
+var listenerDecorator = require("../../../test/listener_decorator");
 var watcherDecorator = require("../../../test/watcher_decorator");
 
 describe("The directive in charge to affix the purchase creation panel", function () {
-  var angularModule, affix, scope, element, $affix, $window, directive;
+  var angularModule, affix, scope, element, $affix, $window, $timeout, directive;
 
   beforeEach(function () {
     angularModule = {element: sinon.stub(), "@noCallThru": true};
@@ -18,15 +19,16 @@ describe("The directive in charge to affix the purchase creation panel", functio
 
   beforeEach(function () {
     affix = {destroy: sinon.spy()};
-    scope = watcherDecorator.decorate({});
+    scope = watcherDecorator.decorate(listenerDecorator.decorate({}));
     element = {data: sinon.stub().withArgs("offset-top").returns("7")};
     $affix = sinon.stub().returns(affix);
     $window = {};
+    $timeout = function (callback) {callback.call(null);};
   });
 
   beforeEach(function () {
     var AffixElementDirective = proxyquire("./affix_panel_directive", {angular: angularModule});
-    directive = new AffixElementDirective($affix, $window);
+    directive = new AffixElementDirective($affix, $window, $timeout);
     directive.link(scope, element);
   });
 
@@ -61,6 +63,13 @@ describe("The directive in charge to affix the purchase creation panel", functio
   it("should remove the affix when the list panel is or becomes smaller", function () {
     scope.change("listPanelIsTallerThanCreationPanel", true);
     scope.change("listPanelIsTallerThanCreationPanel", false);
+
+    expect(affix.destroy).to.have.been.called;
+  });
+
+  it("should destroy the affix on scope destruction", function () {
+    scope.change("listPanelIsTallerThanCreationPanel", true);
+    scope.emit("$destroy");
 
     expect(affix.destroy).to.have.been.called;
   });

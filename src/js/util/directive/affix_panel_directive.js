@@ -3,7 +3,7 @@
 var angular = require("angular");
 
 /* @ngInject */
-function AffixDirective($affix, $window) {
+function AffixDirective($affix, $window, $timeout) {
   function link(scope, element) {
     var affix;
     var purchaseCreationPanelElement = angular.element(element);
@@ -11,14 +11,21 @@ function AffixDirective($affix, $window) {
 
     scope.$watch(listPanelIsTallerThanCreationPanel, function (shouldApplyAffix) {
       if (shouldApplyAffix) {
-        affix = $affix(element, {
-          offsetTop: element.data("offset-top").toString(),
-          offsetBottom: getPageFooterHeight().toString(),
-          target: angular.element($window)
+        // Only way found to make it work after route change (https://github.com/mgcrea/angular-strap/issues/1493)
+        $timeout(function () {
+          affix = $affix(element, {
+            offsetTop: element.data("offset-top").toString(),
+            offsetBottom: getPageFooterHeight().toString(),
+            target: angular.element($window)
+          });
         });
       } else {
         affix && affix.destroy();
       }
+    });
+
+    scope.$on("$destroy", function() {
+      affix && affix.destroy();
     });
 
     function listPanelIsTallerThanCreationPanel() {
