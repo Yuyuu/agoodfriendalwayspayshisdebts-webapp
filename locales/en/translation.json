@@ -42,6 +42,7 @@
     },
     "event": {
       "with": "With",
+      "result": "See event result",
       "purchased_by": "Purchased by",
       "shared_between": "Purchase shared between",
       "purchase_form": {
@@ -71,6 +72,13 @@
           "ADD_PURCHASE_DEFAULT_ERROR": "Sorry, the purchase could not be added"
         }
       }
+    },
+    "debts": {
+      "back": "Back to the event",
+      "total_spent": "Total amount spent:",
+      "creditor": "Creditor",
+      "debt": "Debt",
+      "total": "Total"
     },
     "form": {
       "field_required_help": "Field required"

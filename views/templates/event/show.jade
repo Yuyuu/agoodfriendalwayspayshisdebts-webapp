@@ -6,6 +6,9 @@ main
         | &nbsp;{{model.stringifyParticipantsNames()}}
 .container.purchase-board
   .row
+    .col-md-4.col-md-offset-5
+      a(ng-href="#/events/{{model.event.id}}/debts" title=t("app.event.result"))= t("app.event.result")
+  .row
     .col-md-4.col-md-offset-1.col-sm-6.col-xs-12(role="complementary")
       .purchase-creation-panel(affix-panel="" data-offset-top="-20")
         include includes/create_purchase_form

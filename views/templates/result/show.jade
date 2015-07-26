@@ -1,0 +1,32 @@
+main
+  .jumbotron.inverse
+    .container
+      h1 {{model.event.name}}
+.container.result-board
+  .row
+    .col-lg-8.col-lg-offset-2.btn-header
+      a.btn.btn-default(type="button" ng-href="#/events/{{model.event.id}}" title=t("app.debts.back"))
+        span.glyphicon.glyphicon-arrow-left(aria-hidden="true")
+        | &nbsp;
+        = t("app.debts.back")
+  .row.participant-result(ng-repeat="(participant_id, participant_results) in model.results")
+    .result-box.col-lg-8.col-lg-offset-2.col-xs-12
+      .col-lg-6.col-sm-6.col-xs-12
+        h2 {{participant_id}}
+        p= t("app.debts.total_spent")
+          span.text-bold  {{participant_results.total_spent | currency:'€':2}}</span>
+      .col-lg-6.col-sm-6.col-xs-12
+        .table-responsive
+          table.table.table-striped
+            thead
+              tr
+                th= t("app.debts.creditor")
+                th= t("app.debts.debt")
+            tbody
+              tr(ng-repeat="(creditor_id, debt_amount) in participant_results.debts_detail"
+                  ng-class="[debt_amount > 0 ? 'danger' : 'success']")
+                th(scope="row") {{creditor_id}}
+                td {{debt_amount | currency:'€':2}}
+              tr.total-row
+                th(scope="row")= t("app.debts.total")
+                td.text-bold {{participant_results.total_debt | currency:'€':2}}

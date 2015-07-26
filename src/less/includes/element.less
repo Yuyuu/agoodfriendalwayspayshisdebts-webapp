@@ -1,6 +1,7 @@
 body {
   margin:0;
   font-size: 14px;
+  background-color: #F5F5F5;
 }
 
 main .jumbotron {
@@ -73,8 +74,36 @@ main .jumbotron {
   }
 }
 
-.text-bold {
-  font-weight: bold;
+.result-board {
+  margin-top: 40px;
+
+  @media (max-width: @screen-xs-max) {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .btn-header {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .participant-result {
+    margin-top: 30px;
+
+    .result-box {
+      background-color: white;
+      border-radius: 3px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-responsive {
+      margin-top: 20px;
+
+      .total-row {
+        border-top: 2px solid @borderColor;
+      }
+    }
+  }
 }
 
 .alert.top-right {
