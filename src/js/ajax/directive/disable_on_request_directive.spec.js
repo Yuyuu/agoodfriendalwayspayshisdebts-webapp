@@ -9,7 +9,7 @@ var listenerDecorator = require("../../../test/listener_decorator");
 
 describe("The directive that disables an element while a request is pending", function () {
   var angularModule, AppEvents, scope, element, attributes, formController, directive;
-  var formElement, directiveElement;
+  var formElement;
 
   beforeEach(function () {
     angularModule = {element: sinon.stub(), "@noCallThru": true};
@@ -18,16 +18,14 @@ describe("The directive that disables an element while a request is pending", fu
   beforeEach(function () {
     AppEvents = require("../../internal/events");
     scope = listenerDecorator.decorate({});
-    element = {};
-    attributes = {elementValidation: "elm"};
+    element = {addClass: sinon.spy(), removeClass: sinon.spy(), html: sinon.stub().returns("initial")};
+    attributes = {elementValidation: "elm", loadingText: "loading"};
     formController = {$name: "form", $valid: false};
   });
 
   beforeEach(function () {
     formElement = listenerDecorator.decorate({});
-    directiveElement = {addClass: sinon.spy(), removeClass: sinon.spy()};
     angularModule.element.withArgs("form[name='form']").returns(formElement);
-    angularModule.element.withArgs(element).returns(directiveElement);
   });
 
   beforeEach(function () {
@@ -40,12 +38,13 @@ describe("The directive that disables an element while a request is pending", fu
     expect(directive).to.be.defined;
   });
 
-  it("should disable the element on submit if the form is valid", function () {
+  it("should disable the element and apply loading text on submit if the form is valid", function () {
     formController.$valid = true;
 
     formElement.emit("submit");
 
-    expect(directiveElement.addClass).to.have.been.calledWith("disabled");
+    expect(element.addClass).to.have.been.calledWith("disabled");
+    expect(element.html).to.have.been.calledWith("loading");
   });
 
   it("should leave the element as is on submit if the form is not valid", function () {
@@ -53,12 +52,14 @@ describe("The directive that disables an element while a request is pending", fu
 
     formElement.emit("submit");
 
-    expect(directiveElement.addClass).to.not.have.been.called;
+    expect(element.addClass).to.not.have.been.called;
+    expect(element.html).to.not.have.been.calledWith("loading");
   });
 
-  it("should enable the element once the associated request is ended", function () {
+  it("should enable the element and apply initial text once the associated request is ended", function () {
     scope.emit(AppEvents.HTTP.REQUEST_ENDED);
 
-    expect(directiveElement.removeClass).to.have.been.calledWith("disabled");
+    expect(element.removeClass).to.have.been.calledWith("disabled");
+    expect(element.html).to.have.been.calledWith("initial");
   });
 });

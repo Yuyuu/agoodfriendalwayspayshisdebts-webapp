@@ -28,6 +28,7 @@
         "add_participant": "Add a participant",
         "remove_participant": "Remove this participant",
         "create": "Create the event",
+        "loading": "Creating the event...",
         "email_help": "Emails are used to send reminders and nothing else.",
         "errors": {
           "EVENT_NAME_REQUIRED": "You must specify a name for the event",
@@ -61,6 +62,7 @@
         },
         "description_ph": "For further clarification",
         "submit": "Add the purchase",
+        "loading": "Adding the purchase...",
         "errors": {
           "PURCHASE_PURCHASER_REQUIRED": "You must select a purchaser",
           "PURCHASE_LABEL_REQUIRED": "You must specify a label for the purchase",

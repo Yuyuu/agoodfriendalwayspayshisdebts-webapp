@@ -52,7 +52,8 @@ form(name="pchCtrl.form" ng-controller="AddPurchaseController as pchCtrl" novali
   .row
     .col-xs-12
       .form-group
-        button.btn.btn-block.btn-primary(type="submit" disable-on-request="" ng-disabled="pchCtrl.form.$invalid")
+        button.btn.btn-block.btn-primary(type="submit" disable-on-request="" ng-disabled="pchCtrl.form.$invalid"
+            data-loading-text=t("app.event.purchase_form.loading"))
           = t("app.event.purchase_form.submit")
   p.text-muted *&nbsp;
     = t("app.form.field_required_help")

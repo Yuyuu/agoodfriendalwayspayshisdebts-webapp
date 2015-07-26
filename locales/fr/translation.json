@@ -28,6 +28,7 @@
         "add_participant": "Ajouter un participant",
         "remove_participant": "Supprimer ce participant",
         "create": "Créer l'événement",
+        "loading": "Création de l'événement...",
         "email_help": "Les emails sont utilisés pour envoyer des rappels et rien d'autre.",
         "errors": {
           "EVENT_NAME_REQUIRED": "Vous devez spécifier un nom pour l'événement",
@@ -61,6 +62,7 @@
         },
         "description_ph": "Pour d'éventuelles précisions",
         "submit": "Ajouter la dépense",
+        "loading": "Ajout de la dépense...",
         "errors": {
           "PURCHASE_PURCHASER_REQUIRED": "Vous devez sélectionner un acheteur",
           "PURCHASE_LABEL_REQUIRED": "Vous devez spécifier un label pour la dépense",
