@@ -1,7 +1,6 @@
 "use strict";
 
 var angular = require("angular");
-var configureAppRouting = require("./app_routing");
 
 angular.module("app", [
   require("angular-sanitize"),
@@ -16,4 +15,16 @@ angular.module("app", [
   require("./util")
 ]);
 
-configureAppRouting();
+angular.module("app").config(["$routeProvider", configure]);
+
+function configure($routeProvider) {
+  $routeProvider
+    .when("/", {
+      controller: "CreateEventController",
+      controllerAs: "model",
+      templateUrl: "/templates/index"
+    })
+    .otherwise({
+      redirectTo: "/"
+    });
+}
