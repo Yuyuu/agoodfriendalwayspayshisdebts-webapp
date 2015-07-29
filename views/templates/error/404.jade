@@ -3,4 +3,6 @@
   p= t("app.errors.404.message")
     |  (404)
   p
-    a.btn.btn-primary.btn-lg(href="#/", type="button")= t("app.errors.404.action")
+    a.btn.btn-primary.btn-lg(href="#/", type="button")
+      span.glyphicon.glyphicon-home(aria-hidden)
+      | &nbsp;#{t("app.errors.404.action")}
