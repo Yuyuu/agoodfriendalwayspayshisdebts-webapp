@@ -80,6 +80,13 @@
       "debt": "Debt",
       "total": "Total"
     },
+    "errors": {
+      "404": {
+        "title": "¯\\_(⊙_ʖ⊙)_/¯",
+        "message": "The requested resource cannot be found",
+        "action": "Back to home"
+      }
+    },
     "form": {
       "field_required_help": "Field required"
     }

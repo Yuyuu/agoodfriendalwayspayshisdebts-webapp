@@ -80,6 +80,13 @@
       "debt": "Dette",
       "total": "Total"
     },
+    "errors": {
+      "404": {
+        "title": "¯\\_(⊙_ʖ⊙)_/¯",
+        "message": "La ressource demandée est introuvable",
+        "action": "Retour à l'accueil"
+      }
+    },
     "form": {
       "field_required_help": "Champ requis"
     }

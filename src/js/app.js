@@ -8,6 +8,7 @@ angular.module("app", [
   require("angular-animate"),
   require("angular-loading-bar"),
   require("angular-strap"),
+  require("./error"),
   require("./ajax"),
   require("./translation"),
   require("./event"),
@@ -25,6 +26,6 @@ function configure($routeProvider) {
       templateUrl: "/templates/index"
     })
     .otherwise({
-      redirectTo: "/"
+      redirectTo: "/404"
     });
 }
