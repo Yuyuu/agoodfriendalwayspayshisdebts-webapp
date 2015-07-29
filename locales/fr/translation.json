@@ -81,6 +81,11 @@
       "total": "Total"
     },
     "errors": {
+      "default": {
+        "title": "(╯°□°)╯︵ ┻━┻",
+        "message": "Une erreur est survenue malgré tous les efforts du donger",
+        "action": "Retour à l'accueil"
+      },
       "404": {
         "title": "¯\\_(⊙_ʖ⊙)_/¯",
         "message": "La ressource demandée est introuvable",

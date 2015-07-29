@@ -3,7 +3,7 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("Error404InterceptorService", function () {
+describe("The error 404 interceptor", function () {
   var $q, $location, interceptor;
 
   beforeEach(function () {

@@ -81,6 +81,11 @@
       "total": "Total"
     },
     "errors": {
+      "default": {
+        "title": "(╯°□°)╯︵ ┻━┻",
+        "message": "An error occurred despite all the donger efforts",
+        "action": "Back to home"
+      },
       "404": {
         "title": "¯\\_(⊙_ʖ⊙)_/¯",
         "message": "The requested resource cannot be found",

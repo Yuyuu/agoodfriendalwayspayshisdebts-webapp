@@ -8,12 +8,12 @@ angular.module("app", [
   require("angular-animate"),
   require("angular-loading-bar"),
   require("angular-strap"),
-  require("./error"),
   require("./ajax"),
   require("./translation"),
   require("./event"),
   require("./result"),
-  require("./util")
+  require("./util"),
+  require("./error")
 ]);
 
 angular.module("app").config(["$routeProvider", configure]);
