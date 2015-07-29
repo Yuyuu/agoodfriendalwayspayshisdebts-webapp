@@ -3,7 +3,8 @@
   "app": {
     "angularLocale": "anglais",
     "global": {
-      "title": "A good friend always pays his debts",
+      "title": "A good friend always pays his debts - Split an event expenses among its participants",
+      "description": "Create an event with participants, add expenses and split it among selected participants. Get a recap of the amounts owed by each.",
       "footer": {
         "made_by": "Made by",
         "twitter_account": "Twitter account"
@@ -17,9 +18,10 @@
     },
     "home": {
       "title": "A good friend always pays his debts",
-      "pitch": "Organize events and split expenses between participants.",
+      "pitch": "Split an event expenses between its participants.",
       "tyrion": "Tyrion Lannister approves.",
       "event_form": {
+        "title": "Create your event",
         "event_name": "Event name",
         "event_name_ph": "Weekend at the beach",
         "participant_name": "Participant name",

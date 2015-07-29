@@ -3,7 +3,8 @@
   "app": {
     "angularLocale": "français",
     "global": {
-      "title": "Un bon ami paye toujours ses dettes",
+      "title": "Un bon ami paye toujours ses dettes - Répartissez les dépenses d'un événement entre ses participants",
+      "description": "Créez un événement avec des participants, ajoutez des dépenses et répartissez-les entre les participants sélectionnés. Obtenez ensuite un récapitulatif des sommes dûes par chacun.",
       "footer": {
         "made_by": "Créé par",
         "twitter_account": "Compte twitter"
@@ -17,9 +18,10 @@
     },
     "home": {
       "title": "Un bon ami paye toujours ses dettes",
-      "pitch": "Organisez des événements et répartissez les dépenses entre les participants.",
+      "pitch": "Répartissez les dépenses d'un événement entre ses participants.",
       "tyrion": "Tyrion Lannister approuve.",
       "event_form": {
+        "title": "Créez votre événement",
         "event_name": "Nom de l'événement",
         "event_name_ph": "Weekend à la plage",
         "participant_name": "Nom du participant",
