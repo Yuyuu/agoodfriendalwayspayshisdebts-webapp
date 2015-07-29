@@ -1,26 +1,16 @@
-@mainBrandColor: #2D97CC;
-@secondBrandColor: #296796;
-@thirdBrandColor: lighten(@mainBrandColor, 40%);
-@inverseBrandColor: #FFFFFF;
-
-@linkColor: @mainBrandColor;
-@linkHoverColor: darken(@linkColor, 15%);
-@textColor: #555555;
-@borderColor: #DDDDDD;
-@headingsColor: @secondBrandColor;
-
-/* Override bootstrap default properties */
 body {
-  color: @textColor;
   font-family: 'PT Sans', Helvetica, serif;
+  color: @text-color;
+  background-color: #F5F5F5;
+  margin: 0;
 }
 
 a {
-  color: @mainBrandColor;
+  color: @main-brand-color;
 
   &:hover,
   &:focus {
-    color: @linkHoverColor;
+    color: @link-hover-color;
   }
 
   &.external:after {
@@ -29,19 +19,19 @@ a {
 }
 
 .inverse {
-  background-color: @mainBrandColor;
-  color: @inverseBrandColor;
+  background-color: @main-brand-color;
+  color: @inverse-brand-color;
 
   &.inverse-light {
-    background-color: @thirdBrandColor;
+    background-color: @third-brand-color;
   }
 
   a {
-    color: @inverseBrandColor;
+    color: @inverse-brand-color;
 
     &:hover,
     &:focus {
-      color: @linkHoverColor;
+      color: @link-hover-color;
     }
   }
 }
