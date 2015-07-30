@@ -7,6 +7,7 @@ var eventModule = angular.module("event", [require("angular-resource"), require(
 
 eventModule
   .factory("Events", require("./resource/events_resource"))
+  .service("EventsService", require("./service/events_service"))
   .controller("CreateEventController", require("./controller/create_event_controller"))
   .controller("ShowEventController", require("./controller/show_event_controller"));
 

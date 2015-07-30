@@ -1,37 +1,24 @@
 "use strict";
 
-var _ = require("underscore");
-
 /* @ngInject */
-function ShowEventController(event) {
+function ShowEventController(EventsService, event) {
   this.event = event;
-  this.stringifyParticipantsNames = stringifyParticipantsNames;
-  this.findPurchaserName = findPurchaserName;
-  this.findPurchaseParticipantsNames = findPurchaseParticipantsNames;
 
-  function stringifyParticipantsNames () {
-    return _.collect(event.participants, function (participant) {
-      return participant.name;
-    }).join(", ");
+  this.stringifyEventParticipantsNames = stringifyEventParticipantsNames;
+  this.findPurchaserName = findPurchaserName;
+  this.stringifyPurchaseParticipantsNames = stringifyPurchaseParticipantsNames;
+
+  function stringifyEventParticipantsNames () {
+    var eventParticipantsNames = EventsService.findEventParticipantsNames(event);
+    return eventParticipantsNames.join(", ");
   }
 
   function findPurchaserName(purchaserId) {
-    var purchaser = _.find(event.participants, function (participant) {
-      return participant.id === purchaserId;
-    });
-
-    return purchaser.name;
+    return EventsService.findParticipantName(event, purchaserId);
   }
 
-  function findPurchaseParticipantsNames(participantsIds) {
-    var purchaseParticipants = _.filter(event.participants, function (participant) {
-      return participantsIds.indexOf(participant.id) !== -1;
-    });
-
-    var purchaseParticipantsNames = _.collect(purchaseParticipants, function (participant) {
-      return participant.name;
-    });
-
+  function stringifyPurchaseParticipantsNames(participantsIds) {
+    var purchaseParticipantsNames = EventsService.findPurchaseParticipantsNames(event, participantsIds);
     return purchaseParticipantsNames.join(", ");
   }
 }

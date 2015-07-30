@@ -1,20 +1,14 @@
 "use strict";
 
-var _ = require("underscore");
-
 /* @ngInject */
-function ResultDetailsController(event, results) {
+function ResultDetailsController(EventsService, event, results) {
   this.event = event;
   this.results = results;
 
   this.findParticipantName = findParticipantName;
 
   function findParticipantName(participantId) {
-    var participant = _.find(event.participants, function (participant) {
-      return participant.id === participantId;
-    });
-
-    return participant.name;
+    return EventsService.findParticipantName(event, participantId);
   }
 }
 

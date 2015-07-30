@@ -1,20 +1,26 @@
 "use strict";
 
 var expect = require("chai").use(require("sinon-chai")).expect;
+var sinon = require("sinon");
 
 describe("The controller responsible for showing an event details", function () {
-  var event, controller;
+  var EventsService, event, controller;
 
   beforeEach(function () {
+    EventsService = {
+      findParticipantName: sinon.stub(),
+      findPurchaseParticipantsNames: sinon.stub(),
+      findEventParticipantsNames: sinon.stub()
+    };
     event = {
-      participants: [{id: "123", name: "Kim", email: "", share: 1}, {id: "456", name: "Bob", email: "", share: 1}],
-      purchases: [{purchaser_id: "123", participants_ids: ["123", "456"]}]
+      participants: [{id: "123", name: "Kim"}, {id: "456", name: "Bob"}, {id: "789", name: "Ben"}],
+      purchases: [{purchaserId: "123", participantsIds: ["123", "456"]}]
     };
   });
 
   beforeEach(function () {
     var ShowEventController = require("./show_event_controller");
-    controller = new ShowEventController(event);
+    controller = new ShowEventController(EventsService, event);
   });
 
   it("should be defined", function () {
@@ -22,14 +28,17 @@ describe("The controller responsible for showing an event details", function () 
   });
 
   it("should return the list of participants as a string", function () {
-    expect(controller.stringifyParticipantsNames()).to.equal("Kim, Bob");
+    EventsService.findEventParticipantsNames.withArgs(event).returns(["Kim", "Bob", "Ben"]);
+    expect(controller.stringifyEventParticipantsNames()).to.equal("Kim, Bob, Ben");
   });
 
-  it("should find the name of the purchaser", function () {
-    expect(controller.findPurchaserName(event.purchases[0].purchaser_id)).to.equal("Kim");
+  it("should find the name of a purchase purchaser by delegating to the EventsService", function () {
+    EventsService.findParticipantName.withArgs(event, "123").returns("Kim");
+    expect(controller.findPurchaserName("123")).to.equal("Kim");
   });
 
-  it("should find the names of the participants of a purchase", function () {
-    expect(controller.findPurchaseParticipantsNames(["123", "456"])).to.equal("Kim, Bob");
+  it("should find the names of the participants of a purchase by delegating to the EventsService", function () {
+    EventsService.findPurchaseParticipantsNames.withArgs(event, ["123", "456"]).returns(["Kim", "Bob"]);
+    expect(controller.stringifyPurchaseParticipantsNames(["123", "456"])).to.equal("Kim, Bob");
   });
 });
