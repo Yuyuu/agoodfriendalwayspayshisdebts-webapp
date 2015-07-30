@@ -7,9 +7,9 @@ function AddPurchaseController(Purchases, Notifications) {
   var it = this;
   this.purchase = {
     label: undefined,
-    purchaser: undefined,
+    purchaserId: undefined,
     amount: undefined,
-    participants: [],
+    participantsIds: [],
     description: undefined
   };
 
@@ -35,9 +35,9 @@ function AddPurchaseController(Purchases, Notifications) {
       it.form.$setUntouched();
     }
     it.purchase.label = undefined;
-    it.purchase.purchaser = undefined;
+    it.purchase.purchaserId = undefined;
     it.purchase.amount = undefined;
-    it.purchase.participants = [];
+    it.purchase.participantsIds = [];
     it.purchase.description = undefined;
   }
 

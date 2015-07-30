@@ -6,7 +6,9 @@ describe("The controller responsible for the event result page", function () {
   var event, results, controller;
 
   beforeEach(function () {
-    event = {};
+    event = {
+      participants: [{"id": "123", "name": "Kim"}]
+    };
     results = {};
   });
 
@@ -22,5 +24,9 @@ describe("The controller responsible for the event result page", function () {
   it("should communicate with the view", function () {
     expect(controller.event).to.deep.equal(event);
     expect(controller.results).to.deep.equal(results);
+  });
+
+  it("should find a participant name", function () {
+    expect(controller.findParticipantName("123")).to.equal("Kim");
   });
 });

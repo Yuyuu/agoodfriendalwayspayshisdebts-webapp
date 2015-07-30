@@ -2,8 +2,7 @@ main
   .jumbotron.inverse
     .container
       h1 {{model.event.name}}
-      p.lead= t("app.event.with")
-        | &nbsp;{{model.stringifyParticipantsNames()}}
+      p.lead #{t("app.event.with")} {{model.stringifyParticipantsNames()}}
 .container.purchase-board
   .row
     .col-md-4.col-md-offset-5
@@ -19,10 +18,8 @@ main
             span.text-bold {{purchase.amount | currency:'€':2}}
             | &nbsp;- {{purchase.label}}
         .panel-body
-          p= t("app.event.purchased_by")
-            | &nbsp;
-            span.text-bold {{purchase.purchaser}}
-          p= t("app.event.shared_between")
-            | &nbsp;
-            span.text-bold {{purchase.participants.join(", ")}}
+          p #{t("app.event.purchased_by")}&nbsp;
+            span.text-bold {{model.findPurchaserName(purchase.purchaserId)}}
+          p #{t("app.event.shared_between")}&nbsp;
+            span.text-bold {{model.findPurchaseParticipantsNames(purchase.participantsIds)}}
         .panel-footer(ng-if="purchase.description") {{purchase.description}}
