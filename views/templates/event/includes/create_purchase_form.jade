@@ -45,9 +45,9 @@ form(name="pchCtrl.form" ng-controller="AddPurchaseController as pchCtrl" novali
       .form-group
         textarea.form-control(ng-model="pchCtrl.purchase.description" rows="3"
             placeholder=t("app.event.purchase_form.description_ph"))
-  .row
+  .row(ng-cloak="" ng-if="pchCtrl.errors")
     .col-xs-12
-      .alert.alert-danger.text-center(ng-cloak="" ng-if="pchCtrl.errors")
+      .alert.alert-danger.text-center
         div(ng-repeat="error in pchCtrl.errors" ng-i18next="app.event.purchase_form.errors.{{error.message}}")
   .row
     .col-xs-12
