@@ -7,7 +7,8 @@ var resultModule = angular.module("result", []);
 
 resultModule
   .factory("Results", require("./resource/results_resource"))
-  .controller("ResultDetailsController", require("./controller/result_details_controller"));
+  .controller("ResultDetailsController", require("./controller/result_details_controller"))
+  .directive("debtsVisualIndicator", require("./directive/visual_indicator_directive"));
 
 configureModuleRouting();
 

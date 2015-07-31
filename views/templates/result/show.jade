@@ -16,16 +16,16 @@ main
           span.text-bold  {{participantResults.totalSpent | currency:'€':2}}</span>
       .col-lg-6.col-sm-6.col-xs-12
         .table-responsive
-          table.table.table-striped
+          table.table
             thead
               tr
                 th= t("app.debts.creditor")
                 th= t("app.debts.debt")
             tbody
-              tr(ng-repeat="(creditorId, debtAmount) in participantResults.debtsDetail"
-                  ng-class="[debtAmount > 0 ? 'danger' : 'success']")
+              tr(ng-repeat="(creditorId, debtAmount) in participantResults.debtsDetail" debts-visual-indicator="")
                 th(scope="row") {{model.findParticipantName(creditorId)}}
                 td {{debtAmount | currency:'€':2}}
-              tr.total-row
+            tfoot
+              tr
                 th(scope="row")= t("app.debts.total")
                 td.text-bold {{participantResults.totalDebt | currency:'€':2}}
