@@ -11,7 +11,7 @@
       }
     },
     "notification": {
-      "PURCHASE_ADDED_SUCCESS": {
+      "EXPENSE_ADDED_SUCCESS": {
         "title": "Ajout effectué !",
         "content": "La dépense a été ajoutée à l'événement avec succès."
       }
@@ -47,7 +47,7 @@
       "result": "Voir le résultat de l'événement",
       "purchased_by": "Achat effectué par",
       "shared_between": "Dépense partagée entre",
-      "purchase_form": {
+      "expense_form": {
         "title": "Ajouter une dépense",
         "label": "Label",
         "label_ph": "Courses pour le barbecue",
@@ -67,11 +67,11 @@
         "submit": "Ajouter la dépense",
         "loading": "Ajout de la dépense...",
         "errors": {
-          "PURCHASE_PURCHASER_REQUIRED": "Vous devez sélectionner un acheteur",
-          "PURCHASE_LABEL_REQUIRED": "Vous devez spécifier un label pour la dépense",
-          "PURCHASE_AMOUNT_REQUIRED": "Vous devez spécifier la somme de la dépense",
+          "EXPENSE_PURCHASER_REQUIRED": "Vous devez sélectionner un acheteur",
+          "EXPENSE_LABEL_REQUIRED": "Vous devez spécifier un label pour la dépense",
+          "EXPENSE_AMOUNT_REQUIRED": "Vous devez spécifier la somme de la dépense",
           "INVALID_AMOUNT": "Le somme spécifiée doit être supérieure à 0",
-          "ADD_PURCHASE_DEFAULT_ERROR": "Désolé, la dépense n'a pas pu être ajoutée"
+          "ADD_EXPENSE_DEFAULT_ERROR": "Désolé, la dépense n'a pas pu être ajoutée"
         }
       }
     },

@@ -8,7 +8,7 @@ describe("The service to handle event operations", function () {
   beforeEach(function () {
     event = {
       participants: [{id: "123", name: "Kim"}, {id: "456", name: "Lea"}, {id: "789", name: "Ben"}],
-      purchases: [{purchaser: "123"}]
+      expenses: [{purchaser: "123"}]
     };
   });
 
@@ -25,7 +25,7 @@ describe("The service to handle event operations", function () {
     expect(service.findEventParticipantsNames(event)).to.deep.equal(["Kim", "Lea", "Ben"]);
   });
 
-  it("should retrieve the names of a purchase participants based on their ids", function () {
-    expect(service.findPurchaseParticipantsNames(event, ["123", "456"])).to.deep.equal(["Kim", "Lea"]);
+  it("should retrieve the names of an expense participants based on their ids", function () {
+    expect(service.findExpenseParticipantsNames(event, ["123", "456"])).to.deep.equal(["Kim", "Lea"]);
   });
 });

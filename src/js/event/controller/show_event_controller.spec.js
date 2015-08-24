@@ -9,12 +9,12 @@ describe("The controller responsible for showing an event details", function () 
   beforeEach(function () {
     EventsService = {
       findParticipantName: sinon.stub(),
-      findPurchaseParticipantsNames: sinon.stub(),
+      findExpenseParticipantsNames: sinon.stub(),
       findEventParticipantsNames: sinon.stub()
     };
     event = {
       participants: [{id: "123", name: "Kim"}, {id: "456", name: "Bob"}, {id: "789", name: "Ben"}],
-      purchases: [{purchaserId: "123", participantsIds: ["123", "456"]}]
+      expenses: [{purchaserId: "123", participantsIds: ["123", "456"]}]
     };
   });
 
@@ -32,13 +32,13 @@ describe("The controller responsible for showing an event details", function () 
     expect(controller.stringifyEventParticipantsNames()).to.equal("Kim, Bob, Ben");
   });
 
-  it("should find the name of a purchase purchaser by delegating to the EventsService", function () {
+  it("should find the name of an expense purchaser by delegating to the EventsService", function () {
     EventsService.findParticipantName.withArgs(event, "123").returns("Kim");
     expect(controller.findPurchaserName("123")).to.equal("Kim");
   });
 
-  it("should find the names of the participants of a purchase by delegating to the EventsService", function () {
-    EventsService.findPurchaseParticipantsNames.withArgs(event, ["123", "456"]).returns(["Kim", "Bob"]);
-    expect(controller.stringifyPurchaseParticipantsNames(["123", "456"])).to.equal("Kim, Bob");
+  it("should find the names of the participants of an expense by delegating to the EventsService", function () {
+    EventsService.findExpenseParticipantsNames.withArgs(event, ["123", "456"]).returns(["Kim", "Bob"]);
+    expect(controller.stringifyExpenseParticipantsNames(["123", "456"])).to.equal("Kim, Bob");
   });
 });

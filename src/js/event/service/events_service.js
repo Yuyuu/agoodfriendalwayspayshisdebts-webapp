@@ -6,7 +6,7 @@ var _ = require("underscore");
 function EventService() {
   this.findParticipantName = findParticipantName;
   this.findEventParticipantsNames = findEventParticipantsNames;
-  this.findPurchaseParticipantsNames = findPurchaseParticipantsNames;
+  this.findExpenseParticipantsNames = findExpenseParticipantsNames;
 
   function findParticipantName(event, participantId) {
     var participant = _.find(event.participants, function (participant) {
@@ -22,7 +22,7 @@ function EventService() {
     });
   }
 
-  function findPurchaseParticipantsNames(event, participantsIds) {
+  function findExpenseParticipantsNames(event, participantsIds) {
     return _.collect(participantsIds, function (participantId) {
       return findParticipantName(event, participantId);
     });

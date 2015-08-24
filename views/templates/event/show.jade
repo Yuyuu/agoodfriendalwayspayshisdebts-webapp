@@ -3,23 +3,23 @@ main
     .container
       h1 {{model.event.name}}
       p.lead #{t("app.event.with")} {{model.stringifyEventParticipantsNames()}}
-.container.purchase-board
+.container.expense-board
   .row
     .col-md-4.col-md-offset-5
       a(ng-href="#/events/{{model.event.id}}/debts" title=t("app.event.result"))= t("app.event.result")
   .row
     .col-md-4.col-md-offset-1.col-sm-6.col-xs-12(role="complementary")
-      .purchase-creation-panel(affix-panel="" data-offset-top="-20")
-        include includes/create_purchase_form
-    .col-md-6.col-sm-6.col-xs-12.purchases-list-panel(role="main")
-      .panel.panel-default(ng-cloak="" ng-repeat="purchase in model.event.purchases | orderBy:$index:true")
+      .expense-creation-panel(affix-panel="" data-offset-top="-20")
+        include includes/create_expense_form
+    .col-md-6.col-sm-6.col-xs-12.expenses-list-panel(role="main")
+      .panel.panel-default(ng-cloak="" ng-repeat="expense in model.event.expenses | orderBy:$index:true")
         .panel-heading
           h4
-            span.text-bold {{purchase.amount | currency:'€':2}}
-            | &nbsp;- {{purchase.label}}
+            span.text-bold {{expense.amount | currency:'€':2}}
+            | &nbsp;- {{expense.label}}
         .panel-body
           p #{t("app.event.purchased_by")}&nbsp;
-            span.text-bold {{model.findPurchaserName(purchase.purchaserId)}}
+            span.text-bold {{model.findPurchaserName(expense.purchaserId)}}
           p #{t("app.event.shared_between")}&nbsp;
-            span.text-bold {{model.stringifyPurchaseParticipantsNames(purchase.participantsIds)}}
-        .panel-footer(ng-if="purchase.description") {{purchase.description}}
+            span.text-bold {{model.stringifyExpenseParticipantsNames(expense.participantsIds)}}
+        .panel-footer(ng-if="expense.description") {{expense.description}}

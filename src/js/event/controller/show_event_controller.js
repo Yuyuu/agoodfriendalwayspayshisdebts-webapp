@@ -6,7 +6,7 @@ function ShowEventController(EventsService, event) {
 
   this.stringifyEventParticipantsNames = stringifyEventParticipantsNames;
   this.findPurchaserName = findPurchaserName;
-  this.stringifyPurchaseParticipantsNames = stringifyPurchaseParticipantsNames;
+  this.stringifyExpenseParticipantsNames = stringifyExpenseParticipantsNames;
 
   function stringifyEventParticipantsNames () {
     var eventParticipantsNames = EventsService.findEventParticipantsNames(event);
@@ -17,9 +17,9 @@ function ShowEventController(EventsService, event) {
     return EventsService.findParticipantName(event, purchaserId);
   }
 
-  function stringifyPurchaseParticipantsNames(participantsIds) {
-    var purchaseParticipantsNames = EventsService.findPurchaseParticipantsNames(event, participantsIds);
-    return purchaseParticipantsNames.join(", ");
+  function stringifyExpenseParticipantsNames(participantsIds) {
+    var expenseParticipantsNames = EventsService.findExpenseParticipantsNames(event, participantsIds);
+    return expenseParticipantsNames.join(", ");
   }
 }
 

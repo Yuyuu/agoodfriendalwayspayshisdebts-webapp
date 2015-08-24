@@ -8,7 +8,7 @@ var sinon = require("sinon");
 var listenerDecorator = require("../../../test/listener_decorator");
 var watcherDecorator = require("../../../test/watcher_decorator");
 
-describe("The directive in charge to affix the purchase creation panel", function () {
+describe("The directive in charge to affix the expense creation panel", function () {
   var angularModule, affix, scope, element, $affix, $window, $timeout, directive;
 
   beforeEach(function () {

@@ -11,9 +11,9 @@
       }
     },
     "notification": {
-      "PURCHASE_ADDED_SUCCESS": {
+      "EXPENSE_ADDED_SUCCESS": {
         "title": "Done!",
-        "content": "The purchase has been added to the event successfully."
+        "content": "The expense has been added to the event successfully."
       }
     },
     "home": {
@@ -46,9 +46,9 @@
       "with": "With",
       "result": "See event result",
       "purchased_by": "Purchased by",
-      "shared_between": "Purchase shared between",
-      "purchase_form": {
-        "title": "Add a purchase",
+      "shared_between": "Expense shared between",
+      "expense_form": {
+        "title": "Add an expense",
         "label": "Label",
         "label_ph": "Errands for the BBQ",
         "purchaser": "Purchaser",
@@ -64,14 +64,14 @@
           "ph": "Choose among the participants..."
         },
         "description_ph": "For further clarification",
-        "submit": "Add the purchase",
-        "loading": "Adding the purchase...",
+        "submit": "Add the expense",
+        "loading": "Adding the expense...",
         "errors": {
-          "PURCHASE_PURCHASER_REQUIRED": "You must select a purchaser",
-          "PURCHASE_LABEL_REQUIRED": "You must specify a label for the purchase",
-          "PURCHASE_AMOUNT_REQUIRED": "You must specify the amount of the purchase",
+          "EXPENSE_PURCHASER_REQUIRED": "You must select a purchaser",
+          "EXPENSE_LABEL_REQUIRED": "You must specify a label for the expense",
+          "EXPENSE_AMOUNT_REQUIRED": "You must specify the amount of the expense",
           "INVALID_AMOUNT": "The specified amount must be greater than 0",
-          "ADD_PURCHASE_DEFAULT_ERROR": "Sorry, the purchase could not be added"
+          "ADD_EXPENSE_DEFAULT_ERROR": "Sorry, the expense could not be added"
         }
       }
     },

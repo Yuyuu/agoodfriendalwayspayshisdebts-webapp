@@ -6,8 +6,8 @@ var angular = require("angular");
 function AffixDirective($affix, $window, $timeout) {
   function link(scope, element) {
     var affix;
-    var purchaseCreationPanelElement = angular.element(element);
-    var purchasesListPanelElement = angular.element(".purchases-list-panel");
+    var expenseCreationPanelElement = angular.element(element);
+    var expensesListPanelElement = angular.element(".expenses-list-panel");
 
     scope.$watch(listPanelIsTallerThanCreationPanel, function (shouldApplyAffix) {
       if (shouldApplyAffix) {
@@ -29,7 +29,7 @@ function AffixDirective($affix, $window, $timeout) {
     });
 
     function listPanelIsTallerThanCreationPanel() {
-      return purchasesListPanelElement.outerHeight(true) > purchaseCreationPanelElement.outerHeight(true);
+      return expensesListPanelElement.outerHeight(true) > expenseCreationPanelElement.outerHeight(true);
     }
 
     function getPageFooterHeight() {
