@@ -23,7 +23,7 @@ function CreateEventController(Events, $window) {
   }
 
   function redirectToEventPage(event) {
-    $window.location = "#/events/" + event.id;
+    $window.location = "#/events/" + event.id + "/dashboard";
   }
 
   function extractMessagesFromError(error) {

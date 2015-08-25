@@ -5,7 +5,7 @@ main
 .container.result-board
   .row
     .col-lg-8.col-lg-offset-2.btn-header
-      a.btn.btn-default(type="button" ng-href="#/events/{{model.event.id}}" title=t("app.debts.back"))
+      a.btn.btn-default(type="button" ng-href="#/events/{{model.event.id}}/dashboard" title=t("app.debts.back"))
         span.glyphicon.glyphicon-arrow-left(aria-hidden="true")
         | &nbsp;#{t("app.debts.back")}
   .row.participant-result(ng-repeat="(participantId, participantResults) in model.result.participantsResults")

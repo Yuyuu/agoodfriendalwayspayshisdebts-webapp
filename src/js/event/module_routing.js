@@ -8,7 +8,7 @@ module.exports = function () {
 
   function configure($routeProvider) {
     $routeProvider
-      .when("/events/:id", {
+      .when("/events/:id/dashboard", {
         controller: "ShowEventController",
         controllerAs: "model",
         templateUrl: "/templates/event/show",

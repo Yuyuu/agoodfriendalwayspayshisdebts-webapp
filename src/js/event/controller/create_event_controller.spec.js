@@ -46,7 +46,7 @@ describe("The controller to create events", function () {
 
     controller.createEvent(event);
 
-    expect($window.location).to.equal("#/events/12345");
+    expect($window.location).to.equal("#/events/12345/dashboard");
   });
 
   it("should not try to redirect to the event page if the event was not created", function () {
