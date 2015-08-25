@@ -16,7 +16,7 @@ module.exports = function () {
           event: ["$route", "Events", function ($route, Events) {
             return Events.get({id: $route.current.params.id}).$promise;
           }],
-          results: ["$route", "Results", function ($route, Results) {
+          result: ["$route", "Results", function ($route, Results) {
             return Results.get($route.current.params.id);
           }]
         }

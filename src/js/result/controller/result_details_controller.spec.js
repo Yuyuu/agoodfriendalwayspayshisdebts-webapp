@@ -25,7 +25,7 @@ describe("The controller responsible for the event result page", function () {
 
   it("should communicate with the view", function () {
     expect(controller.event).to.equal(event);
-    expect(controller.results).to.equal(results);
+    expect(controller.result).to.equal(results);
   });
 
   it("should find a participant name by delegating to the EventsService", function () {

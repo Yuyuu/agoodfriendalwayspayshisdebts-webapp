@@ -23,7 +23,7 @@ form(name="xpensCtrl.form" ng-controller="AddExpenseController as xpensCtrl" nov
         label(for="inputExpensePurchaser") *&nbsp;
           = t("app.event.expense_form.purchaser")
         br
-        button#inputExpensePurchaser.btn.btn-default(type="button" ng-model="xpensCtrl.expense.purchaserId"
+        button#inputExpensePurchaser.btn.btn-default(type="button" ng-model="xpensCtrl.expense.purchaserUuid"
             bs-select="" data-placeholder=t("app.event.expense_form.purchaser_ph") name="expensePurchaser" required=""
             bs-options="participant.id as participant.name for participant in model.event.participants")
       .form-group(element-validation="xpensCtrl.form.expenseParticipants")
@@ -33,7 +33,7 @@ form(name="xpensCtrl.form" ng-controller="AddExpenseController as xpensCtrl" nov
         label(for="inputExpenseParticipants") *&nbsp;
           = t("app.event.expense_form.share_with.label")
         br
-        button#inputExpenseParticipants.btn.btn-default(type="button" ng-model="xpensCtrl.expense.participantsIds"
+        button#inputExpenseParticipants.btn.btn-default(type="button" ng-model="xpensCtrl.expense.participantsUuids"
             bs-select="" data-multiple="1" data-all-none-buttons="true" name="expenseParticipants"
             data-all-text=t("app.event.expense_form.share_with.all") required="" data-max-length="4"
             data-none-text=t("app.event.expense_form.share_with.none")

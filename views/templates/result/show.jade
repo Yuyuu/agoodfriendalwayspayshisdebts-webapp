@@ -8,7 +8,7 @@ main
       a.btn.btn-default(type="button" ng-href="#/events/{{model.event.id}}" title=t("app.debts.back"))
         span.glyphicon.glyphicon-arrow-left(aria-hidden="true")
         | &nbsp;#{t("app.debts.back")}
-  .row.participant-result(ng-repeat="(participantId, participantResults) in model.results")
+  .row.participant-result(ng-repeat="(participantId, participantResults) in model.result.participantsResults")
     .result-box.col-lg-8.col-lg-offset-2.col-xs-12
       .col-lg-6.col-sm-6.col-xs-12
         h2 {{model.findParticipantName(participantId)}}

@@ -38,9 +38,9 @@ describe("The controller to add expenses", function () {
     expect(controller.form.$setPristine).to.have.been.called;
     expect(controller.form.$setUntouched).to.have.been.called;
     expect(controller.expense.label).to.be.undefined;
-    expect(controller.expense.purchaserId).to.be.undefined;
+    expect(controller.expense.purchaserUuid).to.be.undefined;
     expect(controller.expense.amount).to.be.undefined;
-    expect(controller.expense.participantsIds).to.have.length(0);
+    expect(controller.expense.participantsUuids).to.have.length(0);
     expect(controller.expense.description).to.be.undefined;
   });
 

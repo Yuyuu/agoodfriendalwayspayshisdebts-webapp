@@ -7,9 +7,9 @@ function AddExpenseController(Expenses, Notifications) {
   var it = this;
   this.expense = {
     label: undefined,
-    purchaserId: undefined,
+    purchaserUuid: undefined,
     amount: undefined,
-    participantsIds: [],
+    participantsUuids: [],
     description: undefined
   };
 
@@ -20,7 +20,10 @@ function AddExpenseController(Expenses, Notifications) {
     var expensePassedToResource = _.extend({eventId: event.id}, expense);
     Expenses.add(
       expensePassedToResource,
-      function (addedExpense) {
+      function () {
+        var addedExpense = _.omit(expense, "purchaserUuid", "participantsUuids");
+        addedExpense.purchaserId = expense.purchaserUuid;
+        addedExpense.participantsIds = expense.participantsUuids;
         clearForm();
         event.expenses.push(addedExpense);
         Notifications.success("EXPENSE_ADDED_SUCCESS");
@@ -35,9 +38,9 @@ function AddExpenseController(Expenses, Notifications) {
       it.form.$setUntouched();
     }
     it.expense.label = undefined;
-    it.expense.purchaserId = undefined;
+    it.expense.purchaserUuid = undefined;
     it.expense.amount = undefined;
-    it.expense.participantsIds = [];
+    it.expense.participantsUuids = [];
     it.expense.description = undefined;
   }
 

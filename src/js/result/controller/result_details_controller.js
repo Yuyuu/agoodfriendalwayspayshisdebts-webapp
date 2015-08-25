@@ -1,9 +1,9 @@
 "use strict";
 
 /* @ngInject */
-function ResultDetailsController(EventsService, event, results) {
+function ResultDetailsController(EventsService, event, result) {
   this.event = event;
-  this.results = results;
+  this.result = result;
 
   this.findParticipantName = findParticipantName;
 
