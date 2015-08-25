@@ -2,23 +2,24 @@
 
 /* @ngInject */
 function CreateEventController(Events, $window) {
-  var it = this;
-  this.event = {name: "", participants: [{name:"", email: "", share: 1}]};
+  var model = this;
 
-  this.addParticipant = addParticipant;
-  this.removeParticipant = removeParticipant;
-  this.createEvent = createEvent;
+  model.event = {name: "", participants: [{name:"", email: "", share: 1}]};
+
+  model.addParticipant = addParticipant;
+  model.createEvent = createEvent;
+  model.removeParticipant = removeParticipant;
 
   function addParticipant() {
-    it.event.participants.push({name:"", email: "", share: 1});
+    model.event.participants.push({name:"", email: "", share: 1});
   }
 
   function removeParticipant(index) {
-    it.event.participants.splice(index, 1);
+    model.event.participants.splice(index, 1);
   }
 
   function createEvent(event) {
-    delete it.errors;
+    delete model.errors;
     Events.create(event, redirectToEventPage, extractMessagesFromError);
   }
 
@@ -27,7 +28,7 @@ function CreateEventController(Events, $window) {
   }
 
   function extractMessagesFromError(error) {
-    it.errors = (error.status === 400) ? error.data.errors : [{message: "CREATE_EVENT_DEFAULT_ERROR"}];
+    model.errors = (error.status === 400) ? error.data.errors : [{message: "CREATE_EVENT_DEFAULT_ERROR"}];
   }
 }
 

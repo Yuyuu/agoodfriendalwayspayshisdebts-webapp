@@ -11,15 +11,7 @@ module.exports = function () {
       .when("/events/:id/debts", {
         controller: "ResultDetailsController",
         controllerAs: "model",
-        templateUrl: "/templates/result/show",
-        resolve: {
-          event: ["$route", "Events", function ($route, Events) {
-            return Events.get({id: $route.current.params.id}).$promise;
-          }],
-          result: ["$route", "Results", function ($route, Results) {
-            return Results.get($route.current.params.id);
-          }]
-        }
+        templateUrl: "/templates/result/show"
       });
   }
 };

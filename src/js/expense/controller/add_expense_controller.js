@@ -4,8 +4,9 @@ var _ = require("underscore");
 
 /* @ngInject */
 function AddExpenseController(Expenses, Notifications) {
-  var it = this;
-  this.expense = {
+  var model = this;
+
+  model.expense = {
     label: undefined,
     purchaserUuid: undefined,
     amount: undefined,
@@ -13,10 +14,10 @@ function AddExpenseController(Expenses, Notifications) {
     description: undefined
   };
 
-  this.addExpense = addExpense;
+  model.addExpense = addExpense;
 
   function addExpense(event, expense) {
-    delete it.errors;
+    delete model.errors;
     var expensePassedToResource = _.extend({eventId: event.id}, expense);
     Expenses.add(
       expensePassedToResource,
@@ -33,19 +34,19 @@ function AddExpenseController(Expenses, Notifications) {
   }
 
   function clearForm() {
-    if (it.form) {
-      it.form.$setPristine();
-      it.form.$setUntouched();
+    if (model.form) {
+      model.form.$setPristine();
+      model.form.$setUntouched();
     }
-    it.expense.label = undefined;
-    it.expense.purchaserUuid = undefined;
-    it.expense.amount = undefined;
-    it.expense.participantsUuids = [];
-    it.expense.description = undefined;
+    model.expense.label = undefined;
+    model.expense.purchaserUuid = undefined;
+    model.expense.amount = undefined;
+    model.expense.participantsUuids = [];
+    model.expense.description = undefined;
   }
 
   function extractMessagesFromError(error) {
-    it.errors = (error.status === 400) ? error.data.errors : [{message: "ADD_EXPENSE_DEFAULT_ERROR"}];
+    model.errors = (error.status === 400) ? error.data.errors : [{message: "ADD_EXPENSE_DEFAULT_ERROR"}];
   }
 }
 
