@@ -15,17 +15,3 @@ angular.module("app", [
   require("./util"),
   require("./error")
 ]);
-
-angular.module("app").config(["$routeProvider", configure]);
-
-function configure($routeProvider) {
-  $routeProvider
-    .when("/", {
-      controller: "CreateEventController",
-      controllerAs: "model",
-      templateUrl: "/templates/index"
-    })
-    .otherwise({
-      redirectTo: "/404"
-    });
-}

@@ -8,6 +8,11 @@ module.exports = function () {
 
   function configure($routeProvider) {
     $routeProvider
+      .when("/", {
+        controller: "CreateEventController",
+        controllerAs: "model",
+        templateUrl: "/templates/index"
+      })
       .when("/events/:id/dashboard", {
         controller: "ShowEventController",
         controllerAs: "model",

@@ -13,6 +13,9 @@ module.exports = function () {
       })
       .when("/error", {
         templateUrl: "/templates/error/default"
+      })
+      .otherwise({
+        redirectTo: "/404"
       });
   }
 };
