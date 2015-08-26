@@ -27,7 +27,7 @@ function ShowEventController($routeParams, EventsService, Events) {
   }
 
   function activate() {
-    return Events.get({id: $routeParams.id}, function (data) {
+    return Events.get($routeParams.id).then(function (data) {
       model.event = data;
       return model.event;
     });

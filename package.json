@@ -56,7 +56,6 @@
     "bootstrap": "./public/bower_components/bootstrap/dist/js/bootstrap.js",
     "angular": "./public/bower_components/angular/angular.js",
     "angular-animate": "./public/bower_components/angular-animate/angular-animate.js",
-    "angular-resource": "./public/bower_components/angular-resource/angular-resource.js",
     "angular-route": "./public/bower_components/angular-route/angular-route.js",
     "angular-sanitize": "./public/bower_components/angular-sanitize/angular-sanitize.js",
     "angular-strap": "./public/bower_components/angular-strap/dist/angular-strap.js",

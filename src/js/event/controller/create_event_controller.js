@@ -20,11 +20,13 @@ function CreateEventController(Events, $window) {
 
   function createEvent(event) {
     delete model.errors;
-    Events.create(event, redirectToEventPage, extractMessagesFromError);
+    Events.create(event)
+      .then(redirectToEventPage)
+      .catch(extractMessagesFromError);
   }
 
-  function redirectToEventPage(event) {
-    $window.location = "#/events/" + event.id + "/dashboard";
+  function redirectToEventPage(data) {
+    $window.location = "#/events/" + data.id + "/dashboard";
   }
 
   function extractMessagesFromError(error) {

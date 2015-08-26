@@ -7,7 +7,7 @@ describe("The controller to create events", function () {
   var Events, $window, controller;
 
   beforeEach(function () {
-    Events = {create: sinon.spy()};
+    Events = {create: sinon.stub()};
     $window = {location: ""};
   });
 
@@ -34,6 +34,7 @@ describe("The controller to create events", function () {
 
   it("should create the event", function () {
     var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
+    Events.create.returns({then: function (callback) {callback.call(null, {}); return {catch: sinon.spy()};}});
 
     controller.createEvent(event);
 
@@ -41,7 +42,7 @@ describe("The controller to create events", function () {
   });
 
   it("should redirect to the event page when it has been successfully created", function () {
-    Events.create = function (data, successCb) {successCb({id: "12345"});};
+    Events.create.returns({then: function (callback) {callback.call(null, {id: "12345"}); return {catch: sinon.spy()};}});
     var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
 
     controller.createEvent(event);
@@ -50,7 +51,7 @@ describe("The controller to create events", function () {
   });
 
   it("should not try to redirect to the event page if the event was not created", function () {
-    Events.create = function (data, successCb, errorCb) {errorCb({data: {errors: []}});};
+    Events.create.returns({then: function () {return {catch: function (callback) {callback.call(null, {});}};}});
     var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
 
     controller.createEvent(event);
@@ -59,9 +60,9 @@ describe("The controller to create events", function () {
   });
 
   it("should get a reason if the event could not be created", function () {
-    Events.create = function (data, successCb, errorCb) {
-      errorCb({status: 400, data: {errors: [{message: "a message"}]}});
-    };
+    Events.create.returns({then: function () {return {catch: function (callback) {
+      callback.call(null, {status: 400, data: {errors: [{message: "a message"}]}});
+    }};}});
     var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
 
     controller.createEvent(event);
@@ -70,7 +71,7 @@ describe("The controller to create events", function () {
   });
 
   it("should get a default reason if an unhandled error occurred while creating an event", function () {
-    Events.create = function (data, successCb, errorCb) {errorCb({});};
+    Events.create.returns({then: function () {return {catch: function (callback) {callback.call(null, {});}};}});
     var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
 
     controller.createEvent(event);

@@ -9,7 +9,7 @@ describe("The controller to add expenses", function () {
   beforeEach(function () {
     event = {id: "123", expenses: []};
     expense = {label: "Food", purchaser: "Kim", amount: 5, participants: ["Kim"], description: "Hmmm"};
-    Expenses = {add: sinon.spy()};
+    Expenses = {add: sinon.stub().returns({then: function () {return {catch: sinon.spy()};}})};
     Notifications = {success: sinon.spy()};
   });
 
@@ -31,7 +31,7 @@ describe("The controller to add expenses", function () {
 
   it("should clear the form if the expense was successfully added", function () {
     controller.expense = expense;
-    Expenses.add = function (data, successCb) {successCb(expense);};
+    Expenses.add.returns({then: function (callback) {callback.call(null, expense); return {catch: sinon.spy()};}});
 
     controller.addExpense(event, expense);
 
@@ -45,7 +45,7 @@ describe("The controller to add expenses", function () {
   });
 
   it("should push the new expense to the event if it was successfully added", function () {
-    Expenses.add = function (data, successCb) {successCb(expense);};
+    Expenses.add.returns({then: function (callback) {callback.call(null, expense); return {catch: sinon.spy()};}});
 
     controller.addExpense(event, expense);
 
@@ -53,7 +53,7 @@ describe("The controller to add expenses", function () {
   });
 
   it("should emit a notification if the expense was successfully added", function () {
-    Expenses.add = function (data, successCb) {successCb(expense);};
+    Expenses.add.returns({then: function (callback) {callback.call(null, expense); return {catch: sinon.spy()};}});
 
     controller.addExpense(event, expense);
 
@@ -61,7 +61,7 @@ describe("The controller to add expenses", function () {
   });
 
   it("should not add any to the event if it was not created", function () {
-    Expenses.add = function (data, successCb, errorCb) {errorCb({data: {errors: []}});};
+    Expenses.add.returns({then: function () {return {catch: function (callback) {return callback.call(null, {});}};}});
 
     controller.addExpense(event, expense);
 
@@ -69,9 +69,9 @@ describe("The controller to add expenses", function () {
   });
 
   it("should get a reason if the expense could not be added", function () {
-    Expenses.add = function (data, successCb, errorCb) {
-      errorCb({status: 400, data: {errors: [{message: "a message"}]}});
-    };
+    Expenses.add.returns({then: function () {return {catch: function (callback) {
+      return callback.call(null, {status: 400, data: {errors: [{message: "a message"}]}});}
+    };}});
 
     controller.addExpense(event, expense);
 
@@ -79,7 +79,7 @@ describe("The controller to add expenses", function () {
   });
 
   it("should get a default reason if an unhandled error occurred while adding an expense", function () {
-    Expenses.add = function (data, successCb, errorCb) {errorCb({});};
+    Expenses.add.returns({then: function () {return {catch: function (callback) {return callback.call(null, {});}};}});
 
     controller.addExpense(event, expense);
 

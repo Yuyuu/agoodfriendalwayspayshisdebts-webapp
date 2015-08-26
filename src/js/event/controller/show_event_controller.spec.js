@@ -18,7 +18,7 @@ describe("The controller responsible for showing an event details", function () 
       expenses: [{purchaserId: "123", participantsIds: ["123", "456"]}]
     };
     Events = {
-      get: function (data, callback) {callback.call(null, event);}
+      get: function () {return {then: function (callback) {callback.call(null, event);}};}
     };
   });
 

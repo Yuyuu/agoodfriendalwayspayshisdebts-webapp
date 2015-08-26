@@ -1,10 +1,12 @@
 "use strict";
 
 /* @ngInject */
-function ExpensesResource($resource) {
-  return $resource("/api/events/:eventId/expenses", {eventId: "@eventId"}, {
-    add: {method: "POST"}
-  });
+function ExpensesResource($http) {
+  return {
+    add: function (data) {
+      return $http.post("/api/events/" + data.eventId + "/expenses", data);
+    }
+  };
 }
 
 module.exports = ExpensesResource;

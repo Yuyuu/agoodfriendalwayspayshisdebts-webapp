@@ -3,7 +3,7 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("The resource responsible for the server communication for result", function () {
+describe("The resource responsible for the server communication about results", function () {
   var $http, resource;
 
   beforeEach(function () {

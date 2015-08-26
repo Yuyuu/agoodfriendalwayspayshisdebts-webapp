@@ -19,18 +19,16 @@ function AddExpenseController(Expenses, Notifications) {
   function addExpense(event, expense) {
     delete model.errors;
     var expensePassedToResource = _.extend({eventId: event.id}, expense);
-    Expenses.add(
-      expensePassedToResource,
-      function () {
+    Expenses.add(expensePassedToResource)
+      .then(function () {
         var addedExpense = _.omit(expense, "purchaserUuid", "participantsUuids");
         addedExpense.purchaserId = expense.purchaserUuid;
         addedExpense.participantsIds = expense.participantsUuids;
         clearForm();
         event.expenses.push(addedExpense);
         Notifications.success("EXPENSE_ADDED_SUCCESS");
-      },
-      extractMessagesFromError
-    );
+      })
+      .catch(extractMessagesFromError);
   }
 
   function clearForm() {

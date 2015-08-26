@@ -11,12 +11,6 @@ module.exports = {
     },
     "exports": "angular.module('ngAnimate').name"
   },
-  "angular-resource": {
-    "depends": {
-      "angular": "angular"
-    },
-    "exports": "angular.module('ngResource').name"
-  },
   "angular-route": {
     "depends": {
       "angular": "angular"
