@@ -7,7 +7,14 @@ describe("The resource responsible for the server communication about expenses",
   var $http, resource;
 
   beforeEach(function () {
-    $http = {post: sinon.spy()};
+    var expense = {label: "expense", amount: 3.4};
+    $http = {post: sinon.stub(), get: sinon.stub()};
+    $http.post.returns({then: function (callback) {
+      return callback.call(null, {status: 201, data: expense});
+    }});
+    $http.get.withArgs("/api/events/1234/expenses").returns({then: function (callback) {
+      return callback.call(null, {status: 200, data: {expenses: [expense]}});
+    }});
   });
 
   beforeEach(function () {
@@ -19,11 +26,17 @@ describe("The resource responsible for the server communication about expenses",
     expect(resource).to.be.defined;
   });
 
-  it("should send a post request to the server to add an expense", function () {
+  it("should fetch all the expenses of an event while hiding the underlying http request", function () {
+    var expenses = resource.fetch("1234");
+
+    expect(expenses).to.deep.include.members([{label: "expense", amount: 3.4}]);
+  });
+
+  it("should ask the server to add an expense and return the added expense while hiding the underlying http request", function () {
     var data = {eventId: "1234"};
 
-    resource.add(data);
+    var expense = resource.add(data);
 
-    expect($http.post).to.have.been.calledWith("/api/events/1234/expenses", data);
+    expect(expense).to.deep.equal({label: "expense", amount: 3.4});
   });
 });

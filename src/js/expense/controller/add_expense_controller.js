@@ -3,7 +3,7 @@
 var _ = require("underscore");
 
 /* @ngInject */
-function AddExpenseController(Expenses, Notifications) {
+function AddExpenseController(Expenses, expenseService, Notifications) {
   var model = this;
 
   model.expense = {
@@ -20,12 +20,9 @@ function AddExpenseController(Expenses, Notifications) {
     delete model.errors;
     var expensePassedToResource = _.extend({eventId: event.id}, expense);
     Expenses.add(expensePassedToResource)
-      .then(function () {
-        var addedExpense = _.omit(expense, "purchaserUuid", "participantsUuids");
-        addedExpense.purchaserId = expense.purchaserUuid;
-        addedExpense.participantsIds = expense.participantsUuids;
+      .then(function (addedExpense) {
         clearForm();
-        event.expenses.push(addedExpense);
+        expenseService.expenses.push(addedExpense);
         Notifications.success("EXPENSE_ADDED_SUCCESS");
       })
       .catch(extractMessagesFromError);

@@ -35,14 +35,4 @@ describe("The controller responsible for showing an event details", function () 
     EventsService.findEventParticipantsNames.withArgs(event).returns(["Kim", "Bob", "Ben"]);
     expect(controller.stringifyEventParticipantsNames()).to.equal("Kim, Bob, Ben");
   });
-
-  it("should find the name of an expense purchaser by delegating to the EventsService", function () {
-    EventsService.findParticipantName.withArgs(event, "123").returns("Kim");
-    expect(controller.findPurchaserName("123")).to.equal("Kim");
-  });
-
-  it("should find the names of the participants of an expense by delegating to the EventsService", function () {
-    EventsService.findExpenseParticipantsNames.withArgs(event, ["123", "456"]).returns(["Kim", "Bob"]);
-    expect(controller.stringifyExpenseParticipantsNames(["123", "456"])).to.equal("Kim, Bob");
-  });
 });

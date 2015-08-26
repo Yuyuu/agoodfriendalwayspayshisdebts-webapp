@@ -24,8 +24,4 @@ describe("The service to handle event operations", function () {
   it("should retrieve the names of an event participants", function () {
     expect(service.findEventParticipantsNames(event)).to.deep.equal(["Kim", "Lea", "Ben"]);
   });
-
-  it("should retrieve the names of an expense participants based on their ids", function () {
-    expect(service.findExpenseParticipantsNames(event, ["123", "456"])).to.deep.equal(["Kim", "Lea"]);
-  });
 });
