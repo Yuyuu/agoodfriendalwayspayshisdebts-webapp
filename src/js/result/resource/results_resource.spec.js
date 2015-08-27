@@ -9,7 +9,7 @@ describe("The resource responsible for the server communication about results", 
   beforeEach(function () {
     $http = {get: sinon.stub()};
     $http.get.withArgs("/api/events/1234/result").returns({then: function (callback) {
-      return callback.call(null, {status: 200, data: {property: "hello"}});
+      return callback.call(null, {status: 200, data: {participantsResults: {property: "hello"}}});
     }});
   });
 

@@ -3,7 +3,7 @@
 /* @ngInject */
 function VisualIndicatorDirective() {
   function link(scope, element) {
-    var cssClass = (scope.debtAmount >= 0.005) ? "danger" : "success";
+    var cssClass = (scope.debt.amount >= 0.005) ? "danger" : "success";
     element.addClass(cssClass);
   }
 

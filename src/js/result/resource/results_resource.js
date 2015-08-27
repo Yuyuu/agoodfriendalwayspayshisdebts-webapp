@@ -5,7 +5,7 @@ function ResultsResource($http) {
   return {
     get: function (eventId) {
       return $http.get("/api/events/" + eventId + "/result").then(function (response) {
-        return response.data;
+        return response.data.participantsResults;
       });
     }
   };

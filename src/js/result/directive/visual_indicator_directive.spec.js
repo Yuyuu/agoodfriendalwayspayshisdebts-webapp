@@ -7,7 +7,7 @@ describe("The directive responsible for adding a visual indication on the result
   var scope, element, directive;
 
   beforeEach(function () {
-    scope = {debtAmount: 0};
+    scope = {debt: {amount: 0}};
     element = {addClass: sinon.spy()};
   });
 
@@ -21,13 +21,13 @@ describe("The directive responsible for adding a visual indication on the result
   });
 
   it("should add the danger class to the row if the debt amount is superior to 0.005", function () {
-    scope.debtAmount = 5;
+    scope.debt.amount = 5;
     directive.link(scope, element);
     expect(element.addClass).to.have.been.calledWith("danger");
   });
 
   it("should add the danger class to the row if the debt amount is equal to 0.005", function () {
-    scope.debtAmount = 0.005;
+    scope.debt.amount = 0.005;
     directive.link(scope, element);
     expect(element.addClass).to.have.been.calledWith("danger");
   });

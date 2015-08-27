@@ -8,10 +8,10 @@ main
       a.btn.btn-default(type="button" ng-href="#/events/{{model.event.id}}/dashboard" title=t("app.debts.back"))
         span.glyphicon.glyphicon-arrow-left(aria-hidden="true")
         | &nbsp;#{t("app.debts.back")}
-  .row.participant-result(ng-repeat="(participantId, participantResults) in model.result.participantsResults")
+  .row.participant-result(ng-repeat="participantResults in model.result")
     .result-box.col-lg-8.col-lg-offset-2.col-xs-12
       .col-lg-6.col-sm-6.col-xs-12
-        h2 {{model.findParticipantName(participantId)}}
+        h2 {{participantResults.participantName}}
         p= t("app.debts.total_spent")
           span.text-bold  {{participantResults.totalSpent | currency:'€':2}}</span>
       .col-lg-6.col-sm-6.col-xs-12
@@ -22,9 +22,9 @@ main
                 th= t("app.debts.creditor")
                 th= t("app.debts.debt")
             tbody
-              tr(ng-repeat="(creditorId, debtAmount) in participantResults.debtsDetail" debts-visual-indicator="")
-                th(scope="row") {{model.findParticipantName(creditorId)}}
-                td {{debtAmount | currency:'€':2}}
+              tr(ng-repeat="debt in participantResults.debtsDetail" debts-visual-indicator="")
+                th(scope="row") {{debt.creditorName}}
+                td {{debt.amount | currency:'€':2}}
             tfoot
               tr
                 th(scope="row")= t("app.debts.total")

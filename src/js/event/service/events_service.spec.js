@@ -17,10 +17,6 @@ describe("The service to handle event operations", function () {
     service = new EventService();
   });
 
-  it("should retrieve an event participant name based on its id", function () {
-    expect(service.findParticipantName(event, "123")).to.equal("Kim");
-  });
-
   it("should retrieve the names of an event participants", function () {
     expect(service.findEventParticipantsNames(event)).to.deep.equal(["Kim", "Lea", "Ben"]);
   });
