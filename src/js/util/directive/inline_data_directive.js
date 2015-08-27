@@ -1,5 +1,7 @@
 "use strict";
 
+var _ = require("underscore");
+
 /* @ngInject */
 function InlineElementDirective($parse) {
   return {
@@ -8,9 +10,23 @@ function InlineElementDirective($parse) {
   };
 
   function link(scope, element, attributes) {
-    var getItemFrom = $parse(attributes.debtsInlineData);
-    var item = getItemFrom(scope);
-    element.text(item.join(", "));
+    var pieces = attributes.debtsInlineData.split("::");
+    var pathToArray = pieces[0];
+    var property = pieces.length > 1 ? pieces[1] : undefined;
+
+    var getArrayFrom = $parse(pathToArray);
+
+    scope.$watch(pathToArray, function (value) {
+      if (value) {
+        var array = getArrayFrom(scope);
+        if (property) {
+          array = _.collect(array, function (object) {
+            return object[property];
+          });
+        }
+        element.text(array.join(", "));
+      }
+    });
   }
 }
 
