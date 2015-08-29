@@ -3,13 +3,18 @@
 /* @ngInject */
 function ExpensesResource($http) {
   return {
-    fetch: function (eventId) {
-      return $http.get("/api/events/" + eventId + "/expenses").then(function (response) {
-        return response.data.expenses;
+    fetchWithCount: function (eventId, skip, limit) {
+      return this.fetch(eventId, skip, limit, true);
+    },
+    fetch: function (eventId, skip, limit, withCount) {
+      withCount = withCount || false;
+      var url = "/api/events/" + eventId + "/expenses?skip=" + skip + "&limit=" + limit;
+      return $http.get(url).then(function (response) {
+        return withCount ? {expenseCount: response.data.expenseCount, expenses: response.data.expenses} : response.data.expenses;
       });
     },
-    add: function (data) {
-      return $http.post("/api/events/" + data.eventId + "/expenses", data).then(function (response) {
+    add: function (expense) {
+      return $http.post("/api/events/" + expense.eventId + "/expenses", expense).then(function (response) {
         return response.data;
       });
     }

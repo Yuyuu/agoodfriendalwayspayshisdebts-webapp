@@ -47,6 +47,7 @@
       "result": "See event result",
       "purchased_by": "Purchased by",
       "shared_between": "Expense shared between",
+      "load_more": "See more expenses",
       "expense_form": {
         "title": "Add an expense",
         "label": "Label",

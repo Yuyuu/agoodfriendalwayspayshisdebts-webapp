@@ -47,6 +47,7 @@
       "result": "Voir le résultat de l'événement",
       "purchased_by": "Achat effectué par",
       "shared_between": "Dépense partagée entre",
+      "load_more": "Voir plus de dépenses",
       "expense_form": {
         "title": "Ajouter une dépense",
         "label": "Label",

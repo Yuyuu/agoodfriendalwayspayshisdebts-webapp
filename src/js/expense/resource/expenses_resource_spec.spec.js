@@ -12,8 +12,8 @@ describe("The resource responsible for the server communication about expenses",
     $http.post.returns({then: function (callback) {
       return callback.call(null, {status: 201, data: expense});
     }});
-    $http.get.withArgs("/api/events/1234/expenses").returns({then: function (callback) {
-      return callback.call(null, {status: 200, data: {expenses: [expense]}});
+    $http.get.withArgs("/api/events/1234/expenses?skip=0&limit=2").returns({then: function (callback) {
+      return callback.call(null, {status: 200, data: {expenseCount: 1, expenses: [expense]}});
     }});
   });
 
@@ -27,9 +27,16 @@ describe("The resource responsible for the server communication about expenses",
   });
 
   it("should fetch all the expenses of an event while hiding the underlying http request", function () {
-    var expenses = resource.fetch("1234");
+    var expenses = resource.fetch("1234", 0, 2);
 
     expect(expenses).to.deep.include.members([{label: "expense", amount: 3.4}]);
+  });
+
+  it("should be able to also retrieve the count of expenses for the event", function () {
+    var data = resource.fetchWithCount("1234", 0, 2);
+
+    expect(data.expenseCount).to.equal(1);
+    expect(data.expenses[0]).to.deep.equal({label: "expense", amount: 3.4});
   });
 
   it("should ask the server to add an expense and return the added expense while hiding the underlying http request", function () {
