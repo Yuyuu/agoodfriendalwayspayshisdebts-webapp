@@ -1,5 +1,5 @@
 .expenses-list-panel(ng-controller="ExpensesListController as xpensList")
-  .panel.panel-default(ng-cloak="" ng-repeat="expense in xpensList.expenses | orderBy:$index:true")
+  .panel.panel-primary(ng-cloak="" ng-repeat="expense in xpensList.expenses | orderBy:$index:true")
     .panel-heading
       h4
         span.text-bold {{expense.amount | currency:'€':2}}
