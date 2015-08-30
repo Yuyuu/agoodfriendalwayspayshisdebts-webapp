@@ -56,6 +56,7 @@
           .form-group
             button.btn.btn-block.btn-primary(type="submit" disable-on-request="" ng-disabled="xpensCtrl.form.$invalid"
                 data-loading-text=t("app.event.expense_form.loading"))
-              = t("app.event.expense_form.submit")
+              span.glyphicon.glyphicon-plus(aria-hidden="true")
+              |  #{t("app.event.expense_form.submit")}
   .expense-creation-panel-footer
     p.text-muted * #{t("app.form.field_required_help")}

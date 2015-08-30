@@ -11,4 +11,6 @@
         span.text-bold(debts-inline-data="expense.participantsNames")
     .panel-footer(ng-if="expense.description") {{expense.description}}
   .row.text-center
-    button.btn.btn-default(ng-click="xpensList.loadMore()" ng-disabled="xpensList.allLoaded")= t("app.event.load_more")
+    button.btn.btn-default(ng-click="xpensList.loadMore()" ng-disabled="xpensList.allLoaded")
+      span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
+      |  #{t("app.event.load_more")}
