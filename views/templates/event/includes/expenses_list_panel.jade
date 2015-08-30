@@ -2,14 +2,14 @@
   .panel.panel-primary(ng-cloak="" ng-repeat="expense in xpensList.expenses | orderBy:$index:true")
     .panel-heading
       h4
-        span.text-bold {{expense.amount | currency:'€':2}}
-        | &nbsp;- {{expense.label}}
+        span.text-bold {{::expense.amount | currency:'€':2}}
+        | &nbsp;- {{::expense.label}}
     .panel-body
       p #{t("app.event.purchased_by")}&nbsp;
-        span.text-bold {{expense.purchaserName}}
+        span.text-bold {{::expense.purchaserName}}
       p #{t("app.event.shared_between")}&nbsp;
-        span.text-bold(debts-inline-data="expense.participantsNames")
-    .panel-footer(ng-if="expense.description") {{expense.description}}
+        span.text-bold(debts-inline-data="::expense.participantsNames")
+    .panel-footer(ng-if="::expense.description") {{::expense.description}}
   .row.text-center
     button.btn.btn-default(ng-click="xpensList.loadMore()" ng-disabled="xpensList.allLoaded")
       span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")

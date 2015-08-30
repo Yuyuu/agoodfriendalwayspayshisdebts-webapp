@@ -10,7 +10,7 @@ function InlineElementDirective($parse) {
   };
 
   function link(scope, element, attributes) {
-    var pieces = attributes.debtsInlineData.split("::");
+    var pieces = attributes.debtsInlineData.split(";");
     var pathToArray = pieces[0];
     var property = pieces.length > 1 ? pieces[1] : undefined;
 

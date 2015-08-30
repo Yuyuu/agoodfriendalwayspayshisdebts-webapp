@@ -1,9 +1,9 @@
 .dashboard
   .jumbotron.inverse
     .container
-      h1 {{model.event.name}}
+      h1 {{::model.event.name}}
       p(ng-cloak="").lead #{t("app.event.with")}&nbsp;
-        span(debts-inline-data="model.event.participants::name")
+        span(debts-inline-data="::model.event.participants;name")
   .container.expense-board
     .row
       .col-md-4.col-md-offset-5

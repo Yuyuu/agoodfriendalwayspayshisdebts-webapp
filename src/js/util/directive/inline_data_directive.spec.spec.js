@@ -38,7 +38,7 @@ describe("The directive responsible for representing an array as an inline eleme
 
   it("should transform an array of object into an inline string given the property to select", function () {
     $parse.returns(function () {return scope.object.property;});
-    attributes.debtsInlineData = "object.property::text";
+    attributes.debtsInlineData = "object.property;text";
 
     directive.link(scope, element, attributes);
     scope.change("object.property", scope.object.property);
