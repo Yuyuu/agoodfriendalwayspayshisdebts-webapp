@@ -16,7 +16,7 @@ describe("The controller responsible for listing the expenses of an event", func
     Expenses.fetch.returns({then: function (callback) {
       return callback.call(null, [expense]);
     }});
-    expenseService = {expenses: []};
+    expenseService = {expenses: [{label: "obsolete"}]};
   });
 
   beforeEach(function () {
@@ -28,9 +28,9 @@ describe("The controller responsible for listing the expenses of an event", func
     expect(controller).to.be.defined;
   });
 
-  it("should load the expenses and the count on activation", function () {
+  it("should reload the expenses and the count on activation", function () {
     expect(controller.allLoaded).to.be.false;
-    expect(controller.expenses).to.deep.include.members([{label: "expense", amount: 3.4}]);
+    expect(controller.expenses[0]).to.deep.equal({label: "expense", amount: 3.4});
   });
 
   it("cannot load more expenses if all have been fetched", function () {

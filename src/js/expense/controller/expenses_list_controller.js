@@ -20,16 +20,15 @@ function ExpensesListController($routeParams, Expenses, expenseService) {
   function loadMore() {
     skip += expenseBatchSize;
     Expenses.fetch($routeParams.id, skip, expenseBatchSize).then(function (expenses) {
-      checkIfAllExpensesAreLoaded(expenses);
       _.each(expenses.reverse(), function (expense) {
         model.expenses.unshift(expense);
       });
+      checkIfAllExpensesAreLoaded();
     });
   }
 
-  function checkIfAllExpensesAreLoaded(loadedExpenses) {
-    var expenseCurrentlyLoadedCount = model.expenses.length + loadedExpenses.length;
-    if (expenseCurrentlyLoadedCount >= eventExpenseCount) {
+  function checkIfAllExpensesAreLoaded() {
+    if (model.expenses.length >= eventExpenseCount) {
       model.allLoaded = true;
     }
   }
@@ -37,10 +36,8 @@ function ExpensesListController($routeParams, Expenses, expenseService) {
   function activate() {
     return Expenses.fetchWithCount($routeParams.id, 0, expenseBatchSize).then(function (data) {
       eventExpenseCount = data.expenseCount;
-      checkIfAllExpensesAreLoaded(data.expenses);
-      _.each(data.expenses, function (expense) {
-        model.expenses.push(expense);
-      });
+      model.expenses = data.expenses;
+      checkIfAllExpensesAreLoaded();
       return model.expenses;
     });
   }
@@ -52,6 +49,9 @@ Object.defineProperty(ExpensesListController.prototype,
     cofigurable: false,
     get: function () {
       return this.expenseService.expenses;
+    },
+    set: function (expenses) {
+      this.expenseService.expenses = expenses;
     }
   }
 );
