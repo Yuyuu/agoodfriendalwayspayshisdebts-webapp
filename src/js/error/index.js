@@ -6,13 +6,13 @@ var configureModuleRouting = require("./module_routing");
 var errorModule = angular.module("error", []);
 
 errorModule
-  .factory("Error404InterceptorService", require("./service/error_404_interceptor_service"))
-  .factory("DefaultErrorInterceptorService", require("./service/default_error_interceptor_service"));
+  .factory("error404InterceptorService", require("./service/error_404_interceptor_service"))
+  .factory("defaultErrorInterceptorService", require("./service/default_error_interceptor_service"));
 
 errorModule
   .config(["$httpProvider", function ($httpProvider) {
-    $httpProvider.interceptors.push("Error404InterceptorService");
-    $httpProvider.interceptors.push("DefaultErrorInterceptorService");
+    $httpProvider.interceptors.push("error404InterceptorService");
+    $httpProvider.interceptors.push("defaultErrorInterceptorService");
   }]);
 
 configureModuleRouting();

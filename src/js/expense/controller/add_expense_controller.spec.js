@@ -4,19 +4,19 @@ var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The controller to add expenses", function () {
-  var event, expense, Expenses, expenseService, Notifications, controller;
+  var event, expense, Expenses, expenseService, notificationService, controller;
 
   beforeEach(function () {
     event = {id: "123"};
     expense = {label: "Food", purchaserName: "Kim", amount: 5, participantsNames: ["Kim"], description: "Hmmm"};
     Expenses = {add: sinon.stub().returns({then: function () {return {catch: sinon.spy()};}})};
     expenseService = {expenses: []};
-    Notifications = {success: sinon.spy()};
+    notificationService = {success: sinon.spy()};
   });
 
   beforeEach(function () {
     var AddExpenseController = require("./add_expense_controller");
-    controller = new AddExpenseController(Expenses, expenseService, Notifications);
+    controller = new AddExpenseController(Expenses, expenseService, notificationService);
     controller.form = {$setPristine: sinon.spy(), $setUntouched: sinon.spy()};
   });
 
@@ -58,7 +58,7 @@ describe("The controller to add expenses", function () {
 
     controller.addExpense(event, expense);
 
-    expect(Notifications.success).to.have.been.calledWith("EXPENSE_ADDED_SUCCESS");
+    expect(notificationService.success).to.have.been.calledWith("EXPENSE_ADDED_SUCCESS");
   });
 
   it("should not add any expense to the event if it was not created", function () {

@@ -3,7 +3,7 @@
 var _ = require("underscore");
 
 /* @ngInject */
-function AddExpenseController(Expenses, expenseService, Notifications) {
+function AddExpenseController(Expenses, expenseService, notificationService) {
   var model = this;
 
   model.expense = {
@@ -23,7 +23,7 @@ function AddExpenseController(Expenses, expenseService, Notifications) {
       .then(function (addedExpense) {
         clearForm();
         expenseService.expenses.push(addedExpense);
-        Notifications.success("EXPENSE_ADDED_SUCCESS");
+        notificationService.success("EXPENSE_ADDED_SUCCESS");
       })
       .catch(extractMessagesFromError);
   }
