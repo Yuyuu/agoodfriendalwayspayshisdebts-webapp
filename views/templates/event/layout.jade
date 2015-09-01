@@ -4,4 +4,13 @@
       h1 {{::model.event.name}}
       p(ng-cloak="").lead #{t("app.event.with")}&nbsp;
         span(debts-inline-data="::model.event.participants;name")
-  .container(ui-view="")
+.container
+  .row.event-tabs
+    .col-md-10.col-md-offset-1
+      nav
+        ul.nav.nav-pills.pull-right(role="tablist")
+          li(ui-sref-active="active")
+            a(ui-sref="event.details")= t("app.event.tabs.details")
+          li(ui-sref-active="active")
+            a(ui-sref="event.result")= t("app.event.tabs.result")
+  div(ui-view="")

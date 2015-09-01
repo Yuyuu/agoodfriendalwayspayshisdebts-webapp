@@ -24,8 +24,16 @@
   border-top: 5px solid #EEEEEE;
 }
 
+.event-tabs {
+  margin-top: 30px;
+
+  a {
+    color: @fourth-brand-color;
+  }
+}
+
 .expense-board {
-  margin-top: 40px;
+  margin-top: 5px;
 
   @media (max-width: @screen-xs-max) {
     // Kills affix behaviour on xs screen
@@ -71,7 +79,7 @@
 }
 
 .result-board {
-  margin-top: 40px;
+  margin-top: 5px;
 
   @media (max-width: @screen-xs-max) {
     margin-right: 10px;
@@ -84,7 +92,9 @@
   }
 
   .participant-result {
-    margin-top: 30px;
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
 
     .result-box {
       background-color: white;
