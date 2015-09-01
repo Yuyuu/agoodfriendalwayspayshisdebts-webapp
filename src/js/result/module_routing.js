@@ -3,7 +3,7 @@
 var angular = require("angular");
 
 module.exports = function () {
-  angular.module("result")
+  angular.module("app.event.result")
     .config(["$stateProvider", configure]);
 
   function configure($stateProvider) {

@@ -3,7 +3,7 @@
 var angular = require("angular");
 var configureModuleRouting = require("./module_routing");
 
-var resultModule = angular.module("result", []);
+var resultModule = angular.module("app.event.result", []);
 
 resultModule
   .factory("Results", require("./resource/results_resource"))

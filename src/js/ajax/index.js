@@ -2,7 +2,7 @@
 
 var angular = require("angular");
 
-var ajaxModule = angular.module("ajax", [require("../internal")]);
+var ajaxModule = angular.module("app.ajax", [require("../internal")]);
 
 ajaxModule
   .factory("ajaxInterceptorService", require("./service/ajax_interceptor_service"))

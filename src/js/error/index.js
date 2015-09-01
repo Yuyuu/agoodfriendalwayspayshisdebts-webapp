@@ -3,7 +3,7 @@
 var angular = require("angular");
 var configureModuleRouting = require("./module_routing");
 
-var errorModule = angular.module("error", []);
+var errorModule = angular.module("app.error", []);
 
 errorModule
   .factory("error404InterceptorService", require("./service/error_404_interceptor_service"))

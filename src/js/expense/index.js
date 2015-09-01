@@ -2,7 +2,7 @@
 
 var angular = require("angular");
 
-var expenseModule = angular.module("expense", [require("../notification")]);
+var expenseModule = angular.module("app.event.expense", [require("../notification")]);
 
 expenseModule
   .factory("Expenses", require("./resource/expenses_resource"))

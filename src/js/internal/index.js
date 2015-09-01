@@ -2,7 +2,7 @@
 
 var angular = require("angular");
 
-var internalModule = angular.module("internal", []);
+var internalModule = angular.module("app.internal", []);
 
 internalModule.constant("AppEvents", require("./events"));
 

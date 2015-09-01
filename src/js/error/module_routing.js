@@ -3,7 +3,7 @@
 var angular = require("angular");
 
 module.exports = function () {
-  angular.module("error")
+  angular.module("app.error")
     .config(["$stateProvider", "$urlRouterProvider", configure]);
 
   function configure($stateProvider, $urlRouterProvider) {

@@ -11,7 +11,6 @@ angular.module("app", [
   require("./ajax"),
   require("./translation"),
   require("./event"),
-  require("./result"),
   require("./util"),
   require("./error")
 ]);

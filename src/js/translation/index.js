@@ -2,7 +2,7 @@
 
 var angular = require("angular");
 
-var translationModule = angular.module("translations", [require("ng-i18next")]);
+var translationModule = angular.module("app.translations", [require("ng-i18next")]);
 
 translationModule.config(["$i18nextProvider", function ($i18nextProvider) {
   $i18nextProvider.options = {

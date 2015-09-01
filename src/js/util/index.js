@@ -2,7 +2,7 @@
 
 var angular = require("angular");
 
-var utilModule = angular.module("util", []);
+var utilModule = angular.module("app.util", []);
 
 utilModule
   .directive("currencyValidation", require("./directive/currency_validation_directive"))
