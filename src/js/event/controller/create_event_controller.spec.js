@@ -47,7 +47,7 @@ describe("The controller to create events", function () {
 
     controller.createEvent(event);
 
-    expect($state.go).to.have.been.calledWith("event-details", {id: "12345"});
+    expect($state.go).to.have.been.calledWith("event.details", {id: "12345"});
   });
 
   it("should not try to redirect to the event page if the event was not created", function () {

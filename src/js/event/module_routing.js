@@ -14,11 +14,16 @@ module.exports = function () {
         controllerAs: "model",
         templateUrl: "/templates/index"
       })
-      .state("event-details", {
-        url: "/events/:id/dashboard",
+      .state("event", {
+        abstract: true,
+        url: "/events/:id",
         controller: "ShowEventController",
         controllerAs: "model",
-        templateUrl: "/templates/event/show"
+        templateUrl: "/templates/event/layout"
+      })
+      .state("event.details", {
+        url: "/details",
+        templateUrl: "/templates/event/details"
       });
     $urlRouterProvider.when("", "/home");
   }

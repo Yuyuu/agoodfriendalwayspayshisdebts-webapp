@@ -1,5 +1,5 @@
-.expenses-list-panel(ng-controller="ExpensesListController as xpensList")
-  .panel.panel-primary(ng-cloak="" ng-repeat="expense in xpensList.expenses | orderBy:$index:true")
+.expenses-list-panel(ng-controller="ExpensesListController as model")
+  .panel.panel-primary(ng-cloak="" ng-repeat="expense in model.expenses | orderBy:$index:true")
     .panel-heading
       h4
         span.text-bold {{::expense.amount | currency:'€':2}}
@@ -11,6 +11,6 @@
         span.text-bold(debts-inline-data="::expense.participantsNames")
     .panel-footer(ng-if="::expense.description") {{::expense.description}}
   .row.text-center
-    button.btn.btn-default(ng-click="xpensList.loadMore()" ng-disabled="xpensList.allLoaded")
+    button.btn.btn-default(ng-click="model.loadMore()" ng-disabled="model.allLoaded")
       span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
       |  #{t("app.event.load_more")}

@@ -1,11 +1,7 @@
-main
-  .jumbotron.inverse
-    .container
-      h1 {{::model.event.name}}
-.container.result-board
+.result-board
   .row
     .col-lg-8.col-lg-offset-2.btn-header
-      a.btn.btn-default(type="button" ng-href="#/events/{{model.event.id}}/dashboard" title=t("app.debts.back"))
+      a.btn.btn-default(type="button" ui-sref="event.details" title=t("app.debts.back"))
         span.glyphicon.glyphicon-arrow-left(aria-hidden="true")
         | &nbsp;#{t("app.debts.back")}
   .row.participant-result(ng-repeat="participantResults in model.result")

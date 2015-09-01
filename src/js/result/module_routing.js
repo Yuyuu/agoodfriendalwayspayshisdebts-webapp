@@ -8,11 +8,11 @@ module.exports = function () {
 
   function configure($stateProvider) {
     $stateProvider
-      .state("event-result", {
-        url: "/events/:id/debts",
+      .state("event.result", {
+        url: "/result",
         controller: "ResultDetailsController",
         controllerAs: "model",
-        templateUrl: "/templates/result/show"
+        templateUrl: "/templates/event/result"
       });
   }
 };

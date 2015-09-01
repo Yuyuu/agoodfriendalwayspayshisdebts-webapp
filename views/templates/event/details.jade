@@ -1,0 +1,9 @@
+.expense-board
+  .row
+    .col-md-4.col-md-offset-5
+      a(ui-sref="event.result" title=t("app.event.result"))= t("app.event.result")
+  .row
+    .col-md-4.col-md-offset-1.col-sm-6.col-xs-12(role="complementary")
+      include includes/expense_creation_panel
+    .col-md-6.col-sm-6.col-xs-12(role="main")
+      include includes/expenses_list_panel
