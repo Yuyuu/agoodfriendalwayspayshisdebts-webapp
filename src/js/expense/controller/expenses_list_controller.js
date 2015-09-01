@@ -3,7 +3,7 @@
 var _ = require("underscore");
 
 /* @ngInject */
-function ExpensesListController($routeParams, Expenses, expenseService) {
+function ExpensesListController($stateParams, Expenses, expenseService) {
   var model = this;
 
   model.allLoaded = false;
@@ -19,7 +19,7 @@ function ExpensesListController($routeParams, Expenses, expenseService) {
 
   function loadMore() {
     skip += expenseBatchSize;
-    Expenses.fetch($routeParams.id, skip, expenseBatchSize).then(function (expenses) {
+    Expenses.fetch($stateParams.id, skip, expenseBatchSize).then(function (expenses) {
       _.each(expenses.reverse(), function (expense) {
         model.expenses.unshift(expense);
       });
@@ -34,7 +34,7 @@ function ExpensesListController($routeParams, Expenses, expenseService) {
   }
 
   function activate() {
-    return Expenses.fetchWithCount($routeParams.id, 0, expenseBatchSize).then(function (data) {
+    return Expenses.fetchWithCount($stateParams.id, 0, expenseBatchSize).then(function (data) {
       eventExpenseCount = data.expenseCount;
       model.expenses = data.expenses;
       checkIfAllExpensesAreLoaded();

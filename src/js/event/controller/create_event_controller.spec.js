@@ -4,16 +4,16 @@ var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The controller to create events", function () {
-  var Events, $window, controller;
+  var Events, $state, controller;
 
   beforeEach(function () {
     Events = {create: sinon.stub()};
-    $window = {location: ""};
+    $state = {go: sinon.spy()};
   });
 
   beforeEach(function () {
     var CreateEventController = require("./create_event_controller");
-    controller = new CreateEventController(Events, $window);
+    controller = new CreateEventController(Events, $state);
   });
 
   it("should be defined", function () {
@@ -47,7 +47,7 @@ describe("The controller to create events", function () {
 
     controller.createEvent(event);
 
-    expect($window.location).to.equal("#/events/12345/dashboard");
+    expect($state.go).to.have.been.calledWith("event-details", {id: "12345"});
   });
 
   it("should not try to redirect to the event page if the event was not created", function () {
@@ -56,7 +56,7 @@ describe("The controller to create events", function () {
 
     controller.createEvent(event);
 
-    expect($window.location).to.equal("");
+    expect($state.go).to.not.have.been.called;
   });
 
   it("should get a reason if the event could not be created", function () {

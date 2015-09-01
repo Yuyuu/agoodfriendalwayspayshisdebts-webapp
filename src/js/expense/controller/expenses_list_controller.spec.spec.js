@@ -4,11 +4,11 @@ var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The controller responsible for listing the expenses of an event", function () {
-  var expense, $routeParams, Expenses, expenseService, controller;
+  var expense, $stateParams, Expenses, expenseService, controller;
 
   beforeEach(function () {
     expense = {label: "expense", amount: 3.4};
-    $routeParams = {id: "1234"};
+    $stateParams = {id: "1234"};
     Expenses = {fetchWithCount: sinon.stub(), fetch: sinon.stub()};
     Expenses.fetchWithCount.returns({then: function (callback) {
       return callback.call(null, {expenseCount: 2, expenses: [expense]});
@@ -21,7 +21,7 @@ describe("The controller responsible for listing the expenses of an event", func
 
   beforeEach(function () {
     var ExpensesListController = require("./expenses_list_controller");
-    controller = new ExpensesListController($routeParams, Expenses, expenseService);
+    controller = new ExpensesListController($stateParams, Expenses, expenseService);
   });
 
   it("should be defined", function () {

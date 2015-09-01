@@ -1,17 +1,14 @@
 "use strict";
 
 /* @ngInject */
-function ShowEventController($routeParams, Events) {
+function ShowEventController($stateParams, Events) {
   var model = this;
-
-  model.event = {};
 
   activate();
 
   function activate() {
-    return Events.get($routeParams.id).then(function (data) {
-      model.event = data;
-      return model.event;
+    Events.get($stateParams.id).then(function (event) {
+      model.event = event;
     });
   }
 }

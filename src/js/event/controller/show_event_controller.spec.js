@@ -3,10 +3,10 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 
 describe("The controller responsible for showing an event details", function () {
-  var $routeParams, Events, event, controller;
+  var $stateParams, Events, event, controller;
 
   beforeEach(function () {
-    $routeParams = {id: "12345"};
+    $stateParams = {id: "12345"};
     event = {participants: [{id: "123", name: "Kim"}, {id: "456", name: "Bob"}, {id: "789", name: "Ben"}]};
     Events = {
       get: function () {return {then: function (callback) {callback.call(null, event);}};}
@@ -15,7 +15,7 @@ describe("The controller responsible for showing an event details", function () 
 
   beforeEach(function () {
     var ShowEventController = require("./show_event_controller");
-    controller = new ShowEventController($routeParams, Events);
+    controller = new ShowEventController($stateParams, Events);
   });
 
   it("should be defined", function () {

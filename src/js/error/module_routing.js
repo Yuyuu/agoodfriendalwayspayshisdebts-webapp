@@ -4,18 +4,18 @@ var angular = require("angular");
 
 module.exports = function () {
   angular.module("error")
-    .config(["$routeProvider", configure]);
+    .config(["$stateProvider", "$urlRouterProvider", configure]);
 
-  function configure($routeProvider) {
-    $routeProvider
-      .when("/404", {
+  function configure($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state("404", {
+        url: "/404",
         templateUrl: "/templates/error/404"
       })
-      .when("/error", {
+      .state("error", {
+        url: "/error",
         templateUrl: "/templates/error/default"
-      })
-      .otherwise({
-        redirectTo: "/404"
       });
+    $urlRouterProvider.otherwise("/404");
   }
 };

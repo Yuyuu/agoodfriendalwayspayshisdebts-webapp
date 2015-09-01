@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function CreateEventController(Events, $window) {
+function CreateEventController(Events, $state) {
   var model = this;
 
   model.event = {name: "", participants: [{name:"", email: "", share: 1}]};
@@ -26,7 +26,7 @@ function CreateEventController(Events, $window) {
   }
 
   function redirectToEventPage(data) {
-    $window.location = "#/events/" + data.id + "/dashboard";
+    $state.go("event-details", {id: data.id});
   }
 
   function extractMessagesFromError(error) {

@@ -4,19 +4,22 @@ var angular = require("angular");
 
 module.exports = function () {
   angular.module("event")
-    .config(["$routeProvider", configure]);
+    .config(["$stateProvider", "$urlRouterProvider", configure]);
 
-  function configure($routeProvider) {
-    $routeProvider
-      .when("/", {
+  function configure($stateProvider, $urlRouterProvider) {
+    $stateProvider
+      .state("home", {
+        url: "/home",
         controller: "CreateEventController",
         controllerAs: "model",
         templateUrl: "/templates/index"
       })
-      .when("/events/:id/dashboard", {
+      .state("event-details", {
+        url: "/events/:id/dashboard",
         controller: "ShowEventController",
         controllerAs: "model",
         templateUrl: "/templates/event/show"
       });
+    $urlRouterProvider.when("", "/home");
   }
 };

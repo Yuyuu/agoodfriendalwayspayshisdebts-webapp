@@ -4,11 +4,12 @@ var angular = require("angular");
 
 module.exports = function () {
   angular.module("result")
-    .config(["$routeProvider", configure]);
+    .config(["$stateProvider", configure]);
 
-  function configure($routeProvider) {
-    $routeProvider
-      .when("/events/:id/debts", {
+  function configure($stateProvider) {
+    $stateProvider
+      .state("event-result", {
+        url: "/events/:id/debts",
         controller: "ResultDetailsController",
         controllerAs: "model",
         templateUrl: "/templates/result/show"

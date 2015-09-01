@@ -11,11 +11,11 @@ module.exports = {
     },
     "exports": "angular.module('ngAnimate').name"
   },
-  "angular-route": {
+  "ui.router": {
     "depends": {
       "angular": "angular"
     },
-    "exports": "angular.module('ngRoute').name"
+    "exports": "angular.module('ui.router').name"
   },
   "angular-sanitize": {
     "depends": {
