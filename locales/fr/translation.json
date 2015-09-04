@@ -80,6 +80,7 @@
       }
     },
     "debts": {
+      "share": "part",
       "total_spent": "Somme totale dépensée :",
       "creditor": "Créancier",
       "debt": "Dette",

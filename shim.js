@@ -11,6 +11,12 @@ module.exports = {
     },
     "exports": "angular.module('ngAnimate').name"
   },
+  "angular-message-format": {
+    "depends": {
+      "angular": "angular"
+    },
+    "exports": "angular.module('ngMessageFormat').name"
+  },
   "ui.router": {
     "depends": {
       "angular": "angular"

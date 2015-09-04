@@ -1,8 +1,12 @@
+- var shareLabel = t("app.debts.share")
+
 .result-board
   .row.participant-result(ng-repeat="participantResults in model.result")
     .result-box.col-lg-8.col-lg-offset-2.col-xs-12
       .col-lg-6.col-sm-6.col-xs-12
-        h2 {{::participantResults.participantName}}
+        h2 {{::participantResults.participantName}}&nbsp;
+          span.label.label-primary
+            | {{::participantResults.participantShare, plural, =1 {1 #{shareLabel}} other {# #{shareLabel}s}}}
         p= t("app.debts.total_spent")
           span.text-bold  {{::participantResults.totalSpent | currency:'€':2}}</span>
       .col-lg-6.col-sm-6.col-xs-12
@@ -15,7 +19,7 @@
             tbody
               tr(ng-repeat="debt in ::participantResults.debtsDetail" debts-visual-indicator="")
                 th(scope="row") {{::debt.creditorName}}
-                td {{::debt.amount | currency:'€':2}}
+                td {{::debt.mitigatedAmount | currency:'€':2}}
             tfoot
               tr
                 th(scope="row")= t("app.debts.total")

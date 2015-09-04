@@ -7,6 +7,7 @@ angular.module("app", [
   require("ui.router"),
   require("angular-animate"),
   require("angular-loading-bar"),
+  require("angular-message-format"),
   require("angular-strap"),
   require("./ajax"),
   require("./translation"),

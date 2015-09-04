@@ -80,6 +80,7 @@
       }
     },
     "debts": {
+      "share": "share",
       "total_spent": "Total amount spent:",
       "creditor": "Creditor",
       "debt": "Debt",

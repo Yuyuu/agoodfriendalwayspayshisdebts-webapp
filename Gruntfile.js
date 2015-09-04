@@ -16,7 +16,7 @@ module.exports = function (grunt) {
   grunt.registerTask("test", ["jshint", "mochaTest:unit"]);
   grunt.registerTask("tdd", ["clean", "dev"]);
   grunt.registerTask("buildApp", ["clean", "assets"]);
-  grunt.registerTask("default", ["clean", "jshint", "mochaTest:unit"])
+  grunt.registerTask("default", ["clean", "jshint", "mochaTest:unit"]);
 };
 
 function loadConfig(path) {
