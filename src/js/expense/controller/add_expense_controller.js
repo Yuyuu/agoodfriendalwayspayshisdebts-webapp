@@ -22,7 +22,7 @@ function AddExpenseController(Expenses, expenseService, notificationService) {
     Expenses.add(expensePassedToResource)
       .then(function (addedExpense) {
         clearForm();
-        expenseService.expenses.push(addedExpense);
+        expenseService.addExpense(addedExpense);
         notificationService.success("EXPENSE_ADDED_SUCCESS");
       })
       .catch(extractMessagesFromError);

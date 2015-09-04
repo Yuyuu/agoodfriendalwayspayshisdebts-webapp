@@ -6,14 +6,12 @@ var _ = require("underscore");
 function ExpensesListController($stateParams, Expenses, expenseService) {
   var model = this;
 
-  model.allLoaded = false;
   model.expenseService = expenseService;
 
   model.loadMore = loadMore;
 
   var expenseBatchSize = 5;
   var skip = 0;
-  var eventExpenseCount = 0;
 
   activate();
 
@@ -23,28 +21,19 @@ function ExpensesListController($stateParams, Expenses, expenseService) {
       _.each(expenses.reverse(), function (expense) {
         model.expenses.unshift(expense);
       });
-      checkIfAllExpensesAreLoaded();
     });
   }
 
-  function checkIfAllExpensesAreLoaded() {
-    if (model.expenses.length >= eventExpenseCount) {
-      model.allLoaded = true;
-    }
-  }
-
   function activate() {
-    return Expenses.fetchWithCount($stateParams.id, 0, expenseBatchSize).then(function (data) {
-      eventExpenseCount = data.expenseCount;
+    Expenses.fetchWithCount($stateParams.id, 0, expenseBatchSize).then(function (data) {
+      expenseService.expenseCount = data.expenseCount;
       model.expenses = data.expenses;
-      checkIfAllExpensesAreLoaded();
-      return model.expenses;
     });
   }
 }
 
-Object.defineProperty(ExpensesListController.prototype,
-  "expenses", {
+Object.defineProperties(ExpensesListController.prototype, {
+  expenses: {
     enumerable: true,
     cofigurable: false,
     get: function () {
@@ -53,7 +42,14 @@ Object.defineProperty(ExpensesListController.prototype,
     set: function (expenses) {
       this.expenseService.expenses = expenses;
     }
+  },
+  allLoaded: {
+    enumerable: true,
+    cofigurable: false,
+    get: function () {
+      return this.expenseService.allLoaded;
+    }
   }
-);
+});
 
 module.exports = ExpensesListController;

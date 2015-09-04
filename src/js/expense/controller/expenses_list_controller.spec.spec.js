@@ -29,14 +29,7 @@ describe("The controller responsible for listing the expenses of an event", func
   });
 
   it("should reload the expenses and the count on activation", function () {
-    expect(controller.allLoaded).to.be.false;
     expect(controller.expenses[0]).to.deep.equal({label: "expense", amount: 3.4});
-  });
-
-  it("cannot load more expenses if all have been fetched", function () {
-    controller.loadMore();
-
-    expect(controller.allLoaded).to.be.true;
   });
 
   it("stores the expenses ascendant order", function () {

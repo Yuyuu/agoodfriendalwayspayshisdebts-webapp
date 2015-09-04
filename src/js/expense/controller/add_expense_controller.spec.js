@@ -10,7 +10,7 @@ describe("The controller to add expenses", function () {
     event = {id: "123"};
     expense = {label: "Food", purchaserName: "Kim", amount: 5, participantsNames: ["Kim"], description: "Hmmm"};
     Expenses = {add: sinon.stub().returns({then: function () {return {catch: sinon.spy()};}})};
-    expenseService = {expenses: []};
+    expenseService = {expenses: [], addExpense: function (expense) {this.expenses.push(expense);}};
     notificationService = {success: sinon.spy()};
   });
 
