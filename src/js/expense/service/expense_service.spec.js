@@ -30,4 +30,21 @@ describe("The service holding the expenses of the current event", function () {
 
     expect(service.allLoaded).to.be.true;
   });
+
+  it("should remove an expense from the list", function () {
+    service.expenses.push({id: "123"});
+
+    service.deleteExpense({id: "123"});
+
+    expect(service.expenses).to.have.length(0);
+  });
+
+  it("should lower the count when deleting an expense", function () {
+    service.expenses.push({id: "123"});
+    service.expenseCount = 1;
+
+    service.deleteExpense({id: "123"});
+
+    expect(service.expenseCount).to.equal(0);
+  });
 });

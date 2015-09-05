@@ -1,5 +1,7 @@
 "use strict";
 
+var _ = require("underscore");
+
 /* @ngInject */
 function ExpenseService() {
   var service = this;
@@ -8,10 +10,19 @@ function ExpenseService() {
   service.expenses = [];
 
   service.addExpense = addExpense;
+  service.deleteExpense = deleteExpense;
 
   function addExpense(expense) {
-    service.expenseCount++;
     service.expenses.push(expense);
+    service.expenseCount++;
+  }
+
+  function deleteExpense(expenseToDelete) {
+    var position = _.findIndex(service.expenses, function (expense) {
+      return expense.id === expenseToDelete.id;
+    });
+    service.expenses.splice(position, 1);
+    service.expenseCount--;
   }
 }
 

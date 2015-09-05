@@ -10,13 +10,17 @@ function ExpensesResource($http) {
       withCount = withCount || false;
       var url = "/api/events/" + eventId + "/expenses?skip=" + skip + "&limit=" + limit;
       return $http.get(url).then(function (response) {
-        return withCount ? {expenseCount: response.data.expenseCount, expenses: response.data.expenses} : response.data.expenses;
+        return withCount ? {expenseCount: response.data.expenseCount, expenses: response.data.expenses} :
+          response.data.expenses;
       });
     },
     add: function (expense) {
       return $http.post("/api/events/" + expense.eventId + "/expenses", expense).then(function (response) {
         return response.data;
       });
+    },
+    delete: function (expense) {
+      return $http.delete("/api/events/" + expense.eventId + "/expenses/" + expense.id);
     }
   };
 }

@@ -1,5 +1,5 @@
-.expenses-list-panel(ng-controller="ExpensesListController as model")
-  .panel.panel-primary(ng-cloak="" ng-repeat="expense in model.expenses | orderBy:$index:true")
+.expenses-list-panel(ng-controller="ExpensesListController as listModel")
+  .panel.panel-primary(ng-cloak="" ng-repeat="expense in listModel.expenses | orderBy:$index:true")
     .panel-heading
       h4
         span.text-bold {{::expense.amount | currency:'€':2}}
@@ -9,8 +9,18 @@
         span.text-bold {{::expense.purchaserName}}
       p #{t("app.event.shared_between")}&nbsp;
         span.text-bold(debts-inline-data="::expense.participantsNames")
+      .dropdown
+        button#expenseMenu.btn.btn-xs.btn-default.dropdown-toggle(type="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="true")
+          span.glyphicon.glyphicon-cog
+          |  #{t("app.event.actions")} <span class="caret"></span>
+        ul.dropdown-menu(aria-labelledby="expenseMenu")
+          li
+            a(href="javascript:void(0)" ng-click="listModel.deleteExpense(model.event.id, expense)")
+              span.glyphicon.glyphicon-trash(aria-hidden="true")
+              |  #{t("app.event.delete")}
     .panel-footer(ng-if="::expense.description") {{::expense.description}}
   .row.text-center
-    button.btn.btn-load-more(ng-click="model.loadMore()" ng-disabled="model.allLoaded")
+    button.btn.btn-load-more(ng-click="listModel.loadMore()" ng-disabled="listModel.allLoaded")
       span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
       |  #{t("app.event.load_more")}

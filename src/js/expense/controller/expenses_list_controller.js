@@ -3,17 +3,26 @@
 var _ = require("underscore");
 
 /* @ngInject */
-function ExpensesListController($stateParams, Expenses, expenseService) {
+function ExpensesListController($stateParams, Expenses, expenseService, notificationService) {
   var model = this;
 
   model.expenseService = expenseService;
 
+  model.deleteExpense = deleteExpense;
   model.loadMore = loadMore;
 
   var expenseBatchSize = 5;
   var skip = 0;
 
   activate();
+
+  function deleteExpense(eventId, expenseToDelete) {
+    skip--;
+    Expenses.delete({eventId: eventId, id: expenseToDelete.id}).then(function () {
+      expenseService.deleteExpense(expenseToDelete);
+      notificationService.success("EXPENSE_DELETED_SUCCESS");
+    });
+  }
 
   function loadMore() {
     skip += expenseBatchSize;

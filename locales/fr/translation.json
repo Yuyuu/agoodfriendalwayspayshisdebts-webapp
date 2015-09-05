@@ -14,6 +14,10 @@
       "EXPENSE_ADDED_SUCCESS": {
         "title": "Ajout effectué !",
         "content": "La dépense a été ajoutée à l'événement avec succès."
+      },
+      "EXPENSE_DELETED_SUCCESS": {
+        "title": "Suppression effectuée !",
+        "content": "La dépense a été supprimée de l'événement avec succès."
       }
     },
     "home": {
@@ -46,6 +50,8 @@
       "with": "Avec",
       "purchased_by": "Achat effectué par",
       "shared_between": "Dépense partagée entre",
+      "actions": "Actions",
+      "delete": "Supprimer",
       "load_more": "Voir plus de dépenses",
       "tabs": {
         "details": "Détails",
