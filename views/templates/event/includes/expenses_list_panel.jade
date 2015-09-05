@@ -11,6 +11,6 @@
         span.text-bold(debts-inline-data="::expense.participantsNames")
     .panel-footer(ng-if="::expense.description") {{::expense.description}}
   .row.text-center
-    button.btn.btn-default(ng-click="model.loadMore()" ng-disabled="model.allLoaded")
+    button.btn.btn-load-more(ng-click="model.loadMore()" ng-disabled="model.allLoaded")
       span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
       |  #{t("app.event.load_more")}
