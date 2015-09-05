@@ -36,7 +36,8 @@ module.exports = {
   },
   "angular-strap": {
     "depends": {
-      "angular": "angular"
+      "angular": "angular",
+      "bootstrap": null
     },
     "exports": "angular.module('mgcrea.ngStrap').name"
   },
