@@ -1,5 +1,6 @@
 .expense-creation-panel(affix-panel="" data-offset-top="-20")
-  .expense-creation-panel-heading.inverse= t("app.event.expense_form.title")
+  .expense-creation-panel-heading.inverse
+    h4= t("app.event.expense_form.title")
   .expense-creation-panel-body
     form(name="xpensCtrl.form" ng-controller="AddExpenseController as xpensCtrl" novalidate=""
         ng-submit="xpensCtrl.addExpense(model.event, xpensCtrl.expense)")
