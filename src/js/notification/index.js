@@ -2,7 +2,9 @@
 
 var angular = require("angular");
 
-var notificationModule = angular.module("notification", []);
+var ngStrapAlertModule = require("angular-strap") + ".alert";
+
+var notificationModule = angular.module("notification", [ngStrapAlertModule]);
 
 notificationModule
   .service("notificationService", require("./service/notification_service"));

@@ -2,7 +2,9 @@
 
 var angular = require("angular");
 
-var expenseModule = angular.module("app.event.expense", [require("../notification")]);
+var ngStrapSelectModule = require("angular-strap") + ".select";
+
+var expenseModule = angular.module("app.event.expense", [require("../notification"), ngStrapSelectModule]);
 
 expenseModule
   .factory("Expenses", require("./resource/expenses_resource"))

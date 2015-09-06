@@ -8,7 +8,6 @@ angular.module("app", [
   require("angular-animate"),
   require("angular-loading-bar"),
   require("angular-message-format"),
-  require("angular-strap"),
   require("./ajax"),
   require("./translation"),
   require("./event"),

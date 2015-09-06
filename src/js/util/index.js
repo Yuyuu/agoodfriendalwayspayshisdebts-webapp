@@ -2,7 +2,9 @@
 
 var angular = require("angular");
 
-var utilModule = angular.module("app.util", []);
+var ngStrapAffixModule = require("angular-strap") + ".affix";
+
+var utilModule = angular.module("app.util", [ngStrapAffixModule]);
 
 utilModule
   .directive("currencyValidation", require("./directive/currency_validation_directive"))
