@@ -11,13 +11,13 @@
   "dependencies": {
     "angular": "~1.4.0",
     "angular-animate": "~1.4.0",
+    "angular-loading-bar": "~0.8.0",
     "angular-message-format": "~1.4.0",
     "angular-motion": "~0.4.1",
+    "angular-sanitize": "~1.4.0",
     "angular-strap": "~2.3.1",
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.5",
-    "angular-sanitize": "~1.4.0",
-    "angular-loading-bar": "~0.8.0",
     "ng-i18next": "~0.5.2"
   }
 }

@@ -11,28 +11,23 @@ module.exports = {
     },
     "exports": "angular.module('ngAnimate').name"
   },
+  "angular-loading-bar": {
+    "depends": {
+      "angular": "angular"
+    },
+    "exports": "angular.module('angular-loading-bar').name"
+  },
   "angular-message-format": {
     "depends": {
       "angular": "angular"
     },
     "exports": "angular.module('ngMessageFormat').name"
   },
-  "ui.router": {
-    "depends": {
-      "angular": "angular"
-    },
-    "exports": "angular.module('ui.router').name"
-  },
   "angular-sanitize": {
     "depends": {
       "angular": "angular"
     },
     "exports": "angular.module('ngSanitize').name"
-  },
-  "bootstrap": {
-    "depends": {
-      "jquery": "jQuery"
-    }
   },
   "angular-strap": {
     "depends": {
@@ -41,11 +36,16 @@ module.exports = {
     },
     "exports": "angular.module('mgcrea.ngStrap').name"
   },
-  "angular-loading-bar": {
+  "angular-ui-router": {
     "depends": {
       "angular": "angular"
     },
-    "exports": "angular.module('angular-loading-bar').name"
+    "exports": "angular.module('ui.router').name"
+  },
+  "bootstrap": {
+    "depends": {
+      "jquery": "jQuery"
+    }
   },
   "ng-i18next": {
     "depends": {
