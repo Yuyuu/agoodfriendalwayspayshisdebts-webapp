@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function ExpensesListController($stateParams, expenseService, notificationService) {
+function ExpensesListController($stateParams, expenseService, notificationService, modalService) {
   var model = this;
 
   model.expenseService = expenseService;
@@ -9,11 +9,22 @@ function ExpensesListController($stateParams, expenseService, notificationServic
   model.deleteExpense = deleteExpense;
   model.loadMore = loadMore;
 
+  var modalOptions = {
+    animation: "am-fade-and-slide-top",
+    templateUrl: "/templates/modal/expense_removal"
+  };
+
   activate();
 
   function deleteExpense(eventId, expenseToDelete) {
-    expenseService.deleteExpense({eventId: eventId, id: expenseToDelete.id}).then(function () {
-      notificationService.success("EXPENSE_DELETED_SUCCESS");
+    modalOptions.data = {expense: expenseToDelete};
+    var modalInstance = modalService.open(modalOptions);
+    modalInstance.result.then(function (confirmed) {
+      if (confirmed) {
+        expenseService.deleteExpense({eventId: eventId, id: expenseToDelete.id}).then(function () {
+          notificationService.success("EXPENSE_DELETED_SUCCESS");
+        });
+      }
     });
   }
 

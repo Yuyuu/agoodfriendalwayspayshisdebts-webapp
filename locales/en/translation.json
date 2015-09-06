@@ -83,6 +83,15 @@
           "INVALID_AMOUNT": "The specified amount must be greater than 0",
           "ADD_EXPENSE_DEFAULT_ERROR": "Sorry, the expense could not be added"
         }
+      },
+      "modal": {
+        "delete": {
+          "close": "Close",
+          "title": "Delete expense",
+          "warning": "Are you sure you want to permanently delete the expense",
+          "confirm": "Delete expense",
+          "cancel": "Cancel"
+        }
       }
     },
     "debts": {
@@ -107,5 +116,8 @@
     "form": {
       "field_required_help": "Field required"
     }
+  },
+  "util": {
+    "question_mark": "?"
   }
 }

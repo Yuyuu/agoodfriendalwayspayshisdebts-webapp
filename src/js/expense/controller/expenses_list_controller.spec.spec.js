@@ -4,9 +4,10 @@ var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The controller responsible for listing the expenses of an event", function () {
-  var $stateParams, expenseService, notificationService, controller;
+  var confirmed, $stateParams, expenseService, notificationService, modalService, controller;
 
   beforeEach(function () {
+    confirmed = true;
     $stateParams = {id: "1234"};
     expenseService = {
       expenses: [{label: "obsolete"}],
@@ -18,11 +19,12 @@ describe("The controller responsible for listing the expenses of an event", func
       return callback.call(null);
     }});
     notificationService = {success: sinon.spy()};
+    modalService = {open: sinon.stub().returns({result: {then: function (callback) {callback.call(null, confirmed);}}})};
   });
 
   beforeEach(function () {
     var ExpensesListController = require("./expenses_list_controller");
-    controller = new ExpensesListController($stateParams, expenseService, notificationService);
+    controller = new ExpensesListController($stateParams, expenseService, notificationService, modalService);
   });
 
   it("should be defined", function () {
@@ -37,5 +39,13 @@ describe("The controller responsible for listing the expenses of an event", func
     controller.deleteExpense("eventId", {id: "123"});
 
     expect(notificationService.success).to.have.been.calledWith("EXPENSE_DELETED_SUCCESS");
+  });
+
+  it("should not delete the expense if the action is cancelled", function () {
+    confirmed = false;
+
+    controller.deleteExpense("eventId", {id: "123"});
+
+    expect(notificationService.success).to.not.have.been.called;
   });
 });

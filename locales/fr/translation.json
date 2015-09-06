@@ -83,6 +83,15 @@
           "INVALID_AMOUNT": "Le somme spécifiée doit être supérieure à 0",
           "ADD_EXPENSE_DEFAULT_ERROR": "Désolé, la dépense n'a pas pu être ajoutée"
         }
+      },
+      "modal": {
+        "delete": {
+          "close": "Fermer",
+          "title": "Suppression d'une dépense",
+          "warning": "Êtes-vous certain de vouloir supprimer définitivement la dépense",
+          "confirm": "Supprimer la dépense",
+          "cancel": "Annuler"
+        }
       }
     },
     "debts": {
@@ -107,5 +116,8 @@
     "form": {
       "field_required_help": "Champ requis"
     }
+  },
+  "util": {
+    "question_mark": " ?"
   }
 }
