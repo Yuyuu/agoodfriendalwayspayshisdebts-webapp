@@ -1,6 +1,7 @@
 - var shareLabel = t("app.debts.share")
 
 .result-board
+  loading-spinner(ng-show="model.loading")
   .row.participant-result(ng-repeat="participantResults in model.result")
     .result-box.col-lg-8.col-lg-offset-2.col-xs-12
       .col-lg-6.col-sm-6.col-xs-12

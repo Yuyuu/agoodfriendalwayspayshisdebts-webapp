@@ -12,10 +12,16 @@ describe("The controller responsible for listing the expenses of an event", func
     expenseService = {
       expenses: [{label: "obsolete"}],
       deleteExpense: sinon.stub(),
-      loadMoreFrom: sinon.spy(),
-      initializeForEvent: sinon.spy()
+      loadMoreFrom: sinon.stub(),
+      initializeForEvent: sinon.stub()
     };
     expenseService.deleteExpense.withArgs({eventId: "eventId", id: "123"}).returns({then: function (callback) {
+      return callback.call(null);
+    }});
+    expenseService.loadMoreFrom.withArgs("1234").returns({then: function (callback) {
+      return callback.call(null);
+    }});
+    expenseService.initializeForEvent.withArgs("1234").returns({then: function (callback) {
       return callback.call(null);
     }});
     notificationService = {success: sinon.spy()};

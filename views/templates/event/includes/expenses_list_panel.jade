@@ -20,7 +20,8 @@
               span.glyphicon.glyphicon-trash(aria-hidden="true")
               |  #{t("app.event.delete")}
     .panel-footer(ng-if="::expense.description") {{::expense.description}}
-  .row.text-center
+  loading-spinner(ng-show="listModel.loading")
+  .row.text-center(ng-show="!listModel.loading")
     button.btn.btn-load-more(ng-click="listModel.loadMore()" ng-disabled="listModel.allLoaded")
       span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
       |  #{t("app.event.load_more")}
