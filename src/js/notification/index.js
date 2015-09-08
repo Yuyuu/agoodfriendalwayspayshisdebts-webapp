@@ -1,12 +1,13 @@
 "use strict";
 
 var angular = require("angular");
+var configureModule = require("./module_configuration");
 
-var ngStrapAlertModule = require("angular-strap") + ".alert";
-
-var notificationModule = angular.module("notification", [ngStrapAlertModule]);
+var notificationModule = angular.module("notification", [require("angular-ui-notification")]);
 
 notificationModule
   .service("notificationService", require("./service/notification_service"));
+
+configureModule();
 
 module.exports = notificationModule.name;

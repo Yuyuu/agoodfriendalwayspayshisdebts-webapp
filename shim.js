@@ -36,6 +36,12 @@ module.exports = {
     },
     "exports": "angular.module('mgcrea.ngStrap').name"
   },
+  "angular-ui-notification": {
+    "depends": {
+      "angular": "angular"
+    },
+    "exports": "angular.module('ui-notification').name"
+  },
   "angular-ui-router": {
     "depends": {
       "angular": "angular"
