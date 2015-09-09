@@ -3,9 +3,14 @@
 var angular = require("angular");
 
 var ngStrapAffixModule = require("angular-strap") + ".affix";
-var ngStrapModalModule = require("angular-strap") + ".modal";
+var ngBootstrapModalModule = require("angular-bootstrap") + ".modal";
 
-var utilModule = angular.module("app.util", [ngStrapAffixModule, ngStrapModalModule]);
+var utilModule = angular.module("app.util", [
+  ngStrapAffixModule,
+  "template/modal/backdrop.html",
+  "template/modal/window.html",
+  ngBootstrapModalModule
+]);
 
 utilModule
   .service("modalService", require("./service/modal_service"))

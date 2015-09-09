@@ -11,6 +11,13 @@ module.exports = {
     },
     "exports": "angular.module('ngAnimate').name"
   },
+  "angular-bootstrap": {
+    "depends": {
+      "angular": "angular",
+      "bootstrap": null
+    },
+    "exports": "angular.module('ui.bootstrap').name"
+  },
   "angular-loading-bar": {
     "depends": {
       "angular": "angular"

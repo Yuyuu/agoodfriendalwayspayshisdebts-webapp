@@ -44,6 +44,10 @@ describe("The controller responsible for listing the expenses of an event", func
   it("should emit a notification if the expense was successfully deleted", function () {
     controller.deleteExpense("eventId", {id: "123"});
 
+    expect(modalService.open).to.have.been.calledWith(sinon.match(function (options) {
+      var expense = options.resolve.expense();
+      return expense.id === "123";
+    }));
     expect(notificationService.success).to.have.been.calledWith("EXPENSE_DELETED_SUCCESS");
   });
 

@@ -10,6 +10,7 @@ expenseModule
   .factory("Expenses", require("./resource/expenses_resource"))
   .service("expenseService", require("./service/expense_service"))
   .controller("AddExpenseController", require("./controller/add_expense_controller"))
-  .controller("ExpensesListController", require("./controller/expenses_list_controller"));
+  .controller("ExpensesListController", require("./controller/expenses_list_controller"))
+  .controller("DeleteExpenseController", require("./controller/delete_expense_controller"));
 
 module.exports = expenseModule.name;

@@ -88,7 +88,10 @@
         "delete": {
           "close": "Close",
           "title": "Delete expense",
-          "warning": "Are you sure you want to permanently delete the expense",
+          "warning_1": "Are you sure you want to",
+          "warning_2": "permanently delete",
+          "warning_3": "the expense",
+          "question_mark": "?",
           "confirm": "Delete expense",
           "cancel": "Cancel"
         }
@@ -116,8 +119,5 @@
     "form": {
       "field_required_help": "Field required"
     }
-  },
-  "util": {
-    "question_mark": "?"
   }
 }

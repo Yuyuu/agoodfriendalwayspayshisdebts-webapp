@@ -11,6 +11,7 @@
   "dependencies": {
     "angular": "~1.4.0",
     "angular-animate": "~1.4.0",
+    "angular-bootstrap": "~0.13.4",
     "angular-loading-bar": "~0.8.0",
     "angular-message-format": "~1.4.0",
     "angular-motion": "~0.4.1",

@@ -89,6 +89,10 @@
           "close": "Fermer",
           "title": "Suppression d'une dépense",
           "warning": "Êtes-vous certain de vouloir supprimer définitivement la dépense",
+          "warning_1": "Êtes-vous certain de vouloir",
+          "warning_2": "supprimer définitivement",
+          "warning_3": "la dépense",
+          "question_mark": " ?",
           "confirm": "Supprimer la dépense",
           "cancel": "Annuler"
         }
@@ -116,8 +120,5 @@
     "form": {
       "field_required_help": "Champ requis"
     }
-  },
-  "util": {
-    "question_mark": " ?"
   }
 }

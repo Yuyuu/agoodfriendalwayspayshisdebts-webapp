@@ -2,9 +2,10 @@
 
 var angular = require("angular");
 
-/* This is required to load the default angular-strap templates */
+/* This is required to load the default bootstrap templates */
 require("angular-strap");
 require("angular-strap-templates");
+require("angular-bootstrap");
 
 angular.module("app", [
   require("angular-sanitize"),

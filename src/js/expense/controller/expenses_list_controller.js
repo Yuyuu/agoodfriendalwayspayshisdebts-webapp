@@ -10,14 +10,17 @@ function ExpensesListController($stateParams, expenseService, notificationServic
   model.loadMore = loadMore;
 
   var modalOptions = {
-    animation: "am-fade-and-slide-top",
-    templateUrl: "/templates/modal/expense_removal"
+    templateUrl: "/templates/modal/delete_expense_confirmation",
+    controller: "DeleteExpenseController",
+    controllerAs: "model"
   };
 
   activate();
 
   function deleteExpense(eventId, expenseToDelete) {
-    modalOptions.data = {expense: expenseToDelete};
+    modalOptions.resolve = {expense: function () {
+      return expenseToDelete;
+    }};
     var modalInstance = modalService.open(modalOptions);
     modalInstance.result.then(function (confirmed) {
       if (confirmed) {
