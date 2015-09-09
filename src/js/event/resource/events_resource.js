@@ -4,7 +4,7 @@
 function EventsResource($http) {
   return {
     get: function (eventId) {
-      return $http.get("/api/events/" + eventId).then(function (response) {
+      return $http.get("/api/events/" + eventId + "/meta").then(function (response) {
         return response.data;
       });
     },

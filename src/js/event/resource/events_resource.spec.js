@@ -8,7 +8,7 @@ describe("The resource responsible for the server communication about events", f
 
   beforeEach(function () {
     $http = {get: sinon.stub(), post: sinon.stub()};
-    $http.get.withArgs("/api/events/1234").returns({then: function (callback) {
+    $http.get.withArgs("/api/events/1234/meta").returns({then: function (callback) {
       return callback.call(null, {status: 200, data: {name: "event"}});
     }});
     $http.post.returns({then: function (callback) {
