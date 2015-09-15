@@ -33,9 +33,11 @@
 }
 
 .expense-board {
-  margin-top: 5px;
+  margin-top: 25px;
 
   @media (max-width: @screen-xs-max) {
+    margin-top: 5px;
+
     // Kills affix behaviour on xs screen
     .affix,
     .affix-bottom {
@@ -74,8 +76,36 @@
     }
   }
 
-  .panel-footer {
-    background: none;
+  .expenses-list-panel {
+    .panel {
+      margin-bottom: 30px;
+
+      .floating-options {
+        position: relative;
+
+        .btn-options {
+          position: absolute;
+          top: -31px;
+          right: -4px;
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          font-size: 18px;
+          padding-top: 8px;
+          padding-left: 11px;
+          box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.45);
+        }
+      }
+
+      .panel-footer {
+        background: none;
+      }
+
+      .dropdown-menu {
+        top: 8px;
+        right: -4px;
+      }
+    }
   }
 }
 
