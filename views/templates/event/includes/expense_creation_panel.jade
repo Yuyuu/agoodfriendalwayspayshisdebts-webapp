@@ -29,9 +29,8 @@
             button#inputExpensePurchaser.btn.btn-default(type="button" ng-model="xpensCtrl.expense.purchaserUuid"
                 bs-select="" data-placeholder=t("app.event.expense_form.purchaser_ph") name="expensePurchaser" required=""
                 bs-options="participant.id as participant.name for participant in model.event.participants")
-          .form-group(element-validation="xpensCtrl.form.expenseParticipants")
       .row
-        .col-xs-12
+        .col-xs-12(element-validation="xpensCtrl.form.expenseParticipants")
           .form-group
             label(for="inputExpenseParticipants") *&nbsp;
               = t("app.event.expense_form.share_with.label")

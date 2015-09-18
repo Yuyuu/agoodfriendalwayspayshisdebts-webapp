@@ -1,3 +1,7 @@
+.event-header {
+  margin-bottom: 35px;
+}
+
 .jumbotron {
   text-align: center;
   margin-bottom: 0;
@@ -24,20 +28,14 @@
   border-top: 5px solid #EEEEEE;
 }
 
-.event-tabs {
-  margin-top: 30px;
-
+.event-pills {
   a {
     color: @fourth-brand-color;
   }
 }
 
 .expense-board {
-  margin-top: 25px;
-
   @media (max-width: @screen-xs-max) {
-    margin-top: 5px;
-
     // Kills affix behaviour on xs screen
     .affix,
     .affix-bottom {
@@ -45,6 +43,10 @@
       top: auto !important;
       width: auto !important;
     }
+  }
+
+  @media (max-width: @screen-sm-max) {
+    margin-top: 15px;
   }
 
   .expense-creation-panel {
@@ -110,16 +112,8 @@
 }
 
 .result-board {
-  margin-top: 5px;
-
-  @media (max-width: @screen-xs-max) {
-    margin-right: 10px;
-    margin-left: 10px;
-  }
-
-  .btn-header {
-    padding-left: 0;
-    padding-right: 0;
+  @media (max-width: @screen-sm-max) {
+    margin-top: 15px;
   }
 
   .participant-result {
@@ -128,8 +122,10 @@
     }
 
     .result-box {
-      background-color: white;
-      border-radius: 3px;
+      background-color: #fff;
+      border-radius: @border-radius-base;
+      padding-right: 15px;
+      padding-left: 15px;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1);
 
       .label {

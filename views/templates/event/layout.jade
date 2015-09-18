@@ -5,12 +5,20 @@
       p(ng-cloak="").lead #{t("app.event.with")}&nbsp;
         span(debts-inline-data="::model.event.participants;name")
 .container
-  .row.event-tabs
-    .col-md-10.col-md-offset-1
+  .row
+    .col-sm-4.col-xs-12.visible-sm.visible-xs
       nav
-        ul.nav.nav-pills.pull-right(role="tablist")
-          li(ui-sref-active="active")
+        ul.nav.nav-pills.nav-stacked.event-pills(role="tablist")
+          li(role="presentation" ui-sref-active="active")
             a(ui-sref="event.details")= t("app.event.tabs.details")
-          li(ui-sref-active="active")
+          li(role="presentation" ui-sref-active="active")
             a(ui-sref="event.result")= t("app.event.tabs.result")
-  div(ui-view="")
+    .col-md-10.col-xs-12
+      div(ui-view="")
+    .col-md-2.hidden-sm.hidden-xs
+      nav
+        ul.nav.nav-pills.nav-stacked.event-pills(role="tablist")
+          li(role="presentation" ui-sref-active="active")
+            a(ui-sref="event.details")= t("app.event.tabs.details")
+          li(role="presentation" ui-sref-active="active")
+            a(ui-sref="event.result")= t("app.event.tabs.result")
