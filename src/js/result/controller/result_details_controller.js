@@ -10,7 +10,7 @@ function ResultDetailsController($stateParams, Results) {
     model.loading = true;
     Results.get($stateParams.id).then(function (data) {
       model.loading = false;
-      model.result = data;
+      model.results = data;
     });
   }
 }

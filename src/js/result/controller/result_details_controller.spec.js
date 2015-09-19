@@ -24,6 +24,6 @@ describe("The controller responsible for the event result page", function () {
   });
 
   it("should load the result data on activation", function () {
-    expect(controller.result).to.equal(result);
+    expect(controller.results).to.equal(result);
   });
 });

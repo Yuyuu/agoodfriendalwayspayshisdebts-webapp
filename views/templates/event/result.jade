@@ -6,15 +6,15 @@
       loading-spinner
   .row
     .col-md-10.col-md-offset-2.col-xs-12
-      .participant-result(ng-repeat="participantResults in model.result")
+      .participant-result(ng-repeat="participantResult in model.results")
         .result-box
           .row
             .col-md-6.col-sm-6.col-xs-12
-              h2 {{::participantResults.participantName}}&nbsp;
+              h2 {{::participantResult.participantName}}&nbsp;
                 span.label.label-primary
-                  | {{::participantResults.participantShare, plural, =1 {1 #{shareLabel}} other {# #{shareLabel}s}}}
+                  | {{::participantResult.participantShare, plural, =1 {1 #{shareLabel}} other {# #{shareLabel}s}}}
               p= t("app.debts.total_spent")
-                span.text-bold  {{::participantResults.totalSpent | currency:'€':2}}</span>
+                span.text-bold  {{::participantResult.totalSpent | currency:'€':2}}</span>
             .col-md-6.col-sm-6.col-xs-12
               .table-responsive
                 table.table
@@ -23,10 +23,10 @@
                       th= t("app.debts.creditor")
                       th= t("app.debts.debt")
                   tbody
-                    tr(ng-repeat="debt in ::participantResults.debtsDetail" debts-visual-indicator="")
+                    tr(ng-repeat="debt in ::participantResult.debtsDetail" debts-visual-indicator="")
                       th(scope="row") {{::debt.creditorName}}
                       td {{::debt.mitigatedAmount | currency:'€':2}}
                   tfoot
                     tr
                       th(scope="row")= t("app.debts.total")
-                      td.text-bold {{::participantResults.totalDebt | currency:'€':2}}
+                      td.text-bold {{::participantResult.totalDebt | currency:'€':2}}

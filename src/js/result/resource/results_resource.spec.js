@@ -9,7 +9,7 @@ describe("The resource responsible for the server communication about results", 
   beforeEach(function () {
     $http = {get: sinon.stub()};
     $http.get.withArgs("/api/events/1234/result").returns({then: function (callback) {
-      return callback.call(null, {status: 200, data: {participantsResults: {property: "hello"}}});
+      return callback.call(null, {status: 200, data: [{property: "hello"}]});
     }});
   });
 
@@ -21,6 +21,7 @@ describe("The resource responsible for the server communication about results", 
   it("should mask the underlying http request", function () {
     var result = resource.get("1234");
 
-    expect(result.property).to.equal("hello");
+    expect(result).to.have.length(1);
+    expect(result[0].property).to.equal("hello");
   });
 });
