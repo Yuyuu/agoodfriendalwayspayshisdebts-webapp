@@ -99,6 +99,9 @@
       }
     },
     "debts": {
+      "filters": {
+        "name": "Filtrer par nom :"
+      },
       "share": "part",
       "total_spent": "Somme totale dépensée :",
       "creditor": "Créancier",

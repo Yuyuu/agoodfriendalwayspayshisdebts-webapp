@@ -4,6 +4,8 @@
 function ResultDetailsController($stateParams, Results) {
   var model = this;
 
+  model.filter = {};
+
   activate();
 
   function activate() {

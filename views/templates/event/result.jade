@@ -1,12 +1,17 @@
 - var shareLabel = t("app.debts.share")
 
 .result-board
+  .row
+    .filters.form-inline.col-md-10.col-md-offset-2
+      .form-group
+        label(for="nameFilter") #{t("app.debts.filters.name")}&nbsp;
+        input#nameFilter.form-control(type="text" placeholder="e.g. Lea" ng-model="model.filter.participantName")
   .row(ng-show="model.loading")
     .col-md-10.col-md-offset-2.col-xs-12
       loading-spinner
   .row
     .col-md-10.col-md-offset-2.col-xs-12
-      .participant-result(ng-repeat="participantResult in model.results")
+      .participant-result(ng-repeat="participantResult in model.results | filter:model.filter")
         .result-box
           .row
             .col-md-6.col-sm-6.col-xs-12
