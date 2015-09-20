@@ -3,12 +3,10 @@
 var angular = require("angular");
 var configureModuleRouting = require("./module_routing");
 
-var resultModule = angular.module("app.event.result", []);
+var resultModule = angular.module("app.event.result", [require("./reminder")]);
 
 resultModule
   .factory("Results", require("./resource/results_resource"))
-  .factory("Reminders", require("./reminder/resource/reminders_resource"))
-  .controller("ReminderController", require("./controller/reminder_controller"))
   .controller("ResultDetailsController", require("./controller/result_details_controller"))
   .directive("debtsVisualIndicator", require("./directive/visual_indicator_directive"));
 

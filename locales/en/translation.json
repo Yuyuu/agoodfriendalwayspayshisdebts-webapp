@@ -108,7 +108,15 @@
           "ph": "None selected"
         },
         "submit": "Send reminder",
-        "loading": "Sending the reminders..."
+        "loading": "Sending the reminders...",
+        "status": {
+          "title": "Status",
+          "failure": "A problem occurred while sending the reminders",
+          "success": {
+            "true": "ok",
+            "false": "error"
+          }
+        }
       },
       "filters": {
         "name": "Filter by name:"

@@ -109,7 +109,15 @@
           "ph": "Aucun sélectionné"
         },
         "submit": "Envoyer le rappel",
-        "loading": "Envoi des rappels..."
+        "loading": "Envoi des rappels...",
+        "status": {
+          "title": "Statut",
+          "failure": "Un problème est survenu lors de l'envoi des rappels",
+          "success": {
+            "true": "ok",
+            "false": "erreur"
+          }
+        }
       },
       "filters": {
         "name": "Filtrer par nom :"

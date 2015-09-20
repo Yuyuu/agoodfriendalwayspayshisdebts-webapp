@@ -93,6 +93,32 @@
     margin-top: 15px;
   }
 
+  .reminder {
+    .reminder-status-panel {
+      &.ng-enter {
+        -webkit-transition: 0.5s linear all;
+        -moz-transition: 0.5s linear all;
+        -o-transition: 0.5s linear all;
+        transition: 0.5s linear all;
+        left: -350px;
+        position: relative;
+      }
+
+      &.ng-enter.ng-enter-active {
+        left: 0;
+      }
+
+      ul,
+      .alert {
+        margin-bottom: 0;
+      }
+
+      .label {
+        text-transform: uppercase;
+      }
+    }
+  }
+
   .filters {
     @media (min-width: @screen-sm-min) {
       margin-bottom: 15px;
