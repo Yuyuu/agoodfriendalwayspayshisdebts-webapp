@@ -1,37 +1,37 @@
-- var shareLabel = t("app.debts.share")
+- var shareLabel = t("app.debts.share");
 
 .result-board
   .row
-    .filters.form-inline.col-md-10.col-md-offset-2
-      .form-group
-        label(for="nameFilter") #{t("app.debts.filters.name")}&nbsp;
-        input#nameFilter.form-control(type="text" placeholder="e.g. Lea" ng-model="model.filter.participantName")
-  .row(ng-show="model.loading")
-    .col-md-10.col-md-offset-2.col-xs-12
-      loading-spinner
-  .row
-    .col-md-10.col-md-offset-2.col-xs-12
-      .participant-result(ng-repeat="participantResult in model.results | filter:model.filter")
-        .result-box
-          .row
-            .col-md-6.col-sm-6.col-xs-12
-              h2 {{::participantResult.participantName}}&nbsp;
-                span.label.label-primary
-                  | {{::participantResult.participantShare, plural, =1 {1 #{shareLabel}} other {# #{shareLabel}s}}}
-              p= t("app.debts.total_spent")
-                span.text-bold  {{::participantResult.totalSpent | currency:'€':2}}</span>
-            .col-md-6.col-sm-6.col-xs-12
-              .table-responsive
-                table.table
-                  thead
-                    tr
-                      th= t("app.debts.creditor")
-                      th= t("app.debts.debt")
-                  tbody
-                    tr(ng-repeat="debt in ::participantResult.debtsDetail" debts-visual-indicator="")
-                      th(scope="row") {{::debt.creditorName}}
-                      td {{::debt.mitigatedAmount | currency:'€':2}}
-                  tfoot
-                    tr
-                      th(scope="row")= t("app.debts.total")
-                      td.text-bold {{::participantResult.totalDebt | currency:'€':2}}
+    .col-md-3.col-sm-4.col-xs-12
+      include includes/reminder_panel
+    .col-md-9.col-sm-8.col-xs-12
+      .filters.form-inline
+        .form-group
+          label(for="nameFilter") #{t("app.debts.filters.name")}&nbsp;
+          input#nameFilter.form-control(type="text" placeholder="e.g. Lea" ng-model="result.filter.participantName")
+      loading-spinner(ng-show="result.loading")
+      .results
+        .participant-result(ng-repeat="participantResult in result.results | filter:result.filter")
+          .result-box
+            .row
+              .col-md-6.col-sm-6.col-xs-12
+                h2 {{::participantResult.participantName}}&nbsp;
+                  span.label.label-primary
+                    | {{::participantResult.participantShare, plural, =1 {1 #{shareLabel}} other {# #{shareLabel}s}}}
+                p= t("app.debts.total_spent")
+                  span.text-bold  {{::participantResult.totalSpent | currency:'€':2}}</span>
+              .col-md-6.col-sm-6.col-xs-12
+                .table-responsive
+                  table.table
+                    thead
+                      tr
+                        th= t("app.debts.creditor")
+                        th= t("app.debts.debt")
+                    tbody
+                      tr(ng-repeat="debt in ::participantResult.debtsDetail" debts-visual-indicator="")
+                        th(scope="row") {{::debt.creditorName}}
+                        td {{::debt.mitigatedAmount | currency:'€':2}}
+                    tfoot
+                      tr
+                        th(scope="row")= t("app.debts.total")
+                        td.text-bold {{::participantResult.totalDebt | currency:'€':2}}

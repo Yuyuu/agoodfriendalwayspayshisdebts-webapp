@@ -98,6 +98,18 @@
       }
     },
     "debts": {
+      "reminder": {
+        "title": "Send reminder",
+        "recipients": {
+          "label": "Recipients",
+          "all": "All",
+          "none": "None",
+          "selected": "selected",
+          "ph": "None selected"
+        },
+        "submit": "Send reminder",
+        "loading": "Sending the reminders..."
+      },
       "filters": {
         "name": "Filter by name:"
       },

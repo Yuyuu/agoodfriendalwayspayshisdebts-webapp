@@ -11,7 +11,7 @@ module.exports = function () {
       .state("event.result", {
         url: "/result",
         controller: "ResultDetailsController",
-        controllerAs: "model",
+        controllerAs: "result",
         templateUrl: "/templates/event/result"
       });
   }

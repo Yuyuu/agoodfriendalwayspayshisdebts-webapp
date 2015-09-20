@@ -46,3 +46,30 @@ a {
 .text-bold {
   font-weight: bold;
 }
+
+.debts-panel {
+  background-color: @panel-bg;
+  border: 1px solid @main-brand-color;
+  border-radius: 4px;
+  margin-bottom: 10px;
+
+  @media (max-width: @screen-xs-max) {
+    margin-bottom: 30px;
+  }
+
+  &-heading {
+    padding: 10px 15px;
+    text-align: center;
+    border-bottom: 1px solid transparent;
+  }
+
+  &-body, &-footer {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  &-body {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}

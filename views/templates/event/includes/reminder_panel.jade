@@ -1,0 +1,19 @@
+.debts-panel
+  .debts-panel-heading.inverse
+    h4= t("app.debts.reminder.title")
+  .debts-panel-body
+    form(name="reminder.form" ng-controller="ReminderController as reminder" novalidate=""
+        ng-submit="reminder.sendReminder(model.event.id, reminder.recipientsIds)")
+      .form-group
+        label(for="inputReminderRecipients")=t("app.debts.reminder.recipients.label")
+        button#inputReminderRecipients.btn.btn-default.btn-block(type="button" ng-model="reminder.recipientsIds"
+            bs-select="" data-multiple="1" data-all-none-buttons="true" name="reminderRecipients"
+            data-all-text=t("app.debts.reminder.recipients.all") required="" data-max-length="1"
+            data-none-text=t("app.debts.reminder.recipients.none")
+            data-max-length-html=t("app.debts.reminder.recipients.selected")
+            data-placeholder=t("app.debts.reminder.recipients.ph")
+            bs-options="participant.id as participant.name for participant in model.event.participants")
+      button.btn.btn-primary.btn-block(type="submit" ng-disabled="reminder.form.$invalid"
+          disable-on-request="" data-loading-text=t("app.debts.reminder.loading"))
+        span.glyphicon.glyphicon-send(aria-hidden="true")
+        |  #{t("app.debts.reminder.submit")}

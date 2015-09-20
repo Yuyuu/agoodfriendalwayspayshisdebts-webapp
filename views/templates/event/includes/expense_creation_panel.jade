@@ -1,7 +1,7 @@
-.expense-creation-panel(affix-panel="" data-offset-top="-20")
-  .expense-creation-panel-heading.inverse
+.debts-panel(affix-panel="" data-offset-top="-20")
+  .debts-panel-heading.inverse
     h4= t("app.event.expense_form.title")
-  .expense-creation-panel-body
+  .debts-panel-body
     form(name="xpensCtrl.form" ng-controller="AddExpenseController as xpensCtrl" novalidate=""
         ng-submit="xpensCtrl.addExpense(model.event.id, xpensCtrl.expense)")
       .row
@@ -51,12 +51,9 @@
         .col-xs-12
           .alert.alert-danger.text-center
             div(ng-repeat="error in xpensCtrl.errors" ng-i18next="app.event.expense_form.errors.{{error.message}}")
-      .row
-        .col-xs-12
-          .form-group
-            button.btn.btn-block.btn-primary(type="submit" disable-on-request="" ng-disabled="xpensCtrl.form.$invalid"
-                data-loading-text=t("app.event.expense_form.loading"))
-              span.glyphicon.glyphicon-plus(aria-hidden="true")
-              |  #{t("app.event.expense_form.submit")}
-  .expense-creation-panel-footer
+      button.btn.btn-block.btn-primary(type="submit" disable-on-request="" ng-disabled="xpensCtrl.form.$invalid"
+      data-loading-text=t("app.event.expense_form.loading"))
+        span.glyphicon.glyphicon-plus(aria-hidden="true")
+        |  #{t("app.event.expense_form.submit")}
+  .debts-panel-footer
     p.text-muted * #{t("app.form.field_required_help")}

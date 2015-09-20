@@ -99,6 +99,18 @@
       }
     },
     "debts": {
+      "reminder": {
+        "title": "Envoi d'un rappel",
+        "recipients": {
+          "label": "Destinataires",
+          "all": "Tous",
+          "none": "Aucun",
+          "selected": "sélectionnés",
+          "ph": "Aucun sélectionné"
+        },
+        "submit": "Envoyer le rappel",
+        "loading": "Envoi des rappels..."
+      },
       "filters": {
         "name": "Filtrer par nom :"
       },
