@@ -25,7 +25,7 @@ section.reminder(ng-controller="ReminderController as reminder")
     .debts-panel-body
       loading-spinner(ng-show="reminder.loading")
       .alert.alert-danger(role="alert" ng-if="reminder.isFailure")= t("app.debts.reminder.status.failure")
-      ul.list-group(ng-if="!reminder.isFailure && reminder.reports")
+      ul.list-group(ng-if="!reminder.loading && !reminder.isFailure && reminder.reports")
         li.list-group-item(ng-repeat="report in reminder.reports")
           | {{::report.recipientName}}
           span.label.pull-right(ng-class="['label-' + (report.success ? 'success' : 'danger')]"
