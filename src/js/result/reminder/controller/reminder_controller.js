@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function ReminderController(reminderService) {
+function ReminderController($state, reminderService) {
   var model = this;
 
   model.reminderService = reminderService;
@@ -10,7 +10,11 @@ function ReminderController(reminderService) {
 
   function sendReminder(eventId, recipientsIds) {
     model.loading = true;
-    reminderService.sendReminder(eventId, {recipientsUuids: recipientsIds}).finally(function () {
+    var reminderData = {
+      recipientsUuids: recipientsIds,
+      eventLink: $state.href("event.details", null, {absolute: true})
+    };
+    reminderService.sendReminder(eventId, reminderData).finally(function () {
       model.loading = false;
       model.recipientsIds = [];
     });

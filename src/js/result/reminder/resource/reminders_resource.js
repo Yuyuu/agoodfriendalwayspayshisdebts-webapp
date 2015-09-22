@@ -3,8 +3,8 @@
 /* @ngInject */
 function ReminderResource($http) {
   return {
-    send: function (eventId, recipientsIds) {
-      return $http.post("/api/events/" + eventId + "/reminder", recipientsIds).then(function (response) {
+    send: function (eventId, reminderData) {
+      return $http.post("/api/events/" + eventId + "/reminder", reminderData).then(function (response) {
         return response.data.response;
       });
     }

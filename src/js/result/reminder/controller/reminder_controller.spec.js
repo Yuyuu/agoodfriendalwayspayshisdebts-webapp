@@ -4,16 +4,17 @@ var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The controller responsible for sending reminders", function () {
-  var reminderService, controller;
+  var $state, reminderService, controller;
 
   beforeEach(function () {
+    $state = {href: sinon.stub().withArgs("event.details", null, {absolute: true}).returns("http://event/details")};
     reminderService = {lastReports: [{success: true}], isFailure: false, sendReminder: sinon.stub()};
     reminderService.sendReminder.returns({finally: function (callback) {callback.call(null);}});
   });
 
   beforeEach(function () {
     var ReminderController = require("./reminder_controller");
-    controller = new ReminderController(reminderService);
+    controller = new ReminderController($state, reminderService);
   });
 
   it("should be defined", function () {
@@ -23,7 +24,10 @@ describe("The controller responsible for sending reminders", function () {
   it("should send a reminder to the selected recipients", function () {
     controller.sendReminder("123", ["456", "789"]);
 
-    expect(reminderService.sendReminder).to.have.been.calledWith("123", {recipientsUuids: ["456", "789"]});
+    expect(reminderService.sendReminder).to.have.been.calledWith(
+      "123",
+      {recipientsUuids: ["456", "789"], eventLink: "http://event/details"}
+    );
   });
 
   it("should reset the recipients after a tentative", function () {
