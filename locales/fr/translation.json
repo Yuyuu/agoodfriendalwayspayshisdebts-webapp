@@ -64,7 +64,7 @@
         "purchaser": "Acheteur",
         "purchaser_ph": "Choisir...",
         "amount": "Somme dépensée",
-        "amount_ph": "12,56",
+        "amount_ph": "9,11",
         "amount_precision": ",00",
         "share_with": {
           "label": "Partager entre",
