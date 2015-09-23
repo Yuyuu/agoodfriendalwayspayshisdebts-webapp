@@ -19,7 +19,8 @@
                   span.label.label-primary
                     | {{::participantResult.participantShare, plural, =1 {1 #{shareLabel}} other {# #{shareLabel}s}}}
                 p= t("app.debts.total_spent")
-                  span.text-bold  {{::participantResult.totalSpent | currency:'€':2}}</span>
+                  | &nbsp;
+                  span.text-bold(ng-bind="::participantResult.totalSpent | currency:'€':2")
               .col-md-6.col-sm-6.col-xs-12
                 .table-responsive
                   table.table
@@ -29,9 +30,9 @@
                         th= t("app.debts.debt")
                     tbody
                       tr(ng-repeat="debt in ::participantResult.debtsDetail" debts-visual-indicator="")
-                        th(scope="row") {{::debt.creditorName}}
-                        td {{::debt.mitigatedAmount | currency:'€':2}}
+                        th(scope="row" ng-bind="::debt.creditorName")
+                        td(ng-bind="::debt.mitigatedAmount | currency:'€':2")
                     tfoot
                       tr
                         th(scope="row")= t("app.debts.total")
-                        td.text-bold {{::participantResult.totalDebt | currency:'€':2}}
+                        td.text-bold(ng-bind="::participantResult.totalDebt | currency:'€':2")

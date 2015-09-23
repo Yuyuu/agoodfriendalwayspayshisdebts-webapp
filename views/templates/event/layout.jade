@@ -1,7 +1,7 @@
 .event-header
   .jumbotron.inverse
     .container
-      h1 {{::model.event.name}}
+      h1(ng-bind="::model.event.name")
       p(ng-cloak="").lead #{t("app.event.with")}&nbsp;
         span(debts-inline-data="::model.event.participants;name")
 .container
