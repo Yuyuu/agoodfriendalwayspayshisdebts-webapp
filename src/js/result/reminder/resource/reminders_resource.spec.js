@@ -9,7 +9,7 @@ describe("The resource responsible for the server communication about event remi
   beforeEach(function () {
     $http = {post: sinon.stub()};
     $http.post.returns({then: function (callback) {
-      return callback.call(null, {status: 201, data: {response: ["456", "789"]}});
+      return callback.call(null, {status: 201, data: ["456", "789"]});
     }});
   });
 
