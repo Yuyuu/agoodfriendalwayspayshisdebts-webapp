@@ -6,4 +6,6 @@ block content
 block js
   script(src="/i18next/i18next.js")
   script(src=revision("/genere/js/vendor.js"))
+  script window.angular = require("angular");
+  script(src="/bower_components/angular-i18n/angular-locale_#{i18n.locale()}.js")
   script(src=revision("/genere/js/app.js"))

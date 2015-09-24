@@ -11,7 +11,7 @@
               span.glyphicon.glyphicon-trash(aria-hidden="true")
               |  #{t("app.event.delete")}
       h4
-        span.text-bold {{::expense.amount | currency:'€':2}}
+        span.text-bold {{::expense.amount | currency}}
         | &nbsp;- {{::expense.label}}
     .panel-body
       p #{t("app.event.purchased_by")}&nbsp;
