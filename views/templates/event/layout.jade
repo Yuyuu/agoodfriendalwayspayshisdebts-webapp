@@ -6,13 +6,20 @@
         span(debts-inline-data="::model.event.participants;name")
 .container
   .row
-    .col-sm-4.col-xs-12.visible-sm.visible-xs
-      nav
-        ul.nav.nav-pills.nav-stacked.event-pills(role="tablist")
-          li(role="presentation" ui-sref-active="active")
-            a(ui-sref="event.details")= t("app.event.tabs.details")
-          li(role="presentation" ui-sref-active="active")
-            a(ui-sref="event.result")= t("app.event.tabs.result")
+    .col-xs-12.visible-sm.visible-xs
+      .row
+        .col-sm-3.col-xs-12
+          nav
+            ul.nav.nav-pills.nav-stacked.event-pills(role="tablist")
+              li(role="presentation" ui-sref-active="active")
+                a(ui-sref="event.details")= t("app.event.tabs.details")
+              li(role="presentation" ui-sref-active="active")
+                a(ui-sref="event.result")= t("app.event.tabs.result")
+        .col-sm-3.col-xs-12
+          .event-actions
+            button.btn.btn-action.btn-huge.btn-block(type="button" ng-click="model.addParticipant()")
+              span.glyphicon.glyphicon-plus-sign
+              |  #{t("app.event.actions.add_participant")}
     .col-md-10.col-xs-12
       div(ui-view="")
     .col-md-2.hidden-sm.hidden-xs
@@ -22,3 +29,8 @@
             a(ui-sref="event.details")= t("app.event.tabs.details")
           li(role="presentation" ui-sref-active="active")
             a(ui-sref="event.result")= t("app.event.tabs.result")
+      hr
+      .event-actions
+        button.btn.btn-action.btn-huge.btn-block(type="button" ng-click="model.addParticipant()")
+          span.glyphicon.glyphicon-plus-sign
+          |  #{t("app.event.actions.add_participant")}

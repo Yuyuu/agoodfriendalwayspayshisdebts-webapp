@@ -3,6 +3,9 @@
 /* @ngInject */
 function ExpensesResource($http) {
   return {
+    metadata: function (eventId) {
+      return $http.get("/api/events/" + eventId + "/expenses/meta").then(forwardResponseData);
+    },
     fetchWithCount: function (eventId, skip, limit) {
       return this.fetch(eventId, skip, limit, true);
     },
@@ -15,14 +18,16 @@ function ExpensesResource($http) {
       });
     },
     add: function (expense) {
-      return $http.post("/api/events/" + expense.eventId + "/expenses", expense).then(function (response) {
-        return response.data;
-      });
+      return $http.post("/api/events/" + expense.eventId + "/expenses", expense).then(forwardResponseData);
     },
     delete: function (expense) {
       return $http.delete("/api/events/" + expense.eventId + "/expenses/" + expense.id);
     }
   };
+
+  function forwardResponseData(response) {
+    return response.data;
+  }
 }
 
 module.exports = ExpensesResource;

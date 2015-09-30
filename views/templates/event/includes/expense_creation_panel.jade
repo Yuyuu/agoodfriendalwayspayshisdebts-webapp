@@ -32,8 +32,7 @@
       .row
         .col-xs-12
           .form-group(element-validation="xpensCtrl.form.expenseParticipants")
-            label.control-label(for="inputExpenseParticipants") *&nbsp;
-              = t("app.event.expense_form.share_with.label")
+            label.control-label(for="inputExpenseParticipants") * #{t("app.event.expense_form.share_with.label")}
             br
             button#inputExpenseParticipants.btn.btn-default(type="button" ng-model="xpensCtrl.expense.participantsUuids"
                 bs-select="" data-multiple="1" data-all-none-buttons="true" name="expenseParticipants"

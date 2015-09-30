@@ -57,6 +57,9 @@
         "details": "Details",
         "result": "Result"
       },
+      "actions": {
+        "add_participant": "Add a participant"
+      },
       "expense_form": {
         "title": "Add an expense",
         "label": "Label",
@@ -85,15 +88,31 @@
         }
       },
       "modal": {
+        "close": "Close",
+        "cancel": "Cancel",
         "delete": {
-          "close": "Close",
           "title": "Delete expense",
           "warning_1": "Are you sure you want to",
           "warning_2": "permanently delete",
           "warning_3": "the expense",
           "question_mark": "?",
-          "confirm": "Delete expense",
-          "cancel": "Cancel"
+          "confirm": "Delete expense"
+        },
+        "add_participant": {
+          "title": "Add participant",
+          "name": "Participant name",
+          "email": "Participant email",
+          "share": "Share",
+          "expenses": {
+            "label": "Expenses",
+            "all": "All",
+            "none": "None",
+            "selected": "selected",
+            "ph": "Choose among the expenses...",
+            "help": "Choose the expenses in which to include the participant."
+          },
+          "submit": "Add the participant",
+          "loading": "Adding the participant..."
         }
       }
     },

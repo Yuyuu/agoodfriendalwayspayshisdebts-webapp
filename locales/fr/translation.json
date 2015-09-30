@@ -57,6 +57,9 @@
         "details": "Détails",
         "result": "Résultat"
       },
+      "actions": {
+        "add_participant": "Ajouter un participant"
+      },
       "expense_form": {
         "title": "Ajouter une dépense",
         "label": "Label",
@@ -85,16 +88,32 @@
         }
       },
       "modal": {
+        "close": "Fermer",
+        "cancel": "Annuler",
         "delete": {
-          "close": "Fermer",
           "title": "Suppression d'une dépense",
           "warning": "Êtes-vous certain de vouloir supprimer définitivement la dépense",
           "warning_1": "Êtes-vous certain de vouloir",
           "warning_2": "supprimer définitivement",
           "warning_3": "la dépense",
           "question_mark": " ?",
-          "confirm": "Supprimer la dépense",
-          "cancel": "Annuler"
+          "confirm": "Supprimer la dépense"
+        },
+        "add_participant": {
+          "title": "Ajout d'un participant",
+          "name": "Nom du participant",
+          "email": "Email du participant",
+          "share": "Part",
+          "expenses": {
+            "label": "Dépenses",
+            "all": "Toutes",
+            "none": "Aucune",
+            "selected": "sélectionnée(s)",
+            "ph": "Choisir parmi les dépenses...",
+            "help": "Choisir les dépenses dans lesquelles inclure le participant."
+          },
+          "submit": "Ajouter le participant",
+          "loading": "Ajout du participant..."
         }
       }
     },
