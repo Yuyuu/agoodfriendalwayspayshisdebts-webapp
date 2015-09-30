@@ -3,8 +3,9 @@
 var angular = require("angular");
 
 module.exports = function () {
+  /* @ngInject */
   angular.module("notification")
-    .config(["NotificationProvider", configure]);
+    .config(configure);
 
   function configure(NotificationProvider) {
     NotificationProvider.setOptions({

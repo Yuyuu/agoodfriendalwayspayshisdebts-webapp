@@ -9,11 +9,12 @@ errorModule
   .factory("error404InterceptorService", require("./service/error_404_interceptor_service"))
   .factory("defaultErrorInterceptorService", require("./service/default_error_interceptor_service"));
 
+/* @ngInject */
 errorModule
-  .config(["$httpProvider", function ($httpProvider) {
+  .config(function ($httpProvider) {
     $httpProvider.interceptors.push("error404InterceptorService");
     $httpProvider.interceptors.push("defaultErrorInterceptorService");
-  }]);
+  });
 
 configureModuleRouting();
 

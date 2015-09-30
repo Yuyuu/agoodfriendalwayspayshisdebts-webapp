@@ -3,8 +3,9 @@
 var angular = require("angular");
 
 module.exports = function () {
+  /* @ngInject */
   angular.module("app.event.result")
-    .config(["$stateProvider", configure]);
+    .config(configure);
 
   function configure($stateProvider) {
     $stateProvider

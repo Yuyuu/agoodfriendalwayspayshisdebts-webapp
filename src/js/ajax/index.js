@@ -10,8 +10,9 @@ ajaxModule
   .directive("disableOnRequest", require("./directive/disable_on_request_directive"))
   .directive("loadingSpinner", require("./directive/loading_spinner_directive"));
 
-ajaxModule.config(["$httpProvider", function ($httpProvider) {
+/* @ngInject */
+ajaxModule.config(function ($httpProvider) {
   $httpProvider.interceptors.push("ajaxInterceptorService");
-}]);
+});
 
 module.exports = ajaxModule.name;
