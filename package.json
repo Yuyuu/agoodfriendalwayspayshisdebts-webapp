@@ -64,7 +64,8 @@
     "angular-ui-notification": "./public/bower_components/ng-ui-notif-brow/dist/angular-ui-notification.js",
     "angular-ui-router": "./public/bower_components/angular-ui-router/release/angular-ui-router.js",
     "bootstrap": "./public/bower_components/bootstrap/dist/js/bootstrap.js",
-    "ng-i18next": "./public/bower_components/ng-i18next/dist/ng-i18next.js"
+    "ng-i18next": "./public/bower_components/ng-i18next/dist/ng-i18next.js",
+    "underscore": "./node_modules/underscore/underscore.js"
   },
   "browserify-shim": "./shim.js"
 }

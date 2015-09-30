@@ -43,6 +43,11 @@ module.exports = {
     },
     "exports": "angular.module('mgcrea.ngStrap').name"
   },
+  "angular-strap-templates": {
+    "depends": {
+      "angular": "angular"
+    }
+  },
   "angular-ui-notification": {
     "depends": {
       "angular": "angular"
@@ -65,5 +70,6 @@ module.exports = {
       "angular": "angular"
     },
     "exports": "angular.module('jm.i18next').name"
-  }
+  },
+  "underscore": "underscore"
 };
