@@ -4,13 +4,7 @@
 function AddExpenseController($stateParams, expenseService, notificationService) {
   var model = this;
 
-  model.expense = {
-    label: undefined,
-    purchaserUuid: undefined,
-    amount: undefined,
-    participantsUuids: [],
-    description: undefined
-  };
+  model.expense = {};
 
   model.addExpense = addExpense;
 
@@ -27,11 +21,11 @@ function AddExpenseController($stateParams, expenseService, notificationService)
       model.form.$setPristine();
       model.form.$setUntouched();
     }
-    model.expense.label = undefined;
-    model.expense.purchaserUuid = undefined;
-    model.expense.amount = undefined;
+    delete model.expense.label;
+    delete model.expense.purchaserUuid;
+    delete model.expense.amount;
     model.expense.participantsUuids = [];
-    model.expense.description = undefined;
+    delete model.expense.description;
   }
 
   function extractMessagesFromError(error) {
