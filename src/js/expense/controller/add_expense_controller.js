@@ -1,9 +1,7 @@
 "use strict";
 
-var _ = require("underscore");
-
 /* @ngInject */
-function AddExpenseController(expenseService, notificationService) {
+function AddExpenseController($stateParams, expenseService, notificationService) {
   var model = this;
 
   model.expense = {
@@ -16,10 +14,9 @@ function AddExpenseController(expenseService, notificationService) {
 
   model.addExpense = addExpense;
 
-  function addExpense(eventId, expense) {
+  function addExpense(expense) {
     delete model.errors;
-    var expensePassedToResource = _.extend({eventId: eventId}, expense);
-    expenseService.addExpense(expensePassedToResource).then(function () {
+    expenseService.addExpense($stateParams.id, expense).then(function () {
       clearForm();
       notificationService.success("EXPENSE_ADDED_SUCCESS");
     }).catch(extractMessagesFromError);

@@ -15,7 +15,7 @@ describe("The controller responsible for listing the expenses of an event", func
       loadMoreFrom: sinon.stub(),
       initializeForEvent: sinon.stub()
     };
-    expenseService.deleteExpense.withArgs({eventId: "eventId", id: "123"}).returns({then: function (callback) {
+    expenseService.deleteExpense.withArgs("1234", "123").returns({then: function (callback) {
       return callback.call(null);
     }});
     expenseService.loadMoreFrom.withArgs("1234").returns({then: function (callback) {
@@ -42,7 +42,7 @@ describe("The controller responsible for listing the expenses of an event", func
   });
 
   it("should emit a notification if the expense was successfully deleted", function () {
-    controller.deleteExpense("eventId", {id: "123"});
+    controller.deleteExpense({id: "123"});
 
     expect(modalService.open).to.have.been.calledWith(sinon.match(function (options) {
       var expense = options.resolve.expense();

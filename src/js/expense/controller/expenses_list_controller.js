@@ -17,14 +17,14 @@ function ExpensesListController($stateParams, expenseService, notificationServic
 
   activate();
 
-  function deleteExpense(eventId, expenseToDelete) {
+  function deleteExpense(expenseToDelete) {
     modalOptions.resolve = {expense: function () {
       return expenseToDelete;
     }};
     var modalInstance = modalService.open(modalOptions);
     modalInstance.result.then(function (confirmed) {
       if (confirmed) {
-        expenseService.deleteExpense({eventId: eventId, id: expenseToDelete.id}).then(function () {
+        expenseService.deleteExpense($stateParams.id, expenseToDelete.id).then(function () {
           notificationService.success("EXPENSE_DELETED_SUCCESS");
         });
       }

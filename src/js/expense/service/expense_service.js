@@ -17,8 +17,8 @@ function ExpenseService(Expenses) {
 
   var expenseBatchSize = 3;
 
-  function addExpense(expense) {
-    return Expenses.add(expense).then(function (addedExpense) {
+  function addExpense(eventId, expense) {
+    return Expenses.add(eventId, expense).then(function (addedExpense) {
       service.skip++;
       service.expenses.push(addedExpense);
       service.expenseCount++;
@@ -26,11 +26,11 @@ function ExpenseService(Expenses) {
     });
   }
 
-  function deleteExpense(expenseToDelete) {
-    return Expenses.delete(expenseToDelete).then(function () {
+  function deleteExpense(eventId, expenseId) {
+    return Expenses.delete(eventId, expenseId).then(function () {
       service.skip--;
       var position = _.findIndex(service.expenses, function (expense) {
-        return expense.id === expenseToDelete.id;
+        return expense.id === expenseId;
       });
       service.expenses.splice(position, 1);
       service.expenseCount--;

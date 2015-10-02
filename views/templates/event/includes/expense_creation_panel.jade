@@ -3,7 +3,7 @@
     h4= t("app.event.expense_form.title")
   .debts-panel-body
     form(name="xpensCtrl.form" ng-controller="AddExpenseController as xpensCtrl" novalidate=""
-        ng-submit="xpensCtrl.addExpense(model.event.id, xpensCtrl.expense)")
+        ng-submit="xpensCtrl.addExpense(xpensCtrl.expense)")
       .row
         .col-xs-12
           .form-group(element-validation="xpensCtrl.form.expenseLabel")

@@ -7,7 +7,7 @@
           span.glyphicon.glyphicon-option-vertical(aria-hidden="true")
         ul.dropdown-menu.dropdown-menu-right(aria-labelledby="expenseMenu")
           li
-            a(href="javascript:void(0)" ng-click="listModel.deleteExpense(model.event.id, expense)")
+            a(href="javascript:void(0)" ng-click="listModel.deleteExpense(expense)")
               span.glyphicon.glyphicon-trash(aria-hidden="true")
               |  #{t("app.event.delete")}
       h4

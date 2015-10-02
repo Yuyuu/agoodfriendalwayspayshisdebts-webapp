@@ -17,11 +17,11 @@ function ExpensesResource($http) {
           response.data.expenses;
       });
     },
-    add: function (expense) {
-      return $http.post("/api/events/" + expense.eventId + "/expenses", expense).then(forwardResponseData);
+    add: function (eventId, expense) {
+      return $http.post("/api/events/" + eventId + "/expenses", expense).then(forwardResponseData);
     },
-    delete: function (expense) {
-      return $http.delete("/api/events/" + expense.eventId + "/expenses/" + expense.id);
+    delete: function (eventId, expenseId) {
+      return $http.delete("/api/events/" + eventId + "/expenses/" + expenseId);
     }
   };
 
