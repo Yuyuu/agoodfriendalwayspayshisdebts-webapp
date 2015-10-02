@@ -1,7 +1,5 @@
 "use strict";
 
-"use strict";
-
 var httpProxy = require("express-http-proxy");
 var configuration = require("./utils/environment_configuration");
 var url = require("url");
