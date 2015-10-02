@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function AddParticipantController($stateParams, $modalInstance, Expenses) {
+function AddParticipantController($stateParams, $modalInstance, Events, Expenses) {
   var model = this;
 
   model.participant = {share: 1};
@@ -11,12 +11,23 @@ function AddParticipantController($stateParams, $modalInstance, Expenses) {
 
   activate();
 
-  function add() {
-    $modalInstance.close(model.participant);
+  function add(participant) {
+    delete model.errors;
+    model.loading = true;
+    Events.addParticipant($stateParams.id, participant)
+      .then(function () {
+        $modalInstance.close(true);
+      })
+      .catch(function (errors) {
+        model.errors = errors;
+      })
+      .finally(function () {
+        model.loading = false;
+      });
   }
 
   function cancel() {
-    $modalInstance.close(null);
+    $modalInstance.close(false);
   }
 
   function activate() {

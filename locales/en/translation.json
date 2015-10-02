@@ -18,6 +18,10 @@
       "EXPENSE_DELETED_SUCCESS": {
         "title": "Done!",
         "content": "The expense has been deleted from the event successfully."
+      },
+      "PARTICIPANT_ADDED_SUCCESS": {
+        "title": "Done!",
+        "content": "The participant has been added to the event successfully."
       }
     },
     "home": {
@@ -112,7 +116,12 @@
             "help": "Choose the expenses in which to include the participant."
           },
           "submit": "Add the participant",
-          "loading": "Adding the participant..."
+          "loading": "Adding the participant...",
+          "errors": {
+            "PARTICIPANT_NAME_REQUIRED": "You must specify the name of the participant.",
+            "PARTICIPANT_SHARE_REQUIRED": "You must specify the name of the participant.",
+            "INVALID_SHARE": "The share of the participant must be greater than 0."
+          }
         }
       }
     },

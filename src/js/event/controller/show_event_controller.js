@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function ShowEventController($stateParams, $modal, Events) {
+function ShowEventController($state, $modal, Events, notificationService) {
   var model = this;
 
   model.addParticipant = addParticipant;
@@ -15,11 +15,17 @@ function ShowEventController($stateParams, $modal, Events) {
   activate();
 
   function addParticipant() {
-    $modal.open(addParticipantModalOptions);
+    var modalInstance = $modal.open(addParticipantModalOptions);
+    modalInstance.result.then(function (isAdded) {
+      if (isAdded) {
+        $state.reload();
+        notificationService.success("PARTICIPANT_ADDED_SUCCESS");
+      }
+    });
   }
 
   function activate() {
-    Events.get($stateParams.id).then(function (event) {
+    Events.get($state.params.id).then(function (event) {
       model.event = event;
     });
   }

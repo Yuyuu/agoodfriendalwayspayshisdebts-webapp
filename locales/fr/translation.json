@@ -18,6 +18,10 @@
       "EXPENSE_DELETED_SUCCESS": {
         "title": "Suppression effectuée !",
         "content": "La dépense a été supprimée de l'événement avec succès."
+      },
+      "PARTICIPANT_ADDED_SUCCESS": {
+        "title": "Ajout effectué !",
+        "content": "Le participant a été ajouté à l'événement avec succès."
       }
     },
     "home": {
@@ -113,7 +117,12 @@
             "help": "Choisir les dépenses dans lesquelles inclure le participant."
           },
           "submit": "Ajouter le participant",
-          "loading": "Ajout du participant..."
+          "loading": "Ajout du participant...",
+          "errors": {
+            "PARTICIPANT_NAME_REQUIRED": "Vous devez spécifier le nom du participant.",
+            "PARTICIPANT_SHARE_REQUIRED": "Vous devez spécifier la part du participant.",
+            "INVALID_SHARE": "La part du participant doit être supérieure à 0."
+          }
         }
       }
     },

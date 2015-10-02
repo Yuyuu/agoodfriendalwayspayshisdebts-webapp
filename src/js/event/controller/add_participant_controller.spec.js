@@ -3,22 +3,22 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
+var FakePromise = require("../../../test/fake_promise");
+
 describe("The add participant controller", function () {
-  var $stateParams, $modalInstance, Expenses, controller;
+  var $stateParams, $modalInstance, Events, Expenses, controller;
 
   beforeEach(function () {
-    $stateParams = {};
+    $stateParams = {id: "1234"};
     $modalInstance = {close: sinon.spy()};
-    Expenses = {
-      metadata: sinon.stub().withArgs("eventId").returns({
-        then: function (callback) {return callback.call(null, [{id: "123", "label": "e1"}]);}
-      })
-    };
+    Events = {addParticipant: sinon.stub()};
+    Expenses = {metadata: sinon.stub()};
+    Expenses.metadata.withArgs("1234").returns(new FakePromise("then", [{id: "123", label: "e1"}]));
   });
 
   beforeEach(function () {
     var AddParticipantController = require("./add_participant_controller");
-    controller = new AddParticipantController($stateParams, $modalInstance, Expenses);
+    controller = new AddParticipantController($stateParams, $modalInstance, Events, Expenses);
   });
 
   it("should be defined", function () {
@@ -30,17 +30,33 @@ describe("The add participant controller", function () {
     expect(controller.expensesMetadata[0]).to.deep.equal({id: "123", label: "e1"});
   });
 
-  it("should resolve the modal with the participant to add", function () {
-    controller.participant = {name: "kim", share: 1};
+  it("should resolve the modal with true", function () {
+    Events.addParticipant.returns(new FakePromise("then"));
 
-    controller.add();
+    controller.add({name: "kim", share: 1});
 
-    expect($modalInstance.close).to.have.been.calledWith({name: "kim", share: 1});
+    expect($modalInstance.close).to.have.been.calledWith(true);
   });
 
-  it("should reject the modal with null", function () {
+  it("should communicate the errors of the request to the view", function () {
+    Events.addParticipant.returns(new FakePromise("catch", ["error"]));
+
+    controller.add({});
+
+    expect(controller.errors).to.deep.equal(["error"]);
+  });
+
+  it("should stop loading when the request is ended", function () {
+    Events.addParticipant.returns(new FakePromise("finally"));
+
+    controller.add({});
+
+    expect(controller.loading).to.be.false;
+  });
+
+  it("should reject the modal with false", function () {
     controller.cancel();
 
-    expect($modalInstance.close).to.have.been.calledWith(null);
+    expect($modalInstance.close).to.have.been.calledWith(false);
   });
 });

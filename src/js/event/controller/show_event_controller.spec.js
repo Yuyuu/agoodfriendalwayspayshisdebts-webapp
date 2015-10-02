@@ -3,21 +3,23 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
+var FakePromise = require("../../../test/fake_promise");
+
 describe("The controller responsible for showing an event details", function () {
-  var $stateParams, $modal, Events, event, controller;
+  var event, $state, $modal, Events, notificationService, controller;
 
   beforeEach(function () {
-    $stateParams = {id: "12345"};
-    $modal = {open: sinon.spy()};
     event = {participants: [{id: "123", name: "Kim"}, {id: "456", name: "Bob"}, {id: "789", name: "Ben"}]};
-    Events = {
-      get: sinon.stub().withArgs("12345").returns({then: function (callback) {return callback.call(null, event);}})
-    };
+    $state = {params: {id: "123"}, reload: sinon.spy()};
+    $modal = {open: sinon.stub()};
+    Events = {get: sinon.stub()};
+    Events.get.withArgs("123").returns(new FakePromise("then", event));
+    notificationService = {success: sinon.spy()};
   });
 
   beforeEach(function () {
     var ShowEventController = require("./show_event_controller");
-    controller = new ShowEventController($stateParams, $modal, Events);
+    controller = new ShowEventController($state, $modal, Events, notificationService);
   });
 
   it("should be defined", function () {
@@ -28,12 +30,18 @@ describe("The controller responsible for showing an event details", function () 
     expect(controller.event).to.deep.equal(event);
   });
 
-  it("should open a modal to add a new participant", function () {
+  it("should reload the state and show a success when a participant is added", function () {
+    $modal.open
+      .withArgs({
+        templateUrl: "/templates/modal/add_participant",
+        controller: "AddParticipantController",
+        controllerAs: "model"
+      })
+      .returns({result: new FakePromise("then", true)});
+
     controller.addParticipant();
 
-    expect($modal.open).to.have.been.calledWith({
-      templateUrl: "/templates/modal/add_participant",
-      controller: "AddParticipantController",
-      controllerAs: "model"});
+    expect($state.reload).to.have.been.called;
+    expect(notificationService.success).to.have.been.calledWith("PARTICIPANT_ADDED_SUCCESS");
   });
 });

@@ -1,8 +1,8 @@
 .modal-header
-  button.close(type="button" aria-label=t("app.event.modal.close") ng-click="model.cancel()")
+  button.close(type="button" aria-label=t("app.event.modal.close") ng-click="model.cancel()" ng-hide="model.loading")
     span(aria-hidden="true") &times;
   h4.modal-title= t("app.event.modal.add_participant.title")
-form(ng-submit="model.add()" name="model.form" role="form" novalidate="")
+form(ng-submit="model.add(model.participant)" name="model.form" role="form" novalidate="")
   .modal-body
     .container-fluid
       .row
@@ -28,14 +28,19 @@ form(ng-submit="model.add()" name="model.form" role="form" novalidate="")
               .form-group(element-validation="model.form.selectedExpenses" ng-if="model.expensesMetadata")
                 label.control-label(for="inputSelectedExpenses") * #{t("app.event.modal.add_participant.expenses.label")}
                 br
-                button#inputSelectedExpenses.btn.btn-default(type="button" ng-model="model.expensesUuids"
+                button#inputSelectedExpenses.btn.btn-default(type="button" ng-model="model.participant.expensesUuids"
                     bs-select="" data-multiple="1" data-all-none-buttons="true" name="selectedExpenses"
-                    data-all-text=t("app.event.modal.add_participant.expenses.all") required="" data-max-length="0"
+                    data-all-text=t("app.event.modal.add_participant.expenses.all") data-max-length="0"
                     data-none-text=t("app.event.modal.add_participant.expenses.none") aria-describedby="expensesHelpBlock"
                     data-max-length-html=t("app.event.modal.add_participant.expenses.selected")
                     data-placeholder=t("app.event.modal.add_participant.expenses.ph")
                     bs-options="expense.id as expense.label for expense in model.expensesMetadata")
               p#expensesHelpBlock.help-block= t("app.event.modal.add_participant.expenses.help")
+          .row(ng-cloak="" ng-if="model.errors")
+            .col-xs-12
+              .alert.alert-danger
+                ul
+                  li(ng-repeat="error in model.errors" ng-i18next="app.event.modal.add_participant.errors.{{error.message}}")
   .modal-footer
     span.help-block.text-left.visible-xs * #{t("app.form.field_required_help")}
     span.help-block.pull-left.hidden-xs * #{t("app.form.field_required_help")}
@@ -43,4 +48,4 @@ form(ng-submit="model.add()" name="model.form" role="form" novalidate="")
         data-loading-text=t("app.event.modal.add_participant.loading"))
       span.glyphicon.glyphicon-ok-circle(aria-hidden="true")
       |  #{t("app.event.modal.add_participant.submit")}
-    button.btn.btn-default(type="button" ng-click="model.cancel()")= t("app.event.modal.cancel")
+    button.btn.btn-default(type="button" ng-click="model.cancel()" ng-disabled="model.loading")= t("app.event.modal.cancel")
