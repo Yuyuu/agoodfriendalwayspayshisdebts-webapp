@@ -121,7 +121,8 @@
           "errors": {
             "PARTICIPANT_NAME_REQUIRED": "Vous devez spécifier le nom du participant.",
             "PARTICIPANT_SHARE_REQUIRED": "Vous devez spécifier la part du participant.",
-            "INVALID_SHARE": "La part du participant doit être supérieure à 0."
+            "INVALID_SHARE": "La part du participant doit être supérieure à 0.",
+            "ADD_PARTICIPANT_DEFAULT_ERROR": "Désolé, le participant n'a pas pu être ajouté"
           }
         }
       }
