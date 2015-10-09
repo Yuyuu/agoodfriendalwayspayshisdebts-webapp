@@ -23,9 +23,9 @@ form(ng-submit="model.add(model.participant)" name="model.form" role="form" nova
                 label.control-label(for="inputParticipantShare") * #{t("app.event.modal.add_participant.share")}
                 input#inputParticipantShare.form-control(type="number" ng-model="model.participant.share" required=""
                     min="1" name="participantShare")
-          .row
+          .row(ng-if="model.expensesMetadata")
             .col-xs-12
-              .form-group(element-validation="model.form.selectedExpenses" ng-if="model.expensesMetadata")
+              .form-group(element-validation="model.form.selectedExpenses")
                 label.control-label(for="inputSelectedExpenses") * #{t("app.event.modal.add_participant.expenses.label")}
                 br
                 button#inputSelectedExpenses.btn.btn-default(type="button" ng-model="model.participant.expensesUuids"
