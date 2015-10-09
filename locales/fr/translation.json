@@ -65,7 +65,7 @@
         "add_participant": "Ajouter un participant"
       },
       "expense_form": {
-        "title": "Ajouter une dépense",
+        "title": "Nouvelle dépense",
         "label": "Label",
         "label_ph": "Courses pour le barbecue",
         "purchaser": "Acheteur",
@@ -129,7 +129,7 @@
     },
     "debts": {
       "reminder": {
-        "title": "Envoi d'un rappel",
+        "title": "Nouveau rappel",
         "recipients": {
           "label": "Destinataires",
           "all": "Tous",

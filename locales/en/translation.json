@@ -65,7 +65,7 @@
         "add_participant": "Add a participant"
       },
       "expense_form": {
-        "title": "Add an expense",
+        "title": "New expense",
         "label": "Label",
         "label_ph": "Errands for the BBQ",
         "purchaser": "Purchaser",
@@ -128,7 +128,7 @@
     },
     "debts": {
       "reminder": {
-        "title": "Send reminder",
+        "title": "New reminder",
         "recipients": {
           "label": "Recipients",
           "all": "All",
