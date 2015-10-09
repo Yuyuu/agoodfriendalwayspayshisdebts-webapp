@@ -6,21 +6,17 @@
         span(debts-inline-data="::model.event.participants;name")
 .container
   .row
-    .col-md-2.col-md-push-10.col-xs-12
+    .event-layout-aside.col-md-2.col-xs-12.pull-right
       .row
-        .col-md-12.col-sm-3.col-xs-12
-          nav
-            ul.nav.nav-pills.nav-stacked.event-pills(role="tablist")
-              li(role="presentation" ui-sref-active="active")
-                a(ui-sref="event.details")= t("app.event.tabs.details")
-              li(role="presentation" ui-sref-active="active")
-                a(ui-sref="event.result")= t("app.event.tabs.result")
-        .col-md-12.visible-md.visible-lg
-          hr
-        .col-md-12.col-sm-3.col-xs-12
-          .event-actions
-            button.btn.btn-action.btn-huge.btn-block(type="button" ng-click="model.addParticipant()")
-              span.glyphicon.glyphicon-plus-sign
-              |  #{t("app.event.actions.add_participant")}
-    .col-md-10.col-md-pull-2.col-xs-12
+        .col-md-12.col-sm-3.col-xs-6
+          button.btn.btn-action.btn-block(type="button" ng-click="model.addParticipant()")
+            span.glyphicon.glyphicon-plus-sign
+            |  #{t("app.event.actions.add_participant")}
+    .event-layout-content.col-md-10.col-xs-12
+      nav
+        ul.nav.nav-tabs.nav-tabs-content
+          li(role="presentation" ui-sref-active="active")
+            a(ui-sref="event.details")= t("app.event.tabs.details")
+          li(role="presentation" ui-sref-active="active")
+            a(ui-sref="event.result")= t("app.event.tabs.result")
       div(ui-view="")
