@@ -3,7 +3,7 @@ section.reminder(ng-controller="ReminderController as reminder")
     .debts-panel-heading.inverse
       h4= t("app.results.reminder.title")
     .debts-panel-body
-      form(name="reminder.form" novalidate="" ng-submit="reminder.sendReminder(model.event.id, reminder.recipientsIds)")
+      form(name="reminder.form" novalidate="" ng-submit="reminder.sendReminder(reminder.recipientsIds)")
         .form-group
           label(for="inputReminderRecipients")=t("app.results.reminder.recipients.label")
           button#inputReminderRecipients.btn.btn-default.btn-block(type="button" ng-model="reminder.recipientsIds"

@@ -8,13 +8,13 @@ function ReminderController($state, reminderService) {
 
   model.sendReminder = sendReminder;
 
-  function sendReminder(eventId, recipientsIds) {
+  function sendReminder(recipientsIds) {
     model.loading = true;
     var reminderData = {
       recipientsUuids: recipientsIds,
       eventLink: $state.href("event.expenses", null, {absolute: true})
     };
-    reminderService.sendReminder(eventId, reminderData).finally(function () {
+    reminderService.sendReminder($state.params.id, reminderData).finally(function () {
       model.loading = false;
       model.recipientsIds = [];
     });
