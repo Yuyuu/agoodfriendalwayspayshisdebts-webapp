@@ -59,6 +59,7 @@
       "load_more": "See more expenses",
       "tabs": {
         "details": "Details",
+        "participants": "Participants",
         "result": "Result"
       },
       "actions": {
@@ -125,6 +126,11 @@
           }
         }
       }
+    },
+    "participants": {
+      "share": "share",
+      "missing_email": "No email address",
+      "edit": "Edit"
     },
     "debts": {
       "reminder": {

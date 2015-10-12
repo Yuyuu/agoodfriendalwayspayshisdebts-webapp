@@ -59,6 +59,7 @@
       "load_more": "Voir plus de dépenses",
       "tabs": {
         "details": "Détails",
+        "participants": "Participants",
         "result": "Résultat"
       },
       "actions": {
@@ -126,6 +127,11 @@
           }
         }
       }
+    },
+    "participants": {
+      "share": "part",
+      "missing_email": "Aucune adresse email",
+      "edit": "Modifier"
     },
     "debts": {
       "reminder": {
