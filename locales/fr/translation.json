@@ -58,7 +58,7 @@
       "delete": "Supprimer",
       "load_more": "Voir plus de dépenses",
       "tabs": {
-        "details": "Détails",
+        "expenses": "Dépenses",
         "participants": "Participants",
         "result": "Résultat"
       },

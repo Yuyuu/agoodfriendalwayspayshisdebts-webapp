@@ -58,7 +58,7 @@
       "delete": "Delete",
       "load_more": "See more expenses",
       "tabs": {
-        "details": "Details",
+        "expenses": "Expenses",
         "participants": "Participants",
         "result": "Result"
       },

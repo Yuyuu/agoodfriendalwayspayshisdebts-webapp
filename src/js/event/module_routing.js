@@ -21,10 +21,6 @@ module.exports = function () {
         controller: "ShowEventController",
         controllerAs: "model",
         templateUrl: "/templates/event/layout"
-      })
-      .state("event.details", {
-        url: "/details",
-        templateUrl: "/templates/event/details"
       });
     $urlRouterProvider.when("", "/home");
   }

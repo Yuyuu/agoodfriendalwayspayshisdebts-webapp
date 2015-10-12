@@ -7,7 +7,7 @@ describe("The controller responsible for sending reminders", function () {
   var $state, reminderService, controller;
 
   beforeEach(function () {
-    $state = {href: sinon.stub().withArgs("event.details", null, {absolute: true}).returns("http://event/details")};
+    $state = {href: sinon.stub().withArgs("event.expenses", null, {absolute: true}).returns("http://event/expenses")};
     reminderService = {lastReports: [{success: true}], isFailure: false, sendReminder: sinon.stub()};
     reminderService.sendReminder.returns({finally: function (callback) {callback.call(null);}});
   });
@@ -26,7 +26,7 @@ describe("The controller responsible for sending reminders", function () {
 
     expect(reminderService.sendReminder).to.have.been.calledWith(
       "123",
-      {recipientsUuids: ["456", "789"], eventLink: "http://event/details"}
+      {recipientsUuids: ["456", "789"], eventLink: "http://event/expenses"}
     );
   });
 

@@ -26,7 +26,7 @@ function CreateEventController(Events, $state) {
   }
 
   function redirectToEventPage(data) {
-    $state.go("event.details", {id: data.id});
+    $state.go("event.expenses", {id: data.id});
   }
 
   function extractMessagesFromError(error) {

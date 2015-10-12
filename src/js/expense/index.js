@@ -1,6 +1,7 @@
 "use strict";
 
 var angular = require("angular");
+var configureModuleRouting = require("./module_routing");
 
 var ngStrapSelectModule = require("angular-strap") + ".select";
 
@@ -13,5 +14,7 @@ expenseModule
   .controller("ExpensesListController", require("./controller/expenses_list_controller"))
   .controller("DeleteExpenseController", require("./controller/delete_expense_controller"))
   .directive("debtsCurrencySymbol", require("./directive/currency_symbol_directive"));
+
+configureModuleRouting();
 
 module.exports = expenseModule.name;
