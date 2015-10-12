@@ -60,7 +60,7 @@
       "tabs": {
         "expenses": "Expenses",
         "participants": "Participants",
-        "result": "Result"
+        "results": "Results"
       },
       "actions": {
         "add_participant": "Add a participant"
@@ -132,7 +132,7 @@
       "missing_email": "No email address",
       "edit": "Edit"
     },
-    "debts": {
+    "results": {
       "reminder": {
         "title": "New reminder",
         "recipients": {

@@ -1,24 +1,24 @@
-- var shareLabel = t("app.debts.share");
+- var shareLabel = t("app.results.share");
 
-.result-board
+.results-board
   .row
     .col-md-3.col-sm-4.col-xs-12
       include includes/reminder_panel
     .col-md-9.col-sm-8.col-xs-12
       .filters.form-inline
         .form-group
-          label(for="nameFilter") #{t("app.debts.filters.name")}&nbsp;
-          input#nameFilter.form-control(type="text" placeholder="e.g. Lea" ng-model="result.filter.participantName")
-      loading-spinner(ng-show="result.loading")
+          label(for="nameFilter") #{t("app.results.filters.name")}&nbsp;
+          input#nameFilter.form-control(type="text" placeholder="e.g. Lea" ng-model="results.filter.participantName")
+      loading-spinner(ng-show="results.loading")
       .results
-        .participant-result(ng-repeat="participantResult in result.results | filter:result.filter")
+        .participant-result(ng-repeat="participantResult in results.results | filter:results.filter")
           .result-box
             .row
               .col-md-6.col-sm-6.col-xs-12
                 h2 {{::participantResult.participantName}}&nbsp;
                   span.label.label-primary
                     | {{::participantResult.participantShare, plural, =1 {1 #{shareLabel}} other {# #{shareLabel}s}}}
-                p= t("app.debts.total_spent")
+                p= t("app.results.total_spent")
                   | &nbsp;
                   span.text-bold(ng-bind="::participantResult.totalSpent | currency")
               .col-md-6.col-sm-6.col-xs-12
@@ -26,13 +26,13 @@
                   table.table
                     thead
                       tr
-                        th= t("app.debts.creditor")
-                        th= t("app.debts.debt")
+                        th= t("app.results.creditor")
+                        th= t("app.results.debt")
                     tbody
                       tr(ng-repeat="debt in ::participantResult.debtsDetail" debts-visual-indicator="")
                         th(scope="row" ng-bind="::debt.creditorName")
                         td(ng-bind="::debt.mitigatedAmount | currency")
                     tfoot
                       tr
-                        th(scope="row")= t("app.debts.total")
+                        th(scope="row")= t("app.results.total")
                         td.text-bold(ng-bind="::participantResult.totalDebt | currency")

@@ -9,11 +9,11 @@ module.exports = function () {
 
   function configure($stateProvider) {
     $stateProvider
-      .state("event.result", {
-        url: "/result",
-        controller: "ResultDetailsController",
-        controllerAs: "result",
-        templateUrl: "/templates/event/result"
+      .state("event.results", {
+        url: "/results",
+        controller: "ResultsController",
+        controllerAs: "results",
+        templateUrl: "/templates/event/results"
       });
   }
 };

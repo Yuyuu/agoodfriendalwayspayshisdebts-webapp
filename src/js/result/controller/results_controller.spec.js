@@ -3,7 +3,7 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("The controller responsible for the event result page", function () {
+describe("The results controller", function () {
   var $stateParams, Results, result, controller;
 
   beforeEach(function () {
@@ -15,7 +15,7 @@ describe("The controller responsible for the event result page", function () {
   });
 
   beforeEach(function () {
-    var ResultDetailsController = require("./result_details_controller");
+    var ResultDetailsController = require("./results_controller");
     controller = new ResultDetailsController($stateParams, Results);
   });
 
