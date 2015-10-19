@@ -30,7 +30,7 @@ describe("The controller responsible for showing an event details", function () 
     expect(controller.event).to.deep.equal(event);
   });
 
-  it("should reload the state and show a success when a participant is added", function () {
+  it("should reload the state and show a success notification when a participant is added", function () {
     $modal.open
       .withArgs({
         templateUrl: "/templates/modal/add_participant",

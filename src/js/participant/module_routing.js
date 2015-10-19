@@ -11,6 +11,8 @@ module.exports = function () {
     $stateProvider
       .state("event.participants", {
         url: "/participants",
+        controller: "ParticipantsController",
+        controllerAs: "participants",
         templateUrl: "/templates/event/participants"
       });
   }

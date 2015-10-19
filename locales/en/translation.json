@@ -22,6 +22,10 @@
       "PARTICIPANT_ADDED_SUCCESS": {
         "title": "Done!",
         "content": "The participant has been added to the event successfully."
+      },
+      "PARTICIPANT_UPDATED_SUCCESS": {
+        "title": "Done!",
+        "content": "The participant has been updated successfully."
       }
     },
     "home": {
@@ -119,9 +123,9 @@
           "submit": "Add the participant",
           "loading": "Adding the participant...",
           "errors": {
-            "PARTICIPANT_NAME_REQUIRED": "You must specify the name of the participant.",
-            "PARTICIPANT_SHARE_REQUIRED": "You must specify the name of the participant.",
-            "INVALID_SHARE": "The share of the participant must be greater than 0.",
+            "PARTICIPANT_NAME_REQUIRED": "You must specify the name of the participant",
+            "PARTICIPANT_SHARE_REQUIRED": "You must specify the share of the participant",
+            "INVALID_SHARE": "The share of the participant must be greater than 0",
             "ADD_PARTICIPANT_DEFAULT_ERROR": "Sorry, the participant could not be added"
           }
         }
@@ -130,7 +134,21 @@
     "participants": {
       "share": "share",
       "missing_email": "No email address",
-      "edit": "Edit"
+      "edit": "Edit",
+      "edit_form": {
+        "title": "Edit participant",
+        "name": "Name",
+        "email": "Email (optional)",
+        "share": "Part",
+        "submit": "Edit the participant",
+        "loading": "Modification...",
+        "close": "Close",
+        "cancel": "Cancel",
+        "errors": {
+          "INVALID_EMAIL": "The email must be a valid",
+          "EDIT_PARTICIPANT_DEFAULT_ERROR": "Sorry, the participant could not be updated"
+        }
+      }
     },
     "results": {
       "reminder": {

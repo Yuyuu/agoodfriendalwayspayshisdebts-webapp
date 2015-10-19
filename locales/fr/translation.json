@@ -22,6 +22,10 @@
       "PARTICIPANT_ADDED_SUCCESS": {
         "title": "Ajout effectué !",
         "content": "Le participant a été ajouté à l'événement avec succès."
+      },
+      "PARTICIPANT_UPDATED_SUCCESS": {
+        "title": "Modification effectuée !",
+        "content": "Le participant a été modifié avec succès."
       }
     },
     "home": {
@@ -131,7 +135,21 @@
     "participants": {
       "share": "part",
       "missing_email": "Aucune adresse email",
-      "edit": "Modifier"
+      "edit": "Modifier",
+      "edit_form": {
+        "title": "Modification d'un participant",
+        "name": "Nom",
+        "email": "Email (optionnel)",
+        "share": "Part",
+        "submit": "Modifier le participant",
+        "loading": "Modification...",
+        "close": "Fermer",
+        "cancel": "Annuler",
+        "errors": {
+          "INVALID_EMAIL": "L'email doit être valide",
+          "EDIT_PARTICIPANT_DEFAULT_ERROR": "Désolé, le participant n'a pas pu être mis à jour"
+        }
+      }
     },
     "results": {
       "reminder": {

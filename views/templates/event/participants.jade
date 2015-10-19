@@ -1,7 +1,7 @@
 - var shareLabel = t("app.participants.share");
 
 .row
-  .participant-thumbnail(ng-repeat="participant in model.event.participants")
+  .participant-thumbnail(ng-repeat="participant in ::model.event.participants")
     .participant-thumbnail-box
       .participant-thumbnail-avatar
         debts-avatar
@@ -10,9 +10,9 @@
       .participant-thumbnail-info
         ul
           li {{::participant.share, plural, =1 {1 #{shareLabel}} other {# #{shareLabel}s}}}
-          li(ng-if="::participant.email" ng-bind="::participant.email")
-          li.missing-email(ng-if="::!participant.email")= t("app.participants.missing_email")
+          li(ng-if="participant.email" ng-bind="participant.email")
+          li.missing-email(ng-if="!participant.email")= t("app.participants.missing_email")
       .participant-thumbnail-edit
-        button.btn.btn-action.btn-sm.btn-block
+        button.btn.btn-action.btn-sm.btn-block(type="button" ng-click="participants.edit(participant)")
           span.glyphicon.glyphicon-pencil(aria-hidden="true")
           |  #{t("app.participants.edit")}
