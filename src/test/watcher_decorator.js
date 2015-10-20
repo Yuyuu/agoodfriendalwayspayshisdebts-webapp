@@ -8,6 +8,10 @@ exports.decorate = function (object) {
     object.watchers[valueToWatchIsAFunction ? valueToWatch.name : valueToWatch] = callback;
   };
 
+  object.$watchCollection = function (valueToWatch, callback) {
+    object.$watch(valueToWatch, callback);
+  };
+
   object.change = function (valueToChange, newValue, oldValue) {
     object.watchers[valueToChange].call(null, newValue, oldValue);
   };

@@ -16,7 +16,7 @@ function InlineElementDirective($parse) {
 
     var getArrayFrom = $parse(pathToArray);
 
-    scope.$watch(pathToArray, function (value) {
+    scope.$watchCollection(pathToArray, function (value) {
       if (value) {
         var array = getArrayFrom(scope);
         if (property) {
