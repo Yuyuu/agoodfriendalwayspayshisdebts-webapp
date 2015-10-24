@@ -3,21 +3,12 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("The resource responsible for the server communication about events", function () {
+describe("The events resource", function () {
   var $http, $q, resource;
 
   beforeEach(function () {
     $q = {reject: function (o) {return o;}};
     $http = {get: sinon.stub(), post: sinon.stub()};
-    $http.get.withArgs("/api/events/1234/meta").returns({then: function (callback) {
-      return callback.call(null, {status: 200, data: {name: "event"}});
-    }});
-    $http.post.withArgs("/api/events").returns({then: function (callback) {
-      return callback.call(null, {status: 201, data: {id: "1234"}});
-    }});
-    $http.post.withArgs("/api/events/1234/participants").returns({catch: function (callback) {
-      return callback.call(null, {status: 400, data: {errors: []}});
-    }});
   });
 
   beforeEach(function () {
@@ -30,26 +21,58 @@ describe("The resource responsible for the server communication about events", f
   });
 
   it("should mask the underlying http request when getting an event", function () {
-    var result = resource.get("1234");
+    $http.get.withArgs("/api/events/123/meta").returns({then: function (callback) {
+      return callback.call(null, {status: 200, data: {name: "event"}});
+    }});
+
+    var result = resource.get("123");
 
     expect(result.name).to.equal("event");
   });
 
   it("should mask the underlying http request when creating an event", function () {
+    $http.post.withArgs("/api/events").returns({then: function (callback) {
+      return callback.call(null, {status: 201, data: {id: "123"}});
+    }});
+
     var result = resource.create({name: "event"});
 
-    expect(result.id).to.equal("1234");
+    expect(result.id).to.equal("123");
   });
 
   it("should post a participant", function () {
-    resource.addParticipant("1234", {name: "lea"});
+    $http.post.withArgs("/api/events/123/participants").returns({then: function (callback) {
+      return {catch: function () {
+        return callback({status: 201, data: {id: "456"}});
+      }};
+    }});
 
-    expect($http.post).to.have.been.calledWith("/api/events/1234/participants", {name: "lea"});
+    var data = resource.addParticipant("123", {name: "lea"});
+
+    expect(data.id).to.equal("456");
   });
 
   it("should extract the an array of errors from the response", function () {
-    var errors = resource.addParticipant("1234", {name: "lea"});
+    $http.post.withArgs("/api/events/123/participants").returns({
+      then: function () {
+        return {catch: function (callback) {return callback.call(null, {status: 400, data: {errors: []}});}};
+      }
+    });
+
+    var errors = resource.addParticipant("123", {name: "lea"});
 
     expect(errors).to.be.instanceOf(Array);
+  });
+
+  it("should extract a default error is none is provided", function () {
+    $http.post.withArgs("/api/events/123/participants").returns({
+      then: function () {
+        return {catch: function (callback) {return callback.call(null, {status: 500});}};
+      }
+    });
+
+    var errors = resource.addParticipant("123", {name: "lea"});
+
+    expect(errors[0].message).to.equal("ADD_PARTICIPANT_DEFAULT_ERROR");
   });
 });

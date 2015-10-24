@@ -16,9 +16,10 @@ function ShowEventController($state, $modal, Events, notificationService) {
 
   function addParticipant() {
     var modalInstance = $modal.open(addParticipantModalOptions);
-    modalInstance.result.then(function (isAdded) {
-      if (isAdded) {
-        $state.reload();
+    modalInstance.result.then(function (participant) {
+      if (participant) {
+        model.event.participants.push(participant);
+        $state.reload($state.current);
         notificationService.success("PARTICIPANT_ADDED_SUCCESS");
       }
     });

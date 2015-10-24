@@ -4,10 +4,11 @@
 function AddParticipantController($stateParams, $modalInstance, Events, Expenses) {
   var model = this;
 
-  model.participant = {share: 1};
+  model.participant = {email: "", share: 1};
 
   model.add = add;
   model.cancel = cancel;
+  model.hasExpenses = hasExpenses;
 
   activate();
 
@@ -15,8 +16,9 @@ function AddParticipantController($stateParams, $modalInstance, Events, Expenses
     delete model.errors;
     model.loading = true;
     Events.addParticipant($stateParams.id, participant)
-      .then(function () {
-        $modalInstance.close(true);
+      .then(function (data) {
+        participant.id = data.id;
+        $modalInstance.close(participant);
       })
       .catch(function (errors) {
         model.errors = errors;
@@ -27,7 +29,11 @@ function AddParticipantController($stateParams, $modalInstance, Events, Expenses
   }
 
   function cancel() {
-    $modalInstance.close(false);
+    $modalInstance.close(null);
+  }
+
+  function hasExpenses() {
+    return model.expensesMetadata && model.expensesMetadata.length > 0;
   }
 
   function activate() {

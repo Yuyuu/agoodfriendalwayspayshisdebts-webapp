@@ -30,12 +30,12 @@ describe("The add participant controller", function () {
     expect(controller.expensesMetadata[0]).to.deep.equal({id: "123", label: "e1"});
   });
 
-  it("should resolve the modal with true", function () {
-    Events.addParticipant.returns(new FakePromise("then"));
+  it("should resolve the modal with the added participant", function () {
+    Events.addParticipant.returns(new FakePromise("then", {id: "456"}));
 
     controller.add({name: "kim", share: 1});
 
-    expect($modalInstance.close).to.have.been.calledWith(true);
+    expect($modalInstance.close).to.have.been.calledWith({id: "456", name: "kim", share: 1});
   });
 
   it("should communicate the errors of the request to the view", function () {
@@ -54,9 +54,16 @@ describe("The add participant controller", function () {
     expect(controller.loading).to.be.false;
   });
 
-  it("should reject the modal with false", function () {
+  it("should reject the modal with null", function () {
     controller.cancel();
 
-    expect($modalInstance.close).to.have.been.calledWith(false);
+    expect($modalInstance.close).to.have.been.calledWith(null);
+  });
+
+  it("should communicate to the view if there is any expense to include the participant in", function () {
+    expect(controller.hasExpenses()).to.be.true;
+
+    controller.expensesMetadata = [];
+    expect(controller.hasExpenses()).to.be.false;
   });
 });

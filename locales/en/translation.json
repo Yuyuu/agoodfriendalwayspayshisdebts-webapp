@@ -109,8 +109,8 @@
         },
         "add_participant": {
           "title": "Add participant",
-          "name": "Participant name",
-          "email": "Participant email",
+          "name": "Name",
+          "email": "Email (optional)",
           "share": "Share",
           "expenses": {
             "label": "Expenses",

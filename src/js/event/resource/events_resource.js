@@ -10,10 +10,12 @@ function EventsResource($http, $q) {
       return $http.post("/api/events", event).then(forwardResponseData);
     },
     addParticipant: function (eventId, participant) {
-      return $http.post("/api/events/" + eventId + "/participants", participant).catch(function (response) {
-        var errors = (400 === response.status) ? response.data.errors : [{message: "ADD_PARTICIPANT_DEFAULT_ERROR"}];
-        return $q.reject(errors);
-      });
+      return $http.post("/api/events/" + eventId + "/participants", participant)
+        .then(forwardResponseData)
+        .catch(function (response) {
+          var errors = (400 === response.status) ? response.data.errors : [{message: "ADD_PARTICIPANT_DEFAULT_ERROR"}];
+          return $q.reject(errors);
+        });
     }
   };
 

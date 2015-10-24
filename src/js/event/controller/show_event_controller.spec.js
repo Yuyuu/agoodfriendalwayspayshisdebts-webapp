@@ -10,7 +10,7 @@ describe("The controller responsible for showing an event details", function () 
 
   beforeEach(function () {
     event = {participants: [{id: "123", name: "Kim"}, {id: "456", name: "Bob"}, {id: "789", name: "Ben"}]};
-    $state = {params: {id: "123"}, reload: sinon.spy()};
+    $state = {params: {id: "123"}, reload: sinon.spy(), current: {name: "state"}};
     $modal = {open: sinon.stub()};
     Events = {get: sinon.stub()};
     Events.get.withArgs("123").returns(new FakePromise("then", event));
@@ -37,11 +37,12 @@ describe("The controller responsible for showing an event details", function () 
         controller: "AddParticipantController",
         controllerAs: "model"
       })
-      .returns({result: new FakePromise("then", true)});
+      .returns({result: new FakePromise("then", {name: "Rasheed"})});
 
     controller.addParticipant();
 
-    expect($state.reload).to.have.been.called;
+    expect(controller.event.participants[3].name).to.equal("Rasheed");
+    expect($state.reload).to.have.been.calledWith({name: "state"});
     expect(notificationService.success).to.have.been.calledWith("PARTICIPANT_ADDED_SUCCESS");
   });
 });

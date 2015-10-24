@@ -110,8 +110,8 @@
         },
         "add_participant": {
           "title": "Ajout d'un participant",
-          "name": "Nom du participant",
-          "email": "Email du participant",
+          "name": "Nom",
+          "email": "Email (optionnel)",
           "share": "Part",
           "expenses": {
             "label": "Dépenses",

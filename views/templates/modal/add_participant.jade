@@ -10,7 +10,7 @@ form(ng-submit="model.add(model.participant)" name="model.form" role="form" nova
           .row
             .col-sm-5.col-xs-12
               .form-group(element-validation="model.form.participantName")
-                label.control-label(for="inputParticipantName") * #{t("app.event.modal.add_participant.name")}
+                label.control-label(for="inputParticipantName") #{t("app.event.modal.add_participant.name")}
                 input#inputParticipantName.form-control(type="text" ng-model="model.participant.name"
                     placeholder="e.g. Kim" required="" name="participantName")
             .col-sm-5.col-xs-8
@@ -20,13 +20,13 @@ form(ng-submit="model.add(model.participant)" name="model.form" role="form" nova
                     placeholder="e.g. kim@email.com" name="participantEmail")
             .col-sm-2.col-xs-4
               .form-group(element-validation="model.form.participantShare")
-                label.control-label(for="inputParticipantShare") * #{t("app.event.modal.add_participant.share")}
+                label.control-label(for="inputParticipantShare") #{t("app.event.modal.add_participant.share")}
                 input#inputParticipantShare.form-control(type="number" ng-model="model.participant.share" required=""
                     min="1" name="participantShare")
-          .row(ng-if="model.expensesMetadata")
+          .row(ng-if="model.hasExpenses()")
             .col-xs-12
               .form-group(element-validation="model.form.selectedExpenses")
-                label.control-label(for="inputSelectedExpenses") * #{t("app.event.modal.add_participant.expenses.label")}
+                label.control-label(for="inputSelectedExpenses") #{t("app.event.modal.add_participant.expenses.label")}
                 br
                 button#inputSelectedExpenses.btn.btn-default(type="button" ng-model="model.participant.expensesUuids"
                     bs-select="" data-multiple="1" data-all-none-buttons="true" name="selectedExpenses"
@@ -42,8 +42,6 @@ form(ng-submit="model.add(model.participant)" name="model.form" role="form" nova
                 ul
                   li(ng-repeat="error in model.errors" ng-i18next="app.event.modal.add_participant.errors.{{error.message}}")
   .modal-footer
-    span.help-block.text-left.visible-xs * #{t("app.form.field_required_help")}
-    span.help-block.pull-left.hidden-xs * #{t("app.form.field_required_help")}
     button.btn.btn-primary(type="submit" ng-disabled="model.form.$invalid" disable-on-request=""
         data-loading-text=t("app.event.modal.add_participant.loading"))
       span.glyphicon.glyphicon-ok-circle(aria-hidden="true")

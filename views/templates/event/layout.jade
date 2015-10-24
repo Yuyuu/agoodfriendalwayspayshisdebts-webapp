@@ -3,7 +3,7 @@
     .container
       h1(ng-bind="::model.event.name")
       p(ng-cloak="").lead #{t("app.event.with")}&nbsp;
-        span(debts-inline-data="::model.event.participants;name")
+        span(debts-inline-data="model.event.participants;name")
 .container
   .row
     .event-layout-aside.col-md-2.col-xs-12.pull-right
