@@ -16,14 +16,19 @@ main
             .row
               .col-sm-10.col-sm-offset-1.col-xs-12
                 .form-group(element-validation="eventForm.eventName")
-                  label.control-label(for="inputEventName") * #{t("app.home.event_form.event_name")}
+                  label.control-label(for="inputEventName") #{t("app.home.event_form.event_name")}
                   input#inputEventName.form-control.input-lg(type="text" ng-model="model.event.name" name="eventName"
                       placeholder="e.g. #{t('app.home.event_form.event_name_ph')}" required="")
+            .row
+              .participants-header.col-sm-10.col-sm-offset-1.col-xs-12
+                h4
+                  span.glyphicon.glyphicon-user(aria-hidden="true")
+                  |  #{t("app.home.event_form.participants")}
             .row(ng-cloak="" ng-repeat="participant in model.event.participants")
               hr.visible-xs-block(ng-if="!$first")
               .col-sm-4.col-sm-offset-1.col-xs-12
                 .form-group(element-validation="eventForm.participant{{$index}}Name")
-                  label.control-label(for="inputParticipantName" ng-if="$first") * #{t("app.home.event_form.participant_name")}
+                  label.control-label(for="inputParticipantName" ng-if="$first") #{t("app.home.event_form.participant_name")}
                   input#inputParticipantName.form-control.input-lg(type="text" ng-model="participant.name"
                       name="participant{{$index}}Name" placeholder="e.g. Kim" required="")
               .col-sm-4.col-xs-12
@@ -33,7 +38,7 @@ main
                       placeholder="e.g. kim@email.com" name="participant{{$index}}Email")
               .col-sm-2.col-xs-9
                 .form-group(element-validation="eventForm.participant{{$index}}Share")
-                  label.control-label(for="inputParticipantShare" ng-if="$first") * #{t("app.home.event_form.participant_share")}
+                  label.control-label(for="inputParticipantShare" ng-if="$first") #{t("app.home.event_form.participant_share")}
                   input#inputParticipantShare.form-control.input-lg(type="number" ng-model="participant.share"
                       name="participant{{$index}}Share" required="" min="1")
               .col-md-1.col-sm-1.col-xs-3(ng-if="!$first")
@@ -58,5 +63,4 @@ main
                       data-loading-text=t("app.home.event_form.loading") ng-disabled="eventForm.$invalid")
                     span.glyphicon.glyphicon-ok-circle(aria-hidden="true")
                     |  #{t("app.home.event_form.create")}
-                p.help-block * #{t("app.form.field_required_help")}
                 p.help-block= t("app.home.event_form.email_help")

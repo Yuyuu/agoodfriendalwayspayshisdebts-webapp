@@ -36,14 +36,15 @@
         "title": "Créez votre événement",
         "event_name": "Nom de l'événement",
         "event_name_ph": "Weekend à la plage",
-        "participant_name": "Nom du participant",
-        "participant_email": "Email du participant",
+        "participants": "Participants",
+        "participant_name": "Nom",
+        "participant_email": "Email (optionnel)",
         "participant_share": "Part",
         "add_participant": "Ajouter un participant",
         "remove_participant": "Supprimer ce participant",
         "create": "Créer l'événement",
         "loading": "Création de l'événement...",
-        "email_help": "Les emails sont utilisés pour envoyer des rappels et rien d'autre.",
+        "email_help": "Les emails sont utilisés uniquement pour envoyer des rappels.",
         "errors": {
           "EVENT_NAME_REQUIRED": "Vous devez spécifier un nom pour l'événement",
           "PARTICIPANTS_REQUIRED": "Vous devez spécifier au moins un participant pour l'événement",
@@ -192,9 +193,6 @@
         "message": "La ressource demandée est introuvable",
         "action": "Retour à l'accueil"
       }
-    },
-    "form": {
-      "field_required_help": "Champ requis"
     }
   }
 }

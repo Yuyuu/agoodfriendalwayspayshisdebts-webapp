@@ -36,14 +36,15 @@
         "title": "Create your event",
         "event_name": "Event name",
         "event_name_ph": "Weekend at the beach",
-        "participant_name": "Participant name",
-        "participant_email": "Participant email",
+        "participants": "Participants",
+        "participant_name": "Name",
+        "participant_email": "Email (optional)",
         "participant_share": "Share",
         "add_participant": "Add a participant",
         "remove_participant": "Remove this participant",
         "create": "Create the event",
         "loading": "Creating the event...",
-        "email_help": "Emails are used to send reminders and nothing else.",
+        "email_help": "Emails are only used to send reminders.",
         "errors": {
           "EVENT_NAME_REQUIRED": "You must specify a name for the event",
           "PARTICIPANTS_REQUIRED": "You must specify at least one participant for the event",
@@ -191,9 +192,6 @@
         "message": "The requested resource cannot be found",
         "action": "Back to home"
       }
-    },
-    "form": {
-      "field_required_help": "Field required"
     }
   }
 }
