@@ -5,7 +5,7 @@ var angular = require("angular");
 var ngStrapAffixModule = require("angular-strap") + ".affix";
 var ngBootstrapModalModule = require("angular-bootstrap") + ".modal";
 
-var utilModule = angular.module("app.util", [
+var utilModule = angular.module("app.utils", [
   ngStrapAffixModule,
   "template/modal/backdrop.html",
   "template/modal/window.html",

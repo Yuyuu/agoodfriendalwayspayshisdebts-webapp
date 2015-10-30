@@ -10,13 +10,21 @@ function AddExpenseController($stateParams, expenseService, notificationService)
 
   function addExpense(expense) {
     delete model.errors;
-    expenseService.addExpense($stateParams.id, expense).then(function () {
-      clearForm();
-      notificationService.success("EXPENSE_ADDED_SUCCESS");
-    }).catch(extractMessagesFromError);
+    expenseService.addExpense($stateParams.id, expense)
+      .then(resetFormAndShowNotification)
+      .catch(extractErrors);
   }
 
-  function clearForm() {
+  function resetFormAndShowNotification() {
+    resetForm();
+    notificationService.success("EXPENSE_ADDED_SUCCESS");
+  }
+
+  function extractErrors(errors) {
+    model.errors = errors;
+  }
+
+  function resetForm() {
     if (model.form) {
       model.form.$setPristine();
       model.form.$setUntouched();
@@ -26,10 +34,6 @@ function AddExpenseController($stateParams, expenseService, notificationService)
     delete model.expense.amount;
     model.expense.participantsUuids = [];
     delete model.expense.description;
-  }
-
-  function extractMessagesFromError(error) {
-    model.errors = (error.status === 400) ? error.data.errors : [{message: "ADD_EXPENSE_DEFAULT_ERROR"}];
   }
 }
 

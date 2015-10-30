@@ -1,26 +1,27 @@
 "use strict";
 
+var httpUtils = require("../../utils/http");
+
 /* @ngInject */
 function EventsResource($http, $q) {
   return {
-    get: function (eventId) {
-      return $http.get("/api/events/" + eventId + "/meta").then(forwardResponseData);
-    },
-    create: function (event) {
-      return $http.post("/api/events", event).then(forwardResponseData);
-    },
-    addParticipant: function (eventId, participant) {
-      return $http.post("/api/events/" + eventId + "/participants", participant)
-        .then(forwardResponseData)
-        .catch(function (response) {
-          var errors = (400 === response.status) ? response.data.errors : [{message: "ADD_PARTICIPANT_DEFAULT_ERROR"}];
-          return $q.reject(errors);
-        });
-    }
+    addParticipant: addParticipant,
+    create: create,
+    get: get
   };
 
-  function forwardResponseData(response) {
-    return response.data;
+  function addParticipant(eventId, participant) {
+    var promise = httpUtils.forwardErrorsIfAny($q, $http.post("/api/events/" + eventId + "/participants", participant));
+    return promise.then(httpUtils.forwardResponseData);
+  }
+
+  function create(event) {
+    var promise = httpUtils.forwardErrorsIfAny($q, $http.post("/api/events", event));
+    return promise.then(httpUtils.forwardResponseData);
+  }
+
+  function get(eventId) {
+    return $http.get("/api/events/" + eventId + "/meta").then(httpUtils.forwardResponseData);
   }
 }
 

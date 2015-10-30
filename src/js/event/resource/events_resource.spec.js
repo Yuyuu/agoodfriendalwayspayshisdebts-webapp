@@ -20,59 +20,91 @@ describe("The events resource", function () {
     expect(resource).to.be.defined;
   });
 
-  it("should mask the underlying http request when getting an event", function () {
-    $http.get.withArgs("/api/events/123/meta").returns({then: function (callback) {
-      return callback.call(null, {status: 200, data: {name: "event"}});
-    }});
+  describe("[get]", function () {
+    it("should mask the underlying http request when getting an event", function () {
+      $http.get.withArgs("/api/events/123/meta").returns({then: function (callback) {
+        return callback.call(null, {status: 200, data: {name: "event"}});
+      }});
 
-    var result = resource.get("123");
+      var result = resource.get("123");
 
-    expect(result.name).to.equal("event");
+      expect(result.name).to.equal("event");
+    });
   });
 
-  it("should mask the underlying http request when creating an event", function () {
-    $http.post.withArgs("/api/events").returns({then: function (callback) {
-      return callback.call(null, {status: 201, data: {id: "123"}});
-    }});
+  describe("[create]", function () {
+    it("should mask the underlying http request when creating an event", function () {
+      $http.post.withArgs("/api/events").returns({
+        catch: function () {
+          return {then: function (callback) {return callback({status: 201, data: {id: "123"}});}};
+        }
+      });
 
-    var result = resource.create({name: "event"});
+      var result = resource.create({name: "event"});
 
-    expect(result.id).to.equal("123");
-  });
-
-  it("should post a participant", function () {
-    $http.post.withArgs("/api/events/123/participants").returns({then: function (callback) {
-      return {catch: function () {
-        return callback({status: 201, data: {id: "456"}});
-      }};
-    }});
-
-    var data = resource.addParticipant("123", {name: "lea"});
-
-    expect(data.id).to.equal("456");
-  });
-
-  it("should extract the an array of errors from the response", function () {
-    $http.post.withArgs("/api/events/123/participants").returns({
-      then: function () {
-        return {catch: function (callback) {return callback.call(null, {status: 400, data: {errors: []}});}};
-      }
+      expect(result.id).to.equal("123");
     });
 
-    var errors = resource.addParticipant("123", {name: "lea"});
+    it("should extract an array of messages from the response on error", function () {
+      $http.post.withArgs("/api/events").returns({
+        catch: function (callback) {
+          return {then: function () {return callback({status: 400, data: {errors: []}});}};
+        }
+      });
 
-    expect(errors).to.be.instanceOf(Array);
-  });
+      var errors = resource.create({});
 
-  it("should extract a default error is none is provided", function () {
-    $http.post.withArgs("/api/events/123/participants").returns({
-      then: function () {
-        return {catch: function (callback) {return callback.call(null, {status: 500});}};
-      }
+      expect(errors).to.be.instanceOf(Array);
     });
 
-    var errors = resource.addParticipant("123", {name: "lea"});
+    it("should extract a default message if none is provided on error", function () {
+      $http.post.withArgs("/api/events").returns({
+        catch: function (callback) {
+          return {then: function () {return callback({status: 500});}};
+        }
+      });
 
-    expect(errors[0].message).to.equal("ADD_PARTICIPANT_DEFAULT_ERROR");
+      var errors = resource.create({});
+
+      expect(errors[0].message).to.equal("DEFAULT");
+    });
+  });
+
+  describe("[addParticipant]", function () {
+    it("should post a participant", function () {
+      $http.post.withArgs("/api/events/123/participants").returns({
+        catch: function () {
+          return {then: function (callback) {return callback({status: 201, data: {id: "456"}});}};
+        }
+      });
+
+      var data = resource.addParticipant("123", {name: "lea"});
+
+      expect(data.id).to.equal("456");
+    });
+
+    it("should extract an array of messages from the response on error", function () {
+      $http.post.withArgs("/api/events/123/participants").returns({
+        catch: function (callback) {
+          return {then: function () {return callback({status: 400, data: {errors: []}});}};
+        }
+      });
+
+      var errors = resource.addParticipant("123", {name: "lea"});
+
+      expect(errors).to.be.instanceOf(Array);
+    });
+
+    it("should extract a default message if none is provided on error", function () {
+      $http.post.withArgs("/api/events/123/participants").returns({
+        catch: function (callback) {
+          return {then: function () {return callback({status: 500});}};
+        }
+      });
+
+      var errors = resource.addParticipant("123", {name: "lea"});
+
+      expect(errors[0].message).to.equal("DEFAULT");
+    });
   });
 });

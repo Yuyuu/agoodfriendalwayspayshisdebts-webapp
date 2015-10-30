@@ -40,6 +40,6 @@ describe("The participants resource", function () {
     callbackParam.status = 500;
     var errors = resource.update("123", {id: "456"});
 
-    expect(errors[0].message).to.equal("EDIT_PARTICIPANT_DEFAULT_ERROR");
+    expect(errors[0].message).to.equal("DEFAULT");
   });
 });

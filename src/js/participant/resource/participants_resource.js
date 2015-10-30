@@ -1,5 +1,7 @@
 "use strict";
 
+var httpUtils = require("../../utils/http");
+
 /* @ngInject */
 function ParticipantsResource($http, $q) {
   return {
@@ -8,10 +10,7 @@ function ParticipantsResource($http, $q) {
 
   function update(eventId, participant) {
     var url = "/api/events/" + eventId + "/participants/" + participant.id;
-    return $http.put(url, participant).catch(function (response) {
-      var errors = (400 === response.status) ? response.data.errors : [{message: "EDIT_PARTICIPANT_DEFAULT_ERROR"}];
-      return $q.reject(errors);
-    });
+    return httpUtils.forwardErrorsIfAny($q, $http.put(url, participant));
   }
 }
 

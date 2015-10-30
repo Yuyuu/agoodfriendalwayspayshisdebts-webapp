@@ -4,7 +4,7 @@
 function LoadingSpinnerDirective() {
   return {
     restrict: "E",
-    templateUrl: "/templates/util/spinner"
+    templateUrl: "/templates/utils/spinner"
   };
 }
 

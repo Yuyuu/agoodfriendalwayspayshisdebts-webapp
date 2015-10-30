@@ -1,7 +1,9 @@
 "use strict";
 
+var httpUtils = require("../../utils/http");
+
 /* @ngInject */
-function ExpensesResource($http) {
+function ExpensesResource($http, $q) {
   return {
     add: add,
     delete: deleteExpense,
@@ -11,7 +13,8 @@ function ExpensesResource($http) {
   };
 
   function add(eventId, expense) {
-    return $http.post("/api/events/" + eventId + "/expenses", expense).then(forwardResponseData);
+    var promise = httpUtils.forwardErrorsIfAny($q, $http.post("/api/events/" + eventId + "/expenses", expense));
+    return promise.then(httpUtils.forwardResponseData);
   }
 
   function deleteExpense(eventId, expenseId) {
@@ -32,11 +35,7 @@ function ExpensesResource($http) {
   }
 
   function metadata(eventId) {
-    return $http.get("/api/events/" + eventId + "/expenses/meta").then(forwardResponseData);
-  }
-
-  function forwardResponseData(response) {
-    return response.data;
+    return $http.get("/api/events/" + eventId + "/expenses/meta").then(httpUtils.forwardResponseData);
   }
 }
 

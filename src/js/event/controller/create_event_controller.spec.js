@@ -7,13 +7,13 @@ describe("The controller to create events", function () {
   var Events, $state, controller;
 
   beforeEach(function () {
-    Events = {create: sinon.stub()};
     $state = {go: sinon.spy()};
+    Events = {create: sinon.stub()};
   });
 
   beforeEach(function () {
     var CreateEventController = require("./create_event_controller");
-    controller = new CreateEventController(Events, $state);
+    controller = new CreateEventController($state, Events);
   });
 
   it("should be defined", function () {
@@ -59,23 +59,15 @@ describe("The controller to create events", function () {
     expect($state.go).to.not.have.been.called;
   });
 
-  it("should get a reason if the event could not be created", function () {
-    Events.create.returns({then: function () {return {catch: function (callback) {
-      callback.call(null, {status: 400, data: {errors: [{message: "a message"}]}});
-    }};}});
-    var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
+  it("should communicate the errors to the view if the event could not be created", function () {
+    Events.create.returns({
+      then: function () {
+        return {catch: function (callback) {return callback([{message: "a message"}]);}};
+      }
+    });
 
-    controller.createEvent(event);
+    controller.createEvent({});
 
     expect(controller.errors).to.deep.equal([{message: "a message"}]);
-  });
-
-  it("should get a default reason if an unhandled error occurred while creating an event", function () {
-    Events.create.returns({then: function () {return {catch: function (callback) {callback.call(null, {});}};}});
-    var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
-
-    controller.createEvent(event);
-
-    expect(controller.errors).to.deep.equal([{message: "CREATE_EVENT_DEFAULT_ERROR"}]);
   });
 });

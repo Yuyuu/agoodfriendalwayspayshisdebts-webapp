@@ -47,23 +47,15 @@ describe("The controller to add expenses", function () {
     expect(notificationService.success).to.have.been.calledWith("EXPENSE_ADDED_SUCCESS");
   });
 
-  it("should get a reason if the expense could not be added", function () {
-    expenseService.addExpense.returns({then: function () {return {catch: function (callback) {
-      return callback.call(null, {status: 400, data: {errors: [{message: "a message"}]}});}
-    };}});
+  it("should communicate the errors to the view if the expense could not be added", function () {
+    expenseService.addExpense.returns({
+      then: function () {
+        return {catch: function (callback) {return callback([{message: "a message"}]);}};
+      }
+    });
 
     controller.addExpense({id: "123"});
 
     expect(controller.errors).to.deep.equal([{message: "a message"}]);
-  });
-
-  it("should get a default reason if an unhandled error occurred while adding an expense", function () {
-    expenseService.addExpense.returns({then: function () {return {catch: function (callback) {
-      return callback.call(null, {});
-    }};}});
-
-    controller.addExpense({id: "123"});
-
-    expect(controller.errors).to.deep.equal([{message: "ADD_EXPENSE_DEFAULT_ERROR"}]);
   });
 });
