@@ -18,10 +18,10 @@ describe("The controller responsible for listing the expenses of an event", func
     expenseService.deleteExpense.withArgs("1234", "123").returns({then: function (callback) {
       return callback.call(null);
     }});
-    expenseService.loadMoreFrom.withArgs("1234").returns({then: function (callback) {
+    expenseService.loadMoreFrom.withArgs("1234").returns({finally: function (callback) {
       return callback.call(null);
     }});
-    expenseService.initializeForEvent.withArgs("1234").returns({then: function (callback) {
+    expenseService.initializeForEvent.withArgs("1234").returns({finally: function (callback) {
       return callback.call(null);
     }});
     notificationService = {success: sinon.spy()};
@@ -39,6 +39,13 @@ describe("The controller responsible for listing the expenses of an event", func
 
   it("should initialize the expenses upon activation", function () {
     expect(expenseService.initializeForEvent).to.have.been.calledWith("1234");
+  });
+
+  it("should load more expenses", function () {
+    controller.loadMore();
+
+    expect(expenseService.loadMoreFrom).to.have.been.calledWith("1234");
+    expect(controller.loading).to.be.false;
   });
 
   it("should emit a notification if the expense was successfully deleted", function () {

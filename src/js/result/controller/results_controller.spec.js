@@ -3,15 +3,15 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
+var FakePromise = require("../../../test/fake_promise");
+
 describe("The results controller", function () {
-  var $stateParams, Results, result, controller;
+  var $stateParams, Results, controller;
 
   beforeEach(function () {
-    $stateParams = {id: "12345"};
-    result = {};
-    Results = {
-      get: sinon.stub().withArgs("12345").returns({then: function (callback) {callback.call(null, result);}})
-    };
+    $stateParams = {id: "123"};
+    Results = {get: sinon.stub()};
+    Results.get.withArgs("123").returns(new FakePromise("then", "hello", [new FakePromise("finally")]));
   });
 
   beforeEach(function () {
@@ -24,6 +24,7 @@ describe("The results controller", function () {
   });
 
   it("should load the result data on activation", function () {
-    expect(controller.results).to.equal(result);
+    expect(controller.results).to.equal("hello");
+    expect(controller.loading).to.be.false;
   });
 });
