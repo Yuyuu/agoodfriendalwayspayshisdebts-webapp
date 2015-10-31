@@ -9,8 +9,8 @@ exports.decorate = function (object) {
 
   object.$on = object.on;
 
-  object.emit = function (event) {
-    this.listeners[event].call(null);
+  object.emit = function (event, args) {
+    this.listeners[event].apply(null, args);
   };
 
   return object;

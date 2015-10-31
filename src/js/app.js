@@ -18,4 +18,10 @@ angular.module("app", [
   require("./event"),
   require("./utils"),
   require("./error")
-]);
+])
+  .run(run);
+
+/* @ngInject */
+function run(bootstrapService) {
+  bootstrapService.start();
+}

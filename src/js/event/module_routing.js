@@ -20,7 +20,13 @@ module.exports = function () {
         url: "/events/:id",
         controller: "ShowEventController",
         controllerAs: "model",
-        templateUrl: "/templates/event/layout"
+        templateUrl: "/templates/event/layout",
+        resolve: {
+          /* @ngInject */
+          event: function ($stateParams, Events) {
+            return Events.get($stateParams.id);
+          }
+        }
       });
     $urlRouterProvider.when("", "/home");
   }
