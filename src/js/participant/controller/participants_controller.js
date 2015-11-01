@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function ParticipantsController($modal, notificationService) {
+function ParticipantsController(modalService, notificationService) {
   var model = this;
 
   model.edit = edit;
@@ -16,7 +16,7 @@ function ParticipantsController($modal, notificationService) {
     editParticipantModalOptions.resolve = {participant: function () {
       return participant;
     }};
-    var modalInstance = $modal.open(editParticipantModalOptions);
+    var modalInstance = modalService.open(editParticipantModalOptions);
     modalInstance.result.then(function (updatedParticipant) {
       if (updatedParticipant) {
         updateParticipant(participant, updatedParticipant);

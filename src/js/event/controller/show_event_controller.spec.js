@@ -5,19 +5,19 @@ var sinon = require("sinon");
 
 var FakePromise = require("../../../test/fake_promise");
 
-describe("The controller responsible for showing an event details", function () {
-  var $state, $modal, notificationService, event, controller;
+describe("The show event controller", function () {
+  var $state, modalService, notificationService, event, controller;
 
   beforeEach(function () {
     event = {participants: [{id: "123", name: "Kim"}, {id: "456", name: "Bob"}, {id: "789", name: "Ben"}]};
     $state = {params: {id: "123"}, reload: sinon.spy(), current: {name: "state"}};
-    $modal = {open: sinon.stub()};
+    modalService = {open: sinon.stub()};
     notificationService = {success: sinon.spy()};
   });
 
   beforeEach(function () {
     var ShowEventController = require("./show_event_controller");
-    controller = new ShowEventController($state, $modal, notificationService, event);
+    controller = new ShowEventController($state, modalService, notificationService, event);
   });
 
   it("should be defined", function () {
@@ -25,7 +25,7 @@ describe("The controller responsible for showing an event details", function () 
   });
 
   it("should reload the state and show a success notification when a participant is added", function () {
-    $modal.open
+    modalService.open
       .withArgs({
         templateUrl: "/templates/modal/add_participant",
         controller: "AddParticipantController",

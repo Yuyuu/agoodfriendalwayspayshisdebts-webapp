@@ -6,16 +6,16 @@ var sinon = require("sinon");
 var FakePromise = require("../../../test/fake_promise");
 
 describe("The participants controller", function () {
-  var $modal, notificationService, controller;
+  var modalService, notificationService, controller;
 
   beforeEach(function () {
     notificationService = {success: sinon.spy()};
-    $modal = {open: sinon.stub()};
+    modalService = {open: sinon.stub()};
   });
 
   beforeEach(function () {
     var ParticipantsController = require("./participants_controller");
-    controller = new ParticipantsController($modal, notificationService);
+    controller = new ParticipantsController(modalService, notificationService);
   });
 
   it("should be defined", function () {
@@ -24,11 +24,11 @@ describe("The participants controller", function () {
 
   it("should open a modal with the participant to edit", function () {
     var participant = {id: "123"};
-    $modal.open.returns({result: new FakePromise("then", participant)});
+    modalService.open.returns({result: new FakePromise("then", participant)});
 
     controller.edit(participant);
 
-    expect($modal.open).to.have.been.calledWith(sinon.match(function (options) {
+    expect(modalService.open).to.have.been.calledWith(sinon.match(function (options) {
       var participant = options.resolve.participant();
       return participant.id === "123";
     }));
@@ -36,7 +36,7 @@ describe("The participants controller", function () {
 
   it("should update the view and show a success notification once the participant has been updated", function () {
     var participant = {id: "123", name: "leo", email: "leo@mail.fr"};
-    $modal.open.returns({result: new FakePromise("then", {id: "123", name: "leô", email: "leo@email.fr"})});
+    modalService.open.returns({result: new FakePromise("then", {id: "123", name: "leô", email: "leo@email.fr"})});
 
     controller.edit(participant);
 
@@ -47,7 +47,7 @@ describe("The participants controller", function () {
 
   it("should not update the view if the participant has not been edited", function () {
     var participant = {id: "123", name: "leo", email: "leo@mail.fr"};
-    $modal.open.returns({result: new FakePromise("then", null)});
+    modalService.open.returns({result: new FakePromise("then", null)});
 
     controller.edit(participant);
 
