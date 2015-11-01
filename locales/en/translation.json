@@ -2,14 +2,10 @@
   "locale": "English",
   "app": {
     "angularLocale": "anglais",
-    "global": {
-      "title": "A good friend always pays his debts - Split an event expenses among its participants",
-      "description": "Create an event with participants, add expenses and split it among selected participants. Get a recap of the amounts owed by each.",
-      "footer": {
-        "made_by": "Made by",
-        "twitter_account": "Twitter account"
-      }
-    },
+    "title": "A good friend always pays his debts - Split an event expenses among its participants",
+    "description": "Create an event with participants, add expenses and split it among selected participants. Get a recap of the amounts owed by each.",
+    "made_by": "Made by",
+    "twitter_account": "Twitter account",
     "notification": {
       "EXPENSE_ADDED_SUCCESS": {
         "title": "Done!",
@@ -31,17 +27,17 @@
     "home": {
       "title": "A good friend always pays his debts",
       "pitch": "Split an event expenses between its participants.",
-      "tyrion": "Tyrion Lannister approves.",
-      "event_form": {
+      "jk": "Lannisters approve.",
+      "create": {
         "title": "Create your event",
-        "event_name": "Event name",
-        "event_name_ph": "Weekend at the beach",
+        "e_name": "Event name",
+        "e_name_ph": "Weekend at the beach",
         "participants": "Participants",
-        "participant_name": "Name",
-        "participant_email": "Email (optional)",
-        "participant_share": "Share",
-        "add_participant": "Add a participant",
-        "remove_participant": "Remove this participant",
+        "p_name": "Name",
+        "p_email": "Email (optional)",
+        "p_share": "Share",
+        "add_p": "Add a participant",
+        "remove_p": "Remove this participant",
         "create": "Create the event",
         "loading": "Creating the event...",
         "email_help": "Emails are only used to send reminders.",
@@ -57,20 +53,18 @@
     },
     "event": {
       "with": "With",
-      "purchased_by": "Purchased by",
-      "shared_between": "Expense shared between",
-      "actions": "Actions",
-      "delete": "Delete",
-      "load_more": "See more expenses",
       "tabs": {
         "expenses": "Expenses",
         "participants": "Participants",
         "results": "Results"
       },
-      "actions": {
-        "add_participant": "Add a participant"
-      },
-      "expense_form": {
+      "add_p": "Add a participant"
+    },
+    "expenses": {
+      "by": "Purchased by",
+      "shared": "Expense shared between",
+      "load_more": "See more expenses",
+      "create": {
         "title": "New expense",
         "label": "Label",
         "label_ph": "Errands for the BBQ",
@@ -78,14 +72,12 @@
         "purchaser_ph": "Choose...",
         "amount": "Amount spent",
         "amount_ph": "9.11",
-        "amount_precision": ".00",
-        "share_with": {
-          "label": "Share between",
-          "all": "All",
-          "none": "None",
-          "selected": "selected",
-          "ph": "Choose among the participants..."
-        },
+        "precision": ".00",
+        "share": "Share between",
+        "all": "All",
+        "none": "None",
+        "selected": "selected",
+        "share_ph": "Choose among the participants...",
         "description_ph": "For further clarification",
         "submit": "Add the expense",
         "loading": "Adding the expense...",
@@ -97,54 +89,47 @@
           "DEFAULT": "Sorry, an error occurred while creating the expense"
         }
       },
-      "modal": {
-        "close": "Close",
-        "cancel": "Cancel",
-        "delete": {
-          "title": "Delete expense",
-          "warning_1": "Are you sure you want to",
-          "warning_2": "permanently delete",
-          "warning_3": "the expense",
-          "question_mark": "?",
-          "confirm": "Delete expense"
-        },
-        "add_participant": {
-          "title": "Add participant",
-          "name": "Name",
-          "email": "Email (optional)",
-          "share": "Share",
-          "expenses": {
-            "label": "Expenses",
-            "all": "All",
-            "none": "None",
-            "selected": "selected",
-            "ph": "Choose among the expenses...",
-            "help": "Choose the expenses in which to include the participant."
-          },
-          "submit": "Add the participant",
-          "loading": "Adding the participant...",
-          "errors": {
-            "PARTICIPANT_NAME_REQUIRED": "You must specify the name of the participant",
-            "PARTICIPANT_SHARE_REQUIRED": "You must specify the share of the participant",
-            "INVALID_SHARE": "The share of the participant must be greater than 0",
-            "DEFAULT": "Sorry, an error occurred while adding the participant"
-          }
-        }
+      "delete": {
+        "label": "Delete",
+        "title": "Delete expense",
+        "warning_1": "Are you sure you want to",
+        "warning_2": "permanently delete",
+        "warning_3": "the expense",
+        "question_mark": "?",
+        "confirm": "Delete expense"
       }
     },
     "participants": {
       "share": "share",
       "missing_email": "No email address",
-      "edit": "Edit",
-      "edit_form": {
+      "add": {
+        "title": "Add participant",
+        "name": "Name",
+        "email": "Email (optional)",
+        "share": "Share",
+        "expenses": "Expenses",
+        "all": "All",
+        "none": "None",
+        "selected": "selected",
+        "expenses_ph": "Choose among the expenses...",
+        "help": "Choose the expenses in which to include the participant.",
+        "submit": "Add the participant",
+        "loading": "Adding the participant...",
+        "errors": {
+          "PARTICIPANT_NAME_REQUIRED": "You must specify the name of the participant",
+          "PARTICIPANT_SHARE_REQUIRED": "You must specify the share of the participant",
+          "INVALID_SHARE": "The share of the participant must be greater than 0",
+          "DEFAULT": "Sorry, an error occurred while adding the participant"
+        }
+      },
+      "edit": {
+        "label": "Edit",
         "title": "Edit participant",
         "name": "Name",
         "email": "Email (optional)",
         "share": "Part",
         "submit": "Edit the participant",
         "loading": "Modification...",
-        "close": "Close",
-        "cancel": "Cancel",
         "errors": {
           "INVALID_EMAIL": "The email must be a valid",
           "DEFAULT": "Sorry, an error occurred while updating the participant"
@@ -152,6 +137,12 @@
       }
     },
     "results": {
+      "filter": "Filter by name:",
+      "share": "share",
+      "spent": "Total amount spent:",
+      "creditor": "Creditor",
+      "debt": "Debt",
+      "total": "Total",
       "reminder": {
         "title": "New reminder",
         "recipients": {
@@ -162,24 +153,16 @@
           "ph": "None selected"
         },
         "submit": "Send reminder",
-        "loading": "Sending the reminders...",
-        "status": {
-          "title": "Status",
-          "failure": "A problem occurred while sending the reminders",
-          "success": {
-            "true": "ok",
-            "false": "error"
-          }
+        "loading": "Sending the reminders..."
+      },
+      "status": {
+        "title": "Status",
+        "failure": "A problem occurred while sending the reminders",
+        "success": {
+          "true": "ok",
+          "false": "error"
         }
-      },
-      "filters": {
-        "name": "Filter by name:"
-      },
-      "share": "share",
-      "total_spent": "Total amount spent:",
-      "creditor": "Creditor",
-      "debt": "Debt",
-      "total": "Total"
+      }
     },
     "errors": {
       "default": {
@@ -192,6 +175,10 @@
         "message": "The requested resource cannot be found",
         "action": "Back to home"
       }
+    },
+    "modal": {
+      "close": "Close",
+      "cancel": "Cancel"
     }
   }
 }

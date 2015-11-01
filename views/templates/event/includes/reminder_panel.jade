@@ -20,13 +20,13 @@ section.reminder(ng-controller="ReminderController as reminder")
   .debts-panel.reminder-status-panel(ng-if="reminder.reports || reminder.loading")
     .debts-panel-heading-sm.inverse
       h4
-        | #{t("app.results.reminder.status.title")}&nbsp;
+        | #{t("app.results.status.title")}&nbsp;
         span.glyphicon.glyphicon-envelope.pull-right(aria-hidden="true")
     .debts-panel-body
       loading-spinner(ng-show="reminder.loading")
-      .alert.alert-danger(role="alert" ng-if="reminder.isFailure")= t("app.results.reminder.status.failure")
+      .alert.alert-danger(role="alert" ng-if="reminder.isFailure")= t("app.results.status.failure")
       ul.list-group(ng-if="!reminder.loading && !reminder.isFailure && reminder.reports")
         li.list-group-item(ng-repeat="report in reminder.reports")
           | {{::report.recipientName}}
           span.label.pull-right(ng-class="['label-' + (report.success ? 'success' : 'danger')]"
-              ng-i18next="app.results.reminder.status.success.{{report.success}}")
+              ng-i18next="app.results.status.success.{{report.success}}")

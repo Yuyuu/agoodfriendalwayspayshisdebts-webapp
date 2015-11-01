@@ -6,62 +6,62 @@ main
         p.lead= t("app.home.pitch")
     .jumbo-bar
       .container
-        p= t("app.home.tyrion")
+        p= t("app.home.jk")
   section.section-common
     .container
-      h2.section-title= t("app.home.event_form.title")
+      h2.section-title= t("app.home.create.title")
       .row
         .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
           form#eventForm(name="eventForm" ng-submit="model.createEvent(model.event)" novalidate="")
             .row
               .col-sm-10.col-sm-offset-1.col-xs-12
                 .form-group(element-validation="eventForm.eventName")
-                  label.control-label(for="inputEventName") #{t("app.home.event_form.event_name")}
+                  label.control-label(for="inputEventName") #{t("app.home.create.e_name")}
                   input#inputEventName.form-control.input-lg(type="text" ng-model="model.event.name" name="eventName"
-                      placeholder="e.g. #{t('app.home.event_form.event_name_ph')}" required="")
+                      placeholder="e.g. #{t('app.home.create.e_name_ph')}" required="")
             .row
               .participants-header.col-sm-10.col-sm-offset-1.col-xs-12
                 h4
                   span.glyphicon.glyphicon-user(aria-hidden="true")
-                  |  #{t("app.home.event_form.participants")}
+                  |  #{t("app.home.create.participants")}
             .row(ng-cloak="" ng-repeat="participant in model.event.participants")
               hr.visible-xs-block(ng-if="!$first")
               .col-sm-4.col-sm-offset-1.col-xs-12
                 .form-group(element-validation="eventForm.participant{{$index}}Name")
-                  label.control-label(for="inputParticipantName" ng-if="$first") #{t("app.home.event_form.participant_name")}
+                  label.control-label(for="inputParticipantName" ng-if="$first") #{t("app.home.create.p_name")}
                   input#inputParticipantName.form-control.input-lg(type="text" ng-model="participant.name"
                       name="participant{{$index}}Name" placeholder="e.g. Kim" required="")
               .col-sm-4.col-xs-12
                 .form-group(element-validation="eventForm.participant{{$index}}Email")
-                  label.control-label(for="inputParticipantEmail" ng-if="$first")= t("app.home.event_form.participant_email")
+                  label.control-label(for="inputParticipantEmail" ng-if="$first")= t("app.home.create.p_email")
                   input#inputParticipantEmail.form-control.input-lg(type="email" ng-model="participant.email"
                       placeholder="e.g. kim@email.com" name="participant{{$index}}Email")
               .col-sm-2.col-xs-9
                 .form-group(element-validation="eventForm.participant{{$index}}Share")
-                  label.control-label(for="inputParticipantShare" ng-if="$first") #{t("app.home.event_form.participant_share")}
+                  label.control-label(for="inputParticipantShare" ng-if="$first") #{t("app.home.create.p_share")}
                   input#inputParticipantShare.form-control.input-lg(type="number" ng-model="participant.share"
                       name="participant{{$index}}Share" required="" min="1")
               .col-md-1.col-sm-1.col-xs-3(ng-if="!$first")
                 .form-group
-                  button.btn.btn-danger.btn-lg(type="button" aria-label=t("app.home.event_form.remove_participant")
-                      ng-click="model.removeParticipant($index)" title=t("app.home.event_form.remove_participant"))
+                  button.btn.btn-danger.btn-lg(type="button" aria-label=t("app.home.create.remove_p")
+                      ng-click="model.removeParticipant($index)" title=t("app.home.create.remove_p"))
                     span.glyphicon.glyphicon-minus(aria-hidden="true")
             .row
               .col-sm-10.col-sm-offset-1.col-xs-12
                 .form-group.text-right
                   button.btn.btn-default.btn-lg(type="button" ng-click="model.addParticipant()")
                     span.glyphicon.glyphicon-plus(aria-hidden="true")
-                    | &nbsp;#{t("app.home.event_form.add_participant")}
+                    | &nbsp;#{t("app.home.create.add_p")}
             .row(ng-cloak="" ng-if="model.errors")
               .col-sm-10.col-sm-offset-1.col-xs-12
                 .alert.alert-danger
                   ul
-                    li(ng-repeat="error in model.errors" ng-i18next="app.home.event_form.errors.{{error.message}}")
+                    li(ng-repeat="error in model.errors" ng-i18next="app.home.create.errors.{{error.message}}")
             .row
               .col-sm-10.col-sm-offset-1.col-xs-12
                 .form-group
                   button.btn.btn-block.btn-primary.btn-lg(type="submit" disable-on-request=""
-                      data-loading-text=t("app.home.event_form.loading") ng-disabled="eventForm.$invalid")
+                      data-loading-text=t("app.home.create.loading") ng-disabled="eventForm.$invalid")
                     span.glyphicon.glyphicon-ok-circle(aria-hidden="true")
-                    |  #{t("app.home.event_form.create")}
-                p.help-block= t("app.home.event_form.email_help")
+                    |  #{t("app.home.create.create")}
+                p.help-block= t("app.home.create.email_help")

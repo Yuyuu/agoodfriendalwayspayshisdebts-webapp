@@ -1,13 +1,13 @@
 .modal-header
-  button.close(type="button" aria-label=t("app.event.modal.close") ng-click="model.close(false)")
+  button.close(type="button" aria-label=t("app.modal.close") ng-click="model.close(false)")
     span(aria-hidden="true") &times;
-  h4.modal-title= t("app.event.modal.delete.title")
+  h4.modal-title= t("app.expenses.delete.title")
 .modal-body
-  | #{t("app.event.modal.delete.warning_1")}
-  span.text-bold  #{t("app.event.modal.delete.warning_2")}
-  |  #{t("app.event.modal.delete.warning_3")} "{{::model.expense.label}}"#{t("app.event.modal.delete.question_mark")}
+  | #{t("app.expenses.delete.warning_1")}
+  span.text-bold  #{t("app.expenses.delete.warning_2")}
+  |  #{t("app.expenses.delete.warning_3")} "{{::model.expense.label}}"#{t("app.expenses.delete.question_mark")}
 .modal-footer
   button.btn.btn-primary(type="button" ng-click="model.close(true)")
     span.glyphicon.glyphicon-ok-circle(aria-hidden="true")
-    |  #{t("app.event.modal.delete.confirm")}
-  button.btn.btn-default(type="button" ng-click="model.close(false)")= t("app.event.modal.cancel")
+    |  #{t("app.expenses.delete.confirm")}
+  button.btn.btn-default(type="button" ng-click="model.close(false)")= t("app.modal.cancel")

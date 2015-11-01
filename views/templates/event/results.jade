@@ -7,7 +7,7 @@
     .col-md-9.col-sm-8.col-xs-12
       .filters.form-inline
         .form-group
-          label(for="nameFilter") #{t("app.results.filters.name")}&nbsp;
+          label(for="nameFilter") #{t("app.results.filter")}&nbsp;
           input#nameFilter.form-control(type="text" placeholder="e.g. Lea" ng-model="results.filter.participantName")
       loading-spinner(ng-show="results.loading")
       .results
@@ -18,7 +18,7 @@
                 h2 {{::participantResult.participantName}}&nbsp;
                   span.label.label-primary
                     | {{::participantResult.participantShare, plural, =1 {1 #{shareLabel}} other {# #{shareLabel}s}}}
-                p= t("app.results.total_spent")
+                p= t("app.results.spent")
                   | &nbsp;
                   span.text-bold(ng-bind="::participantResult.totalSpent | currency")
               .col-md-6.col-sm-6.col-xs-12

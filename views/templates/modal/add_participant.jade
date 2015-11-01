@@ -1,7 +1,7 @@
 .modal-header
-  button.close(type="button" aria-label=t("app.event.modal.close") ng-click="model.cancel()" ng-hide="model.loading")
+  button.close(type="button" aria-label=t("app.modal.close") ng-click="model.cancel()" ng-hide="model.loading")
     span(aria-hidden="true") &times;
-  h4.modal-title= t("app.event.modal.add_participant.title")
+  h4.modal-title= t("app.participants.add.title")
 form(ng-submit="model.add(model.participant)" name="model.form" role="form" novalidate="")
   .modal-body
     .container-fluid
@@ -10,40 +10,40 @@ form(ng-submit="model.add(model.participant)" name="model.form" role="form" nova
           .row
             .col-sm-5.col-xs-12
               .form-group(element-validation="model.form.participantName")
-                label.control-label(for="inputParticipantName") #{t("app.event.modal.add_participant.name")}
+                label.control-label(for="inputParticipantName") #{t("app.participants.add.name")}
                 input#inputParticipantName.form-control(type="text" ng-model="model.participant.name"
                     placeholder="e.g. Kim" required="" name="participantName")
             .col-sm-5.col-xs-8
               .form-group(element-validation="model.form.participantEmail")
-                label.control-label(for="inputParticipantEmail")= t("app.event.modal.add_participant.email")
+                label.control-label(for="inputParticipantEmail")= t("app.participants.add.email")
                 input#inputParticipantEmail.form-control(type="email" ng-model="model.participant.email"
                     placeholder="e.g. kim@email.com" name="participantEmail")
             .col-sm-2.col-xs-4
               .form-group(element-validation="model.form.participantShare")
-                label.control-label(for="inputParticipantShare") #{t("app.event.modal.add_participant.share")}
+                label.control-label(for="inputParticipantShare") #{t("app.participants.add.share")}
                 input#inputParticipantShare.form-control(type="number" ng-model="model.participant.share" required=""
                     min="1" name="participantShare")
           .row(ng-if="model.hasExpenses()")
             .col-xs-12
               .form-group(element-validation="model.form.selectedExpenses")
-                label.control-label(for="inputSelectedExpenses") #{t("app.event.modal.add_participant.expenses.label")}
+                label.control-label(for="inputSelectedExpenses") #{t("app.participants.add.expenses")}
                 br
                 button#inputSelectedExpenses.btn.btn-default(type="button" ng-model="model.participant.expensesUuids"
                     bs-select="" data-multiple="1" data-all-none-buttons="true" name="selectedExpenses"
-                    data-all-text=t("app.event.modal.add_participant.expenses.all") data-max-length="0"
-                    data-none-text=t("app.event.modal.add_participant.expenses.none") aria-describedby="expensesHelpBlock"
-                    data-max-length-html=t("app.event.modal.add_participant.expenses.selected")
-                    data-placeholder=t("app.event.modal.add_participant.expenses.ph")
+                    data-all-text=t("app.participants.add.all") data-max-length="0"
+                    data-none-text=t("app.participants.add.none") aria-describedby="expensesHelpBlock"
+                    data-max-length-html=t("app.participants.add.selected")
+                    data-placeholder=t("app.participants.add.expenses_ph")
                     bs-options="expense.id as expense.label for expense in model.expensesMetadata")
-              p#expensesHelpBlock.help-block= t("app.event.modal.add_participant.expenses.help")
+              p#expensesHelpBlock.help-block= t("app.participants.add.help")
           .row(ng-cloak="" ng-if="model.errors")
             .col-xs-12
               .alert.alert-danger
                 ul
-                  li(ng-repeat="error in model.errors" ng-i18next="app.event.modal.add_participant.errors.{{error.message}}")
+                  li(ng-repeat="error in model.errors" ng-i18next="app.participants.add.errors.{{error.message}}")
   .modal-footer
     button.btn.btn-primary(type="submit" ng-disabled="model.form.$invalid" disable-on-request=""
-        data-loading-text=t("app.event.modal.add_participant.loading"))
+        data-loading-text=t("app.participants.add.loading"))
       span.glyphicon.glyphicon-ok-circle(aria-hidden="true")
-      |  #{t("app.event.modal.add_participant.submit")}
-    button.btn.btn-default(type="button" ng-click="model.cancel()" ng-disabled="model.loading")= t("app.event.modal.cancel")
+      |  #{t("app.participants.add.submit")}
+    button.btn.btn-default(type="button" ng-click="model.cancel()" ng-disabled="model.loading")= t("app.modal.cancel")

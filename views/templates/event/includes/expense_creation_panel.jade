@@ -1,54 +1,54 @@
 .debts-panel(affix-panel="" data-offset-top="-20")
   .debts-panel-heading.inverse
-    h4= t("app.event.expense_form.title")
+    h4= t("app.expenses.create.title")
   .debts-panel-body
     form(name="xpensCtrl.form" ng-controller="AddExpenseController as xpensCtrl" novalidate=""
         ng-submit="xpensCtrl.addExpense(xpensCtrl.expense)")
       .row
         .col-xs-12
           .form-group(element-validation="xpensCtrl.form.expenseLabel")
-            label.control-label(for="inputExpenseLabel")= t("app.event.expense_form.label")
+            label.control-label(for="inputExpenseLabel")= t("app.expenses.create.label")
             input#inputExpenseLabel.form-control(type="text" ng-model="xpensCtrl.expense.label"
-                name="expenseLabel" placeholder="e.g. #{t('app.event.expense_form.label_ph')}" required="")
+                name="expenseLabel" placeholder="e.g. #{t('app.expenses.create.label_ph')}" required="")
       .row
         .col-sm-6.col-xs-7
           .form-group(element-validation="xpensCtrl.form.expenseAmount")
-            label.control-label(for="inputExpenseAmount")= t("app.event.expense_form.amount")
+            label.control-label(for="inputExpenseAmount")= t("app.expenses.create.amount")
             .input-group
               .input-group-addon(debts-currency-symbol="::")
               input#intputExpenseAmount.form-control.text-right(ng-model="xpensCtrl.expense.amount" required=""
-                  placeholder="e.g. #{t('app.event.expense_form.amount_ph')}" name="expenseAmount" currency-validation="")
-              .input-group-addon= t("app.event.expense_form.amount_precision")
+                  placeholder="e.g. #{t('app.expenses.create.amount_ph')}" name="expenseAmount" currency-validation="")
+              .input-group-addon= t("app.expenses.create.precision")
         .col-sm-6.col-xs-12
           .form-group(element-validation="xpensCtrl.form.expensePurchaser")
-            label.control-label(for="inputExpensePurchaser")= t("app.event.expense_form.purchaser")
+            label.control-label(for="inputExpensePurchaser")= t("app.expenses.create.purchaser")
             br
             button#inputExpensePurchaser.btn.btn-default(type="button" ng-model="xpensCtrl.expense.purchaserUuid"
-                bs-select="" data-placeholder=t("app.event.expense_form.purchaser_ph") name="expensePurchaser" required=""
+                bs-select="" data-placeholder=t("app.expenses.create.purchaser_ph") name="expensePurchaser" required=""
                 bs-options="participant.id as participant.name for participant in model.event.participants")
       .row
         .col-xs-12
           .form-group(element-validation="xpensCtrl.form.expenseParticipants")
-            label.control-label(for="inputExpenseParticipants")= t("app.event.expense_form.share_with.label")
+            label.control-label(for="inputExpenseParticipants")= t("app.expenses.create.share")
             br
             button#inputExpenseParticipants.btn.btn-default(type="button" ng-model="xpensCtrl.expense.participantsUuids"
                 bs-select="" data-multiple="1" data-all-none-buttons="true" name="expenseParticipants"
-                data-all-text=t("app.event.expense_form.share_with.all") required="" data-max-length="4"
-                data-none-text=t("app.event.expense_form.share_with.none")
-                data-max-length-html=t("app.event.expense_form.share_with.selected")
-                data-placeholder=t("app.event.expense_form.share_with.ph")
+                data-all-text=t("app.expenses.create.all") required="" data-max-length="4"
+                data-none-text=t("app.expenses.create.none")
+                data-max-length-html=t("app.expenses.create.selected")
+                data-placeholder=t("app.expenses.create.share_ph")
                 bs-options="participant.id as participant.name for participant in model.event.participants")
       .row
         .col-xs-12
           .form-group
             textarea.form-control(ng-model="xpensCtrl.expense.description" rows="3"
-                placeholder=t("app.event.expense_form.description_ph"))
+                placeholder=t("app.expenses.create.description_ph"))
       .row(ng-cloak="" ng-if="xpensCtrl.errors")
         .col-xs-12
           .alert.alert-danger
             ul
-              li(ng-repeat="error in xpensCtrl.errors" ng-i18next="app.event.expense_form.errors.{{error.message}}")
+              li(ng-repeat="error in xpensCtrl.errors" ng-i18next="app.expenses.create.errors.{{error.message}}")
       button.btn.btn-block.btn-primary(type="submit" disable-on-request="" ng-disabled="xpensCtrl.form.$invalid"
-          data-loading-text=t("app.event.expense_form.loading"))
+          data-loading-text=t("app.expenses.create.loading"))
         span.glyphicon.glyphicon-plus(aria-hidden="true")
-        |  #{t("app.event.expense_form.submit")}
+        |  #{t("app.expenses.create.submit")}
