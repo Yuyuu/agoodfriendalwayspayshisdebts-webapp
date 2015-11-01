@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function AddParticipantController($stateParams, $modalInstance, Events, Expenses) {
+function AddParticipantController($stateParams, $modalInstance, Participants, Expenses) {
   var model = this;
 
   model.participant = {email: "", share: 1};
@@ -15,7 +15,7 @@ function AddParticipantController($stateParams, $modalInstance, Events, Expenses
   function add(participant) {
     delete model.errors;
     model.loading = true;
-    Events.addParticipant($stateParams.id, participant)
+    Participants.add($stateParams.id, participant)
       .then(function (data) {
         participant.id = data.id;
         $modalInstance.close(participant);

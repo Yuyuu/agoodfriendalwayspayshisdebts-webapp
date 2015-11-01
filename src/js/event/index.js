@@ -8,8 +8,7 @@ var eventModule = angular.module("app.event", [require("../expense"), require(".
 eventModule
   .factory("Events", require("./resource/events_resource"))
   .controller("CreateEventController", require("./controller/create_event_controller"))
-  .controller("ShowEventController", require("./controller/show_event_controller"))
-  .controller("AddParticipantController", require("./controller/add_participant_controller"));
+  .controller("ShowEventController", require("./controller/show_event_controller"));
 
 configureModuleRouting();
 

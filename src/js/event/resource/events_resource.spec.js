@@ -69,42 +69,4 @@ describe("The events resource", function () {
       expect(errors[0].message).to.equal("DEFAULT");
     });
   });
-
-  describe("[addParticipant]", function () {
-    it("should post a participant", function () {
-      $http.post.withArgs("/api/events/123/participants").returns({
-        catch: function () {
-          return {then: function (callback) {return callback({status: 201, data: {id: "456"}});}};
-        }
-      });
-
-      var data = resource.addParticipant("123", {name: "lea"});
-
-      expect(data.id).to.equal("456");
-    });
-
-    it("should extract an array of messages from the response on error", function () {
-      $http.post.withArgs("/api/events/123/participants").returns({
-        catch: function (callback) {
-          return {then: function () {return callback({status: 400, data: {errors: []}});}};
-        }
-      });
-
-      var errors = resource.addParticipant("123", {name: "lea"});
-
-      expect(errors).to.be.instanceOf(Array);
-    });
-
-    it("should extract a default message if none is provided on error", function () {
-      $http.post.withArgs("/api/events/123/participants").returns({
-        catch: function (callback) {
-          return {then: function () {return callback({status: 500});}};
-        }
-      });
-
-      var errors = resource.addParticipant("123", {name: "lea"});
-
-      expect(errors[0].message).to.equal("DEFAULT");
-    });
-  });
 });

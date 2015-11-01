@@ -6,19 +6,19 @@ var sinon = require("sinon");
 var FakePromise = require("../../../test/fake_promise");
 
 describe("The add participant controller", function () {
-  var $stateParams, $modalInstance, Events, Expenses, controller;
+  var $stateParams, $modalInstance, Participants, Expenses, controller;
 
   beforeEach(function () {
     $stateParams = {id: "1234"};
     $modalInstance = {close: sinon.spy()};
-    Events = {addParticipant: sinon.stub()};
+    Participants = {add: sinon.stub()};
     Expenses = {metadata: sinon.stub()};
     Expenses.metadata.withArgs("1234").returns(new FakePromise("then", [{id: "123", label: "e1"}]));
   });
 
   beforeEach(function () {
     var AddParticipantController = require("./add_participant_controller");
-    controller = new AddParticipantController($stateParams, $modalInstance, Events, Expenses);
+    controller = new AddParticipantController($stateParams, $modalInstance, Participants, Expenses);
   });
 
   it("should be defined", function () {
@@ -31,7 +31,7 @@ describe("The add participant controller", function () {
   });
 
   it("should resolve the modal with the added participant", function () {
-    Events.addParticipant.returns(new FakePromise("then", {id: "456"}));
+    Participants.add.returns(new FakePromise("then", {id: "456"}));
 
     controller.add({name: "kim", share: 1});
 
@@ -39,7 +39,7 @@ describe("The add participant controller", function () {
   });
 
   it("should communicate the errors of the request to the view", function () {
-    Events.addParticipant.returns(new FakePromise("catch", ["error"]));
+    Participants.add.returns(new FakePromise("catch", ["error"]));
 
     controller.add({});
 
@@ -47,7 +47,7 @@ describe("The add participant controller", function () {
   });
 
   it("should stop loading when the request is ended", function () {
-    Events.addParticipant.returns(new FakePromise("finally"));
+    Participants.add.returns(new FakePromise("finally"));
 
     controller.add({});
 
