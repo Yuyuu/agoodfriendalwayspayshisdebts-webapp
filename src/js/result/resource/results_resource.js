@@ -9,7 +9,7 @@ function ResultsResource($http) {
   };
 
   function get(eventId) {
-    return $http.get("/api/events/" + eventId + "/result").then(httpUtils.forwardResponseData);
+    return $http.get("/api/events/" + eventId + "/results").then(httpUtils.forwardResponseData);
   }
 }
 

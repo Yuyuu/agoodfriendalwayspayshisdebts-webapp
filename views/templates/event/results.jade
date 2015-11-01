@@ -29,7 +29,7 @@
                         th= t("app.results.creditor")
                         th= t("app.results.debt")
                     tbody
-                      tr(ng-repeat="debt in ::participantResult.debtsDetail" debts-visual-indicator="")
+                      tr(ng-repeat="debt in ::participantResult.debtsDetails" debts-visual-indicator="")
                         th(scope="row" ng-bind="::debt.creditorName")
                         td(ng-bind="::debt.mitigatedAmount | currency")
                     tfoot
