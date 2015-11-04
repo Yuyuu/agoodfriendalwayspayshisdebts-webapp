@@ -18,6 +18,12 @@ module.exports = {
     },
     "exports": "angular.module('ui.bootstrap').name"
   },
+  "angular-cookies": {
+    "depends": {
+      "angular": "angular"
+    },
+    "exports": "angular.module('ngCookies').name"
+  },
   "angular-loading-bar": {
     "depends": {
       "angular": "angular"
@@ -65,6 +71,7 @@ module.exports = {
       "jquery": "jQuery"
     }
   },
+  "moment": "moment",
   "ng-i18next": {
     "depends": {
       "angular": "angular"

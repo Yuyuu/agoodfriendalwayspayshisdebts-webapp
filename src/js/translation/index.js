@@ -2,7 +2,7 @@
 
 var angular = require("angular");
 
-var translationModule = angular.module("app.translations", [require("ng-i18next")]);
+var translationModule = angular.module("app.translations", [require("angular-cookies"), require("ng-i18next")]);
 
 /* @ngInject */
 translationModule.config(function ($i18nextProvider) {
@@ -12,5 +12,8 @@ translationModule.config(function ($i18nextProvider) {
     defaultLoadingValue: ""
   };
 });
+
+translationModule
+  .provider("lng", require("./lng"));
 
 module.exports = translationModule.name;

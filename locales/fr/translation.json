@@ -56,7 +56,8 @@
       "tabs": {
         "expenses": "Dépenses",
         "participants": "Participants",
-        "results": "Résultats"
+        "results": "Résultats",
+        "activity": "Activité"
       },
       "add_p": "Ajouter un participant"
     },
@@ -136,6 +137,20 @@
           "DEFAULT": "Désolé, une erreur s'est produite lors de la mise à jour du participant"
         }
       }
+    },
+    "activity": {
+      "create": "Création de l'événement.",
+      "expense": {
+        "label": "La dépense",
+        "new": "a été ajoutée.",
+        "delete": "a été supprimée."
+      },
+      "participant": {
+        "label": "Le participant",
+        "new": "a été ajouté.",
+        "edit": "a été modifié"
+      },
+      "reminder": "Un rappel a été envoyé à"
     },
     "results": {
       "filter": "Filtrer par nom :",

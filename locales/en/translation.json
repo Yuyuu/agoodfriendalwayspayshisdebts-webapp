@@ -56,7 +56,8 @@
       "tabs": {
         "expenses": "Expenses",
         "participants": "Participants",
-        "results": "Results"
+        "results": "Results",
+        "activity": "Activity"
       },
       "add_p": "Add a participant"
     },
@@ -135,6 +136,20 @@
           "DEFAULT": "Sorry, an error occurred while updating the participant"
         }
       }
+    },
+    "activity": {
+      "create": "Event creation.",
+      "expense": {
+        "label": "The expense",
+        "new": "has been added.",
+        "delete": "has been deleted."
+      },
+      "participant": {
+        "label": "The participant",
+        "new": "has been added.",
+        "edit": "has been edited."
+      },
+      "reminder": "A reminder has been sent to"
     },
     "results": {
       "filter": "Filter by name:",
