@@ -78,5 +78,11 @@ module.exports = {
     },
     "exports": "angular.module('jm.i18next').name"
   },
+  "ngInfiniteScroll": {
+    "depends": {
+      "angular": "angular"
+    },
+    "exports": "angular.module('infinite-scroll').name"
+  },
   "underscore": "underscore"
 };

@@ -8,8 +8,8 @@ function ActivityResource($http) {
     get: get
   };
 
-  function get(eventId) {
-    return $http.get("/api/events/" + eventId + "/activity").then(httpUtils.forwardResponseData);
+  function get(eventId, page) {
+    return $http.get("/api/events/" + eventId + "/activity?page=" + page).then(httpUtils.forwardResponseData);
   }
 }
 

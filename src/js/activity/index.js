@@ -3,7 +3,7 @@
 var angular = require("angular");
 var configureModuleRouting = require("./module_routing");
 
-var activityModule = angular.module("app.event.activity", []);
+var activityModule = angular.module("app.event.activity", [require("ngInfiniteScroll")]);
 
 activityModule
   .factory("Activity", require("./resource/activity_resource"))

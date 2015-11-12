@@ -68,6 +68,7 @@
     "bootstrap": "./public/bower_components/bootstrap/dist/js/bootstrap.js",
     "moment": "./node_modules/moment/min/moment-with-locales.js",
     "ng-i18next": "./public/bower_components/ng-i18next/dist/ng-i18next.js",
+    "ngInfiniteScroll": "./public/bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js",
     "underscore": "./node_modules/underscore/underscore.js"
   },
   "browserify-shim": "./shim.js"

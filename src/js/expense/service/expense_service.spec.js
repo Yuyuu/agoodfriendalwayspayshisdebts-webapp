@@ -75,7 +75,7 @@ describe("The service holding the expenses of the current event", function () {
     expect(service.expenses[0].id).to.equal("123");
   });
 
-  it("should fetches a different batch every time", function () {
+  it("should fetch a different batch every time", function () {
     service.loadMoreFrom("eventId");
 
     expect(service.skip).to.equal(3);

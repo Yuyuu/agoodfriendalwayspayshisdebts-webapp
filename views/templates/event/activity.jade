@@ -1,2 +1,4 @@
-#activity
-  debts-operation(ng-repeat="operation in ::activity.operations track by operation.id" operation="operation")
+#activity(infinite-scroll="activity.loadMore()" infinite-scroll-immediate-check="false"
+    infinite-scroll-disabled="activity.allLoaded || activity.loading")
+  debts-operation(ng-repeat="operation in activity.operations track by operation.id" operation="operation")
+  loading-spinner(ng-show="activity.loading")

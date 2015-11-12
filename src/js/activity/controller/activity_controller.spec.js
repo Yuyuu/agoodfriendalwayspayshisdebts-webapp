@@ -13,7 +13,7 @@ describe("The activity controller", function () {
 
   beforeEach(function () {
     Activity.get.withArgs("123").returns({
-      then: function (callback) {return callback([{id: "456"}, {id: "789"}]);}
+      then: function (callback) {callback([{id: "456"}, {id: "789"}]); return {"finally": function (callback) {callback();}};}
     });
   });
 
@@ -30,5 +30,14 @@ describe("The activity controller", function () {
     expect(controller.operations).to.have.length(2);
     expect(controller.operations[0].id).to.equal("456");
     expect(controller.operations[1].id).to.equal("789");
+    expect(controller.loading).to.be.false;
+  });
+
+  it("should fetch the next page when loading more activity", function () {
+    controller.loadMore();
+    expect(Activity.get).to.have.been.calledWith("123", 2);
+    expect(controller.operations[2].id).to.equal("456");
+    expect(controller.operations[3].id).to.equal("789");
+    expect(controller.loading).to.be.false;
   });
 });

@@ -20,10 +20,10 @@ describe("The activity resource", function () {
   });
 
   it("should retrieve the activity of an event", function () {
-    $http.get.withArgs("/api/events/123/activity").returns({
+    $http.get.withArgs("/api/events/123/activity?page=1").returns({
       then: function (callback) {return callback({data: [{id: "456"}]});}
     });
-    var actions = resource.get("123");
+    var actions = resource.get("123", 1);
     expect(actions[0].id).to.equal("456");
   });
 });
