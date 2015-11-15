@@ -1,16 +1,25 @@
 "use strict";
 
-var markup = {
-  EVENT_CREATION: "{{'app.activity.create' | i18next}}",
-  NEW_EXPENSE: "{{'app.activity.expense.label' | i18next}} {{operation.data}} {{'app.activity.expense.new' | i18next}}",
-  EXPENSE_DELETED: "{{'app.activity.expense.label' | i18next}} {{operation.data}} {{'app.activity.expense.delete' | i18next}}",
-  NEW_PARTICIPANT: "{{'app.activity.participant.label' | i18next}} {{operation.data}} {{'app.activity.participant.new' | i18next}}",
-  PARTICIPANT_EDITED: "{{'app.activity.participant.label' | i18next}} {{operation.data}} {{'app.activity.participant.edit' | i18next}}",
-  NEW_REMINDER: "{{'app.activity.reminder' | i18next}} {{operation.data}}"
+var entity = {
+  EVENT_CREATION: "app.activity.event.label",
+  NEW_EXPENSE: "app.activity.expense.label",
+  EXPENSE_DELETED: "app.activity.expense.label",
+  NEW_PARTICIPANT: "app.activity.participant.label",
+  PARTICIPANT_EDITED: "app.activity.participant.label",
+  NEW_REMINDER: "app.activity.reminder.label"
+};
+
+var operation = {
+  EVENT_CREATION: "app.activity.event.create",
+  NEW_EXPENSE: "app.activity.expense.new",
+  EXPENSE_DELETED: "app.activity.expense.delete",
+  NEW_PARTICIPANT: "app.activity.participant.new",
+  PARTICIPANT_EDITED: "app.activity.participant.edit",
+  NEW_REMINDER: "app.activity.reminder.dot"
 };
 
 /* @ngInject */
-function OperationDirective($interpolate) {
+function OperationDirective() {
   return {
     restrict: "E",
     scope: {operation: "="},
@@ -19,9 +28,12 @@ function OperationDirective($interpolate) {
   };
 
   function link(scope) {
-    scope.message = function () {
-      var message = markup[scope.operation.type];
-      return $interpolate(message)(scope);
+    scope.entity = function () {
+      return entity[scope.operation.type];
+    };
+
+    scope.complement = function () {
+      return operation[scope.operation.type];
     };
   }
 }

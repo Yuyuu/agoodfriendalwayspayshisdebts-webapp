@@ -1,4 +1,9 @@
 .operation
+  .operation-line
+    .operation-circle
   .operation-info
     time(ng-bind="::operation.creationDate | debtsTime")
-    p(ng-bind="message()")
+    p
+      | <span ng-bind="entity() | i18next"></span>
+      |  <span class="data" ng-bind="::operation.data"></span>
+      |  <span ng-bind="complement() | i18next"></span>

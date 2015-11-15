@@ -138,7 +138,10 @@
       }
     },
     "activity": {
-      "create": "Event creation.",
+      "event": {
+        "label": "The event",
+        "create": "has been created."
+      },
       "expense": {
         "label": "The expense",
         "new": "has been added.",
@@ -149,7 +152,10 @@
         "new": "has been added.",
         "edit": "has been edited."
       },
-      "reminder": "A reminder has been sent to"
+      "reminder": {
+        "label": "A reminder has been sent to",
+        "dot": "."
+      }
     },
     "results": {
       "filter": "Filter by name:",

@@ -1,9 +1,44 @@
+.activity {
+  margin-top: 3em;
+}
+
 .operation {
   padding: 0 0 2em 0;
 }
 
+.operation-line {
+  position: relative;
+  display: table-cell;
+  padding: 1em 3em;
+  vertical-align: middle;
+  width: 3em;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -30%;
+    bottom: -15%;
+    left: 50%;
+    border-left: 3px solid @second-brand-color;
+    margin-left: -1px;
+  }
+}
+
+.operation-circle {
+  position: absolute;
+  top: 1.3em;
+  left: 2em;
+  z-index: 2;
+  width: 2em;
+  height: 2em;
+  border-radius: 100%;
+  background: @main-brand-color;
+  box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+}
+
 .operation-info {
-  display: inline-block;
+  display: table-cell;
   padding: 1em 2em;
   background-color: #fff;
   border-radius: @border-radius-base;
@@ -17,5 +52,20 @@
 
   p {
     margin: 0;
+
+    .data {
+      font-size: 1.3em;
+      font-weight: bold;
+      color: @main-brand-color;
+    }
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    left: 5.8em;
+    margin-top: 0.8em;
+    border: 0.7em solid transparent;
+    border-right-color: #fff;
   }
 }

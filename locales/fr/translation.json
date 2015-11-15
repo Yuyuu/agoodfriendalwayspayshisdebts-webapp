@@ -139,7 +139,10 @@
       }
     },
     "activity": {
-      "create": "Création de l'événement.",
+      "event": {
+        "label": "L'événement",
+        "create": "a été créé."
+      },
       "expense": {
         "label": "La dépense",
         "new": "a été ajoutée.",
@@ -148,9 +151,12 @@
       "participant": {
         "label": "Le participant",
         "new": "a été ajouté.",
-        "edit": "a été modifié"
+        "edit": "a été modifié."
       },
-      "reminder": "Un rappel a été envoyé à"
+      "reminder": {
+        "label": "Un rappel a été envoyé à",
+        "dot": "."
+      }
     },
     "results": {
       "filter": "Filtrer par nom :",
