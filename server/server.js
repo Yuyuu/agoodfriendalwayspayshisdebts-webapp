@@ -4,7 +4,6 @@ var express = require("express");
 var path = require("path");
 var configuration = require("./utils/environment_configuration");
 var i18n = require("i18next");
-var http = require("http");
 var serveStatic = require("serve-static");
 var morgan = require("morgan");
 var ProxyHelper = require("./proxy");
