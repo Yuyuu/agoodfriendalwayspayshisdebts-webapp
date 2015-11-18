@@ -27,7 +27,6 @@
     "home": {
       "title": "A good friend always pays his debts",
       "pitch": "Split an event expenses between its participants.",
-      "jk": "Lannisters approve.",
       "create": {
         "title": "Create your event",
         "e_name": "Event name",
