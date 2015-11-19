@@ -69,8 +69,6 @@
       "older": "Plus ancien"
     },
     "expenses": {
-      "by": "Achat effectué par",
-      "shared": "Dépense partagée entre",
       "load_more": "Voir plus de dépenses",
       "create": {
         "title": "Nouvelle dépense",

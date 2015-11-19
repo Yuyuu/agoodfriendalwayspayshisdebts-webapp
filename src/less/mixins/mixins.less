@@ -1,0 +1,22 @@
+.inverse() {
+  background-color: @main-brand-color;
+  color: @inverse-brand-color;
+}
+
+.divider-before(@margin: 0; @gap: 0; @width: 1px; @color: #ddd) {
+  &:before {
+    content: "";
+    display: block;
+    margin: 0 @gap @margin @gap;
+    border-top: @width solid @color;
+  }
+}
+
+.divider-after(@margin: 0; @gap: 0; @width: 1px; @color: #ddd) {
+  &:after {
+    content: "";
+    display: block;
+    margin: @margin @gap 0 @gap;
+    border-top: @width solid @color;
+  }
+}

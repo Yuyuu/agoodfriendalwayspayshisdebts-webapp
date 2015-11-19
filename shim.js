@@ -30,6 +30,13 @@ module.exports = {
     },
     "exports": "angular.module('angular-loading-bar').name"
   },
+  "angular-masonry": {
+    "depends": {
+      "angular": "angular",
+      "masonry": "masonry"
+    },
+    "exports": "angular.module('wu.masonry').name"
+  },
   "angular-message-format": {
     "depends": {
       "angular": "angular"
@@ -70,6 +77,12 @@ module.exports = {
     "depends": {
       "jquery": "jQuery"
     }
+  },
+  "masonry": {
+    "depends": {
+      "jquery": "jQuery"
+    },
+    "exports": "masonry"
   },
   "moment": "moment",
   "ng-i18next": {

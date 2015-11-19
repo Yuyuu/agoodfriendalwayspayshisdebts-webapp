@@ -15,7 +15,7 @@ function ExpenseService(Expenses) {
   service.initializeForEvent = initializeForEvent;
   service.loadMoreFrom = loadMoreFrom;
 
-  var expenseBatchSize = 3;
+  var expenseBatchSize = 4;
 
   function addExpense(eventId, expense) {
     return Expenses.add(eventId, expense).then(function (addedExpense) {
@@ -38,6 +38,8 @@ function ExpenseService(Expenses) {
   }
 
   function initializeForEvent(eventId) {
+    // So expenses are not displayed two times before masonry reloads after route change
+    service.expenses = [];
     return Expenses.fetchWithCount(eventId, 0, expenseBatchSize).then(function (data) {
       service.skip = 0;
       service.expenseCount = data.expenseCount;

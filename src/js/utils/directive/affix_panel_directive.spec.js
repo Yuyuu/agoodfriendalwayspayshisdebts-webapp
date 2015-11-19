@@ -14,7 +14,7 @@ describe("The directive in charge to affix the expense creation panel", function
   beforeEach(function () {
     angularModule = {element: sinon.stub(), "@noCallThru": true};
     angularModule.element.withArgs($window).returns("window");
-    angularModule.element.withArgs(".page-footer").returns({outerHeight: sinon.stub().returns(10)});
+    angularModule.element.withArgs("#page-footer").returns({outerHeight: sinon.stub().returns(10)});
   });
 
   beforeEach(function () {
