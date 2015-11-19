@@ -28,6 +28,10 @@
         line-height: 2em;
         display: inline-block;
         vertical-align: bottom;
+
+        @media (max-width: @screen-xs-max) {
+          font-size: 1.2em;
+        }
       }
 
       &,
@@ -60,8 +64,8 @@
       > a {
         &:hover,
         &:focus {
-          color: @third-brand-color;
-          border-color: @third-brand-color;
+          color: #ccc;
+          border-color: #ccc;
         }
       }
     }
