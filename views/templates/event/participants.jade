@@ -1,7 +1,7 @@
 - var shareLabel = t("app.participants.share");
 
 .row
-  .participant-thumbnail(ng-repeat="participant in ::model.event.participants")
+  .participant-thumbnail(ng-repeat="participant in ::model.event.participants track by participant.id")
     .participant-thumbnail-box
       .participant-thumbnail-avatar
         debts-avatar

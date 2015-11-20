@@ -11,7 +11,7 @@
           input#nameFilter.form-control(type="text" placeholder="e.g. Lea" ng-model="results.filter.participantName")
       loading-spinner(ng-show="results.loading")
       .results
-        .participant-result(ng-repeat="participantResult in results.results | filter:results.filter")
+        .participant-result(ng-repeat="participantResult in ::results.results | filter:results.filter")
           .result-box
             .row
               .col-md-6.col-sm-6.col-xs-12

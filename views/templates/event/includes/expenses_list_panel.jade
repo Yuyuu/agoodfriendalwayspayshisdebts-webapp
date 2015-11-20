@@ -1,5 +1,5 @@
 .expenses-list-panel(ng-controller="ExpensesListController as listModel")
-  .panel.panel-primary(ng-cloak="" ng-repeat="expense in listModel.expenses | orderBy:$index:true")
+  .panel.panel-primary(ng-cloak="" ng-repeat="expense in listModel.expenses | orderBy:$index:true track by expense.id")
     .panel-heading
       .floating-options.dropdown
         button#expenseMenu.btn.btn-options.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true"
