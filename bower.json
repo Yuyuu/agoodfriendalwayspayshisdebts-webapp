@@ -19,10 +19,10 @@
     "angular-motion": "~0.4.1",
     "angular-sanitize": "~1.4.0",
     "angular-strap": "~2.3.1",
+    "angular-ui-notification": "~0.1.0",
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.5",
     "ng-i18next": "~0.5.2",
-    "ng-ui-notif-brow": "~0.0.1",
     "ngInfiniteScroll": "~1.2.1"
   }
 }
