@@ -16,7 +16,7 @@
             label.control-label(for="inputExpenseAmount")= t("app.expenses.create.amount")
             .input-group
               .input-group-addon(debts-currency-symbol="::")
-              input#intputExpenseAmount.form-control.text-right(ng-model="xpensCtrl.expense.amount" required=""
+              input#inputExpenseAmount.form-control.text-right(ng-model="xpensCtrl.expense.amount" required=""
                   placeholder="e.g. #{t('app.expenses.create.amount_ph')}" name="expenseAmount" currency-validation="")
               .input-group-addon= t("app.expenses.create.precision")
         .col-sm-6.col-xs-12
