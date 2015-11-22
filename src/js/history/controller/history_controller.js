@@ -55,13 +55,4 @@ function HistoryController($stateParams, History) {
   }
 }
 
-Object.defineProperty(HistoryController.prototype,
-  "isEmpty", {
-    enumerable: true,
-    cofigurable: false,
-    get: function () {
-      return this.summaries.length === 0;
-    }
-});
-
 module.exports = HistoryController;
