@@ -60,6 +60,13 @@
       },
       "add_p": "Add a participant"
     },
+    "history": {
+      "title": "History",
+      "expenses": "Expenses",
+      "participants": "Participants",
+      "reminders": "Reminders",
+      "older": "Older"
+    },
     "expenses": {
       "by": "Purchased by",
       "shared": "Expense shared between",

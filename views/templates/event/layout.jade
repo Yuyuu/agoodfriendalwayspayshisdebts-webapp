@@ -9,9 +9,12 @@
     .event-layout-aside.col-md-2.col-xs-12.pull-right
       .row
         .col-md-12.col-sm-3.col-xs-6
-          button.btn.btn-action.btn-block(type="button" ng-click="model.addParticipant()")
+          button.btn.btn-action.btn-block.margin-btm-1(type="button" ng-click="model.addParticipant()")
             span.glyphicon.glyphicon-plus-sign
             |  #{t("app.event.add_p")}
+      .row
+        .col-xs-12
+          include includes/history
     .event-layout-content.col-md-10.col-xs-12
       nav
         ul.nav.nav-tabs.nav-tabs-content

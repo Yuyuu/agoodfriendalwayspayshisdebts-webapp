@@ -60,6 +60,13 @@
       },
       "add_p": "Ajouter un participant"
     },
+    "history": {
+      "title": "Historique",
+      "expenses": "Dépenses",
+      "participants": "Participants",
+      "reminders": "Rappels",
+      "older": "Plus ancien"
+    },
     "expenses": {
       "by": "Achat effectué par",
       "shared": "Dépense partagée entre",

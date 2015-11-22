@@ -1,0 +1,22 @@
+.history-group {
+  font-size: 0.9em;
+}
+
+.history-summary {
+  margin-bottom: 0.5em;
+
+  &:last-child {
+    margin-bottom: 1em;
+  }
+
+  &:not(:first-of-type):before {
+    content: "";
+    display: block;
+    margin-bottom: 0.5em;
+    border-top: 1px solid #ccc;
+  }
+}
+
+.history-summary-data {
+  padding-left: 0.3em;
+}

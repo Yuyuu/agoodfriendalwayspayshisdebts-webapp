@@ -7,7 +7,8 @@ var eventModule = angular.module("app.event", [
   require("../expense"),
   require("../participant"),
   require("../activity"),
-  require("../result")
+  require("../result"),
+  require("../history")
 ]);
 
 eventModule

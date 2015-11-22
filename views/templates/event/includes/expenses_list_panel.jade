@@ -21,6 +21,6 @@
     .panel-footer(ng-if="::expense.description" ng-bind="::expense.description")
   loading-spinner(ng-show="listModel.loading")
   .row.text-center(ng-hide="listModel.loading")
-    button.btn.btn-load-more(ng-click="listModel.loadMore()" ng-disabled="listModel.allLoaded")
+    button.btn.btn-load-more(type="button" ng-click="listModel.loadMore()" ng-disabled="listModel.allLoaded")
       span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
       |  #{t("app.expenses.load_more")}
