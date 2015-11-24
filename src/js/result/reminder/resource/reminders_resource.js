@@ -9,7 +9,7 @@ function ReminderResource($http) {
   };
 
   function send(eventId, reminderData) {
-    return $http.post("/api/events/" + eventId + "/reminder", reminderData).then(httpUtils.forwardResponseData);
+    return $http.post("/api/events/" + eventId + "/reminders", reminderData).then(httpUtils.forwardResponseData);
   }
 }
 

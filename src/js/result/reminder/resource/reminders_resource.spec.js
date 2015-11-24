@@ -8,7 +8,7 @@ describe("The resource responsible for the server communication about event remi
 
   beforeEach(function () {
     $http = {post: sinon.stub()};
-    $http.post.returns({then: function (callback) {
+    $http.post.withArgs("/api/events/123/reminders").returns({then: function (callback) {
       return callback.call(null, {status: 201, data: ["456", "789"]});
     }});
   });
