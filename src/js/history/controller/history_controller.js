@@ -37,9 +37,7 @@ function HistoryController($stateParams, History) {
   }
 
   function extractSummaries(summaries) {
-    if (summaries.length < 3) {
-      model.allLoaded = true;
-    }
+    model.allLoaded = summaries.length < 3;
     _.each(summaries, function (summary) {
       model.summaries.push(summary);
     });
