@@ -2,10 +2,11 @@ section.history.margin-btm-1(ng-controller="HistoryController as history")
   .debts-panel
     .debts-panel-heading-sm.inverse
       h4= t("app.history.title")
-        span.glyphicon.glyphicon-hourglass.pull-right(aria-hidden="true")
+        span.glyphicon.glyphicon-refresh.pull-right(aria-hidden="true" ng-click="history.refresh()" bs-tooltip=""
+            data-title=t("app.history.refresh"))
     .debts-panel-body
       .form-group.form-group-sm
-        select.form-control(ng-model="history.filter" ng-change="history.change()"
+        select.form-control(ng-model="history.filter" ng-change="history.refresh()"
             ng-options="filter.name as filter.translation | i18next for filter in history.filters")
       .history-group
         .history-summary(ng-repeat="summary in history.summaries track by summary.id")

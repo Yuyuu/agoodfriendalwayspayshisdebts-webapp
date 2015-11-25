@@ -12,10 +12,9 @@ function HistoryController($stateParams, Activity) {
     {name: "participants", translation: "app.history.participants"},
     {name: "reminders", translation: "app.history.reminders"}
   ];
-  model.summaries = [];
 
   model.loadMore = loadMore;
-  model.change = change;
+  model.refresh = refresh;
 
   var page = 1;
 
@@ -23,29 +22,37 @@ function HistoryController($stateParams, Activity) {
 
   function loadMore() {
     page++;
-    loadHistory();
+    loadHistory(addSummaries);
   }
 
-  function change() {
-    model.summaries = [];
+  function refresh() {
     page = 1;
-    loadHistory();
+    loadHistory(initSummaries);
   }
 
   function activate() {
-    loadHistory();
+    loadHistory(initSummaries);
   }
 
-  function extractSummaries(summaries) {
-    model.allLoaded = summaries.length < 3;
+  function addSummaries(summaries) {
     _.each(summaries, function (summary) {
       model.summaries.push(summary);
     });
   }
 
-  function loadHistory() {
+  function initSummaries(summaries) {
+    model.summaries = summaries;
+  }
+
+  function loadHistory(extractSummaries) {
     model.loading = true;
-    return Activity.getWithFilter($stateParams.id, model.filter, page).then(extractSummaries).finally(stopLoading);
+    return Activity.getWithFilter($stateParams.id, model.filter, page)
+      .then(function checkIfAllLoaded(summaries) {
+        model.allLoaded = summaries.length < 3;
+        return summaries;
+      })
+      .then(extractSummaries)
+      .finally(stopLoading);
   }
 
   function stopLoading() {

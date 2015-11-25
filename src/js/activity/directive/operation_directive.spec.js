@@ -3,16 +3,15 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 
 describe("The activity directive", function () {
-  var scope, $interpolate, directive;
+  var scope, directive;
 
   beforeEach(function () {
     scope = {operation: {}};
-    $interpolate = function (markup) {return function () {return markup;};};
   });
 
   beforeEach(function () {
     var ActivityDirective = require("./operation_directive");
-    directive = new ActivityDirective($interpolate);
+    directive = new ActivityDirective();
     directive.link(scope);
   });
 

@@ -3,7 +3,9 @@
 var angular = require("angular");
 var configureModuleRouting = require("./module_routing");
 
-var activityModule = angular.module("app.event.activity", [require("ngInfiniteScroll")]);
+var ngStrapToolTipModule = require("angular-strap") + ".tooltip";
+
+var activityModule = angular.module("app.event.activity", [require("ngInfiniteScroll"), ngStrapToolTipModule]);
 
 activityModule
   .factory("Activity", require("./resource/activity_resource"))

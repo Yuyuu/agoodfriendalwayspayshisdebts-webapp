@@ -15,7 +15,12 @@ describe("The history controller", function () {
     Activity.getWithFilter.withArgs("123").returns({
       then: function (callback) {
         callback([{id: "456"}, {id: "789"}, {id: "444"}]);
-        return {"finally": function (callback) {callback();}};
+        return {
+          then: function (callback) {
+            callback([{id: "456"}, {id: "789"}, {id: "444"}]);
+            return {"finally": function (callback) {callback();}};
+          }
+        };
       }
     });
   });
@@ -47,8 +52,12 @@ describe("The history controller", function () {
   });
 
   it("should not be able to load more when all history has been loaded", function () {
+    var result = [{id: "635"}];
     Activity.getWithFilter.withArgs("123").returns({
-      then: function (callback) {callback([{id: "635"}]); return {"finally": function (callback) {callback();}};}
+      then: function (cb) {
+        cb(result);
+        return {then: function (callback) {callback(result); return {"finally": function (callback) {callback();}};}};
+      }
     });
 
     controller.loadMore();
@@ -56,13 +65,17 @@ describe("The history controller", function () {
   });
 
   it("should reset the history when a change is done", function () {
+    var result = [{id: "635"}];
     Activity.getWithFilter.withArgs("123").returns({
-      then: function (callback) {callback([{id: "635"}]); return {"finally": function (callback) {callback();}};}
+      then: function (cb) {
+        cb(result);
+        return {then: function (callback) {callback(result); return {"finally": function (callback) {callback();}};}};
+      }
     });
 
     expect(controller.summaries).to.have.length(3);
     controller.filter = "expenses";
-    controller.change();
+    controller.refresh();
     expect(Activity.getWithFilter).to.have.been.calledWith("123", "expenses", 1);
     expect(controller.summaries).to.have.length(1);
     expect(controller.summaries[0].id).to.equal("635");
@@ -71,15 +84,18 @@ describe("The history controller", function () {
   it("should always know if all the history has been loaded", function () {
     var result = [{id: "635"}];
     Activity.getWithFilter.withArgs("123").returns({
-      then: function (callback) {callback(result); return {"finally": function (callback) {callback();}};}
+      then: function (cb) {
+        cb(result);
+        return {then: function (callback) {callback(result); return {"finally": function (callback) {callback();}};}};
+      }
     });
 
     expect(controller.allLoaded).to.be.false;
     controller.filter = "expenses";
-    controller.change();
+    controller.refresh();
     expect(controller.allLoaded).to.be.true;
     result = [{id: "635"}, {id: "152"}, {id: "888"}];
-    controller.change();
+    controller.refresh();
     expect(controller.allLoaded).to.be.false;
   });
 });

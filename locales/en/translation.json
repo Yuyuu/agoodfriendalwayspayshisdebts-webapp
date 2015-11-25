@@ -62,6 +62,7 @@
     },
     "history": {
       "title": "History",
+      "refresh": "Refresh",
       "expenses": "Expenses",
       "participants": "Participants",
       "reminders": "Reminders",
