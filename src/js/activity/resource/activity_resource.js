@@ -5,11 +5,18 @@ var httpUtils = require("../../utils/http");
 /* @ngInject */
 function ActivityResource($http) {
   return {
-    get: get
+    get: get,
+    getWithFilter: getWithFilter
   };
 
   function get(eventId, page) {
-    return $http.get("/api/events/" + eventId + "/activity?page=" + page).then(httpUtils.forwardResponseData);
+    var url = "/api/events/" + eventId + "/activity?filter=all&page=" + page;
+    return $http.get(url).then(httpUtils.forwardResponseData);
+  }
+
+  function getWithFilter(eventId, filter, page) {
+    var url = "/api/events/" + eventId + "/activity?filter=" + filter + "&page=" + page;
+    return $http.get(url).then(httpUtils.forwardResponseData);
   }
 }
 

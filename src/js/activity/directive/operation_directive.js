@@ -6,7 +6,7 @@ var entity = {
   EXPENSE_DELETED: "app.activity.expense.label",
   NEW_PARTICIPANT: "app.activity.participant.label",
   PARTICIPANT_EDITED: "app.activity.participant.label",
-  NEW_REMINDER: "app.activity.reminder.label"
+  NEW_REMINDER: "app.activity.reminder"
 };
 
 var operation = {
@@ -15,7 +15,7 @@ var operation = {
   EXPENSE_DELETED: "app.activity.expense.delete",
   NEW_PARTICIPANT: "app.activity.participant.new",
   PARTICIPANT_EDITED: "app.activity.participant.edit",
-  NEW_REMINDER: "app.activity.reminder.dot"
+  NEW_REMINDER: ""
 };
 
 /* @ngInject */

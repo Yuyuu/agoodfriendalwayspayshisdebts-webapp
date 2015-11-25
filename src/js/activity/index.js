@@ -8,6 +8,7 @@ var activityModule = angular.module("app.event.activity", [require("ngInfiniteSc
 activityModule
   .factory("Activity", require("./resource/activity_resource"))
   .controller("ActivityController", require("./controller/activity_controller"))
+  .controller("HistoryController", require("./controller/history_controller"))
   .directive("debtsOperation", require("./directive/operation_directive"));
 
 configureModuleRouting();
