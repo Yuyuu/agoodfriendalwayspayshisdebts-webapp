@@ -11,7 +11,7 @@ section.history.margin-btm-1(ng-controller="HistoryController as history")
         .history-summary(ng-repeat="summary in history.summaries track by summary.id")
           time(ng-bind="::summary.creationDate | debtsTime")
           .history-summary-data
-            span.glyphicon.glyphicon-circle-arrow-right(aria-hidden="true")
+            span.glyphicon(aria-hidden="true" debts-history-icon="")
             span  {{::summary.data}}
       .history-more
         button.btn.btn-load-more.btn-xs.btn-block(type="button" ng-click="history.loadMore()"

@@ -9,7 +9,8 @@ activityModule
   .factory("Activity", require("./resource/activity_resource"))
   .controller("ActivityController", require("./controller/activity_controller"))
   .controller("HistoryController", require("./controller/history_controller"))
-  .directive("debtsOperation", require("./directive/operation_directive"));
+  .directive("debtsOperation", require("./directive/operation_directive"))
+  .directive("debtsHistoryIcon", require("./directive/history_icon_directive"));
 
 configureModuleRouting();
 
