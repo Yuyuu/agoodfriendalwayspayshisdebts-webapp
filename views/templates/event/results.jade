@@ -7,7 +7,9 @@
     .col-md-9.col-sm-8.col-xs-12
       .filters.form-inline
         .form-group
-          label(for="nameFilter") #{t("app.results.filter")}&nbsp;
+          label(for="nameFilter")
+            span.glyphicon.glyphicon-filter
+            |  #{t("app.results.filter")}&nbsp;
           input#nameFilter.form-control(type="text" placeholder="e.g. Lea" ng-model="results.filter.participantName")
       loading-spinner(ng-show="results.loading")
       .results
