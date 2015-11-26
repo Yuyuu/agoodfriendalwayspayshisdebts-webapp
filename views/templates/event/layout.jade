@@ -16,14 +16,5 @@
         .col-md-12
           include includes/history
     .event-layout-content.col-md-10.col-xs-12
-      nav
-        ul.nav.nav-tabs.nav-tabs-content
-          li(role="presentation" ui-sref-active="active")
-            a(ui-sref="event.expenses")= t("app.event.tabs.expenses")
-          li(role="presentation" ui-sref-active="active")
-            a(ui-sref="event.participants")= t("app.event.tabs.participants")
-          li(role="presentation" ui-sref-active="active")
-            a(ui-sref="event.activity")= t("app.event.tabs.activity")
-          li(role="presentation" ui-sref-active="active")
-            a(ui-sref="event.results")= t("app.event.tabs.results")
+      include includes/nav_tabs
       div(ui-view="")
