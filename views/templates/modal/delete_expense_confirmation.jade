@@ -7,7 +7,7 @@
   span.text-bold  #{t("app.expenses.delete.warning_2")}
   |  #{t("app.expenses.delete.warning_3")} "{{::model.expense.label}}"#{t("app.expenses.delete.question_mark")}
 .modal-footer
-  button.btn.btn-primary(type="button" ng-click="model.close(true)")
-    span.glyphicon.glyphicon-ok-circle(aria-hidden="true")
+  button.btn.btn-default.btn-sm(type="button" ng-click="model.close(false)")= t("app.modal.cancel")
+  button.btn.btn-primary.btn-sm(type="button" ng-click="model.close(true)")
+    span.glyphicon.glyphicon-ok(aria-hidden="true")
     |  #{t("app.expenses.delete.confirm")}
-  button.btn.btn-default(type="button" ng-click="model.close(false)")= t("app.modal.cancel")

@@ -1,0 +1,41 @@
+.debts-panel {
+  background-color: @panel-bg;
+  border: 1px solid;
+  border-color: @panel-default-border @panel-default-border darken(@panel-default-border, 10%);
+  border-radius: @border-radius-small;
+  margin-bottom: 1em;
+
+  @media (max-width: @screen-xs-max) {
+    margin-bottom: 30px;
+  }
+}
+
+.debts-panel-heading {
+  padding: 1em 1em 0;
+  border-bottom: 1px solid transparent;
+
+  &:after {
+    content: "";
+    display: block;
+    margin: 0.8em 0 0;
+    border-bottom: 2px solid @main-brand-color;
+  }
+}
+
+.debts-panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: @main-brand-color;
+}
+
+.debts-panel-body {
+  padding: 1em;
+}
+
+.debts-panel-footer {
+  padding: 0.6em;
+  text-align: right;
+  border-top: 1px solid #ddd;
+}

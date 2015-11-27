@@ -86,7 +86,7 @@
         "none": "None",
         "selected": "selected",
         "share_ph": "Choose among the participants...",
-        "description_ph": "For further clarification",
+        "description_ph": "Add any details",
         "submit": "Add the expense",
         "loading": "Adding the expense...",
         "errors": {

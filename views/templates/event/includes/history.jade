@@ -1,7 +1,7 @@
-section.history.margin-btm-1(ng-controller="HistoryController as history")
+section.history(ng-controller="HistoryController as history")
   .debts-panel
-    .debts-panel-heading-sm.inverse
-      h4= t("app.history.title")
+    .debts-panel-heading
+      h4.debts-panel-title= t("app.history.title")
         span.glyphicon.glyphicon-refresh.pull-right(aria-hidden="true" ng-click="history.refresh()" bs-tooltip=""
             data-title=t("app.history.refresh"))
     .debts-panel-body
@@ -14,8 +14,8 @@ section.history.margin-btm-1(ng-controller="HistoryController as history")
           .history-summary-data
             span.glyphicon(aria-hidden="true" debts-history-icon="")
             span  {{::summary.data}}
-      .history-more
-        button.btn.btn-load-more.btn-xs.btn-block(type="button" ng-click="history.loadMore()"
+      .history-more.text-center
+        button.btn.btn-load-more.btn-xs(type="button" ng-click="history.loadMore()"
             ng-disabled="history.allLoaded || history.loading")
           span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
           |  #{t("app.history.older")}

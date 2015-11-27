@@ -1,38 +1,36 @@
 .modal-header
-  button.close(type="button" aria-label=t("app.modal.close") ng-click="model.cancel()"
-      ng-hide="model.loading")
+  button.close(type="button" aria-label=t("app.modal.close") ng-click="model.cancel()" ng-hide="model.loading")
     span(aria-hidden="true") &times;
   h4.modal-title= t("app.participants.edit.title")
-form(ng-submit="model.update(model.participant)" name="model.form" role="form" novalidate="")
+form.form-horizontal(ng-submit="model.update(model.participant)" name="model.form" role="form" novalidate="")
   .modal-body
     .container-fluid
       .row
         .col-xs-12
-          .row
-            .col-sm-5.col-xs-12
-              .form-group(element-validation="model.form.participantName")
-                label.control-label(for="inputParticipantName")= t("app.participants.edit.name")
-                input#inputParticipantName.form-control(type="text" ng-model="model.participant.name"
-                    placeholder="e.g. Kim" required="" name="participantName" disabled="")
-            .col-sm-5.col-xs-8
-              .form-group(element-validation="model.form.participantEmail")
-                label.control-label(for="inputParticipantEmail")= t("app.participants.edit.email")
-                input#inputParticipantEmail.form-control(type="email" ng-model="model.participant.email"
-                    placeholder="e.g. kim@email.com" name="participantEmail")
-            .col-sm-2.col-xs-4
-              .form-group(element-validation="model.form.participantShare")
-                label.control-label(for="inputParticipantShare")= t("app.participants.edit.share")
-                input#inputParticipantShare.form-control(type="number" ng-model="model.participant.share" required=""
-                    min="1" name="participantShare" disabled="")
+          .form-group(element-validation="model.form.participantName")
+            label.control-label.col-sm-5(for="inputParticipantName")= t("app.participants.edit.name")
+            .col-sm-6
+              input#inputParticipantName.form-control(type="text" ng-model="model.participant.name"
+                  placeholder="e.g. Kim" required="" name="participantName" disabled="")
+          .form-group(element-validation="model.form.participantEmail")
+            label.control-label.col-sm-5(for="inputParticipantEmail")= t("app.participants.edit.email")
+            .col-sm-6
+              input#inputParticipantEmail.form-control(type="email" ng-model="model.participant.email"
+                  placeholder="e.g. kim@email.com" name="participantEmail")
+          .form-group(element-validation="model.form.participantShare")
+            label.control-label.col-sm-5(for="inputParticipantShare")= t("app.participants.edit.share")
+            .col-sm-2
+              input#inputParticipantShare.form-control(type="number" ng-model="model.participant.share" required=""
+                  min="1" name="participantShare" disabled="")
       .row(ng-cloak="" ng-if="model.errors")
         .col-xs-12
           .alert.alert-danger
             ul
               li(ng-repeat="error in model.errors" ng-i18next="app.participants.edit.errors.{{error.message}}")
   .modal-footer
-    button.btn.btn-primary(type="submit" ng-disabled="model.form.$pristine || model.form.$invalid" disable-on-request=""
-        data-loading-text= t("app.participants.edit.loading"))
-      span.glyphicon.glyphicon-ok-circle(aria-hidden="true")
-      |  #{t("app.participants.edit.submit")}
-    button.btn.btn-default(type="button" ng-click="model.cancel()" ng-disabled="model.loading")
+    button.btn.btn-default.btn-sm(type="button" ng-click="model.cancel()" ng-disabled="model.loading")
       = t("app.modal.cancel")
+    button.btn.btn-primary.btn-sm(type="submit" ng-disabled="model.form.$pristine || model.form.$invalid"
+        disable-on-request="" data-loading-text= t("app.participants.edit.loading"))
+      span.glyphicon.glyphicon-ok(aria-hidden="true")
+      |  #{t("app.participants.edit.submit")}

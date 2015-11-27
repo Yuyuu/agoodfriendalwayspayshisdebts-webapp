@@ -2,48 +2,46 @@
   button.close(type="button" aria-label=t("app.modal.close") ng-click="model.cancel()" ng-hide="model.loading")
     span(aria-hidden="true") &times;
   h4.modal-title= t("app.participants.add.title")
-form(ng-submit="model.add(model.participant)" name="model.form" role="form" novalidate="")
+form.form-horizontal(ng-submit="model.add(model.participant)" name="model.form" role="form" novalidate="")
   .modal-body
     .container-fluid
       .row
         .col-xs-12
-          .row
-            .col-sm-5.col-xs-12
-              .form-group(element-validation="model.form.participantName")
-                label.control-label(for="inputParticipantName") #{t("app.participants.add.name")}
-                input#inputParticipantName.form-control(type="text" ng-model="model.participant.name"
-                    placeholder="e.g. Kim" required="" name="participantName")
-            .col-sm-5.col-xs-8
-              .form-group(element-validation="model.form.participantEmail")
-                label.control-label(for="inputParticipantEmail")= t("app.participants.add.email")
-                input#inputParticipantEmail.form-control(type="email" ng-model="model.participant.email"
-                    placeholder="e.g. kim@email.com" name="participantEmail")
-            .col-sm-2.col-xs-4
-              .form-group(element-validation="model.form.participantShare")
-                label.control-label(for="inputParticipantShare") #{t("app.participants.add.share")}
-                input#inputParticipantShare.form-control(type="number" ng-model="model.participant.share" required=""
-                    min="1" name="participantShare")
-          .row(ng-if="model.hasExpenses()")
-            .col-xs-12
-              .form-group(element-validation="model.form.selectedExpenses")
-                label.control-label(for="inputSelectedExpenses") #{t("app.participants.add.expenses")}
-                br
-                button#inputSelectedExpenses.btn.btn-default(type="button" ng-model="model.participant.expensesUuids"
-                    bs-select="" data-multiple="1" data-all-none-buttons="true" name="selectedExpenses"
-                    data-all-text=t("app.participants.add.all") data-max-length="0"
-                    data-none-text=t("app.participants.add.none") aria-describedby="expensesHelpBlock"
-                    data-max-length-html=t("app.participants.add.selected")
-                    data-placeholder=t("app.participants.add.expenses_ph")
-                    bs-options="expense.id as expense.label for expense in model.expensesMetadata")
-              p#expensesHelpBlock.help-block= t("app.participants.add.help")
+          .form-group(element-validation="model.form.participantName")
+            label.control-label.col-sm-5(for="inputParticipantName") #{t("app.participants.add.name")}
+            .col-sm-6
+              input#inputParticipantName.form-control(type="text" ng-model="model.participant.name"
+                  placeholder="e.g. Kim" required="" name="participantName")
+          .form-group(element-validation="model.form.participantEmail")
+            label.control-label.col-sm-5(for="inputParticipantEmail")= t("app.participants.add.email")
+            .col-sm-6
+              input#inputParticipantEmail.form-control(type="email" ng-model="model.participant.email"
+                  placeholder="e.g. kim@email.com" name="participantEmail")
+          .form-group(element-validation="model.form.participantShare")
+            label.control-label.col-sm-5(for="inputParticipantShare") #{t("app.participants.add.share")}
+            .col-sm-2
+              input#inputParticipantShare.form-control(type="number" ng-model="model.participant.share" required=""
+                  min="1" name="participantShare")
+          .form-group(ng-if="model.hasExpenses()" element-validation="model.form.selectedExpenses")
+            label.control-label.col-sm-5(for="inputSelectedExpenses") #{t("app.participants.add.expenses")}
+            .col-sm-6
+              button#inputSelectedExpenses.btn.btn-default(type="button" ng-model="model.participant.expensesUuids"
+                  bs-select="" data-multiple="1" data-all-none-buttons="true" name="selectedExpenses"
+                  data-all-text=t("app.participants.add.all") data-max-length="0"
+                  data-none-text=t("app.participants.add.none") aria-describedby="expensesHelpBlock"
+                  data-max-length-html=t("app.participants.add.selected")
+                  data-placeholder=t("app.participants.add.expenses_ph")
+                  bs-options="expense.id as expense.label for expense in model.expensesMetadata track by expense.id")
+              span#expensesHelpBlock.help-block= t("app.participants.add.help")
           .row(ng-cloak="" ng-if="model.errors")
             .col-xs-12
               .alert.alert-danger
                 ul
                   li(ng-repeat="error in model.errors" ng-i18next="app.participants.add.errors.{{error.message}}")
   .modal-footer
-    button.btn.btn-primary(type="submit" ng-disabled="model.form.$invalid" disable-on-request=""
+    button.btn.btn-default.btn-sm(type="button" ng-click="model.cancel()" ng-disabled="model.loading")
+      = t("app.modal.cancel")
+    button.btn.btn-primary.btn-sm(type="submit" ng-disabled="model.form.$invalid" disable-on-request=""
         data-loading-text=t("app.participants.add.loading"))
-      span.glyphicon.glyphicon-ok-circle(aria-hidden="true")
+      span.glyphicon.glyphicon-ok(aria-hidden="true")
       |  #{t("app.participants.add.submit")}
-    button.btn.btn-default(type="button" ng-click="model.cancel()" ng-disabled="model.loading")= t("app.modal.cancel")

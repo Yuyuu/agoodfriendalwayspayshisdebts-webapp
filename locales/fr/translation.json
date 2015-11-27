@@ -86,7 +86,7 @@
         "none": "Aucun",
         "selected": "sélectionnés",
         "share_ph": "Choisir parmi les participants...",
-        "description_ph": "Pour d'éventuelles précisions",
+        "description_ph": "Ajoutez d'éventuelles précisions",
         "submit": "Ajouter la dépense",
         "loading": "Ajout de la dépense...",
         "errors": {
