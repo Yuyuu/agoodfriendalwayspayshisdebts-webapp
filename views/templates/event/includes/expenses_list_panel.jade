@@ -23,4 +23,4 @@
   .row.text-center(ng-hide="listModel.loading")
     button.btn.btn-load-more.btn-sm(type="button" ng-click="listModel.loadMore()" ng-disabled="listModel.allLoaded")
       span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
-      |  #{t("app.expenses.load_more")}
+      = t("app.expenses.load_more")

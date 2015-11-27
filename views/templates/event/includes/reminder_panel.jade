@@ -16,7 +16,7 @@ section.reminder(ng-controller="ReminderController as reminder")
         button.btn.btn-primary.btn-sm(type="submit" ng-disabled="reminder.form.$invalid"
             disable-on-request="" data-loading-text=t("app.results.reminder.loading"))
           span.glyphicon.glyphicon-send(aria-hidden="true")
-          |  #{t("app.results.reminder.submit")}
+          = t("app.results.reminder.submit")
   .debts-panel.reminder-status-panel(ng-if="reminder.reports || reminder.loading")
     .debts-panel-heading
       h4.debts-panel-title= t("app.results.status.title")

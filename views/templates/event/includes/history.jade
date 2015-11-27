@@ -18,4 +18,4 @@ section.history(ng-controller="HistoryController as history")
         button.btn.btn-load-more.btn-xs(type="button" ng-click="history.loadMore()"
             ng-disabled="history.allLoaded || history.loading")
           span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
-          |  #{t("app.history.older")}
+          = t("app.history.older")

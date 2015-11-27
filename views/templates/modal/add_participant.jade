@@ -44,4 +44,4 @@ form.form-horizontal(ng-submit="model.add(model.participant)" name="model.form" 
     button.btn.btn-primary.btn-sm(type="submit" ng-disabled="model.form.$invalid" disable-on-request=""
         data-loading-text=t("app.participants.add.loading"))
       span.glyphicon.glyphicon-ok(aria-hidden="true")
-      |  #{t("app.participants.add.submit")}
+      = t("app.participants.add.submit")
