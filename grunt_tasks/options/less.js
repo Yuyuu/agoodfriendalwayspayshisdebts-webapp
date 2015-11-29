@@ -2,7 +2,7 @@
 
 module.exports = {
   options: {
-    compress: "<%= !prod %>",
+    compress: "<%= prod %>",
     cleancss: "<%= prod %>",
     sourceMap: "<%= !prod %>"
   },
