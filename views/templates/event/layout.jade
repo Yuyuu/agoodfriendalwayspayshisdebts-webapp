@@ -1,3 +1,5 @@
+- var addParticipantTranslation = t("app.event.add_p");
+
 .event-header
   .jumbotron.inverse
     .container
@@ -9,9 +11,11 @@
     .event-layout-aside.col-md-2.col-xs-12.pull-right
       .row
         .col-md-12.col-sm-3.col-xs-6
-          button.btn.btn-action.btn-block.margin-btm-1(type="button" ng-click="model.addParticipant()")
-            span.glyphicon.glyphicon-plus
-            = t("app.event.add_p")
+          ul.list-unstyled
+            li
+              a.action(href="javascript:void(0)" ng-click="model.addParticipant()" title=addParticipantTranslation)
+                span.glyphicon.glyphicon-plus(aria-hidden="true")
+                = addParticipantTranslation
       .row.hidden-sm.hidden-xs
         .col-md-12
           include includes/history
