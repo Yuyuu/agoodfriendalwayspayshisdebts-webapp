@@ -9,14 +9,9 @@ function ResultDetailsController($stateParams, Results) {
   activate();
 
   function activate() {
-    model.loading = true;
-    Results.get($stateParams.id)
-      .then(function (data) {
-        model.results = data;
-      })
-      .finally(function () {
-        model.loading = false;
-      });
+    Results.get($stateParams.id).then(function (data) {
+      model.results = data;
+    });
   }
 }
 

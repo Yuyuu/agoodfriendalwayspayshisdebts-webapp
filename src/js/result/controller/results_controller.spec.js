@@ -25,6 +25,5 @@ describe("The results controller", function () {
 
   it("should load the result data on activation", function () {
     expect(controller.results).to.equal("hello");
-    expect(controller.loading).to.be.false;
   });
 });

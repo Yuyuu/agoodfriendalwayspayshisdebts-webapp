@@ -32,17 +32,11 @@ function ExpensesListController($stateParams, expenseService, notificationServic
   }
 
   function loadMore() {
-    model.loading = true;
-    expenseService.loadMoreFrom($stateParams.id).finally(function () {
-      model.loading = false;
-    });
+    expenseService.loadMoreFrom($stateParams.id);
   }
 
   function activate() {
-    model.loading = true;
-    expenseService.initializeForEvent($stateParams.id).finally(function () {
-      model.loading = false;
-    });
+    expenseService.initializeForEvent($stateParams.id);
   }
 }
 
