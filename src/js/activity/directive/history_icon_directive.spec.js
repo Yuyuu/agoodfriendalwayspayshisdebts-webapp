@@ -27,22 +27,22 @@ describe("The history icon directive", function () {
   it("should add the corresponding icon to the element", function () {
     scope.summary.type = "NEW_EXPENSE";
     directive.link(scope, element);
-    expect(element.addClass).to.have.been.calledWith("glyphicon-plus-sign");
+    expect(element.addClass).to.have.been.calledWith("fa-plus-circle");
 
     scope.summary.type = "EXPENSE_DELETED";
     directive.link(scope, element);
-    expect(element.addClass).to.have.been.calledWith("glyphicon-minus-sign");
+    expect(element.addClass).to.have.been.calledWith("fa-minus-circle");
 
     scope.summary.type = "NEW_PARTICIPANT";
     directive.link(scope, element);
-    expect(element.addClass).to.have.been.calledWith("glyphicon-plus-sign");
+    expect(element.addClass).to.have.been.calledWith("fa-user-plus");
 
     scope.summary.type = "PARTICIPANT_EDITED";
     directive.link(scope, element);
-    expect(element.addClass).to.have.been.calledWith("glyphicon-pencil");
+    expect(element.addClass).to.have.been.calledWith("fa-pencil");
 
     scope.summary.type = "NEW_REMINDER";
     directive.link(scope, element);
-    expect(element.addClass).to.have.been.calledWith("glyphicon-envelope");
+    expect(element.addClass).to.have.been.calledWith("fa-envelope-o");
   });
 });

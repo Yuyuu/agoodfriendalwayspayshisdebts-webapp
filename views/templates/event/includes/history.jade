@@ -2,8 +2,7 @@ section.history(ng-controller="HistoryController as history")
   .debts-panel
     .debts-panel-heading
       h4.debts-panel-title= t("app.history.title")
-        span.glyphicon.glyphicon-refresh.pull-right(aria-hidden="true" ng-click="history.refresh()" bs-tooltip=""
-            data-title=t("app.history.refresh"))
+        i.fa.fa-refresh.pull-right(ng-click="history.refresh()" bs-tooltip="" data-title=t("app.history.refresh"))
     .debts-panel-body
       .form-group.form-group-sm
         select.form-control(ng-model="history.filter" ng-change="history.refresh()"
@@ -12,10 +11,10 @@ section.history(ng-controller="HistoryController as history")
         .history-summary(ng-repeat="summary in history.summaries track by summary.id")
           time(ng-bind="::summary.creationDate | debtsTime")
           .history-summary-data
-            span.glyphicon(aria-hidden="true" debts-history-icon="")
+            i.fa(debts-history-icon="")
             span  {{::summary.data}}
       .history-more.text-center
         button.btn.btn-load-more.btn-xs(type="button" ng-click="history.loadMore()"
             ng-disabled="history.allLoaded || history.loading")
-          span.glyphicon.glyphicon-triangle-bottom(aria-hidden="true")
+          i.fa.fa-arrow-circle-o-down
           = t("app.history.older")

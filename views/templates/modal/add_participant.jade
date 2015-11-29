@@ -29,7 +29,7 @@ form.form-horizontal(ng-submit="model.add(model.participant)" name="model.form" 
                   bs-select="" data-multiple="1" data-all-none-buttons="true" name="selectedExpenses"
                   data-all-text=t("app.participants.add.all") data-max-length="0"
                   data-none-text=t("app.participants.add.none") aria-describedby="expensesHelpBlock"
-                  data-max-length-html=t("app.participants.add.selected")
+                  data-max-length-html=t("app.participants.add.selected") data-icon-checkmark="fa fa-check-square-o"
                   data-placeholder=t("app.participants.add.expenses_ph")
                   bs-options="expense.id as expense.label for expense in model.expensesMetadata track by expense.id")
               span#expensesHelpBlock.help-block= t("app.participants.add.help")
@@ -43,5 +43,5 @@ form.form-horizontal(ng-submit="model.add(model.participant)" name="model.form" 
       = t("app.modal.cancel")
     button.btn.btn-primary.btn-sm(type="submit" ng-disabled="model.form.$invalid" disable-on-request=""
         data-loading-text=t("app.participants.add.loading"))
-      span.glyphicon.glyphicon-ok(aria-hidden="true")
+      i.fa.fa-check
       = t("app.participants.add.submit")

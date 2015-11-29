@@ -22,6 +22,7 @@
     "angular-ui-notification": "~0.1.0",
     "angular-ui-router": "~0.2.15",
     "bootstrap": "~3.3.5",
+    "fontawesome": "~4.5.0",
     "ng-i18next": "~0.5.2",
     "ngInfiniteScroll": "~1.2.1"
   }

@@ -33,7 +33,7 @@
             button#inputExpenseParticipants.btn.btn-default(type="button" ng-model="xpensCtrl.expense.participantsUuids"
                 bs-select="" data-multiple="1" data-all-none-buttons="true" name="expenseParticipants"
                 data-all-text=t("app.expenses.create.all") required="" data-max-length="4"
-                data-none-text=t("app.expenses.create.none")
+                data-none-text=t("app.expenses.create.none") data-icon-checkmark="fa fa-check-square-o"
                 data-max-length-html=t("app.expenses.create.selected")
                 data-placeholder=t("app.expenses.create.share_ph")
                 bs-options="participant.id as participant.name for participant in model.event.participants track by participant.id")
@@ -50,5 +50,5 @@
     .debts-panel-footer
       button.btn.btn-sm.btn-primary(type="submit" disable-on-request="" ng-disabled="xpensCtrl.form.$invalid"
           data-loading-text=t("app.expenses.create.loading"))
-        span.glyphicon.glyphicon-plus(aria-hidden="true")
+        i.fa.fa-plus
         = t("app.expenses.create.submit")

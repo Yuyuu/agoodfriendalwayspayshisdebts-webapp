@@ -1,11 +1,11 @@
 "use strict";
 
 var icon = {
-  "NEW_EXPENSE": "glyphicon-plus-sign",
-  "EXPENSE_DELETED": "glyphicon-minus-sign",
-  "NEW_PARTICIPANT": "glyphicon-plus-sign",
-  "PARTICIPANT_EDITED": "glyphicon-pencil",
-  "NEW_REMINDER": "glyphicon-envelope"
+  "NEW_EXPENSE": "fa-plus-circle",
+  "EXPENSE_DELETED": "fa-minus-circle",
+  "NEW_PARTICIPANT": "fa-user-plus",
+  "PARTICIPANT_EDITED": "fa-pencil",
+  "NEW_REMINDER": "fa-envelope-o"
 };
 
 /* @ngInject */

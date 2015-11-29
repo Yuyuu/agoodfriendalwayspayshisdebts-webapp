@@ -8,19 +8,19 @@ section.reminder(ng-controller="ReminderController as reminder")
         button#inputReminderRecipients.btn.btn-default.btn-block(type="button" ng-model="reminder.recipientsIds"
             bs-select="" data-multiple="1" data-all-none-buttons="true" name="reminderRecipients"
             data-all-text=t("app.results.reminder.recipients.all") required="" data-max-length="1"
-            data-none-text=t("app.results.reminder.recipients.none")
+            data-none-text=t("app.results.reminder.recipients.none") data-icon-checkmark="fa fa-check-square-o"
             data-max-length-html=t("app.results.reminder.recipients.selected")
             data-placeholder=t("app.results.reminder.recipients.ph")
             bs-options="participant.id as participant.name for participant in model.event.participants track by participant.id")
       .debts-panel-footer
         button.btn.btn-primary.btn-sm(type="submit" ng-disabled="reminder.form.$invalid"
             disable-on-request="" data-loading-text=t("app.results.reminder.loading"))
-          span.glyphicon.glyphicon-send(aria-hidden="true")
+          i.fa.fa-send
           = t("app.results.reminder.submit")
   .debts-panel.reminder-status-panel(ng-if="reminder.reports || reminder.loading")
     .debts-panel-heading
       h4.debts-panel-title= t("app.results.status.title")
-        span.glyphicon.glyphicon-envelope.pull-right(aria-hidden="true")
+        i.fa.fa-envelope-o.pull-right
     .debts-panel-body
       loading-spinner(ng-show="reminder.loading")
       .alert.alert-danger(role="alert" ng-if="reminder.isFailure")= t("app.results.status.failure")

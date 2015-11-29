@@ -32,5 +32,5 @@ form.form-horizontal(ng-submit="model.update(model.participant)" name="model.for
       = t("app.modal.cancel")
     button.btn.btn-primary.btn-sm(type="submit" ng-disabled="model.form.$pristine || model.form.$invalid"
         disable-on-request="" data-loading-text= t("app.participants.edit.loading"))
-      span.glyphicon.glyphicon-ok(aria-hidden="true")
+      i.fa.fa-check
       = t("app.participants.edit.submit")

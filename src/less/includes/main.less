@@ -56,26 +56,26 @@ a {
   margin-bottom: 1em;
 }
 
-span[ng-click] {
+i[ng-click] {
   cursor: pointer;
 }
 
-.btn > .glyphicon {
+.btn > i {
   margin-right: @padding-base-horizontal;
 }
 
-.btn-icon > .glyphicon {
-  margin-right: 0 !important;
-}
-
-.btn-lg > .glyphicon {
-  margin-right: @padding-large-horizontal;
-}
-
-.btn-sm > .glyphicon {
+.btn-sm > i {
   margin-right: @padding-small-horizontal;
 }
 
-.btn-xs > .glyphicon {
+.btn-xs > i {
   margin-right: @padding-xs-horizontal;
+}
+
+.btn-icon > i {
+  margin-right: 0 !important;
+}
+
+.list-icon > li i {
+  margin-right: 0.5em;
 }
