@@ -45,7 +45,6 @@ describe("The controller responsible for listing the expenses of an event", func
     controller.loadMore();
 
     expect(expenseService.loadMoreFrom).to.have.been.calledWith("1234");
-    expect(controller.loading).to.be.false;
   });
 
   it("should emit a notification if the expense was successfully deleted", function () {
