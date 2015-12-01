@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function ShowEventController($state, modalService, notificationService, event) {
+function ShowEventController($state, $modal, notificationService, event) {
   var model = this;
 
   model.event = event;
@@ -15,7 +15,7 @@ function ShowEventController($state, modalService, notificationService, event) {
   };
 
   function addParticipant() {
-    var modalInstance = modalService.open(addParticipantModalOptions);
+    var modalInstance = $modal.open(addParticipantModalOptions);
     modalInstance.result.then(function (participant) {
       if (participant) {
         model.event.participants.push(participant);

@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function ExpensesListController($stateParams, expenseService, notificationService, modalService) {
+function ExpensesListController($stateParams, $modal, expenseService, notificationService) {
   var model = this;
 
   model.expenseService = expenseService;
@@ -21,7 +21,7 @@ function ExpensesListController($stateParams, expenseService, notificationServic
     modalOptions.resolve = {expense: function () {
       return expenseToDelete;
     }};
-    var modalInstance = modalService.open(modalOptions);
+    var modalInstance = $modal.open(modalOptions);
     modalInstance.result.then(function (confirmed) {
       if (confirmed) {
         expenseService.deleteExpense($stateParams.id, expenseToDelete.id).then(function () {

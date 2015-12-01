@@ -3,7 +3,7 @@
 var angular = require("angular");
 var configureModule = require("./module_configuration");
 
-var notificationModule = angular.module("notification", [require("angular-ui-notification")]);
+var notificationModule = angular.module("app.notification", [require("../core")]);
 
 notificationModule
   .service("notificationService", require("./service/notification_service"));

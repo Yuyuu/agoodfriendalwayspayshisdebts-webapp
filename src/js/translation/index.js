@@ -2,7 +2,7 @@
 
 var angular = require("angular");
 
-var translationModule = angular.module("app.translations", [require("angular-cookies"), require("ng-i18next")]);
+var translationModule = angular.module("app.translations", [require("../core")]);
 
 /* @ngInject */
 translationModule.config(function ($i18nextProvider) {

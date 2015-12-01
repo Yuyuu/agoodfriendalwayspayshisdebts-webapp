@@ -4,6 +4,7 @@ var angular = require("angular");
 var configureModuleRouting = require("./module_routing");
 
 var eventModule = angular.module("app.event", [
+  require("../core"),
   require("../expense"),
   require("../participant"),
   require("../activity"),

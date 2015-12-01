@@ -2,9 +2,7 @@
 
 var angular = require("angular");
 
-var ngStrapSelectModule = require("angular-strap") + ".select";
-
-var reminderModule = angular.module("app.event.result.reminder", [ngStrapSelectModule]);
+var reminderModule = angular.module("app.event.result.reminder", []);
 
 reminderModule
   .factory("Reminders", require("./resource/reminders_resource"))

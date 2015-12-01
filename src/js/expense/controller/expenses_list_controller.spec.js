@@ -4,7 +4,7 @@ var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The controller responsible for listing the expenses of an event", function () {
-  var confirmed, $stateParams, expenseService, notificationService, modalService, controller;
+  var confirmed, $stateParams, $modal, expenseService, notificationService, controller;
 
   beforeEach(function () {
     confirmed = true;
@@ -25,12 +25,12 @@ describe("The controller responsible for listing the expenses of an event", func
       return callback.call(null);
     }});
     notificationService = {success: sinon.spy()};
-    modalService = {open: sinon.stub().returns({result: {then: function (callback) {callback.call(null, confirmed);}}})};
+    $modal = {open: sinon.stub().returns({result: {then: function (callback) {callback.call(null, confirmed);}}})};
   });
 
   beforeEach(function () {
     var ExpensesListController = require("./expenses_list_controller");
-    controller = new ExpensesListController($stateParams, expenseService, notificationService, modalService);
+    controller = new ExpensesListController($stateParams, $modal, expenseService, notificationService);
   });
 
   it("should be defined", function () {
@@ -50,7 +50,7 @@ describe("The controller responsible for listing the expenses of an event", func
   it("should emit a notification if the expense was successfully deleted", function () {
     controller.deleteExpense({id: "123"});
 
-    expect(modalService.open).to.have.been.calledWith(sinon.match(function (options) {
+    expect($modal.open).to.have.been.calledWith(sinon.match(function (options) {
       var expense = options.resolve.expense();
       return expense.id === "123";
     }));

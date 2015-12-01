@@ -4,7 +4,7 @@ var angular = require("angular");
 
 module.exports = function () {
   /* @ngInject */
-  angular.module("notification")
+  angular.module("app.notification")
     .config(configure);
 
   function configure(NotificationProvider) {

@@ -3,9 +3,7 @@
 var angular = require("angular");
 var configureModuleRouting = require("./module_routing");
 
-var ngStrapSelectModule = require("angular-strap") + ".select";
-
-var expenseModule = angular.module("app.event.expense", [require("../notification"), ngStrapSelectModule]);
+var expenseModule = angular.module("app.event.expense", []);
 
 expenseModule
   .factory("Expenses", require("./resource/expenses_resource"))
