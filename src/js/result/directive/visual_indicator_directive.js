@@ -2,15 +2,18 @@
 
 /* @ngInject */
 function VisualIndicatorDirective() {
-  function link(scope, element) {
-    var cssClass = (scope.debt.mitigatedAmount >= 0.005) ? "danger" : "success";
-    element.addClass(cssClass);
-  }
-
   return {
     restrict: "A",
     link: link
   };
+
+  function link(scope, element) {
+    if (scope.row.mitigatedDebt >= 0.005) {
+      element.addClass("danger");
+    } else if (scope.row.advance >= 0.005) {
+      element.addClass("warning");
+    }
+  }
 }
 
 module.exports = VisualIndicatorDirective;

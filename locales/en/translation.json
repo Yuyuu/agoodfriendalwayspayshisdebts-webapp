@@ -165,8 +165,9 @@
       "filter": "Filter by name:",
       "share": "share",
       "spent": "Total amount spent:",
-      "creditor": "Creditor",
+      "participant": "Participant",
       "debt": "Debt",
+      "advance": "Advance",
       "total": "Total",
       "reminder": {
         "title": "New reminder",

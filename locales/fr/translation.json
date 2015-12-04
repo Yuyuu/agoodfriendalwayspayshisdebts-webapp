@@ -166,8 +166,9 @@
       "filter": "Filtrer par nom :",
       "share": "part",
       "spent": "Somme totale dépensée :",
-      "creditor": "Créancier",
+      "participant": "Participant",
       "debt": "Dette",
+      "advance": "Avance",
       "total": "Total",
       "reminder": {
         "title": "Nouveau rappel",

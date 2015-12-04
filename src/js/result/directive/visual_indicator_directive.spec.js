@@ -7,7 +7,7 @@ describe("The directive responsible for adding a visual indication on the result
   var scope, element, directive;
 
   beforeEach(function () {
-    scope = {debt: {mitigatedAmount: 0}};
+    scope = {row: {mitigatedDebt: 0, advance: 0}};
     element = {addClass: sinon.spy()};
   });
 
@@ -21,19 +21,31 @@ describe("The directive responsible for adding a visual indication on the result
   });
 
   it("should add the danger class to the row if the debt amount is superior to 0.005", function () {
-    scope.debt.mitigatedAmount = 5;
+    scope.row.mitigatedDebt = 5;
     directive.link(scope, element);
     expect(element.addClass).to.have.been.calledWith("danger");
   });
 
   it("should add the danger class to the row if the debt amount is equal to 0.005", function () {
-    scope.debt.mitigatedAmount = 0.005;
+    scope.row.mitigatedDebt = 0.005;
     directive.link(scope, element);
     expect(element.addClass).to.have.been.calledWith("danger");
   });
 
-  it("should add the success class to the row if the debt amount is inferior to 0.005", function () {
+  it("should add the warning class to the row if the advance amount is superior to 0.005", function () {
+    scope.row.advance = 5;
     directive.link(scope, element);
-    expect(element.addClass).to.have.been.calledWith("success");
+    expect(element.addClass).to.have.been.calledWith("warning");
+  });
+
+  it("should add the danger class to the row if the debt amount is equal to 0.005", function () {
+    scope.row.advance = 0.005;
+    directive.link(scope, element);
+    expect(element.addClass).to.have.been.calledWith("warning");
+  });
+
+  it("should not add any class if there is no debt or advance", function () {
+    directive.link(scope, element);
+    expect(element.addClass).to.not.have.been.called;
   });
 });
