@@ -15,6 +15,7 @@
     "angular-cookies": "~1.4.0",
     "angular-i18n": "~1.4.0",
     "angular-loading-bar": "~0.8.0",
+    "angular-masonry": "~0.14.1",
     "angular-message-format": "~1.4.0",
     "angular-motion": "~0.4.1",
     "angular-sanitize": "~1.4.0",

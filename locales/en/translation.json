@@ -69,8 +69,6 @@
       "older": "Older"
     },
     "expenses": {
-      "by": "Purchased by",
-      "shared": "Expense shared between",
       "load_more": "See more expenses",
       "create": {
         "title": "New expense",

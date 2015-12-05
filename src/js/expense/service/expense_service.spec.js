@@ -78,7 +78,7 @@ describe("The service holding the expenses of the current event", function () {
   it("should fetch a different batch every time", function () {
     service.loadMoreFrom("eventId");
 
-    expect(service.skip).to.equal(3);
+    expect(service.skip).to.equal(4);
   });
 
   it("should store the expenses in ascendant order", function () {

@@ -21,6 +21,7 @@ var coreModule = angular.module("app.core", [
   require("ngInfiniteScroll"),
   require("angular-loading-bar"),
   require("angular-ui-notification"),
+  require("angular-masonry"),
   angularStrap("tooltip"),
   angularStrap("select"),
   angularStrap("affix"),
