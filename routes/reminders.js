@@ -22,7 +22,8 @@ exports.send = function send(request, response) {
     subject: i18n.t("app.reminder.subject") + " [" + event.name + "]",
     html: templateWithModel({t: i18n.t, event: event}),
     "recipient-variables": recipientVariables,
-    "v:hook-data": {eventId: event.id, participantId: "%recipient.id%"}
+    "v:eventId": event.id,
+    "v:participantId": "%recipient.id%"
   };
 
   mailgun.messages().send(data)
