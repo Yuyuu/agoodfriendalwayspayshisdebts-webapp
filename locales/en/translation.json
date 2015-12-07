@@ -22,6 +22,14 @@
       "PARTICIPANT_UPDATED_SUCCESS": {
         "title": "Done!",
         "content": "The participant has been updated successfully."
+      },
+      "REMINDER_REQUEST_SUCCESS": {
+        "title": "Request done!",
+        "content": "A reminder sending request has been added successfully."
+      },
+      "REMINDER_REQUEST_ERROR": {
+        "title": "Request failed :(",
+        "content": "An error occurred and the reminder sending request could not be added."
       }
     },
     "home": {
@@ -178,14 +186,6 @@
         },
         "submit": "Send reminder",
         "loading": "Sending the reminders..."
-      },
-      "status": {
-        "title": "Status",
-        "failure": "A problem occurred while sending the reminders",
-        "success": {
-          "true": "ok",
-          "false": "error"
-        }
       }
     },
     "errors": {
@@ -203,6 +203,17 @@
     "modal": {
       "close": "Close",
       "cancel": "Cancel"
+    },
+    "reminder": {
+      "subject": "Reminder",
+      "title": "A good friend always pays his debts - Event reminder",
+      "content": {
+        "title": "a good friend always pays his debts",
+        "hello": "Hello",
+        "object": "You can view the results for the event by following the link below.",
+        "saying": "And remember, a paid debt is a kept friend!",
+        "bye": "See you soon."
+      }
     }
   }
 }

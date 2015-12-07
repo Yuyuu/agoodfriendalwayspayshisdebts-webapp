@@ -22,6 +22,14 @@
       "PARTICIPANT_UPDATED_SUCCESS": {
         "title": "Modification effectuée !",
         "content": "Le participant a été modifié avec succès."
+      },
+      "REMINDER_REQUEST_SUCCESS": {
+        "title": "Demande effectuée !",
+        "content": "Une demande d'envoi de rappel a été ajoutée avec succès."
+      },
+      "REMINDER_REQUEST_ERROR": {
+        "title": "La demande a échoué :(",
+        "content": "Une erreur s'est produite et la demande d'envoi de rappel n'a pas pu être ajoutée."
       }
     },
     "home": {
@@ -179,14 +187,6 @@
         },
         "submit": "Envoyer le rappel",
         "loading": "Envoi des rappels..."
-      },
-      "status": {
-        "title": "Statut",
-        "failure": "Un problème est survenu lors de l'envoi des rappels",
-        "success": {
-          "true": "ok",
-          "false": "erreur"
-        }
       }
     },
     "errors": {
@@ -204,6 +204,17 @@
     "modal": {
       "close": "Fermer",
       "cancel": "Annuler"
+    },
+    "reminder": {
+      "subject": "Rappel",
+      "title": "Un bon ami paye toujours ses dettes - Rappel pour événement",
+      "content": {
+        "title": "un bon ami paye toujours ses dettes",
+        "hello": "Bonjour",
+        "object": "Vous pouvez consulter les résultats pour l'événement en suivant le lien ci-dessous.",
+        "saying": "Et n'oubliez pas, les bons comptes font les bons amis !",
+        "bye": "A bientôt."
+      }
     }
   }
 }

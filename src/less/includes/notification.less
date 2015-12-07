@@ -13,16 +13,16 @@
     .transition(opacity ease 1s);
   }
 
-  & > h3 {
+  > h3 {
     display: block;
     margin: 10px 10px 0 10px;
     padding: 0 0 5px 0;
     font-size: @font-size-base;
     font-weight: bold;
-    border-bottom: 1px solid @state-success-text;
+    border-bottom: 1px solid transparent;
   }
 
-  & > .message {
+  > .message {
     margin: 10px 10px 10px 10px;
   }
 
@@ -30,5 +30,19 @@
     color: @state-success-text;
     background: @state-success-bg;
     border-color: @state-success-border;
+
+    > h3 {
+      border-bottom-color: @state-success-text;
+    }
+  }
+
+  &.error {
+    color: @state-danger-text;
+    background: @state-danger-bg;
+    border-color: @state-danger-border;
+
+    > h3 {
+      border-bottom-color: @state-danger-text;
+    }
   }
 }

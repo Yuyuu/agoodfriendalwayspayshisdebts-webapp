@@ -1,6 +1,6 @@
 section.reminder(ng-controller="ReminderController as reminder")
   .debts-panel
-    form(name="reminder.form" novalidate="" ng-submit="reminder.sendReminder(reminder.recipientsIds)")
+    form(name="reminder.form" novalidate="" ng-submit="reminder.sendReminder(reminder.recipientsIds, model.event)")
       .debts-panel-heading
         h4.debts-panel-title= t("app.results.reminder.title")
       .debts-panel-body
@@ -17,15 +17,3 @@ section.reminder(ng-controller="ReminderController as reminder")
             disable-on-request="" data-loading-text=t("app.results.reminder.loading"))
           i.fa.fa-send
           = t("app.results.reminder.submit")
-  .debts-panel.reminder-status-panel(ng-if="reminder.reports || reminder.loading")
-    .debts-panel-heading
-      h4.debts-panel-title= t("app.results.status.title")
-        i.fa.fa-envelope-o.pull-right
-    .debts-panel-body
-      loading-spinner(ng-show="reminder.loading")
-      .alert.alert-danger(role="alert" ng-if="reminder.isFailure")= t("app.results.status.failure")
-      ul.list-group(ng-if="!reminder.loading && !reminder.isFailure && reminder.reports")
-        li.list-group-item(ng-repeat="report in reminder.reports")
-          | {{::report.recipientName}}
-          span.label.pull-right(ng-class="['label-' + (report.success ? 'success' : 'danger')]"
-              ng-i18next="app.results.status.success.{{report.success}}")

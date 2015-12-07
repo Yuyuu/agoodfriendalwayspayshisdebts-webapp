@@ -8,8 +8,8 @@ function ReminderResource($http) {
     send: send
   };
 
-  function send(eventId, reminderData) {
-    return $http.post("/api/events/" + eventId + "/reminders", reminderData).then(httpUtils.forwardResponseData);
+  function send(reminderData) {
+    return $http.post("/reminders", reminderData).then(httpUtils.forwardResponseData);
   }
 }
 

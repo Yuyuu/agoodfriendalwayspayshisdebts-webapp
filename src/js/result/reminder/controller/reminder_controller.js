@@ -1,41 +1,37 @@
 "use strict";
 
-/* @ngInject */
-function ReminderController($state, reminderService) {
-  var model = this;
+var _ = require("underscore");
 
-  model.reminderService = reminderService;
+/* @ngInject */
+function ReminderController($state, Reminders, notificationService) {
+  var model = this;
 
   model.sendReminder = sendReminder;
 
-  function sendReminder(recipientsIds) {
-    model.loading = true;
+  function sendReminder(recipientsIds, event) {
     var reminderData = {
-      recipientsUuids: recipientsIds,
-      eventLink: $state.href("event.expenses", null, {absolute: true})
+      recipients: filterSelectedParticipants(recipientsIds, event.participants),
+      event: {
+        id: event.id,
+        name: event.name,
+        link: $state.href("event.results", null, {absolute: true})
+      }
     };
-    reminderService.sendReminder($state.params.id, reminderData).finally(function () {
-      model.loading = false;
-      model.recipientsIds = [];
+    Reminders.send(reminderData)
+      .then(function () {
+        model.recipientsIds = [];
+        notificationService.success("REMINDER_REQUEST_SUCCESS");
+      })
+      .catch(function () {
+        notificationService.error("REMINDER_REQUEST_ERROR");
+      });
+  }
+
+  function filterSelectedParticipants(recipientsIds, participants) {
+    return _.filter(participants, function (participant) {
+      return _.contains(recipientsIds, participant.id);
     });
   }
 }
-
-Object.defineProperties(ReminderController.prototype, {
-  reports: {
-    enumerable: true,
-    cofigurable: false,
-    get: function () {
-      return this.reminderService.lastReports;
-    }
-  },
-  isFailure: {
-    enumerable: true,
-    cofigurable: false,
-    get: function () {
-      return this.reminderService.isFailure;
-    }
-  }
-});
 
 module.exports = ReminderController;

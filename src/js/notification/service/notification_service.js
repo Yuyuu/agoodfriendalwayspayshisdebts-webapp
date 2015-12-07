@@ -2,7 +2,12 @@
 
 /* @ngInject */
 function NotificationService(Notification) {
+  this.error = displayErrorNotification;
   this.success = displaySuccessNotification;
+
+  function displayErrorNotification(notification) {
+    Notification.error(options(notification));
+  }
 
   function displaySuccessNotification(notification) {
     Notification.success(options(notification));

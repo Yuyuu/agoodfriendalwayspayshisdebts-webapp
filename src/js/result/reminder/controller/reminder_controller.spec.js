@@ -4,18 +4,18 @@ var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The reminder controller", function () {
-  var $state, reminderService, controller;
+  var $state, Reminders, notificationService, controller;
 
   beforeEach(function () {
     $state = {params: {id: "123"}, href: sinon.stub()};
-    $state.href.withArgs("event.expenses", null, {absolute: true}).returns("http://event/expenses");
-    reminderService = {lastReports: [{success: true}], isFailure: false, sendReminder: sinon.stub()};
-    reminderService.sendReminder.returns({finally: function (callback) {callback.call(null);}});
+    $state.href.withArgs("event.results", null, {absolute: true}).returns("http://event/results");
+    Reminders = {send: sinon.stub()};
+    notificationService = {success: sinon.spy(), error: sinon.spy()};
   });
 
   beforeEach(function () {
     var ReminderController = require("./reminder_controller");
-    controller = new ReminderController($state, reminderService);
+    controller = new ReminderController($state, Reminders, notificationService);
   });
 
   it("should be defined", function () {
@@ -23,22 +23,37 @@ describe("The reminder controller", function () {
   });
 
   it("should send a reminder to the selected recipients", function () {
-    controller.sendReminder(["456", "789"]);
+    Reminders.send.returns({then: function (callback) {callback(); return {catch: function() {}};}});
 
-    expect(reminderService.sendReminder).to.have.been.calledWith(
-      "123",
-      {recipientsUuids: ["456", "789"], eventLink: "http://event/expenses"}
-    );
+    controller.sendReminder(["123", "456"], {id: "eventId", name: "hello", participants: [
+      {id: "123", name: "bob", email: "bob@email.com"},
+      {id: "456", name: "kim", email: "kim@email.com"},
+      {id: "789", name: "lea", email: "lea@email.com"}
+    ]});
+
+    expect(Reminders.send).to.have.been.calledWith({
+      recipients: [{id: "123", name: "bob", email: "bob@email.com"}, {id: "456", name: "kim", email: "kim@email.com"}],
+      event: {id: "eventId", name: "hello", link: "http://event/results"}
+    });
   });
 
-  it("should reset the recipients after a tentative", function () {
-    controller.sendReminder(["456", "789"]);
+  it("should reset the recipients and show a success notification on success", function () {
+    Reminders.send.returns({then: function (callback) {callback(); return {catch: function() {}};}});
+    controller.recipientsIds = ["123", "456"];
+
+    controller.sendReminder([], {});
 
     expect(controller.recipientsIds).to.be.empty;
+    expect(notificationService.success).to.have.been.calledWith("REMINDER_REQUEST_SUCCESS");
   });
 
-  it("should bind the model properties to those of the service", function () {
-    expect(controller.reports[0].success).to.be.true;
-    expect(controller.isFailure).to.be.false;
+  it("should preserve the recipients and show an error notification on error", function () {
+    Reminders.send.returns({then: function () {return {catch: function(callback) {callback();}};}});
+    controller.recipientsIds = ["123"];
+
+    controller.sendReminder(controller.recipientsIds, {});
+
+    expect(controller.recipientsIds).to.have.length(1);
+    expect(notificationService.error).to.have.been.calledWith("REMINDER_REQUEST_ERROR");
   });
 });

@@ -3,14 +3,11 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("The resource responsible for the server communication about event reminders", function () {
+describe("The reminders resource", function () {
   var $http, resource;
 
   beforeEach(function () {
     $http = {post: sinon.stub()};
-    $http.post.withArgs("/api/events/123/reminders").returns({then: function (callback) {
-      return callback.call(null, {status: 201, data: ["456", "789"]});
-    }});
   });
 
   beforeEach(function () {
@@ -23,8 +20,12 @@ describe("The resource responsible for the server communication about event remi
   });
 
   it("should post the reminder data", function () {
-    var result = resource.send("123", ["456", "789"]);
+    $http.post.withArgs("/reminders").returns({then: function (callback) {
+      return callback.call(null, {status: 201, data: "hello"});
+    }});
 
-    expect(result).to.have.members(["456", "789"]);
+    var result = resource.send({});
+
+    expect(result).to.equal("hello");
   });
 });

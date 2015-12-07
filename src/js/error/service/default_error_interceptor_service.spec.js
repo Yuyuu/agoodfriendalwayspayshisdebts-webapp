@@ -17,7 +17,7 @@ describe("The default error interceptor", function () {
     expect(interceptor).to.be.defined;
   });
 
-  it("should redirect to the error page if a 5xx error occurs", function () {
+  it("should redirect to the error page if a 500 error occurs", function () {
     var rejection = {status: 500};
     interceptor.responseError(rejection);
 
@@ -26,7 +26,7 @@ describe("The default error interceptor", function () {
   });
 
   it("should not redirect to the error page when any other error occurs", function () {
-    var rejection = {status: 405};
+    var rejection = {status: 503};
     interceptor.responseError(rejection);
 
     expect($location.path).to.not.have.been.calledWith("/error");
