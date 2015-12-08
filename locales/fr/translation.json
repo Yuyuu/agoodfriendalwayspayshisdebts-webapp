@@ -71,9 +71,21 @@
     "history": {
       "title": "Historique",
       "refresh": "Actualiser",
-      "expenses": "Dépenses",
-      "participants": "Participants",
-      "reminders": "Rappels",
+      "expenses": {
+        "label": "Dépenses",
+        "added": "Dépense ajoutée",
+        "deleted": "Dépense supprimée"
+      },
+      "participants": {
+        "label": "Participants",
+        "added": "Participant ajouté",
+        "edited": "Participant modifié"
+      },
+      "reminders": {
+        "label": "Rappels",
+        "delivered": "Rappel réceptionné",
+        "dropped": "Echec de l'envoi du rappel"
+      },
       "older": "Plus ancien"
     },
     "expenses": {
@@ -166,7 +178,11 @@
         "new": "a été ajouté",
         "edit": "a été modifié"
       },
-      "reminder": "Un rappel a été envoyé à"
+      "reminder": {
+        "label": "L'envoi d'un rappel à",
+        "deliver": "a été effectué",
+        "drop": "a échoué"
+      }
     },
     "results": {
       "filter": "Filtrer par nom :",

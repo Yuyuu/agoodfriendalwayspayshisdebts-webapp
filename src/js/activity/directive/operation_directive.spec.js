@@ -35,8 +35,11 @@ describe("The activity directive", function () {
     scope.operation.type = "PARTICIPANT_EDITED";
     expect(scope.entity()).to.equal("app.activity.participant.label");
 
-    scope.operation.type = "NEW_REMINDER";
-    expect(scope.entity()).to.equal("app.activity.reminder");
+    scope.operation.type = "REMINDER_DELIVERED";
+    expect(scope.entity()).to.equal("app.activity.reminder.label");
+
+    scope.operation.type = "REMINDER_DROPPED";
+    expect(scope.entity()).to.equal("app.activity.reminder.label");
   });
 
   it("should bind an operation type to a complement", function () {
@@ -55,7 +58,10 @@ describe("The activity directive", function () {
     scope.operation.type = "PARTICIPANT_EDITED";
     expect(scope.complement()).to.equal("app.activity.participant.edit");
 
-    scope.operation.type = "NEW_REMINDER";
-    expect(scope.complement()).to.equal("");
+    scope.operation.type = "REMINDER_DELIVERED";
+    expect(scope.complement()).to.equal("app.activity.reminder.deliver");
+
+    scope.operation.type = "REMINDER_DROPPED";
+    expect(scope.complement()).to.equal("app.activity.reminder.drop");
   });
 });

@@ -8,9 +8,9 @@ function HistoryController($stateParams, Activity) {
 
   model.filter = "reminders";
   model.filters = [
-    {name: "expenses", translation: "app.history.expenses"},
-    {name: "participants", translation: "app.history.participants"},
-    {name: "reminders", translation: "app.history.reminders"}
+    {name: "expenses", translation: "app.history.expenses.label"},
+    {name: "participants", translation: "app.history.participants.label"},
+    {name: "reminders", translation: "app.history.reminders.label"}
   ];
 
   model.loadMore = loadMore;

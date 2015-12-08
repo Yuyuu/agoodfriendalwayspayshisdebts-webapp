@@ -71,9 +71,21 @@
     "history": {
       "title": "History",
       "refresh": "Refresh",
-      "expenses": "Expenses",
-      "participants": "Participants",
-      "reminders": "Reminders",
+      "expenses": {
+        "label": "Expenses",
+        "added": "Expense added",
+        "deleted": "Expense deleted"
+      },
+      "participants": {
+        "label": "Participants",
+        "added": "Participant added",
+        "edited": "Participant edited"
+      },
+      "reminders": {
+        "label": "Reminders",
+        "delivered": "Reminder delivered",
+        "dropped": "Failed to send the reminder"
+      },
       "older": "Older"
     },
     "expenses": {
@@ -165,7 +177,11 @@
         "new": "has been added",
         "edit": "has been edited"
       },
-      "reminder": "A reminder has been sent to"
+      "reminder": {
+        "label": "Sending a reminder to",
+        "deliver": "has succeeded",
+        "drop": "has failed"
+      }
     },
     "results": {
       "filter": "Filter by name:",

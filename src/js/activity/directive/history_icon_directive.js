@@ -1,11 +1,12 @@
 "use strict";
 
-var icon = {
-  "NEW_EXPENSE": "fa-plus-circle",
-  "EXPENSE_DELETED": "fa-minus-circle",
-  "NEW_PARTICIPANT": "fa-user-plus",
-  "PARTICIPANT_EDITED": "fa-pencil",
-  "NEW_REMINDER": "fa-envelope-o"
+var data = {
+  "NEW_EXPENSE": {"class": "fa-plus-circle", tooltip: "app.history.expenses.added"},
+  "EXPENSE_DELETED": {"class": "fa-minus-circle", tooltip: "app.history.expenses.deleted"},
+  "NEW_PARTICIPANT": {"class": "fa-user-plus", tooltip: "app.history.participants.added"},
+  "PARTICIPANT_EDITED": {"class": "fa-pencil", tooltip: "app.history.participants.edited"},
+  "REMINDER_DELIVERED": {"class": "fa-envelope-o", tooltip: "app.history.reminders.delivered"},
+  "REMINDER_DROPPED": {"class": "fa-exclamation-triangle", tooltip: "app.history.reminders.dropped"}
 };
 
 /* @ngInject */
@@ -15,8 +16,10 @@ function HistoryIconDirective() {
     link: link
   };
 
-  function link(scope, element) {
-    element.addClass(icon[scope.summary.type]);
+  function link(scope, element, attributes) {
+    var typeData = data[scope.summary.type];
+    attributes.$set("title", scope.$eval("'" + typeData.tooltip + "' | i18next"));
+    element.addClass(typeData.class);
   }
 }
 
