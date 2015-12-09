@@ -8,7 +8,7 @@ module.exports = function (grunt) {
     var result = {};
     var keys = Object.keys(grunt.filerev.summary);
     keys.forEach(function (key) {
-      result[key.replace("public", "")] = grunt.filerev.summary[key].replace("public", "");
+      result[key.replace("server/public", "")] = grunt.filerev.summary[key].replace("server/public", "");
     });
     grunt.file.write(grunt.template.process("<%= buildDir %>/map.json"), JSON.stringify(result));
   });

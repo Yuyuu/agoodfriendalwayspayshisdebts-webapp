@@ -3,8 +3,8 @@
 var jade = require("jade");
 var i18n = require("i18next");
 var path = require("path");
-var configuration = require("../server/utils/environment_configuration");
-var mailgun = require("mailgun-js")({apiKey: configuration.emailApiKey, domain: configuration.emailApiUrl});
+var configuration = require("../configuration");
+var mailgun = require("mailgun-js")({apiKey: configuration.env.emailApiKey, domain: configuration.env.emailApiUrl});
 
 var templateWithModel = jade.compileFile(path.join(__dirname, "../views/emails/reminder.jade"));
 
@@ -17,7 +17,7 @@ exports.send = function send(request, response) {
   });
 
   var data = {
-    from: configuration.emailFrom,
+    from: configuration.env.emailFrom,
     to: recipients,
     subject: i18n.t("app.reminder.subject") + " [" + event.name + "]",
     html: templateWithModel({t: i18n.t, event: event}),

@@ -9,6 +9,7 @@ var remindersRoute = require("./reminders");
 module.exports = function (app) {
   app.get("/", homeRoute.index);
   app.get(/^\/templates\/(.*)$/, templatesRoute.serve);
+  require("./api").register(app);
   app.post("/reminders", bodyParser.json(), remindersRoute.send);
 
   app.get("*", function (request, response) {

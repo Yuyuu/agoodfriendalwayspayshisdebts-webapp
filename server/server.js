@@ -2,13 +2,11 @@
 
 var express = require("express");
 var path = require("path");
-var configuration = require("./utils/environment_configuration");
 var i18n = require("i18next");
 var serveStatic = require("serve-static");
 var morgan = require("morgan");
-var ProxyHelper = require("./proxy");
-var Router = require("./router");
-var revision = require("../revision");
+
+var configuration = require("./configuration");
 
 function Server() {
   var app = express();
@@ -20,17 +18,14 @@ function Server() {
     app.use(morgan("combined"));
   }
 
-  app.set("views", path.join(__dirname, "../views"));
+  app.set("views", path.join(__dirname, "views"));
   app.set("view engine", "jade");
-  app.use(serveStatic(path.join(__dirname, "../public/")));
-
-  revision.initMap(require(configuration.revisionMapPath));
-  revision.registerAppHelper(app);
+  app.use(serveStatic(path.join(__dirname, "public")));
 
   configureTranslation();
+  require("./routes")(app);
 
-  new ProxyHelper().configure(app);
-  new Router().configure(app);
+  require("./revision").register(configuration.env.revisionMapPath, app);
 
   this.start = function () {
     server = app.listen(port(), function () {
@@ -39,12 +34,12 @@ function Server() {
   };
 
   function port() {
-    return configuration.serverPort;
+    return configuration.env.serverPort;
   }
 
   function configureTranslation() {
     i18n.init({
-      ignoreRoutes: ["public/"],
+      resGetPath: "server/locales/__lng__/__ns__.json",
       fallbackLng: "en",
       detectLngFromHeaders: true
     });
