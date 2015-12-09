@@ -1,9 +1,9 @@
 .operation
   .operation-line
-    .operation-circle
+    i.fa(ng-class="icon()")
   .operation-info
     time(ng-bind="::operation.creationDate | debtsTime")
     p
-      | <span ng-bind="entity() | i18next"></span>
+      span(ng-bind="label() | i18next")
       |  <span class="data" ng-bind="::operation.data"></span>
       |  <span ng-bind="complement() | i18next"></span>

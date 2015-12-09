@@ -179,9 +179,9 @@
         "edit": "a été modifié"
       },
       "reminder": {
-        "label": "L'envoi d'un rappel à",
-        "deliver": "a été effectué",
-        "drop": "a échoué"
+        "label": "Le rappel envoyé à",
+        "deliver": "a été réceptionné",
+        "drop": "n'a pu être transmi"
       }
     },
     "results": {

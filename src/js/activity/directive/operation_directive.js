@@ -1,23 +1,13 @@
 "use strict";
 
-var entity = {
-  EVENT_CREATION: "app.activity.event.label",
-  NEW_EXPENSE: "app.activity.expense.label",
-  EXPENSE_DELETED: "app.activity.expense.label",
-  NEW_PARTICIPANT: "app.activity.participant.label",
-  PARTICIPANT_EDITED: "app.activity.participant.label",
-  REMINDER_DELIVERED: "app.activity.reminder.label",
-  REMINDER_DROPPED: "app.activity.reminder.label"
-};
-
-var operation = {
-  EVENT_CREATION: "app.activity.event.create",
-  NEW_EXPENSE: "app.activity.expense.new",
-  EXPENSE_DELETED: "app.activity.expense.delete",
-  NEW_PARTICIPANT: "app.activity.participant.new",
-  PARTICIPANT_EDITED: "app.activity.participant.edit",
-  REMINDER_DELIVERED: "app.activity.reminder.deliver",
-  REMINDER_DROPPED: "app.activity.reminder.drop"
+var data = {
+  EVENT_CREATION: {label: "app.activity.event.label", complement: "app.activity.event.create", icon: "fa-thumb-tack"},
+  NEW_EXPENSE: {label: "app.activity.expense.label", complement: "app.activity.expense.new", icon: "fa-credit-card"},
+  EXPENSE_DELETED: {label: "app.activity.expense.label", complement: "app.activity.expense.delete", icon: "fa-credit-card"},
+  NEW_PARTICIPANT: {label: "app.activity.participant.label", complement: "app.activity.participant.new", icon: "fa-user"},
+  PARTICIPANT_EDITED: {label: "app.activity.participant.label", complement: "app.activity.participant.edit", icon: "fa-user"},
+  REMINDER_DELIVERED: {label: "app.activity.reminder.label", complement: "app.activity.reminder.deliver", icon: "fa-envelope-o"},
+  REMINDER_DROPPED: {label: "app.activity.reminder.label", complement: "app.activity.reminder.drop", icon: "fa-envelope-o"}
 };
 
 /* @ngInject */
@@ -30,12 +20,18 @@ function OperationDirective() {
   };
 
   function link(scope) {
-    scope.entity = function () {
-      return entity[scope.operation.type];
+    var typeData = data[scope.operation.type];
+
+    scope.label = function () {
+      return typeData.label;
     };
 
     scope.complement = function () {
-      return operation[scope.operation.type];
+      return typeData.complement;
+    };
+
+    scope.icon = function () {
+      return typeData.icon;
     };
   }
 }

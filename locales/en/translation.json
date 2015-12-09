@@ -178,9 +178,9 @@
         "edit": "has been edited"
       },
       "reminder": {
-        "label": "Sending a reminder to",
-        "deliver": "has succeeded",
-        "drop": "has failed"
+        "label": "The reminder sent to",
+        "deliver": "has been received",
+        "drop": "could not be delivered"
       }
     },
     "results": {

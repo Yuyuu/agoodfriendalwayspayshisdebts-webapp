@@ -9,32 +9,36 @@
 .operation-line {
   position: relative;
   display: table-cell;
-  padding: 1em 3em;
+  padding: 1em 2em;
   vertical-align: middle;
   width: 3em;
+  text-align: center;
 
-  &:before {
+  &:after {
     content: "";
     position: absolute;
     z-index: 1;
     top: -30%;
+    right: 0;
     bottom: -15%;
-    left: 50%;
-    border-left: 3px solid @second-brand-color;
-    margin-left: -1px;
+    left: 0;
+    border-left: 2px solid @second-brand-color;
+    width: 0;
+    margin: auto;
   }
-}
 
-.operation-circle {
-  position: absolute;
-  top: 1.3em;
-  left: 2em;
-  z-index: 2;
-  width: 2em;
-  height: 2em;
-  border-radius: 100%;
-  background: @main-brand-color;
-  box-shadow: 0 0 0 4px white, inset 0 2px 0 rgba(0, 0, 0, 0.08), 0 3px 0 4px rgba(0, 0, 0, 0.05);
+  > i {
+    position: relative;
+    width: 2em;
+    height: 2em;
+    line-height: 1.9em;
+    color: #ccc;
+    background: @body-bg;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    z-index: 2;
+    text-align: center;
+  }
 }
 
 .operation-info {
@@ -54,7 +58,7 @@
     margin: 0;
 
     .data {
-      font-size: 1.3em;
+      font-size: 1.1em;
       font-weight: bold;
       color: @main-brand-color;
     }
@@ -64,7 +68,7 @@
     content: "";
     position: absolute;
     left: 5.8em;
-    margin-top: 0.8em;
+    margin-top: 0.7em;
     border: 0.7em solid transparent;
     border-right-color: #fff;
   }
