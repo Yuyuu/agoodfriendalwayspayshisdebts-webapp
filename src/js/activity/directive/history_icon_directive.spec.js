@@ -49,7 +49,7 @@ describe("The history icon directive", function () {
     scope.summary.type = "REMINDER_DELIVERED";
     directive.link(scope, element, attributes);
     expect(attributes.$set).to.have.been.calledWith("title", "'app.history.reminders.delivered' | i18next");
-    expect(element.addClass).to.have.been.calledWith("fa-envelope-o");
+    expect(element.addClass).to.have.been.calledWith("fa-check-circle");
 
     scope.summary.type = "REMINDER_DROPPED";
     directive.link(scope, element, attributes);

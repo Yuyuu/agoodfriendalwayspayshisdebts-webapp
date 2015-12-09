@@ -5,7 +5,7 @@ var data = {
   "EXPENSE_DELETED": {"class": "fa-minus-circle", tooltip: "app.history.expenses.deleted"},
   "NEW_PARTICIPANT": {"class": "fa-user-plus", tooltip: "app.history.participants.added"},
   "PARTICIPANT_EDITED": {"class": "fa-pencil", tooltip: "app.history.participants.edited"},
-  "REMINDER_DELIVERED": {"class": "fa-envelope-o", tooltip: "app.history.reminders.delivered"},
+  "REMINDER_DELIVERED": {"class": "fa-check-circle", tooltip: "app.history.reminders.delivered"},
   "REMINDER_DROPPED": {"class": "fa-exclamation-triangle", tooltip: "app.history.reminders.dropped"}
 };
 
