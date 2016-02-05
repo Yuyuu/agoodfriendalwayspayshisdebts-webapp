@@ -1,0 +1,24 @@
+- var addParticipantTranslation = t("app.event.add_p");
+
+.event-header
+  .jumbotron.inverse
+    .container
+      h1(ng-bind="::model.event.name")
+      p(ng-cloak="").lead #{t("app.event.with")}&nbsp;
+        span(debts-inline-data="model.event.participants;name")
+.container
+  .row
+    .event-layout-aside.col-md-2.col-xs-12.pull-right
+      .row
+        .col-md-12.col-sm-3.col-xs-6
+          ul.list-unstyled.list-icon
+            li
+              a.action(href="javascript:void(0)" ng-click="model.addParticipant()" title=addParticipantTranslation)
+                i.fa.fa-user-plus
+                = addParticipantTranslation
+      .row.hidden-sm.hidden-xs
+        .col-md-12
+          include includes/history
+    .event-layout-content.col-md-10.col-xs-12
+      include includes/nav_tabs
+      div(ui-view="")

@@ -1,0 +1,42 @@
+- var shareLabel = t("app.results.share");
+
+.results-board
+  .row
+    .col-md-3.col-sm-4.col-xs-12
+      include includes/reminder_panel
+    .col-md-9.col-sm-8.col-xs-12
+      .filters.form-inline
+        .form-group
+          label(for="nameFilter")
+            span.fa.fa-filter
+            |  #{t("app.results.filter")}&nbsp;
+          input#nameFilter.form-control(type="text" placeholder="e.g. Lea" ng-model="results.filter.participantName")
+      .results
+        .participant-result(ng-repeat="participantResult in results.results | filter:results.filter")
+          .result-box
+            .row
+              .col-sm-6.col-xs-12
+                h2 {{::participantResult.participantName}}&nbsp;
+                  span.label.label-primary
+                    | {{::participantResult.participantShare, plural, =1 {1 #{shareLabel}} other {# #{shareLabel}s}}}
+                p= t("app.results.spent")
+                  | &nbsp;
+                  span.text-bold(ng-bind="::participantResult.totalSpent | currency")
+              .col-sm-6.col-xs-12
+                .table-responsive
+                  table.table
+                    thead
+                      tr
+                        th= t("app.results.participant")
+                        th= t("app.results.debt")
+                        th= t("app.results.advance")
+                    tbody
+                      tr(ng-repeat="row in ::participantResult.details" debts-visual-indicator="::")
+                        th(scope="row" ng-bind="::row.participantName")
+                        td(ng-bind="::row.mitigatedDebt | currency")
+                        td(ng-bind="::row.advance | currency")
+                    tfoot
+                      tr
+                        th(scope="row")= t("app.results.total")
+                        td.text-bold(ng-bind="::participantResult.totalDebt | currency")
+                        td.text-bold(ng-bind="::participantResult.totalAdvance | currency")

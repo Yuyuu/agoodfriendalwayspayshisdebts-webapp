@@ -1,0 +1,236 @@
+{
+  "locale": "Français",
+  "app": {
+    "angularLocale": "français",
+    "title": "Un bon ami paye toujours ses dettes - Répartissez les dépenses d'un événement entre ses participants",
+    "description": "Créez un événement avec des participants, ajoutez des dépenses et répartissez-les entre les participants sélectionnés. Obtenez ensuite un récapitulatif des sommes dûes par chacun.",
+    "made_by": "Créé par",
+    "twitter_account": "Compte twitter",
+    "notification": {
+      "EXPENSE_ADDED_SUCCESS": {
+        "title": "Ajout effectué !",
+        "content": "La dépense a été ajoutée à l'événement avec succès."
+      },
+      "EXPENSE_DELETED_SUCCESS": {
+        "title": "Suppression effectuée !",
+        "content": "La dépense a été supprimée de l'événement avec succès."
+      },
+      "PARTICIPANT_ADDED_SUCCESS": {
+        "title": "Ajout effectué !",
+        "content": "Le participant a été ajouté à l'événement avec succès."
+      },
+      "PARTICIPANT_UPDATED_SUCCESS": {
+        "title": "Modification effectuée !",
+        "content": "Le participant a été modifié avec succès."
+      },
+      "REMINDER_REQUEST_SUCCESS": {
+        "title": "Demande effectuée !",
+        "content": "Une demande d'envoi de rappel a été ajoutée avec succès."
+      },
+      "REMINDER_REQUEST_ERROR": {
+        "title": "La demande a échoué :(",
+        "content": "Une erreur s'est produite et la demande d'envoi de rappel n'a pas pu être ajoutée."
+      }
+    },
+    "home": {
+      "title": "Un bon ami paye toujours ses dettes",
+      "pitch": "Répartissez les dépenses d'un événement entre ses participants.",
+      "create": {
+        "title": "Créez votre événement",
+        "e_name": "Nom de l'événement",
+        "e_name_ph": "Weekend à la plage",
+        "participants": "Participants",
+        "p_name": "Nom",
+        "p_email": "Email (optionnel)",
+        "p_share": "Part",
+        "add_p": "Ajouter un participant",
+        "remove_p": "Supprimer ce participant",
+        "create": "Créer l'événement",
+        "loading": "Création de l'événement...",
+        "email_help": "Les emails sont utilisés uniquement pour envoyer des rappels.",
+        "errors": {
+          "EVENT_NAME_REQUIRED": "Vous devez spécifier un nom pour l'événement",
+          "PARTICIPANTS_REQUIRED": "Vous devez spécifier au moins un participant pour l'événement",
+          "PARTICIPANT_NAME_REQUIRED": "Vous devez spécifier un nom pour chaque participant",
+          "PARTICIPANT_SHARE_REQUIRED": "Vous devez spécifier la part pour chaque participant",
+          "INVALID_SHARE": "La part de chaque participant doit être supérieure à 0",
+          "DEFAULT": "Désolé, une erreur s'est produite lors de la création de l'événement"
+        }
+      }
+    },
+    "event": {
+      "with": "Avec",
+      "tabs": {
+        "expenses": "Dépenses",
+        "participants": "Participants",
+        "results": "Résultats",
+        "activity": "Activité"
+      },
+      "add_p": "Ajouter un participant"
+    },
+    "history": {
+      "title": "Historique",
+      "refresh": "Actualiser",
+      "expenses": {
+        "label": "Dépenses",
+        "added": "Dépense ajoutée",
+        "deleted": "Dépense supprimée"
+      },
+      "participants": {
+        "label": "Participants",
+        "added": "Participant ajouté",
+        "edited": "Participant modifié"
+      },
+      "reminders": {
+        "label": "Rappels",
+        "delivered": "Rappel réceptionné",
+        "dropped": "Echec de l'envoi du rappel"
+      },
+      "older": "Plus ancien"
+    },
+    "expenses": {
+      "load_more": "Voir plus de dépenses",
+      "create": {
+        "title": "Nouvelle dépense",
+        "label": "Label",
+        "label_ph": "Courses pour le barbecue",
+        "purchaser": "Acheteur",
+        "purchaser_ph": "Choisir...",
+        "amount": "Somme dépensée",
+        "amount_ph": "9,11",
+        "precision": ",00",
+        "share": "Partager entre",
+        "all": "Tous",
+        "none": "Aucun",
+        "selected": "sélectionnés",
+        "share_ph": "Choisir parmi les participants...",
+        "description_ph": "Ajoutez d'éventuelles précisions",
+        "submit": "Ajouter la dépense",
+        "loading": "Ajout de la dépense...",
+        "errors": {
+          "EXPENSE_PURCHASER_REQUIRED": "Vous devez sélectionner un acheteur",
+          "EXPENSE_LABEL_REQUIRED": "Vous devez spécifier un label pour la dépense",
+          "EXPENSE_AMOUNT_REQUIRED": "Vous devez spécifier la somme de la dépense",
+          "INVALID_AMOUNT": "Le somme spécifiée doit être supérieure à 0",
+          "DEFAULT": "Désolé, une erreur s'est produite lors de l'ajout de la dépense"
+        }
+      },
+      "delete": {
+        "label": "Supprimer",
+        "title": "Suppression d'une dépense",
+        "warning": "Êtes-vous certain de vouloir supprimer définitivement la dépense",
+        "warning_1": "Êtes-vous certain de vouloir",
+        "warning_2": "supprimer définitivement",
+        "warning_3": "la dépense",
+        "question_mark": " ?",
+        "confirm": "Supprimer la dépense"
+      }
+    },
+    "participants": {
+      "share": "part",
+      "missing_email": "Aucune adresse email",
+      "add": {
+        "title": "Ajout d'un participant",
+        "name": "Nom",
+        "email": "Email (optionnel)",
+        "share": "Part",
+        "expenses": "Dépenses",
+        "all": "Toutes",
+        "none": "Aucune",
+        "selected": "sélectionnée(s)",
+        "expenses_ph": "Choisir parmi les dépenses...",
+        "help": "Choisir les dépenses dans lesquelles inclure le participant.",
+        "submit": "Ajouter le participant",
+        "loading": "Ajout du participant...",
+        "errors": {
+          "PARTICIPANT_NAME_REQUIRED": "Vous devez spécifier le nom du participant.",
+          "PARTICIPANT_SHARE_REQUIRED": "Vous devez spécifier la part du participant.",
+          "INVALID_SHARE": "La part du participant doit être supérieure à 0.",
+          "DEFAULT": "Désolé, une erreur s'est produite lors de l'ajout du participant"
+        }
+      },
+      "edit": {
+        "label": "Modifier",
+        "title": "Modification d'un participant",
+        "name": "Nom",
+        "email": "Email (optionnel)",
+        "share": "Part",
+        "submit": "Modifier le participant",
+        "loading": "Modification...",
+        "errors": {
+          "INVALID_EMAIL": "L'email doit être valide",
+          "DEFAULT": "Désolé, une erreur s'est produite lors de la mise à jour du participant"
+        }
+      }
+    },
+    "activity": {
+      "event": {
+        "label": "L'événement",
+        "create": "a été créé"
+      },
+      "expense": {
+        "label": "La dépense",
+        "new": "a été ajoutée",
+        "delete": "a été supprimée"
+      },
+      "participant": {
+        "label": "Le participant",
+        "new": "a été ajouté",
+        "edit": "a été modifié"
+      },
+      "reminder": {
+        "label": "Le rappel envoyé à",
+        "deliver": "a été réceptionné",
+        "drop": "n'a pu être transmi"
+      }
+    },
+    "results": {
+      "filter": "Filtrer par nom :",
+      "share": "part",
+      "spent": "Somme totale dépensée :",
+      "participant": "Participant",
+      "debt": "Dette",
+      "advance": "Avance",
+      "total": "Total",
+      "reminder": {
+        "title": "Nouveau rappel",
+        "recipients": {
+          "label": "Destinataires",
+          "all": "Tous",
+          "none": "Aucun",
+          "selected": "sélectionnés",
+          "ph": "Aucun sélectionné"
+        },
+        "submit": "Envoyer le rappel",
+        "loading": "Envoi des rappels..."
+      }
+    },
+    "errors": {
+      "default": {
+        "title": "(╯°□°)╯︵ ┻━┻",
+        "message": "Une erreur est survenue malgré tous les efforts du donger",
+        "action": "Retour à l'accueil"
+      },
+      "404": {
+        "title": "¯\\_(⊙_ʖ⊙)_/¯",
+        "message": "La ressource demandée est introuvable",
+        "action": "Retour à l'accueil"
+      }
+    },
+    "modal": {
+      "close": "Fermer",
+      "cancel": "Annuler"
+    },
+    "reminder": {
+      "subject": "Rappel",
+      "title": "Un bon ami paye toujours ses dettes - Rappel pour événement",
+      "content": {
+        "title": "un bon ami paye toujours ses dettes",
+        "hello": "Bonjour",
+        "object": "Vous pouvez consulter les résultats pour l'événement en suivant le lien ci-dessous.",
+        "saying": "Et n'oubliez pas, les bons comptes font les bons amis !",
+        "bye": "A bientôt."
+      }
+    }
+  }
+}

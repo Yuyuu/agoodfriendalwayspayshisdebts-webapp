@@ -1,0 +1,54 @@
+.debts-panel(affix-panel="" data-offset-top="-20")
+  form(name="xpensCtrl.form" ng-controller="AddExpenseController as xpensCtrl" novalidate=""
+      ng-submit="xpensCtrl.addExpense(xpensCtrl.expense)")
+    .debts-panel-heading
+      h4.debts-panel-title= t("app.expenses.create.title")
+    .debts-panel-body
+      .row
+        .col-xs-12
+          .form-group(element-validation="xpensCtrl.form.expenseLabel")
+            label.control-label(for="inputExpenseLabel")= t("app.expenses.create.label")
+            input#inputExpenseLabel.form-control(type="text" ng-model="xpensCtrl.expense.label" required=""
+                name="expenseLabel" placeholder="e.g. #{t('app.expenses.create.label_ph')}")
+      .row
+        .col-sm-6.col-xs-7
+          .form-group(element-validation="xpensCtrl.form.expenseAmount")
+            label.control-label(for="inputExpenseAmount")= t("app.expenses.create.amount")
+            .input-group
+              .input-group-addon(debts-currency-symbol="::")
+              input#inputExpenseAmount.form-control.text-right(ng-model="xpensCtrl.expense.amount" required=""
+                  placeholder="e.g. #{t('app.expenses.create.amount_ph')}" name="expenseAmount" currency-validation="")
+              .input-group-addon= t("app.expenses.create.precision")
+        .col-sm-6.col-xs-12
+          .form-group(element-validation="xpensCtrl.form.expensePurchaser")
+            label.control-label(for="inputExpensePurchaser")= t("app.expenses.create.purchaser")
+            select#inputExpensePurchaser.form-control(ng-model="xpensCtrl.expense.purchaserUuid" required=""
+                ng-options="participant.id as participant.name for participant in model.event.participants track by participant.id")
+              option(value="" disabled="" selected="")= t("app.expenses.create.purchaser_ph")
+      .row
+        .col-xs-12
+          .form-group(element-validation="xpensCtrl.form.expenseParticipants")
+            label.control-label(for="inputExpenseParticipants")= t("app.expenses.create.share")
+            br
+            button#inputExpenseParticipants.btn.btn-default(type="button" ng-model="xpensCtrl.expense.participantsUuids"
+                bs-select="" data-multiple="1" data-all-none-buttons="true" name="expenseParticipants"
+                data-all-text=t("app.expenses.create.all") required="" data-max-length="4"
+                data-none-text=t("app.expenses.create.none") data-icon-checkmark="fa fa-check-square-o"
+                data-max-length-html=t("app.expenses.create.selected")
+                data-placeholder=t("app.expenses.create.share_ph")
+                bs-options="participant.id as participant.name for participant in model.event.participants track by participant.id")
+      .row
+        .col-xs-12
+          .form-group.margin-btm-0
+            textarea.form-control(ng-model="xpensCtrl.expense.description" rows="3"
+                placeholder=t("app.expenses.create.description_ph"))
+      .row(ng-cloak="" ng-if="xpensCtrl.errors")
+        .col-xs-12
+          .alert.alert-danger.margin-top-1.margin-btm-0
+            ul
+              li(ng-repeat="error in xpensCtrl.errors" ng-i18next="app.expenses.create.errors.{{error.message}}")
+    .debts-panel-footer
+      button.btn.btn-sm.btn-primary(type="submit" disable-on-request="" ng-disabled="xpensCtrl.form.$invalid"
+          data-loading-text=t("app.expenses.create.loading"))
+        i.fa.fa-plus
+        = t("app.expenses.create.submit")

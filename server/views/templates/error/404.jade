@@ -1,0 +1,8 @@
+.jumbotron.text-center
+  h1= t("app.errors.404.title")
+  p= t("app.errors.404.message")
+    |  (404)
+  p
+    a.btn.btn-primary.btn-lg(ui-sref="home", type="button")
+      i.fa.fa-home
+      = t("app.errors.404.action")

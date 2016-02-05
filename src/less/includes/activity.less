@@ -1,0 +1,75 @@
+.activity {
+  margin-top: 3em;
+}
+
+.operation {
+  padding: 0 0 2em 0;
+}
+
+.operation-line {
+  position: relative;
+  display: table-cell;
+  padding: 1em 1.3em;
+  vertical-align: middle;
+  width: 3em;
+  text-align: center;
+
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: -30%;
+    bottom: -15%;
+    left: 50%;
+    border-left: 2px solid @second-brand-color;
+    margin-left: -1px;
+  }
+
+  > i {
+    position: relative;
+    z-index: 2;
+    width: 2em;
+    height: 2em;
+    line-height: 1.9em;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 100%;
+    color: #ccc;
+    background-color: @body-bg;
+  }
+}
+
+.operation-info {
+  position: relative;
+  display: table-cell;
+  padding: 1em 2em;
+  border-radius: @border-radius-base;
+  background-color: #fff;
+
+  time {
+    display: block;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: #ccc;
+  }
+
+  p {
+    margin: 0;
+
+    .data {
+      font-size: 1.1em;
+      font-weight: bold;
+      color: @second-brand-color;
+    }
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -1.3em;
+    margin-top: -0.6em;
+    border: 0.7em solid transparent;
+    border-right-color: #fff;
+  }
+}

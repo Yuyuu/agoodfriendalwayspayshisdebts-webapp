@@ -1,0 +1,77 @@
+a {
+  color: @main-brand-color;
+
+  &:hover,
+  &:focus {
+    color: @link-hover-color;
+  }
+
+  &.external-link:after {
+    content: '▸';
+  }
+}
+
+.inverse {
+  background-color: @main-brand-color;
+  color: @inverse-brand-color;
+}
+
+.section-common {
+  padding: 40px 0;
+}
+
+.section-title {
+  text-align: center;
+  font-weight: 300;
+  margin: 0 0 30px;
+  font-size: 30px;
+  line-height: 35px;
+}
+
+.btn-debts-secondary {
+  .button-variant(@btn-debts-secondary-color; @btn-debts-secondary-bg; @btn-debts-secondary-border);
+}
+
+.btn-load-more {
+  .button-variant(@btn-load-more-color; @btn-load-more-bg; @btn-load-more-border);
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.margin-top-1 {
+  margin-top: 1em;
+}
+
+.margin-btm-0 {
+  margin-bottom: 0;
+}
+
+.margin-btm-1 {
+  margin-bottom: 1em;
+}
+
+i[ng-click] {
+  cursor: pointer;
+}
+
+.btn > i {
+  margin-right: @padding-base-horizontal;
+}
+
+.btn-sm > i {
+  margin-right: @padding-small-horizontal;
+}
+
+.btn-xs > i {
+  margin-right: @padding-xs-horizontal;
+}
+
+.btn-icon > i {
+  margin-right: 0 !important;
+}
+
+.list-icon > li i {
+  margin-right: 0.5em;
+}

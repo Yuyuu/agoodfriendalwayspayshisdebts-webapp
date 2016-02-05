@@ -1,0 +1,235 @@
+{
+  "locale": "English",
+  "app": {
+    "angularLocale": "anglais",
+    "title": "A good friend always pays his debts - Split an event expenses among its participants",
+    "description": "Create an event with participants, add expenses and split it among selected participants. Get a recap of the amounts owed by each.",
+    "made_by": "Made by",
+    "twitter_account": "Twitter account",
+    "notification": {
+      "EXPENSE_ADDED_SUCCESS": {
+        "title": "Done!",
+        "content": "The expense has been added to the event successfully."
+      },
+      "EXPENSE_DELETED_SUCCESS": {
+        "title": "Done!",
+        "content": "The expense has been deleted from the event successfully."
+      },
+      "PARTICIPANT_ADDED_SUCCESS": {
+        "title": "Done!",
+        "content": "The participant has been added to the event successfully."
+      },
+      "PARTICIPANT_UPDATED_SUCCESS": {
+        "title": "Done!",
+        "content": "The participant has been updated successfully."
+      },
+      "REMINDER_REQUEST_SUCCESS": {
+        "title": "Request done!",
+        "content": "A reminder sending request has been added successfully."
+      },
+      "REMINDER_REQUEST_ERROR": {
+        "title": "Request failed :(",
+        "content": "An error occurred and the reminder sending request could not be added."
+      }
+    },
+    "home": {
+      "title": "A good friend always pays his debts",
+      "pitch": "Split an event expenses between its participants.",
+      "create": {
+        "title": "Create your event",
+        "e_name": "Event name",
+        "e_name_ph": "Weekend at the beach",
+        "participants": "Participants",
+        "p_name": "Name",
+        "p_email": "Email (optional)",
+        "p_share": "Share",
+        "add_p": "Add a participant",
+        "remove_p": "Remove this participant",
+        "create": "Create the event",
+        "loading": "Creating the event...",
+        "email_help": "Emails are only used to send reminders.",
+        "errors": {
+          "EVENT_NAME_REQUIRED": "You must specify a name for the event",
+          "PARTICIPANTS_REQUIRED": "You must specify at least one participant for the event",
+          "PARTICIPANT_NAME_REQUIRED": "You must specify a name for each participant",
+          "PARTICIPANT_SHARE_REQUIRED": "You must specify the share of each participant",
+          "INVALID_SHARE": "The share of each participant must be greater than 0",
+          "DEFAULT": "Sorry, an error occurred while creating the event"
+        }
+      }
+    },
+    "event": {
+      "with": "With",
+      "tabs": {
+        "expenses": "Expenses",
+        "participants": "Participants",
+        "results": "Results",
+        "activity": "Activity"
+      },
+      "add_p": "Add Participant"
+    },
+    "history": {
+      "title": "History",
+      "refresh": "Refresh",
+      "expenses": {
+        "label": "Expenses",
+        "added": "Expense added",
+        "deleted": "Expense deleted"
+      },
+      "participants": {
+        "label": "Participants",
+        "added": "Participant added",
+        "edited": "Participant edited"
+      },
+      "reminders": {
+        "label": "Reminders",
+        "delivered": "Reminder delivered",
+        "dropped": "Failed to send the reminder"
+      },
+      "older": "Older"
+    },
+    "expenses": {
+      "load_more": "See more expenses",
+      "create": {
+        "title": "New expense",
+        "label": "Label",
+        "label_ph": "Errands for the BBQ",
+        "purchaser": "Purchaser",
+        "purchaser_ph": "Choose...",
+        "amount": "Amount spent",
+        "amount_ph": "9.11",
+        "precision": ".00",
+        "share": "Share between",
+        "all": "All",
+        "none": "None",
+        "selected": "selected",
+        "share_ph": "Choose among the participants...",
+        "description_ph": "Add any details",
+        "submit": "Add the expense",
+        "loading": "Adding the expense...",
+        "errors": {
+          "EXPENSE_PURCHASER_REQUIRED": "You must select a purchaser",
+          "EXPENSE_LABEL_REQUIRED": "You must specify a label for the expense",
+          "EXPENSE_AMOUNT_REQUIRED": "You must specify the amount of the expense",
+          "INVALID_AMOUNT": "The specified amount must be greater than 0",
+          "DEFAULT": "Sorry, an error occurred while creating the expense"
+        }
+      },
+      "delete": {
+        "label": "Delete",
+        "title": "Delete expense",
+        "warning_1": "Are you sure you want to",
+        "warning_2": "permanently delete",
+        "warning_3": "the expense",
+        "question_mark": "?",
+        "confirm": "Delete expense"
+      }
+    },
+    "participants": {
+      "share": "share",
+      "missing_email": "No email address",
+      "add": {
+        "title": "Add participant",
+        "name": "Name",
+        "email": "Email (optional)",
+        "share": "Share",
+        "expenses": "Expenses",
+        "all": "All",
+        "none": "None",
+        "selected": "selected",
+        "expenses_ph": "Choose among the expenses...",
+        "help": "Choose the expenses in which to include the participant.",
+        "submit": "Add the participant",
+        "loading": "Adding the participant...",
+        "errors": {
+          "PARTICIPANT_NAME_REQUIRED": "You must specify the name of the participant",
+          "PARTICIPANT_SHARE_REQUIRED": "You must specify the share of the participant",
+          "INVALID_SHARE": "The share of the participant must be greater than 0",
+          "DEFAULT": "Sorry, an error occurred while adding the participant"
+        }
+      },
+      "edit": {
+        "label": "Edit",
+        "title": "Edit participant",
+        "name": "Name",
+        "email": "Email (optional)",
+        "share": "Part",
+        "submit": "Edit the participant",
+        "loading": "Modification...",
+        "errors": {
+          "INVALID_EMAIL": "The email must be a valid",
+          "DEFAULT": "Sorry, an error occurred while updating the participant"
+        }
+      }
+    },
+    "activity": {
+      "event": {
+        "label": "The event",
+        "create": "has been created"
+      },
+      "expense": {
+        "label": "The expense",
+        "new": "has been added",
+        "delete": "has been deleted"
+      },
+      "participant": {
+        "label": "The participant",
+        "new": "has been added",
+        "edit": "has been edited"
+      },
+      "reminder": {
+        "label": "The reminder sent to",
+        "deliver": "has been received",
+        "drop": "could not be delivered"
+      }
+    },
+    "results": {
+      "filter": "Filter by name:",
+      "share": "share",
+      "spent": "Total amount spent:",
+      "participant": "Participant",
+      "debt": "Debt",
+      "advance": "Advance",
+      "total": "Total",
+      "reminder": {
+        "title": "New reminder",
+        "recipients": {
+          "label": "Recipients",
+          "all": "All",
+          "none": "None",
+          "selected": "selected",
+          "ph": "None selected"
+        },
+        "submit": "Send reminder",
+        "loading": "Sending the reminders..."
+      }
+    },
+    "errors": {
+      "default": {
+        "title": "(╯°□°)╯︵ ┻━┻",
+        "message": "An error occurred despite all the donger efforts",
+        "action": "Back to home"
+      },
+      "404": {
+        "title": "¯\\_(⊙_ʖ⊙)_/¯",
+        "message": "The requested resource cannot be found",
+        "action": "Back to home"
+      }
+    },
+    "modal": {
+      "close": "Close",
+      "cancel": "Cancel"
+    },
+    "reminder": {
+      "subject": "Reminder",
+      "title": "A good friend always pays his debts - Event reminder",
+      "content": {
+        "title": "a good friend always pays his debts",
+        "hello": "Hello",
+        "object": "You can view the results for the event by following the link below.",
+        "saying": "And remember, a paid debt is a kept friend!",
+        "bye": "See you soon."
+      }
+    }
+  }
+}

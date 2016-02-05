@@ -1,0 +1,132 @@
+.jumbotron {
+  text-align: center;
+  margin-bottom: 0;
+
+  h1 {
+    font-variant: small-caps;
+  }
+
+  .event-header & {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+#eventForm hr {
+  border-top: 5px solid #eee;
+}
+
+.participants-header {
+  border-bottom: 5px solid #eee;
+  margin-bottom: 1.3em;
+}
+
+.event-header {
+  margin-bottom: 35px;
+}
+
+.event-layout-aside {
+  @media (min-width: @screen-md-min) {
+    margin-top: 42px;
+  }
+
+  .action {
+    display: block;
+    padding: 0 0.5em;
+    height: 2em;
+    line-height: 2em;
+    font-size: 0.9em;
+    border-radius: @border-radius-small;
+    color: @text-color;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #dcdee3;
+    }
+
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+
+    &:active {
+      text-decoration: underline;
+    }
+  }
+}
+
+.expense-board {
+  @media (max-width: @screen-xs-max) {
+    // Kills affix behaviour on xs screen
+    .affix,
+    .affix-bottom {
+      position: relative !important;
+      top: auto !important;
+      width: auto !important;
+    }
+  }
+
+  @media (max-width: @screen-sm-max) {
+    margin-top: 15px;
+  }
+
+  .debts-panel-body {
+    textarea {
+      resize: none;
+      border: none;
+      box-shadow: none;
+    }
+  }
+}
+
+.results-board {
+  @media (max-width: @screen-sm-max) {
+    margin-top: 15px;
+  }
+
+  .filters {
+    @media (min-width: @screen-sm-min) {
+      margin-bottom: 15px;
+    }
+  }
+
+  .participant-result {
+    &:not(:first-child) {
+      margin-top: 30px;
+    }
+
+    .result-box {
+      background-color: #fff;
+      border-radius: @border-radius-base;
+      padding-right: 15px;
+      padding-left: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1);
+
+      .label {
+        font-size: 55%;
+        vertical-align: middle;
+      }
+    }
+
+    .table-responsive {
+      margin-top: 20px;
+    }
+
+    table {
+      tfoot {
+        border-top: 2px solid @border-color;
+      }
+    }
+  }
+}
+
+.page-footer {
+  color: #767676;
+  text-align: right;
+  font-size: 0.8em;
+
+  hr {
+    margin-bottom: 10px;
+  }
+}

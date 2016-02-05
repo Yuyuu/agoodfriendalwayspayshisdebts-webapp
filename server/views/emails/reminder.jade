@@ -1,0 +1,34 @@
+- var mainBrandColor = "#f35f5f";
+- var fontFamily = "lucida sans unicode, lucida grande, sans-serif";
+
+doctype transitional
+html(xmlns="http://www.w3.org/1999/xhtml")
+  head
+    meta(http-equiv="Content-Type" content="text/html; charset=UTF-8")
+    title= t("app.reminder.title")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  body(bgcolor="#f5f5f5" style="background-color: #f5f5f5; margin: 0; padding: 0;")
+    table(cellpadding="0" cellspacing="0" width="100%")
+      tr
+        td(align="center" style="padding: 20px 0 30px;")
+          table(cellpadding="0" cellspacing="0" width="600")
+            tr
+              td(bgcolor=mainBrandColor align="center" style="background-color: #{mainBrandColor}; color: #ffffff; font-family: #{fontFamily}; font-size: 30px; font-variant: small-caps; padding: 40px 0 30px;")
+                = t("app.reminder.content.title")
+            tr
+              td(bgcolor="#ffffff" style="background-color: #ffffff; font-family: #{fontFamily}; font-size: 12px; text-align: justify; padding: 40px 30px 30px;")
+                table(cellpadding="0" cellspacing="0" width="100%")
+                  tr
+                    td(style="font-family: #{fontFamily}; padding: 0 0 20px;")
+                      = t("app.reminder.content.hello")
+                      |  <strong>%recipient.name%</strong>,<br/>
+                      = t("app.reminder.content.object")
+                  tr
+                    td(align="center" style="color: #{mainBrandColor}; font-family: #{fontFamily}; font-size: 20px; padding: 0 0 30px;")
+                      a(href=event.link target="_blank" title=event.name style="color: #{mainBrandColor}; font-weight: normal; text-decoration: underline;")
+                        = event.name
+                  tr
+                    td(style="font-family: #{fontFamily};")
+                      = t("app.reminder.content.saying")
+                      br
+                      = t("app.reminder.content.bye")

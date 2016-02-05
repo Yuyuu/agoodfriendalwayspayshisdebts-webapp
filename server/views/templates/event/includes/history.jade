@@ -1,0 +1,21 @@
+section.history(ng-controller="HistoryController as history")
+  .debts-panel
+    .debts-panel-heading
+      h4.debts-panel-title= t("app.history.title")
+        i.fa.fa-refresh.pull-right(ng-click="history.refresh()" bs-tooltip="" data-title=t("app.history.refresh")
+            data-container="body")
+    .debts-panel-body
+      .form-group.form-group-sm
+        select.form-control(ng-model="history.filter" ng-change="history.refresh()"
+            ng-options="filter.name as filter.translation | i18next for filter in history.filters")
+      .history-group
+        .history-summary(ng-repeat="summary in history.summaries track by summary.id")
+          time(ng-bind="::summary.creationDate | debtsTime")
+          .history-summary-data
+            i.fa(bs-tooltip="" debts-history-icon="" data-title="" data-container="body")
+            span  {{::summary.data}}
+      .history-more.text-center
+        button.btn.btn-load-more.btn-xs(type="button" ng-click="history.loadMore()"
+            ng-disabled="history.allLoaded || history.loading")
+          i.fa.fa-arrow-circle-o-down
+          = t("app.history.older")

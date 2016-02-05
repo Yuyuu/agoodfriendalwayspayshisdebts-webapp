@@ -1,0 +1,10 @@
+extends include/layout
+block content
+  .content
+    div(ui-view="" autoscroll="" ng-strict-di="")
+
+block js
+  script(src="/i18next/i18next.js")
+  script(src=revision("vendor", "js"))
+  script(src=revision("main", "js"))
+  script(src="/angular-locale_#{i18n.locale().toLowerCase()}.js")

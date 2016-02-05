@@ -1,0 +1,18 @@
+nav
+  ul.nav.nav-tabs.nav-tabs-content
+    li(role="presentation" ui-sref-active="active")
+      a(ui-sref="event.expenses")
+        i.tab-icon.fa.fa-credit-card-alt.fa-fw
+        |  #{t("app.event.tabs.expenses")}
+    li(role="presentation" ui-sref-active="active")
+      a(ui-sref="event.participants")
+        i.tab-icon.fa.fa-users.fa-fw
+        |  #{t("app.event.tabs.participants")}
+    li(role="presentation" ui-sref-active="active")
+      a(ui-sref="event.activity")
+        i.tab-icon.fa.fa-heartbeat.fa-fw
+        |  #{t("app.event.tabs.activity")}
+    li(role="presentation" ui-sref-active="active")
+      a(ui-sref="event.results")
+        i.tab-icon.fa.fa-list.fa-fw
+        |  #{t("app.event.tabs.results")}
