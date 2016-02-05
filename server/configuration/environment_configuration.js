@@ -16,7 +16,7 @@ let appConfig = config({
   emailApiUrl: {
     env: 'AGFAPHD_WEBAPP_EMAIL_API_URL',
     type: 'string',
-    default: 'sandboxa92275a42f30470c860fda4a09140bf6.mailgun.org'
+    required: true
   },
   emailFrom: {
     env: 'AGFAPHD_WEBAPP_EMAIL_FROM',
