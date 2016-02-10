@@ -17,8 +17,17 @@
   "dependencies": {
     "12factor-config": "^1.1.0",
     "angular": "^1.5.0",
+    "angular-animate": "^1.5.0",
     "angular-bootstrap": "^0.12.2",
+    "angular-cookies": "^1.5.0",
     "angular-i18n": "^1.5.0",
+    "angular-loading-bar": "^0.8.0",
+    "angular-masonry": "^0.15.0",
+    "angular-message-format": "^1.5.0",
+    "angular-motion": "^0.4.3",
+    "angular-sanitize": "^1.5.0",
+    "angular-strap": "^2.3.7",
+    "angular-ui-notification": "^0.1.0",
     "angular-ui-router": "^0.2.17",
     "body-parser": "^1.14.2",
     "express": "^4.13.4",
@@ -30,6 +39,7 @@
     "lodash": "^4.2.1",
     "mailgun-js": "^0.7.7",
     "morgan": "^1.6.1",
+    "ng-i18next": "^0.5.2",
     "serve-static": "^1.10.2"
   },
   "devDependencies": {
