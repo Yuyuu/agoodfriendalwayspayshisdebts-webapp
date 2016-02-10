@@ -1,6 +1,6 @@
-@bower-components-directory: "../../node_modules";
-@bootstrap-less-directory: "@{bower-components-directory}/bootstrap/less";
-//@angular-motion-src-directory: "@{bower-components-directory}/angular-motion/src";
+@modules-directory: "../../node_modules";
+@bootstrap-less-directory: "@{modules-directory}/bootstrap/less";
+//@angular-motion-src-directory: "@{modules-directory}/angular-motion/src";
 
 @import "@{bootstrap-less-directory}/variables";
 @import "@{bootstrap-less-directory}/mixins";
@@ -42,9 +42,9 @@
 @import "@{bootstrap-less-directory}/utilities";
 @import "@{bootstrap-less-directory}/responsive-utilities";
 
-//@import "@{bower-components-directory}/fontawesome/less/font-awesome";
+@import "@{modules-directory}/font-awesome/less/font-awesome";
 
-//@import (less) "@{bower-components-directory}/angular-loading-bar/src/loading-bar.css";
+//@import (less) "@{modules-directory}/angular-loading-bar/src/loading-bar.css";
 
 //@import "@{angular-motion-src-directory}/collapse/collapse";
 //@import "@{angular-motion-src-directory}/fade/fade";

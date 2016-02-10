@@ -22,6 +22,7 @@
     "angular-ui-router": "^0.2.17",
     "body-parser": "^1.14.2",
     "express": "^4.13.4",
+    "font-awesome": "^4.5.0",
     "http-proxy-middleware": "^0.9.1",
     "i18next": "^1.10.6",
     "jade": "^1.11.0",
