@@ -26,6 +26,7 @@ class Server {
     this.app.set('view engine', 'jade');
     this.app.use(serveStatic(path.join(__dirname, 'public')));
     this.app.use(serveStatic(path.join(__dirname, '../node_modules/angular-i18n')));
+    this.app.use(serveStatic(path.join(__dirname, '../node_modules')));
     require('./routes')(this.app);
     new Revision(path.join(__dirname, 'public', 'app', 'map.json'), 'app').register(this.app);
     i18n.registerAppHelper(this.app);

@@ -11,7 +11,6 @@ import 'ng-i18next';
 import 'angular-strap';
 import 'angular-strap/dist/angular-strap.tpl';
 import 'angular-bootstrap';
-import 'jquery';
 import '../../../node_modules/font-awesome/fonts/fontawesome-webfont.woff';
 import '../../less/style.less';
 

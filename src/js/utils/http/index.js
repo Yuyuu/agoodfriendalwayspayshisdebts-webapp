@@ -11,7 +11,7 @@ function forwardErrorsIfAny($q, requestPromise) {
   });
 }
 
-module.exports = {
+export default {
   forwardResponseData: forwardResponseData,
   forwardErrorsIfAny: forwardErrorsIfAny
 };

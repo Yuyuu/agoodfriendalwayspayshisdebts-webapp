@@ -1,10 +1,11 @@
 'use strict';
 
 export default class CreateEventController {
+
   /* @ngInject */
   constructor($state, Events) {
-    this.$state = $state;
-    this.Events = Events;
+    this._$state = $state;
+    this._Events = Events;
     this.event = {participants: [{email: '', share: 1}]};
   }
 
@@ -14,8 +15,8 @@ export default class CreateEventController {
 
   createEvent(event) {
     delete this.errors;
-    this.Events.create(event)
-        .then(data => this.$state.go('event.expenses', {id: data.id}))
+    this._Events.create(event)
+        .then(data => this._$state.go('event.expenses', {id: data.id}))
         .catch(errors => this.errors = errors);
   }
 

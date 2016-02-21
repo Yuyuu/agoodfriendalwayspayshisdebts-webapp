@@ -1,6 +1,6 @@
 'use strict';
 
-let httpUtils = require('../../utils/http');
+import httpUtils from '../../utils/http';
 
 export default class EventsResource {
   /* @ngInject */
@@ -15,6 +15,6 @@ export default class EventsResource {
   }
 
   get(eventId) {
-    return this.$http.get('/api/events/' + eventId + '/meta').then(httpUtils.forwardResponseData);
+    return this.$http.get(`/api/events/${eventId}/meta`).then(httpUtils.forwardResponseData);
   }
 }
