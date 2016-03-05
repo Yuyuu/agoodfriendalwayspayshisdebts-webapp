@@ -11,11 +11,17 @@ main
         .col-md-8.col-md-offset-2.col-sm-10.col-sm-offset-1.col-xs-12
           form#eventForm(name="eventForm" ng-submit="model.createEvent(model.event)" novalidate="")
             .row
-              .col-sm-10.col-sm-offset-1.col-xs-12
+              .col-sm-8.col-sm-offset-1.col-xs-9
                 .form-group(element-validation="eventForm.eventName")
                   label.control-label(for="inputEventName") #{t("app.home.create.e_name")}
                   input#inputEventName.form-control.input-lg(type="text" ng-model="model.event.name" name="eventName"
                       placeholder="e.g. #{t('app.home.create.e_name_ph')}" required="")
+              .col-sm-2.col-xs-3
+                .form-group
+                  label.control-label(for="inputEventCurrency") #{t("app.home.create.e_currency")}
+                  select#inputEventCurrency.form-control.input-lg(ng-model="model.event.currency" name="eventCurrency"
+                      required="")
+                    option(ng-repeat="currency in ::model.currencies") {{::currency}}
             .row
               .participants-header.col-sm-10.col-sm-offset-1.col-xs-12
                 h4

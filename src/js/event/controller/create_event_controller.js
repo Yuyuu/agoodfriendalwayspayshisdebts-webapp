@@ -1,10 +1,11 @@
 "use strict";
 
 /* @ngInject */
-function CreateEventController($state, Events) {
+function CreateEventController($state, Events, Currencies) {
   var model = this;
 
-  model.event = {participants: [{email: "", share: 1}]};
+  model.currencies = Currencies;
+  model.event = {currency: "€", participants: [{email: "", share: 1}]};
 
   model.addParticipant = addParticipant;
   model.createEvent = createEvent;

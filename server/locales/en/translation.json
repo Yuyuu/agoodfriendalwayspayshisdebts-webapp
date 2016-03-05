@@ -38,6 +38,7 @@
       "create": {
         "title": "Create your event",
         "e_name": "Event name",
+        "e_currency": "Currency",
         "e_name_ph": "Weekend at the beach",
         "participants": "Participants",
         "p_name": "Name",

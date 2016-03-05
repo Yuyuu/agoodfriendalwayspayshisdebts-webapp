@@ -8,7 +8,7 @@
           .expense-label
             h5 {{::expense.label}} <small>({{::expense.purchaserName}})</small>
           .expense-amount
-            span(ng-bind="::expense.amount | currency")
+            span(ng-bind="::expense.amount | currency:model.event.currency")
           .expense-participants
             i.fa.fa-exchange
             div(debts-inline-data="::expense.participantsNames")

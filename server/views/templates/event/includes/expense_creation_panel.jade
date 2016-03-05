@@ -15,7 +15,7 @@
           .form-group(element-validation="xpensCtrl.form.expenseAmount")
             label.control-label(for="inputExpenseAmount")= t("app.expenses.create.amount")
             .input-group
-              .input-group-addon(debts-currency-symbol="::")
+              .input-group-addon(ng-bind="::model.event.currency")
               input#inputExpenseAmount.form-control.text-right(ng-model="xpensCtrl.expense.amount" required=""
                   placeholder="e.g. #{t('app.expenses.create.amount_ph')}" name="expenseAmount" currency-validation="")
               .input-group-addon= t("app.expenses.create.precision")

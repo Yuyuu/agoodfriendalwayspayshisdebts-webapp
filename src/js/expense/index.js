@@ -10,8 +10,7 @@ expenseModule
   .service("expenseService", require("./service/expense_service"))
   .controller("AddExpenseController", require("./controller/add_expense_controller"))
   .controller("ExpensesListController", require("./controller/expenses_list_controller"))
-  .controller("DeleteExpenseController", require("./controller/delete_expense_controller"))
-  .directive("debtsCurrencySymbol", require("./directive/currency_symbol_directive"));
+  .controller("DeleteExpenseController", require("./controller/delete_expense_controller"));
 
 configureModuleRouting();
 
