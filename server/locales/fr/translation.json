@@ -51,6 +51,7 @@
         "email_help": "Les emails sont utilisés uniquement pour envoyer des rappels.",
         "errors": {
           "EVENT_NAME_REQUIRED": "Vous devez spécifier un nom pour l'événement",
+          "EVENT_CURRENCY_REQUIRED": "Vous devez spécifier une devise pour l'événement",
           "PARTICIPANTS_REQUIRED": "Vous devez spécifier au moins un participant pour l'événement",
           "PARTICIPANT_NAME_REQUIRED": "Vous devez spécifier un nom pour chaque participant",
           "PARTICIPANT_SHARE_REQUIRED": "Vous devez spécifier la part pour chaque participant",
