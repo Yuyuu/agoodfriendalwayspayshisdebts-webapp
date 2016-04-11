@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-node bin/apps.js
+node bin/app.js
