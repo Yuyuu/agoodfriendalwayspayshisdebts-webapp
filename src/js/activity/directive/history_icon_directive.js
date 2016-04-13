@@ -17,7 +17,7 @@ function HistoryIconDirective() {
   };
 
   function link(scope, element, attributes) {
-    var typeData = data[scope.summary.type];
+    var typeData = data[scope.summary.operationType];
     attributes.$set("title", scope.$eval("'" + typeData.tooltip + "' | i18next"));
     element.addClass(typeData.class);
   }

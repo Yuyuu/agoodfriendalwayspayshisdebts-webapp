@@ -13,7 +13,7 @@ section.history(ng-controller="HistoryController as history")
           time(ng-bind="::summary.creationDate | debtsTime")
           .history-summary-data
             i.fa(bs-tooltip="" debts-history-icon="" data-title="" data-container="body")
-            span  {{::summary.data}}
+            span  {{::summary.operationData}}
       .history-more.text-center
         button.btn.btn-load-more.btn-xs(type="button" ng-click="history.loadMore()"
             ng-disabled="history.allLoaded || history.loading")
