@@ -1,9 +1,12 @@
 {
   "name": "agoodfriendalwayspayshisdebts-webapp",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Web application for agoodfriendalwayspayshisdebts.com",
   "private": true,
-  "repository": "https://github.com/Yuyuu/agoodfriendalwayspayshisdebts-webapp.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agoodfriendalwayspayshisdebts/webapp-deployment-playbook.git"
+  },
   "author": "Vincent Tertre",
   "license": "MIT",
   "scripts": {
