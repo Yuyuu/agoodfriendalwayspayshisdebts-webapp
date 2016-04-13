@@ -14,13 +14,13 @@ var data = {
 function OperationDirective() {
   return {
     restrict: "E",
-    scope: {operation: "="},
+    scope: {operation: "<"},
     templateUrl: "/templates/activity/operation",
     link: link
   };
 
   function link(scope) {
-    var typeData = data[scope.operation.type];
+    var typeData = data[scope.operation.operationType];
 
     scope.label = function () {
       return typeData.label;

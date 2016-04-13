@@ -19,61 +19,61 @@ describe("The activity directive", function () {
   });
 
   it("should bind an operation type to a label", function () {
-    scope.operation.type = "EVENT_CREATION";
+    scope.operation.operationType = "EVENT_CREATION";
     directive.link(scope);
     expect(scope.label()).to.equal("app.activity.event.label");
 
-    scope.operation.type = "NEW_EXPENSE";
+    scope.operation.operationType = "NEW_EXPENSE";
     directive.link(scope);
     expect(scope.label()).to.equal("app.activity.expense.label");
 
-    scope.operation.type = "EXPENSE_DELETED";
+    scope.operation.operationType = "EXPENSE_DELETED";
     directive.link(scope);
     expect(scope.label()).to.equal("app.activity.expense.label");
 
-    scope.operation.type = "NEW_PARTICIPANT";
+    scope.operation.operationType = "NEW_PARTICIPANT";
     directive.link(scope);
     expect(scope.label()).to.equal("app.activity.participant.label");
 
-    scope.operation.type = "PARTICIPANT_EDITED";
+    scope.operation.operationType = "PARTICIPANT_EDITED";
     directive.link(scope);
     expect(scope.label()).to.equal("app.activity.participant.label");
 
-    scope.operation.type = "REMINDER_DELIVERED";
+    scope.operation.operationType = "REMINDER_DELIVERED";
     directive.link(scope);
     expect(scope.label()).to.equal("app.activity.reminder.label");
 
-    scope.operation.type = "REMINDER_DROPPED";
+    scope.operation.operationType = "REMINDER_DROPPED";
     directive.link(scope);
     expect(scope.label()).to.equal("app.activity.reminder.label");
   });
 
   it("should bind an operation type to a complement", function () {
-    scope.operation.type = "EVENT_CREATION";
+    scope.operation.operationType = "EVENT_CREATION";
     directive.link(scope);
     expect(scope.complement()).to.equal("app.activity.event.create");
 
-    scope.operation.type = "NEW_EXPENSE";
+    scope.operation.operationType = "NEW_EXPENSE";
     directive.link(scope);
     expect(scope.complement()).to.equal("app.activity.expense.new");
 
-    scope.operation.type = "EXPENSE_DELETED";
+    scope.operation.operationType = "EXPENSE_DELETED";
     directive.link(scope);
     expect(scope.complement()).to.equal("app.activity.expense.delete");
 
-    scope.operation.type = "NEW_PARTICIPANT";
+    scope.operation.operationType = "NEW_PARTICIPANT";
     directive.link(scope);
     expect(scope.complement()).to.equal("app.activity.participant.new");
 
-    scope.operation.type = "PARTICIPANT_EDITED";
+    scope.operation.operationType = "PARTICIPANT_EDITED";
     directive.link(scope);
     expect(scope.complement()).to.equal("app.activity.participant.edit");
 
-    scope.operation.type = "REMINDER_DELIVERED";
+    scope.operation.operationType = "REMINDER_DELIVERED";
     directive.link(scope);
     expect(scope.complement()).to.equal("app.activity.reminder.deliver");
 
-    scope.operation.type = "REMINDER_DROPPED";
+    scope.operation.operationType = "REMINDER_DROPPED";
     directive.link(scope);
     expect(scope.complement()).to.equal("app.activity.reminder.drop");
   });
