@@ -29,5 +29,6 @@ module.exports = function () {
         }
       });
     $urlRouterProvider.when("", "/home");
+    $urlRouterProvider.when("/events/:id", "/events/:id/expenses");
   }
 };
