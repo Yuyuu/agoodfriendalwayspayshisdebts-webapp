@@ -3,6 +3,8 @@ sudo: false
 node_js:
   - "0.12"
 
+install: npm install --ignore-scripts
+
 cache:
   directories:
     - node_modules
