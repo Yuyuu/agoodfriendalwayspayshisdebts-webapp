@@ -35,7 +35,7 @@ function ExpensesResource($http, $q) {
   }
 
   function metadata(eventId) {
-    return $http.get("/api/events/" + eventId + "/expenses/meta").then(httpUtils.forwardResponseData);
+    return $http.get("/api/events/" + eventId + "/expenses?format=meta").then(httpUtils.forwardResponseData);
   }
 }
 

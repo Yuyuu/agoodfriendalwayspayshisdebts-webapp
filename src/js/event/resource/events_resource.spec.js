@@ -22,7 +22,7 @@ describe("The events resource", function () {
 
   describe("[get]", function () {
     it("should mask the underlying http request when getting an event", function () {
-      $http.get.withArgs("/api/events/123/meta").returns({then: function (callback) {
+      $http.get.withArgs("/api/events/123").returns({then: function (callback) {
         return callback.call(null, {status: 200, data: {name: "event"}});
       }});
 

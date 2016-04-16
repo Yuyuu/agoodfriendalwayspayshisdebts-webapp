@@ -15,7 +15,7 @@ function EventsResource($http, $q) {
   }
 
   function get(eventId) {
-    return $http.get("/api/events/" + eventId + "/meta").then(httpUtils.forwardResponseData);
+    return $http.get("/api/events/" + eventId).then(httpUtils.forwardResponseData);
   }
 }
 

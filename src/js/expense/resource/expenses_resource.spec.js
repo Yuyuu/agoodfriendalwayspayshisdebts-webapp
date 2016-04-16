@@ -12,7 +12,7 @@ describe("The expenses resource", function () {
     $http.get.withArgs("/api/events/1234/expenses?skip=0&limit=2").returns({then: function (callback) {
       return callback.call(null, {status: 200, data: {expenseCount: 1, expenses: [expense]}});
     }});
-    $http.get.withArgs("/api/events/1234/expenses/meta").returns({then: function (callback) {
+    $http.get.withArgs("/api/events/1234/expenses?format=meta").returns({then: function (callback) {
       return callback.call(null, {status: 200, data: [{id: "5678", label: "expense"}, {}]});
     }});
     $http.delete.withArgs("/api/events/1234/expenses/5678").returns({status: 204});
