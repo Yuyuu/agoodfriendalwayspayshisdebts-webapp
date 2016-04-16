@@ -1,9 +1,7 @@
 "use strict";
 
-var httpUtils = require("../../utils/http");
-
 /* @ngInject */
-function ExpensesResource($http, $q) {
+function ExpensesResource(restService) {
   return {
     add: add,
     delete: deleteExpense,
@@ -13,20 +11,18 @@ function ExpensesResource($http, $q) {
   };
 
   function add(eventId, expense) {
-    var promise = httpUtils.forwardErrorsIfAny($q, $http.post("/api/events/" + eventId + "/expenses", expense));
-    return promise.then(httpUtils.forwardResponseData);
+    return restService.post("/api/events/" + eventId + "/expenses", expense);
   }
 
   function deleteExpense(eventId, expenseId) {
-    return $http.delete("/api/events/" + eventId + "/expenses/" + expenseId);
+    return restService.delete("/api/events/" + eventId + "/expenses/" + expenseId);
   }
 
   function fetch(eventId, skip, limit, withCount) {
     withCount = withCount || false;
     var url = "/api/events/" + eventId + "/expenses?skip=" + skip + "&limit=" + limit;
-    return $http.get(url).then(function (response) {
-      return withCount ? {expenseCount: response.data.expenseCount, expenses: response.data.expenses} :
-        response.data.expenses;
+    return restService.get(url).then(function (data) {
+      return withCount ? {expenseCount: data.expenseCount, expenses: data.expenses} : data.expenses;
     });
   }
 
@@ -35,7 +31,7 @@ function ExpensesResource($http, $q) {
   }
 
   function metadata(eventId) {
-    return $http.get("/api/events/" + eventId + "/expenses?format=meta").then(httpUtils.forwardResponseData);
+    return restService.get("/api/events/" + eventId + "/expenses?format=meta");
   }
 }
 

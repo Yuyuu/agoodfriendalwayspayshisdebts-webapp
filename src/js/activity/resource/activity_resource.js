@@ -1,22 +1,18 @@
 "use strict";
 
-var httpUtils = require("../../utils/http");
-
 /* @ngInject */
-function ActivityResource($http) {
+function ActivityResource(restService) {
   return {
     get: get,
     getWithFilter: getWithFilter
   };
 
   function get(eventId, page) {
-    var url = "/api/events/" + eventId + "/activity?filter=all&page=" + page;
-    return $http.get(url).then(httpUtils.forwardResponseData);
+    return restService.get("/api/events/" + eventId + "/activity?filter=all&page=" + page);
   }
 
   function getWithFilter(eventId, filter, page) {
-    var url = "/api/events/" + eventId + "/activity?filter=" + filter + "&page=" + page;
-    return $http.get(url).then(httpUtils.forwardResponseData);
+    return restService.get("/api/events/" + eventId + "/activity?filter=" + filter + "&page=" + page);
   }
 }
 

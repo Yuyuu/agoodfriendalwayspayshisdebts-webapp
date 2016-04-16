@@ -1,15 +1,13 @@
 "use strict";
 
-var httpUtils = require("../../../utils/http");
-
 /* @ngInject */
-function ReminderResource($http) {
+function ReminderResource(restService) {
   return {
     send: send
   };
 
   function send(reminderData) {
-    return $http.post("/reminders", reminderData).then(httpUtils.forwardResponseData);
+    return restService.post("/reminders", reminderData);
   }
 }
 

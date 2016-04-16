@@ -1,15 +1,13 @@
 "use strict";
 
-var httpUtils = require("../../utils/http");
-
 /* @ngInject */
-function ResultsResource($http) {
+function ResultsResource(restService) {
   return {
     get: get
   };
 
   function get(eventId) {
-    return $http.get("/api/events/" + eventId + "/results").then(httpUtils.forwardResponseData);
+    return restService.get("/api/events/" + eventId + "/results");
   }
 }
 

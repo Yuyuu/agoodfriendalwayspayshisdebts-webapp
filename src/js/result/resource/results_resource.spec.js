@@ -1,27 +1,33 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("The resource responsible for the server communication about results", function () {
-  var $http, resource;
+describe("The results resource", function () {
+  var restService, resource;
 
   beforeEach(function () {
-    $http = {get: sinon.stub()};
-    $http.get.withArgs("/api/events/1234/results").returns({then: function (callback) {
-      return callback.call(null, {status: 200, data: [{property: "hello"}]});
-    }});
+    restService = {get: sinon.stub()};
   });
 
   beforeEach(function () {
     var ResultsResource = require("./results_resource");
-    resource = new ResultsResource($http);
+    resource = new ResultsResource(restService);
+  });
+
+  it("should be defined", function () {
+    resource.should.be.defined;
   });
 
   it("should mask the underlying http request", function () {
-    var result = resource.get("1234");
+    restService.get
+      .withArgs("/api/events/1234/results")
+      .resolves([{property: "hello"}]);
 
-    expect(result).to.have.length(1);
-    expect(result[0].property).to.equal("hello");
+    var resultPromise = resource.get("1234");
+
+    resultPromise.then(function (results) {
+      results.should.have.length(1);
+      results[0].property.should.equal("hello");
+    });
   });
 });

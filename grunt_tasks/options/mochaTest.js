@@ -4,13 +4,15 @@ module.exports = {
   unit: {
     src: ["src/js/**/*.spec.js"],
     options: {
-      reporter: ["spec"]
+      reporter: ["spec"],
+      require: "./test/helper.js"
     }
   },
   watch: {
     src: ["src/js/**/*.spec.js"],
     options: {
-      reporter: ["dot"]
+      reporter: ["dot"],
+      require: "./test/helper.js"
     }
   }
 };

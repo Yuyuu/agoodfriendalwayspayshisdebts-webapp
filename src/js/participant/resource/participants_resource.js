@@ -1,22 +1,18 @@
 "use strict";
 
-var httpUtils = require("../../utils/http");
-
 /* @ngInject */
-function ParticipantsResource($http, $q) {
+function ParticipantsResource(restService) {
   return {
     add: add,
     update: update
   };
 
   function add(eventId, participant) {
-    var promise = httpUtils.forwardErrorsIfAny($q, $http.post("/api/events/" + eventId + "/participants", participant));
-    return promise.then(httpUtils.forwardResponseData);
+    return restService.post("/api/events/" + eventId + "/participants", participant);
   }
 
   function update(eventId, participant) {
-    var url = "/api/events/" + eventId + "/participants/" + participant.id;
-    return httpUtils.forwardErrorsIfAny($q, $http.put(url, participant));
+    return restService.put("/api/events/" + eventId + "/participants/" + participant.id, participant);
   }
 }
 

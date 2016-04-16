@@ -1,102 +1,82 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The expenses resource", function () {
-  var $http, $q, resource;
+  var restService, resource;
 
   beforeEach(function () {
-    var expense = {label: "expense", amount: 3.4};
-    $http = {post: sinon.stub(), get: sinon.stub(), delete: sinon.stub()};
-    $http.get.withArgs("/api/events/1234/expenses?skip=0&limit=2").returns({then: function (callback) {
-      return callback.call(null, {status: 200, data: {expenseCount: 1, expenses: [expense]}});
-    }});
-    $http.get.withArgs("/api/events/1234/expenses?format=meta").returns({then: function (callback) {
-      return callback.call(null, {status: 200, data: [{id: "5678", label: "expense"}, {}]});
-    }});
-    $http.delete.withArgs("/api/events/1234/expenses/5678").returns({status: 204});
-    $q = {reject: function (o) {return o;}};
+    restService = {post: sinon.stub(), get: sinon.stub(), delete: sinon.stub()};
   });
 
   beforeEach(function () {
     var Expenses = require("./expenses_resource");
-    resource = new Expenses($http, $q);
+    resource = new Expenses(restService);
   });
 
   it("should be defined", function () {
-    expect(resource).to.be.defined;
+    resource.should.be.defined;
   });
 
-  describe("[fetch]", function () {
-    it("should retrieve the expenses while hiding the underlying http request", function () {
-      var expenses = resource.fetch("1234", 0, 2);
+  it("should retrieve the expenses", function () {
+    restService.get
+      .withArgs("/api/events/1234/expenses?skip=0&limit=2")
+      .resolves({expenseCount: 1, expenses: [{label: "expense", amount: 3.4}]});
 
-      expect(expenses).to.deep.include.members([{label: "expense", amount: 3.4}]);
-    });
-  });
+    var expensesPromise = resource.fetch("1234", 0, 2);
 
-  describe("[fetchWithCount]", function () {
-    it("should retrieve the expenses and the count of expenses", function () {
-      var data = resource.fetchWithCount("1234", 0, 2);
-
-      expect(data.expenseCount).to.equal(1);
-      expect(data.expenses[0]).to.deep.equal({label: "expense", amount: 3.4});
+    expensesPromise.then(function (result) {
+      result.should.deep.include.members([{label: "expense", amount: 3.4}]);
     });
   });
 
-  describe("[add]", function () {
-    it("should post an expense and return the added expense while hiding the underlying http request", function () {
-      $http.post.withArgs("/api/events/123/expenses").returns({
-        catch: function () {
-          return {then: function (callback) {return callback({status: 201, data: {label: "expense", amount: 3.4}});}};
-        }
-      });
+  it("should retrieve the expenses and the total count", function () {
+    restService.get
+      .withArgs("/api/events/1234/expenses?skip=0&limit=2")
+      .resolves({expenseCount: 1, expenses: [{label: "expense", amount: 3.4}]});
 
-      var expense = resource.add("123", {});
+    var expensesPromise = resource.fetchWithCount("1234", 0, 2);
 
-      expect(expense).to.deep.equal({label: "expense", amount: 3.4});
-    });
-
-    it("should extract an array of messages from the response on error", function () {
-      $http.post.withArgs("/api/events/123/expenses").returns({
-        catch: function (callback) {
-          return {then: function () {return callback({status: 400, data: {errors: []}});}};
-        }
-      });
-
-      var errors = resource.add("123", {});
-
-      expect(errors).to.be.instanceOf(Array);
-    });
-
-    it("should extract a default message if none is provided on error", function () {
-      $http.post.withArgs("/api/events/123/expenses").returns({
-        catch: function (callback) {
-          return {then: function () {return callback({status: 500});}};
-        }
-      });
-
-      var errors = resource.add("123", {});
-
-      expect(errors[0].message).to.equal("DEFAULT");
+    expensesPromise.then(function (result) {
+      result.expenseCount.should.equal(1);
+      result.expenses.should.deep.include.members([{label: "expense", amount: 3.4}]);
     });
   });
 
-  describe("[delete]", function () {
-    it("should delete an expense", function () {
-      var response = resource.delete("1234", "5678");
+  it("should post an expense and return it", function () {
+    restService.post
+      .withArgs("/api/events/123/expenses", {})
+      .resolves({label: "expense", amount: 3.4});
 
-      expect(response.status).to.equal(204);
+    var expensePromise = resource.add("123", {});
+
+    expensePromise.then(function (expense) {
+      expense.should.deep.equal({label: "expense", amount: 3.4});
     });
   });
 
-  describe("[metadata]", function () {
-    it("should retrieve the metadata of the expenses", function () {
-      var response = resource.metadata("1234");
+  it("should delete an expense", function () {
+    restService.delete
+      .withArgs("/api/events/1234/expenses/5678")
+      .resolves({hello: "world"});
 
-      expect(response).to.have.length(2);
-      expect(response[0]).to.deep.equal({id: "5678", label: "expense"});
+    var responsePromise = resource.delete("1234", "5678");
+
+    responsePromise.then(function (data) {
+      data.hello.should.equal("world");
+    });
+  });
+
+  it("should retrieve the metadata of the expenses", function () {
+    restService.get
+      .withArgs("/api/events/1234/expenses?format=meta")
+      .resolves([{id: "5678", label: "expense"}, {}]);
+
+    var responsePromise = resource.metadata("1234");
+
+    responsePromise.then(function (expensesMetadata) {
+      expensesMetadata.should.have.length(2);
+      expensesMetadata[0].should.deep.equal({id: "5678", label: "expense"});
     });
   });
 });
