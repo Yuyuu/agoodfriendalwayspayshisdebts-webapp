@@ -17,12 +17,12 @@ function ActivityController($stateParams, Activity) {
   function loadMore() {
     page++;
     model.loading = true;
-    Activity.get($stateParams.id, page).then(extractOperations).finally(stopLoading);
+    return Activity.get($stateParams.id, page).then(extractOperations).finally(stopLoading);
   }
 
   function activate() {
     model.loading = true;
-    Activity.get($stateParams.id, 1).then(extractOperations).finally(stopLoading);
+    model.activation = Activity.get($stateParams.id, 1).then(extractOperations).finally(stopLoading);
   }
 
   function extractOperations(operations) {

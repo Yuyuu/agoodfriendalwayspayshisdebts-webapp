@@ -3,17 +3,15 @@
 var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("The controller to add expenses", function () {
+describe("The add expense controller", function () {
   var $stateParams, expenseService, notificationService, controller;
 
   beforeEach(function () {
     $stateParams = {id: "123"};
     expenseService = {
       expenses: [],
-      addExpense: sinon.stub().withArgs({eventId: "eventId", id: "123"}).returns({then: function (callback) {
-        callback.call(null);
-        return {catch: sinon.spy()};
-      }})};
+      addExpense: sinon.stub()
+    };
     notificationService = {success: sinon.spy()};
   });
 
@@ -24,38 +22,49 @@ describe("The controller to add expenses", function () {
   });
 
   it("should be defined", function () {
-    expect(controller).to.be.defined;
+    controller.should.be.defined;
   });
 
   it("should clear the form if the expense was successfully added", function () {
+    expenseService.addExpense
+      .withArgs("123", {id: "123"})
+      .resolves(null);
     controller.expense = {label: "lab", purchaserUuid: "pur", amount: 1, participantsUuids: ["par"], description: "desc"};
 
-    controller.addExpense({id: "123"});
+    var promise = controller.addExpense({id: "123"});
 
-    expect(controller.form.$setPristine).to.have.been.called;
-    expect(controller.form.$setUntouched).to.have.been.called;
-    expect(controller.expense.label).to.be.undefined;
-    expect(controller.expense.purchaserUuid).to.be.undefined;
-    expect(controller.expense.amount).to.be.undefined;
-    expect(controller.expense.participantsUuids).to.have.length(0);
-    expect(controller.expense.description).to.be.undefined;
+    promise.then(function () {
+      controller.form.$setPristine.should.have.been.called;
+      controller.form.$setUntouched.should.have.been.called;
+      expect(controller.expense.label).to.be.undefined;
+      expect(controller.expense.purchaserUuid).to.be.undefined;
+      expect(controller.expense.amount).to.be.undefined;
+      controller.expense.participantsUuids.should.have.length(0);
+      expect(controller.expense.description).to.be.undefined;
+    });
   });
 
   it("should emit a notification if the expense was successfully added", function () {
-    controller.addExpense({id: "123"});
+    expenseService.addExpense
+      .withArgs("123", {id: "123"})
+      .resolves(null);
 
-    expect(notificationService.success).to.have.been.calledWith("EXPENSE_ADDED_SUCCESS");
+    var promise = controller.addExpense({id: "123"});
+
+    promise.then(function () {
+      notificationService.success.should.have.been.calledWith("EXPENSE_ADDED_SUCCESS");
+    });
   });
 
   it("should communicate the errors to the view if the expense could not be added", function () {
-    expenseService.addExpense.returns({
-      then: function () {
-        return {catch: function (callback) {return callback([{message: "a message"}]);}};
-      }
+    expenseService.addExpense
+      .withArgs("123", {id: "123"})
+      .rejects([{message: "a message"}]);
+
+    var promise = controller.addExpense({id: "123"});
+
+    promise.then(function () {
+      controller.errors.should.deep.equal([{message: "a message"}]);
     });
-
-    controller.addExpense({id: "123"});
-
-    expect(controller.errors).to.deep.equal([{message: "a message"}]);
   });
 });

@@ -1,6 +1,5 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The reminder service", function () {
@@ -8,7 +7,6 @@ describe("The reminder service", function () {
 
   beforeEach(function () {
     Reminders = {send: sinon.stub()};
-    Reminders.send.returns({then: function (callback) {callback.call(null, reports); return {catch: function () {}};}});
   });
 
   beforeEach(function () {
@@ -17,25 +15,33 @@ describe("The reminder service", function () {
   });
 
   it("should be defined", function () {
-    expect(service).to.be.defined;
+    service.should.be.defined;
   });
 
   it("should update the last reports and the failure flag when the send is a success", function () {
-    reports = ["report"];
+    Reminders.send
+      .withArgs("123", "data")
+      .resolves(["report"]);
 
-    service.sendReminder("123", "data");
+    var promise = service.sendReminder("123", "data");
 
-    expect(service.isFailure).to.be.false;
-    expect(service.lastReports[0]).to.equal("report");
+    promise.then(function () {
+      service.isFailure.should.be.false;
+      service.lastReports[0].should.equal("report");
+    });
   });
 
   it("should update the last reports and the failure flag when the send is a failure", function () {
-    Reminders.send.returns({then: function () {return {catch: function (callback) {callback.call(null);}};}});
+    Reminders.send
+      .withArgs("123", "data")
+      .rejects(null);
     reports = ["report"];
 
-    service.sendReminder("123", "data");
+    var promise = service.sendReminder("123", "data");
 
-    expect(service.isFailure).to.be.true;
-    expect(service.lastReports).to.have.length(0);
+    promise.then(function () {
+      service.isFailure.should.be.true;
+      service.lastReports.should.have.length(0);
+    });
   });
 });

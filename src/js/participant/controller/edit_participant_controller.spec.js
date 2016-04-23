@@ -1,9 +1,6 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
-
-var FakePromise = require("../../../test/fake_promise");
 
 describe("The edit participant controller", function () {
   var $stateParams, $modalInstance, Participants, participant, controller;
@@ -21,36 +18,48 @@ describe("The edit participant controller", function () {
   });
 
   it("should be defined", function () {
-    expect(controller).to.be.defined;
+    controller.should.be.defined;
   });
 
   it("should resolve the modal with the updated participant", function () {
-    Participants.update.returns(new FakePromise("then"));
+    Participants.update
+      .withArgs("123", {id: "456"})
+      .resolves(null);
 
-    controller.update({id: "456"});
+    var promise = controller.update({id: "456"});
 
-    expect($modalInstance.close).to.have.been.calledWith({id: "456"});
+    promise.then(function () {
+      $modalInstance.close.should.have.been.calledWith({id: "456"});
+    });
   });
 
   it("should communicate the errors of the request to the view", function () {
-    Participants.update.returns(new FakePromise("catch", ["error"]));
+    Participants.update
+      .withArgs("123", {})
+      .rejects(["error"]);
 
-    controller.update({});
+    var promise = controller.update({});
 
-    expect(controller.errors).to.deep.equal(["error"]);
+    promise.then(function () {
+      controller.errors.should.deep.equal(["error"]);
+    });
   });
 
   it("should stop loading when the request is ended", function () {
-    Participants.update.returns(new FakePromise("finally"));
+    Participants.update
+      .withArgs("123", {})
+      .resolves(null);
 
-    controller.update({});
+    var promise = controller.update({});
 
-    expect(controller.loading).to.be.false;
+    promise.then(function () {
+      controller.loading.should.be.false;
+    });
   });
 
   it("should reject the modal with null", function () {
     controller.cancel();
 
-    expect($modalInstance.close).to.have.been.calledWith(null);
+    $modalInstance.close.should.have.been.calledWith(null);
   });
 });

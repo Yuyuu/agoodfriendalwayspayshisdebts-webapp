@@ -1,73 +1,72 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("The controller to create events", function () {
+describe("The create event controller", function () {
   var Events, $state, controller;
 
   beforeEach(function () {
-    $state = {go: sinon.spy()};
+    $state = {go: sinon.stub()};
     Events = {create: sinon.stub()};
   });
 
   beforeEach(function () {
     var CreateEventController = require("./create_event_controller");
-    controller = new CreateEventController($state, Events);
+    controller = new CreateEventController($state, Events, []);
   });
 
   it("should be defined", function () {
-    expect(controller).to.be.defined;
+    controller.should.be.defined;
   });
 
   it("should add a participant to the list", function () {
     controller.addParticipant();
 
-    expect(controller.event.participants).to.have.length(2);
+    controller.event.participants.should.have.length(2);
   });
 
   it("should remove a participant from the list", function () {
     controller.removeParticipant(0);
 
-    expect(controller.event.participants).to.have.length(0);
+    controller.event.participants.should.have.length(0);
   });
 
-  it("should create the event", function () {
-    var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
-    Events.create.returns({then: function (callback) {callback.call(null, {}); return {catch: sinon.spy()};}});
+  it("should create the event and redirect to the dedicated page", function () {
+    Events.create
+      .withArgs("event")
+      .resolves({id: "12345"});
+    $state.go
+      .withArgs("event.expenses", {id: "12345"})
+      .resolves("ok");
 
-    controller.createEvent(event);
+    var promise = controller.createEvent("event");
 
-    expect(Events.create).to.have.been.called;
-  });
-
-  it("should redirect to the event page when it has been successfully created", function () {
-    Events.create.returns({then: function (callback) {callback.call(null, {id: "12345"}); return {catch: sinon.spy()};}});
-    var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
-
-    controller.createEvent(event);
-
-    expect($state.go).to.have.been.calledWith("event.expenses", {id: "12345"});
+    promise.then(function (result) {
+      result.should.equal("ok");
+    });
   });
 
   it("should not try to redirect to the event page if the event was not created", function () {
-    Events.create.returns({then: function () {return {catch: function (callback) {callback.call(null, {});}};}});
-    var event = {name: "Cool event", participants: [{name: "Kim", email: "", share: 1}]};
+    Events.create
+      .withArgs("event")
+      .rejects([]);
 
-    controller.createEvent(event);
+    var promise = controller.createEvent("event");
 
-    expect($state.go).to.not.have.been.called;
+    promise.then(function () {
+      $state.go.should.not.have.been.called;
+    });
   });
 
   it("should communicate the errors to the view if the event could not be created", function () {
-    Events.create.returns({
-      then: function () {
-        return {catch: function (callback) {return callback([{message: "a message"}]);}};
-      }
+    Events.create
+      .withArgs("event")
+      .rejects([{message: "a message"}]);
+
+    var promise = controller.createEvent("event");
+
+    promise.then(function () {
+      controller.errors.should.deep.equal([{message: "a message"}]);
     });
-
-    controller.createEvent({});
-
-    expect(controller.errors).to.deep.equal([{message: "a message"}]);
   });
 });

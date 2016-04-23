@@ -2,12 +2,11 @@
 
 var proxyquire = require("proxyquire");
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-var listenerDecorator = require("../../../test/listener_decorator");
+var listenerDecorator = require("../../../../test/listener_decorator");
 
-describe("The directive that disables an element while a request is pending", function () {
+describe("The disable on request directive", function () {
   var angularModule, AppEvents, scope, element, attributes, formController, directive;
   var formElement;
 
@@ -35,7 +34,7 @@ describe("The directive that disables an element while a request is pending", fu
   });
 
   it("should be defined", function () {
-    expect(directive).to.be.defined;
+    directive.should.be.defined;
   });
 
   it("should disable the element and apply loading text on submit if the form is valid", function () {
@@ -43,8 +42,8 @@ describe("The directive that disables an element while a request is pending", fu
 
     formElement.emit("submit");
 
-    expect(element.addClass).to.have.been.calledWith("disabled");
-    expect(element.html).to.have.been.calledWith("loading");
+    element.addClass.should.have.been.calledWith("disabled");
+    element.html.should.have.been.calledWith("loading");
   });
 
   it("should leave the element as is on submit if the form is not valid", function () {
@@ -52,14 +51,14 @@ describe("The directive that disables an element while a request is pending", fu
 
     formElement.emit("submit");
 
-    expect(element.addClass).to.not.have.been.called;
-    expect(element.html).to.not.have.been.calledWith("loading");
+    element.addClass.should.not.have.been.called;
+    element.html.should.not.have.been.calledWith("loading");
   });
 
   it("should enable the element and apply initial text once the associated request is ended", function () {
     scope.emit(AppEvents.HTTP.REQUEST_ENDED);
 
-    expect(element.removeClass).to.have.been.calledWith("disabled");
-    expect(element.html).to.have.been.calledWith("initial");
+    element.removeClass.should.have.been.calledWith("disabled");
+    element.html.should.have.been.calledWith("initial");
   });
 });

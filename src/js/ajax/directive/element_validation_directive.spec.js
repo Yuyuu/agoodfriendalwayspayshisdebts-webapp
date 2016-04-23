@@ -1,11 +1,10 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-var watcherDecorator = require("../../../test/watcher_decorator");
+var watcherDecorator = require("../../../../test/watcher_decorator");
 
-describe("The directive to validate elements", function () {
+describe("The element validation directive", function () {
   var scope, element, attributes, directive;
 
   beforeEach(function () {
@@ -20,7 +19,7 @@ describe("The directive to validate elements", function () {
   });
 
   it("should be defined", function () {
-    expect(directive).to.be.defined;
+    directive.should.be.defined;
   });
 
   it("should add the has-error class to the element if it is dirty and invalid", function () {
@@ -28,7 +27,7 @@ describe("The directive to validate elements", function () {
 
     scope.change("elm.$invalid && elm.$dirty", true);
 
-    expect(element.addClass).to.have.been.calledWith("has-error");
+    element.addClass.should.have.been.calledWith("has-error");
   });
 
   it("should remove the has-error class from the element if it is dirty and valid", function () {
@@ -36,6 +35,6 @@ describe("The directive to validate elements", function () {
 
     scope.change("elm.$valid && elm.$dirty", true);
 
-    expect(element.removeClass).to.have.been.calledWith("has-error");
+    element.removeClass.should.have.been.calledWith("has-error");
   });
 });

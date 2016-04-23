@@ -9,7 +9,7 @@ function ResultDetailsController($stateParams, Results) {
   activate();
 
   function activate() {
-    Results.get($stateParams.id).then(function (data) {
+    model.activation = Results.get($stateParams.id).then(function (data) {
       model.results = data;
     });
   }

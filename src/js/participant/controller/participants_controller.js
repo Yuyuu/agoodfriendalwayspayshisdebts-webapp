@@ -17,7 +17,7 @@ function ParticipantsController($modal, notificationService) {
       return participant;
     }};
     var modalInstance = $modal.open(editParticipantModalOptions);
-    modalInstance.result.then(function (updatedParticipant) {
+    return modalInstance.result.then(function (updatedParticipant) {
       if (updatedParticipant) {
         updateParticipant(participant, updatedParticipant);
         notificationService.success("PARTICIPANT_UPDATED_SUCCESS");

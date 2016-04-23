@@ -17,7 +17,7 @@ function ReminderController($state, Reminders, notificationService) {
         link: $state.href("event.results", null, {absolute: true})
       }
     };
-    Reminders.send(reminderData)
+    return Reminders.send(reminderData)
       .then(function () {
         model.recipientsIds = [];
         notificationService.success("REMINDER_REQUEST_SUCCESS");

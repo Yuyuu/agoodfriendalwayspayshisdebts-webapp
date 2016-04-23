@@ -1,13 +1,12 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("The service holding the expenses of the current event", function () {
+describe("The expense service", function () {
   var Expenses, service;
 
   beforeEach(function () {
-    Expenses = expensesResourceStub();
+    Expenses = {add: sinon.stub(), delete: sinon.stub(), fetch: sinon.stub(), fetchWithCount: sinon.stub()};
   });
 
   beforeEach(function () {
@@ -16,82 +15,136 @@ describe("The service holding the expenses of the current event", function () {
   });
 
   it("should be defined", function () {
-    expect(service).to.be.defined;
+    service.should.be.defined;
   });
 
   it("should increment the skip value when an expense is created", function () {
-    service.addExpense({});
+    Expenses.add
+      .withArgs("123", {})
+      .resolves("addedExpense");
 
-    expect(service.skip).to.equal(1);
+    var promise = service.addExpense("123", {});
+
+    promise.then(function (data) {
+      data.should.equal("addedExpense");
+      service.skip.should.equal(1);
+    });
   });
 
   it("should increment the expense count when an expense is created", function () {
-    service.addExpense({});
+    Expenses.add
+      .withArgs("123", {})
+      .resolves("addedExpense");
 
-    expect(service.expenseCount).to.equal(1);
+    var promise = service.addExpense("123", {});
+
+    promise.then(function () {
+      service.expenseCount.should.equal(1);
+    });
   });
 
   it("should update the list of expenses when an expense is created", function () {
-    service.addExpense({id: "123"});
+    Expenses.add
+      .withArgs("123", {id: "123"})
+      .resolves({id: "123"});
 
-    expect(service.expenses).to.have.length(1);
-    expect(service.expenses[0].id).to.equal("123");
+    var promise = service.addExpense("123", {id: "123"});
+
+    promise.then(function () {
+      service.expenses.should.have.length(1);
+      service.expenses[0].id.should.equal("123");
+    });
   });
 
   it("should decrement the skip value when an expense is deleted", function () {
-    service.deleteExpense({});
+    Expenses.delete
+      .withArgs("123", "456")
+      .resolves(null);
 
-    expect(service.skip).to.equal(-1);
+    var promise = service.deleteExpense("123", "456");
+
+    promise.then(function () {
+      service.skip.should.equal(-1);
+    });
   });
 
   it("should decrement the expense count when an expense is deleted", function () {
-    service.deleteExpense({});
+    Expenses.delete
+      .withArgs("123", "456")
+      .resolves(null);
 
-    expect(service.expenseCount).to.equal(-1);
+    var promise = service.deleteExpense("123", "456");
+
+    promise.then(function () {
+      service.expenseCount.should.equal(-1);
+    });
   });
 
   it("should update the list of expenses when an expense is deleted", function () {
-    var expense = {id: "123"};
-    service.expenses.push(expense);
+    Expenses.delete
+      .withArgs("123", "456")
+      .resolves(null);
+    service.expenses.push({id: "456"});
 
-    service.deleteExpense(expense);
+    var promise = service.deleteExpense("123", "456");
 
-    expect(service.expenses).to.have.length(0);
+    promise.then(function () {
+      service.expenses.should.have.length(0);
+    });
   });
 
   it("should reset the skip value on initialization", function () {
+    Expenses.fetchWithCount
+      .withArgs("eventId", 0, 4)
+      .resolves({expenseCount: 2, expenses: [{id: "123"}]});
     service.skip = 3;
 
-    service.initializeForEvent("eventId");
+    var promise = service.initializeForEvent("eventId");
 
-    expect(service.skip).to.equal(0);
+    promise.then(function () {
+      service.skip.should.equal(0);
+    });
   });
 
   it("should initialize the list with the received expenses", function () {
-    service.initializeForEvent("eventId");
+    Expenses.fetchWithCount
+      .withArgs("eventId", 0, 4)
+      .resolves({expenseCount: 2, expenses: [{id: "123"}]});
 
-    expect(service.expenseCount).to.equal(2);
-    expect(service.expenses).to.have.length(1);
-    expect(service.expenses[0].id).to.equal("123");
+    var promise = service.initializeForEvent("eventId");
+
+    promise.then(function () {
+      service.expenseCount.should.equal(2);
+      service.expenses.should.have.length(1);
+      service.expenses[0].id.should.equal("123");
+    });
   });
 
   it("should fetch a different batch every time", function () {
-    service.loadMoreFrom("eventId");
+    Expenses.fetch
+      .withArgs("eventId", 4, 4)
+      .resolves([{id: "456"}]);
 
-    expect(service.skip).to.equal(4);
+    var promise = service.loadMoreFrom("eventId");
+
+    promise.then(function () {
+      service.skip.should.equal(4);
+    });
   });
 
   it("should store the expenses in ascendant order", function () {
-    Expenses.fetch.returns({then: function (callback) {
-      return callback.call(null, [{id: "456"}, {id: "789"}]);
-    }});
+    Expenses.fetch
+      .withArgs("eventId", 4, 4)
+      .resolves([{id: "456"}, {id: "789"}]);
     service.expenses.push({id: "123"});
 
-    service.loadMoreFrom("eventId");
+    var promise = service.loadMoreFrom("eventId");
 
-    expect(service.expenses[0].id).to.equal("456");
-    expect(service.expenses[1].id).to.equal("789");
-    expect(service.expenses[2].id).to.equal("123");
+    promise.then(function () {
+      service.expenses[0].id.should.equal("456");
+      service.expenses[1].id.should.equal("789");
+      service.expenses[2].id.should.equal("123");
+    });
   });
 
   it("should be aware when all the expenses have been loaded", function () {
@@ -100,26 +153,6 @@ describe("The service holding the expenses of the current event", function () {
 
     service.expenses.push({});
 
-    expect(service.allLoaded).to.be.true;
+    service.allLoaded.should.be.true;
   });
 });
-
-function expensesResourceStub() {
-  var resource = {add: sinon.stub(), delete: sinon.stub(), fetch: sinon.stub(), fetchWithCount: sinon.stub()};
-  resource.add.returns({then: function (callback) {
-    return callback.call(null, {});
-  }});
-  resource.add.withArgs({id: "123"}).returns({then: function (callback) {
-    return callback.call(null, {id: "123"});
-  }});
-  resource.delete.returns({then: function (callback) {
-    return callback.call(null);
-  }});
-  resource.fetchWithCount.returns({then: function (callback) {
-    return callback.call(null, {expenseCount: 2, expenses: [{id: "123"}]});
-  }});
-  resource.fetch.returns({then: function (callback) {
-    return callback.call(null, [{id: "456"}]);
-  }});
-  return resource;
-}

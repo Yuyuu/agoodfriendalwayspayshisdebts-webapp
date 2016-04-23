@@ -1,9 +1,8 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-describe("The directive responsible for adding a visual indication on the result tables rows", function () {
+describe("The visual indicator directive", function () {
   var scope, element, directive;
 
   beforeEach(function () {
@@ -17,35 +16,35 @@ describe("The directive responsible for adding a visual indication on the result
   });
 
   it("should be defined", function () {
-    expect(directive).to.be.defined;
+    directive.should.be.defined;
   });
 
   it("should add the danger class to the row if the debt amount is superior to 0.005", function () {
     scope.row.mitigatedDebt = 5;
     directive.link(scope, element);
-    expect(element.addClass).to.have.been.calledWith("danger");
+    element.addClass.should.have.been.calledWith("danger");
   });
 
   it("should add the danger class to the row if the debt amount is equal to 0.005", function () {
     scope.row.mitigatedDebt = 0.005;
     directive.link(scope, element);
-    expect(element.addClass).to.have.been.calledWith("danger");
+    element.addClass.should.have.been.calledWith("danger");
   });
 
   it("should add the warning class to the row if the advance amount is superior to 0.005", function () {
     scope.row.advance = 5;
     directive.link(scope, element);
-    expect(element.addClass).to.have.been.calledWith("warning");
+    element.addClass.should.have.been.calledWith("warning");
   });
 
   it("should add the danger class to the row if the debt amount is equal to 0.005", function () {
     scope.row.advance = 0.005;
     directive.link(scope, element);
-    expect(element.addClass).to.have.been.calledWith("warning");
+    element.addClass.should.have.been.calledWith("warning");
   });
 
   it("should not add any class if there is no debt or advance", function () {
     directive.link(scope, element);
-    expect(element.addClass).to.not.have.been.called;
+    element.addClass.should.not.have.been.called;
   });
 });

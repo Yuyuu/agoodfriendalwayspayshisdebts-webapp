@@ -1,6 +1,5 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The activity controller", function () {
@@ -12,9 +11,9 @@ describe("The activity controller", function () {
   });
 
   beforeEach(function () {
-    Activity.get.withArgs("123").returns({
-      then: function (callback) {callback([{id: "456"}, {id: "789"}]); return {"finally": function (callback) {callback();}};}
-    });
+    Activity.get
+      .withArgs("123")
+      .resolves([{id: "456"}, {id: "789"}]);
   });
 
   beforeEach(function () {
@@ -23,21 +22,26 @@ describe("The activity controller", function () {
   });
 
   it("should be defined", function () {
-    expect(controller).to.be.defined;
+    controller.should.be.defined;
   });
 
   it("should load the activity of the event upon activation", function () {
-    expect(controller.operations).to.have.length(2);
-    expect(controller.operations[0].id).to.equal("456");
-    expect(controller.operations[1].id).to.equal("789");
-    expect(controller.loading).to.be.false;
+    controller.activation.then(function () {
+      controller.operations.should.have.length(2);
+      controller.operations[0].id.should.equal("456");
+      controller.operations[1].id.should.equal("789");
+      controller.loading.should.be.false;
+    });
   });
 
   it("should fetch the next page when loading more activity", function () {
-    controller.loadMore();
-    expect(Activity.get).to.have.been.calledWith("123", 2);
-    expect(controller.operations[2].id).to.equal("456");
-    expect(controller.operations[3].id).to.equal("789");
-    expect(controller.loading).to.be.false;
+    var loadMorePromise = controller.loadMore();
+
+    loadMorePromise.then(function () {
+      Activity.get.should.have.been.calledWith("123", 2);
+      controller.operations[2].id.should.equal("456");
+      controller.operations[3].id.should.equal("789");
+      controller.loading.should.be.false;
+    });
   });
 });

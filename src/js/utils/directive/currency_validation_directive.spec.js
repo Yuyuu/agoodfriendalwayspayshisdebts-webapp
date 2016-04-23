@@ -2,7 +2,7 @@
 
 var expect = require("chai").use(require("sinon-chai")).expect;
 
-describe("The directive to validate currency input", function () {
+describe("The currency validation directive", function () {
   var modelController, directive;
 
   beforeEach(function () {
@@ -16,7 +16,7 @@ describe("The directive to validate currency input", function () {
   });
 
   it("should be defined", function () {
-    expect(directive).to.be.defined;
+    directive.should.be.defined;
   });
 
   it("should accept amounts with no decimals", function () {
@@ -34,10 +34,10 @@ describe("The directive to validate currency input", function () {
 
   it("should accept numbers with either dots or commas as a separator", function () {
     var result = modelController.$parsers[0]("0.5");
-    expect(result).to.equal(0.5);
+    result.should.equal(0.5);
 
     result = modelController.$parsers[0]("0,5");
-    expect(result).to.equal(0.5);
+    result.should.equal(0.5);
   });
 
   it("should invalidate letters", function () {
@@ -52,7 +52,7 @@ describe("The directive to validate currency input", function () {
 
   it("should invalidate 0", function () {
     var isValid = modelController.$validators.currency(0);
-    expect(isValid).to.be.false;
+    isValid.should.be.false;
   });
 
   it("should invalidate numbers with a separator but no decimals", function () {
@@ -89,6 +89,6 @@ describe("The directive to validate currency input", function () {
   it("should parse the view value as a float into the model", function () {
     var modelValue = modelController.$parsers[0]("12.45");
 
-    expect(modelValue).to.equal(12.45);
+    modelValue.should.equal(12.45);
   });
 });

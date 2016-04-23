@@ -1,9 +1,7 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
+var Bluebird = require("bluebird");
 var sinon = require("sinon");
-
-var FakePromise = require("../../../test/fake_promise");
 
 describe("The show event controller", function () {
   var $state, $modal, notificationService, event, controller;
@@ -21,7 +19,7 @@ describe("The show event controller", function () {
   });
 
   it("should be defined", function () {
-    expect(controller).to.be.defined;
+    controller.should.be.defined;
   });
 
   it("should reload the state and show a success notification when a participant is added", function () {
@@ -31,12 +29,18 @@ describe("The show event controller", function () {
         controller: "AddParticipantController",
         controllerAs: "model"
       })
-      .returns({result: new FakePromise("then", {name: "Rasheed"})});
+      .returns({
+        result: new Bluebird(function (resolve) {
+          resolve({name: "Rasheed"});
+        })
+      });
 
-    controller.addParticipant();
+    var promise = controller.addParticipant();
 
-    expect(controller.event.participants[3].name).to.equal("Rasheed");
-    expect($state.reload).to.have.been.calledWith({name: "state"});
-    expect(notificationService.success).to.have.been.calledWith("PARTICIPANT_ADDED_SUCCESS");
+    promise.then(function () {
+      controller.event.participants[3].name.should.equal("Rasheed");
+      $state.reload.should.have.been.calledWith({name: "state"});
+      notificationService.success.should.have.been.calledWith("PARTICIPANT_ADDED_SUCCESS");
+    });
   });
 });

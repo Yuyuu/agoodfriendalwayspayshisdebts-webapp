@@ -2,13 +2,12 @@
 
 var proxyquire = require("proxyquire");
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-var listenerDecorator = require("../../../test/listener_decorator");
-var watcherDecorator = require("../../../test/watcher_decorator");
+var listenerDecorator = require("../../../../test/listener_decorator");
+var watcherDecorator = require("../../../../test/watcher_decorator");
 
-describe("The directive in charge to affix the expense creation panel", function () {
+describe("The affix panel directive", function () {
   var angularModule, affix, scope, element, $affix, $window, $timeout, directive;
 
   beforeEach(function () {
@@ -23,7 +22,7 @@ describe("The directive in charge to affix the expense creation panel", function
     element = {data: sinon.stub().withArgs("offset-top").returns("7")};
     $affix = sinon.stub().returns(affix);
     $window = {};
-    $timeout = function (callback) {callback.call(null);};
+    $timeout = function (callback) {callback();};
   });
 
   beforeEach(function () {
@@ -33,44 +32,44 @@ describe("The directive in charge to affix the expense creation panel", function
   });
 
   it("should be defined", function () {
-    expect(directive).to.be.defined;
+    directive.should.be.defined;
   });
 
   it("should affix the panel when the list panel becomes taller", function () {
     scope.change("listPanelIsTallerThanCreationPanel", true);
 
-    expect($affix).to.have.been.called;
+    $affix.should.have.been.called;
   });
 
   it("should retrieve the top offset from the element", function () {
     scope.change("listPanelIsTallerThanCreationPanel", true);
 
-    expect($affix.args[0][1].offsetTop).to.equal("7");
+    $affix.args[0][1].offsetTop.should.equal("7");
   });
 
   it("should retrieve the bottom offset from footer height", function () {
     scope.change("listPanelIsTallerThanCreationPanel", true);
 
-    expect($affix.args[0][1].offsetBottom).to.equal("10");
+    $affix.args[0][1].offsetBottom.should.equal("10");
   });
 
   it("should target the window element", function () {
     scope.change("listPanelIsTallerThanCreationPanel", true);
 
-    expect($affix.args[0][1].target).to.equal("window");
+    $affix.args[0][1].target.should.equal("window");
   });
 
   it("should remove the affix when the list panel is or becomes smaller", function () {
     scope.change("listPanelIsTallerThanCreationPanel", true);
     scope.change("listPanelIsTallerThanCreationPanel", false);
 
-    expect(affix.destroy).to.have.been.called;
+    affix.destroy.should.have.been.called;
   });
 
   it("should destroy the affix on scope destruction", function () {
     scope.change("listPanelIsTallerThanCreationPanel", true);
     scope.emit("$destroy");
 
-    expect(affix.destroy).to.have.been.called;
+    affix.destroy.should.have.been.called;
   });
 });

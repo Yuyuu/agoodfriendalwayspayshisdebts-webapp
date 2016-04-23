@@ -10,7 +10,7 @@ function AddExpenseController($stateParams, expenseService, notificationService)
 
   function addExpense(expense) {
     delete model.errors;
-    expenseService.addExpense($stateParams.id, expense)
+    return expenseService.addExpense($stateParams.id, expense)
       .then(resetFormAndShowNotification)
       .catch(extractErrors);
   }

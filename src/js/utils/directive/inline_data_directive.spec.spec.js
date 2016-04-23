@@ -1,11 +1,10 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
-var watcherDecorator = require("../../../test/watcher_decorator");
+var watcherDecorator = require("../../../../test/watcher_decorator");
 
-describe("The directive responsible for representing an array as an inline element", function () {
+describe("The inline data directive", function () {
   var $parse, scope, element, attributes, directive;
 
   beforeEach(function () {
@@ -24,7 +23,7 @@ describe("The directive responsible for representing an array as an inline eleme
   });
 
   it("should be defined", function () {
-    expect(directive).to.be.defined;
+    directive.should.be.defined;
   });
 
   it("should transform an array into an inline string", function () {
@@ -33,7 +32,7 @@ describe("The directive responsible for representing an array as an inline eleme
     directive.link(scope, element, attributes);
     scope.change("object.data", scope.object.data);
 
-    expect(element.text).to.have.been.calledWith("hello, hi");
+    element.text.should.have.been.calledWith("hello, hi");
   });
 
   it("should transform an array of object into an inline string given the property to select", function () {
@@ -43,6 +42,6 @@ describe("The directive responsible for representing an array as an inline eleme
     directive.link(scope, element, attributes);
     scope.change("object.property", scope.object.property);
 
-    expect(element.text).to.have.been.calledWith("hello, world");
+    element.text.should.have.been.calledWith("hello, world");
   });
 });

@@ -15,7 +15,7 @@ function AddParticipantController($stateParams, $modalInstance, Participants, Ex
   function add(participant) {
     delete model.errors;
     model.loading = true;
-    Participants.add($stateParams.id, participant)
+    return Participants.add($stateParams.id, participant)
       .then(function (data) {
         participant.id = data.id;
         $modalInstance.close(participant);
@@ -37,7 +37,7 @@ function AddParticipantController($stateParams, $modalInstance, Participants, Ex
   }
 
   function activate() {
-    Expenses.metadata($stateParams.id).then(function (data) {
+    model.activation = Expenses.metadata($stateParams.id).then(function (data) {
       model.expensesMetadata = data;
     });
   }

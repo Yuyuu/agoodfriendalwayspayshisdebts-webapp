@@ -22,16 +22,16 @@ function HistoryController($stateParams, Activity) {
 
   function loadMore() {
     page++;
-    loadHistory(addSummaries);
+    return loadHistory(addSummaries);
   }
 
   function refresh() {
     page = 1;
-    loadHistory(initSummaries);
+    return loadHistory(initSummaries);
   }
 
   function activate() {
-    loadHistory(initSummaries);
+    model.activation = loadHistory(initSummaries);
   }
 
   function addSummaries(summaries) {

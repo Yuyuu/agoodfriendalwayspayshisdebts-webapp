@@ -1,6 +1,5 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The history icon directive", function () {
@@ -18,42 +17,42 @@ describe("The history icon directive", function () {
   });
 
   it("should be defined", function () {
-    expect(directive).to.be.defined;
+    directive.should.be.defined;
   });
 
   it("should be restricted to element and class scope", function () {
-    expect(directive.restrict).to.equal("AC");
+    directive.restrict.should.equal("AC");
   });
 
   it("should add the corresponding icon to the element", function () {
     scope.summary.operationType = "NEW_EXPENSE";
     directive.link(scope, element, attributes);
-    expect(attributes.$set).to.have.been.calledWith("title", "'app.history.expenses.added' | i18next");
-    expect(element.addClass).to.have.been.calledWith("fa-plus-circle");
+    attributes.$set.should.have.been.calledWith("title", "'app.history.expenses.added' | i18next");
+    element.addClass.should.have.been.calledWith("fa-plus-circle");
 
     scope.summary.operationType = "EXPENSE_DELETED";
     directive.link(scope, element, attributes);
-    expect(attributes.$set).to.have.been.calledWith("title", "'app.history.expenses.deleted' | i18next");
-    expect(element.addClass).to.have.been.calledWith("fa-minus-circle");
+    attributes.$set.should.have.been.calledWith("title", "'app.history.expenses.deleted' | i18next");
+    element.addClass.should.have.been.calledWith("fa-minus-circle");
 
     scope.summary.operationType = "NEW_PARTICIPANT";
     directive.link(scope, element, attributes);
-    expect(attributes.$set).to.have.been.calledWith("title", "'app.history.participants.added' | i18next");
-    expect(element.addClass).to.have.been.calledWith("fa-user-plus");
+    attributes.$set.should.have.been.calledWith("title", "'app.history.participants.added' | i18next");
+    element.addClass.should.have.been.calledWith("fa-user-plus");
 
     scope.summary.operationType = "PARTICIPANT_EDITED";
     directive.link(scope, element, attributes);
-    expect(attributes.$set).to.have.been.calledWith("title", "'app.history.participants.edited' | i18next");
-    expect(element.addClass).to.have.been.calledWith("fa-pencil");
+    attributes.$set.should.have.been.calledWith("title", "'app.history.participants.edited' | i18next");
+    element.addClass.should.have.been.calledWith("fa-pencil");
 
     scope.summary.operationType = "REMINDER_DELIVERED";
     directive.link(scope, element, attributes);
-    expect(attributes.$set).to.have.been.calledWith("title", "'app.history.reminders.delivered' | i18next");
-    expect(element.addClass).to.have.been.calledWith("fa-check-circle");
+    attributes.$set.should.have.been.calledWith("title", "'app.history.reminders.delivered' | i18next");
+    element.addClass.should.have.been.calledWith("fa-check-circle");
 
     scope.summary.operationType = "REMINDER_DROPPED";
     directive.link(scope, element, attributes);
-    expect(attributes.$set).to.have.been.calledWith("title", "'app.history.reminders.dropped' | i18next");
-    expect(element.addClass).to.have.been.calledWith("fa-exclamation-triangle");
+    attributes.$set.should.have.been.calledWith("title", "'app.history.reminders.dropped' | i18next");
+    element.addClass.should.have.been.calledWith("fa-exclamation-triangle");
   });
 });

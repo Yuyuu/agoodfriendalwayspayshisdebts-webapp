@@ -1,6 +1,5 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The default error interceptor", function () {
@@ -14,27 +13,27 @@ describe("The default error interceptor", function () {
   });
 
   it("should be defined", function () {
-    expect(interceptor).to.be.defined;
+    interceptor.should.be.defined;
   });
 
   it("should redirect to the error page if a 500 error occurs", function () {
     var rejection = {status: 500};
     interceptor.responseError(rejection);
 
-    expect($location.path).to.have.been.calledWith("/error");
-    expect($q.reject).to.have.been.calledWith(rejection);
+    $location.path.should.have.been.calledWith("/error");
+    $q.reject.should.have.been.calledWith(rejection);
   });
 
   it("should not redirect to the error page when any other error occurs", function () {
     var rejection = {status: 503};
     interceptor.responseError(rejection);
 
-    expect($location.path).to.not.have.been.calledWith("/error");
+    $location.path.should.not.have.been.calledWith("/error");
 
     rejection.status = 600;
     interceptor.responseError(rejection);
 
-    expect($location.path).to.not.have.been.calledWith("/error");
-    expect($q.reject).to.have.been.calledWith(rejection);
+    $location.path.should.not.have.been.calledWith("/error");
+    $q.reject.should.have.been.calledWith(rejection);
   });
 });

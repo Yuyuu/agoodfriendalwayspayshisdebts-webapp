@@ -22,9 +22,9 @@ function ExpensesListController($stateParams, $modal, expenseService, notificati
       return expenseToDelete;
     }};
     var modalInstance = $modal.open(modalOptions);
-    modalInstance.result.then(function (confirmed) {
+    return modalInstance.result.then(function (confirmed) {
       if (confirmed) {
-        expenseService.deleteExpense($stateParams.id, expenseToDelete.id).then(function () {
+        return expenseService.deleteExpense($stateParams.id, expenseToDelete.id).then(function () {
           notificationService.success("EXPENSE_DELETED_SUCCESS");
         });
       }
@@ -32,11 +32,11 @@ function ExpensesListController($stateParams, $modal, expenseService, notificati
   }
 
   function loadMore() {
-    expenseService.loadMoreFrom($stateParams.id);
+    return expenseService.loadMoreFrom($stateParams.id);
   }
 
   function activate() {
-    expenseService.initializeForEvent($stateParams.id);
+    model.activation = expenseService.initializeForEvent($stateParams.id);
   }
 }
 

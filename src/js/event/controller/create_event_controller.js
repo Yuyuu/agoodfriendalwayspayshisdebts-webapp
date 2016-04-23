@@ -17,7 +17,7 @@ function CreateEventController($state, Events, Currencies) {
 
   function createEvent(event) {
     delete model.errors;
-    Events.create(event)
+    return Events.create(event)
       .then(redirectToEventPage)
       .catch(extractErrors);
   }
@@ -27,7 +27,7 @@ function CreateEventController($state, Events, Currencies) {
   }
 
   function redirectToEventPage(data) {
-    $state.go("event.expenses", {id: data.id});
+    return $state.go("event.expenses", {id: data.id});
   }
 
   function extractErrors(errors) {

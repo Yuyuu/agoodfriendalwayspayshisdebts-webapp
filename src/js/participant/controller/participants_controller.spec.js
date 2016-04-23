@@ -1,9 +1,7 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
+var Bluebird = require("bluebird");
 var sinon = require("sinon");
-
-var FakePromise = require("../../../test/fake_promise");
 
 describe("The participants controller", function () {
   var $modal, notificationService, controller;
@@ -19,16 +17,18 @@ describe("The participants controller", function () {
   });
 
   it("should be defined", function () {
-    expect(controller).to.be.defined;
+    controller.should.be.defined;
   });
 
   it("should open a modal with the participant to edit", function () {
     var participant = {id: "123"};
-    $modal.open.returns({result: new FakePromise("then", participant)});
+    $modal.open.returns({result: new Bluebird(function (resolve) {
+      resolve(participant);
+    })});
 
     controller.edit(participant);
 
-    expect($modal.open).to.have.been.calledWith(sinon.match(function (options) {
+    $modal.open.should.have.been.calledWith(sinon.match(function (options) {
       var participant = options.resolve.participant();
       return participant.id === "123";
     }));
@@ -36,23 +36,31 @@ describe("The participants controller", function () {
 
   it("should update the view and show a success notification once the participant has been updated", function () {
     var participant = {id: "123", name: "leo", email: "leo@mail.fr"};
-    $modal.open.returns({result: new FakePromise("then", {id: "123", name: "leô", email: "leo@email.fr"})});
+    $modal.open.returns({result: new Bluebird(function (resolve) {
+      resolve({id: "123", name: "leô", email: "leo@email.fr"});
+    })});
 
-    controller.edit(participant);
+    var promise = controller.edit(participant);
 
-    expect(participant.name).to.equal("leo");
-    expect(participant.email).to.equal("leo@email.fr");
-    expect(notificationService.success).to.have.been.calledWith("PARTICIPANT_UPDATED_SUCCESS");
+    promise.then(function () {
+      participant.name.should.equal("leo");
+      participant.email.should.equal("leo@email.fr");
+      notificationService.success.should.have.been.calledWith("PARTICIPANT_UPDATED_SUCCESS");
+    });
   });
 
   it("should not update the view if the participant has not been edited", function () {
     var participant = {id: "123", name: "leo", email: "leo@mail.fr"};
-    $modal.open.returns({result: new FakePromise("then", null)});
+    $modal.open.returns({result: new Bluebird(function (resolve) {
+      resolve(null);
+    })});
 
-    controller.edit(participant);
+    var promise = controller.edit(participant);
 
-    expect(participant.name).to.equal("leo");
-    expect(participant.email).to.equal("leo@mail.fr");
-    expect(notificationService.success).to.not.have.been.called;
+    promise.then(function () {
+      participant.name.should.equal("leo");
+      participant.email.should.equal("leo@mail.fr");
+      notificationService.success.should.not.have.been.called;
+    });
   });
 });

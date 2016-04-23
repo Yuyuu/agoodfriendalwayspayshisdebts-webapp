@@ -1,7 +1,5 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
-
 describe("The avatar directive", function () {
   var scope, directive;
 
@@ -16,10 +14,10 @@ describe("The avatar directive", function () {
   });
 
   it("should be defined", function () {
-    expect(directive).to.be.defined;
+    directive.should.be.defined;
   });
 
   it("should get the initial of the participant", function () {
-    expect(scope.initial).to.equal("K");
+    scope.initial.should.equal("K");
   });
 });

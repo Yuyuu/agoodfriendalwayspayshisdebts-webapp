@@ -16,7 +16,7 @@ function EditParticipantController($stateParams, $modalInstance, Participants, p
   }
 
   function update(participant) {
-    Participants.update($stateParams.id, participant)
+    return Participants.update($stateParams.id, participant)
       .then(function () {
         $modalInstance.close(participant);
       })

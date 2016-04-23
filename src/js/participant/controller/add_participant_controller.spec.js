@@ -1,9 +1,6 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
-
-var FakePromise = require("../../../test/fake_promise");
 
 describe("The add participant controller", function () {
   var $stateParams, $modalInstance, Participants, Expenses, controller;
@@ -13,7 +10,9 @@ describe("The add participant controller", function () {
     $modalInstance = {close: sinon.spy()};
     Participants = {add: sinon.stub()};
     Expenses = {metadata: sinon.stub()};
-    Expenses.metadata.withArgs("1234").returns(new FakePromise("then", [{id: "123", label: "e1"}]));
+    Expenses.metadata
+      .withArgs("1234")
+      .resolves([{id: "123", label: "e1"}]);
   });
 
   beforeEach(function () {
@@ -22,48 +21,64 @@ describe("The add participant controller", function () {
   });
 
   it("should be defined", function () {
-    expect(controller).to.be.defined;
+    controller.should.be.defined;
   });
 
   it("should load the expenses metadata on activation", function () {
-    expect(controller.expensesMetadata).to.have.length(1);
-    expect(controller.expensesMetadata[0]).to.deep.equal({id: "123", label: "e1"});
+    controller.activation.then(function () {
+      controller.expensesMetadata.should.have.length(1);
+      controller.expensesMetadata[0].should.deep.equal({id: "123", label: "e1"});
+    });
   });
 
   it("should resolve the modal with the added participant", function () {
-    Participants.add.returns(new FakePromise("then", {id: "456"}));
+    Participants.add
+      .withArgs("1234", {name: "kim", share: 1})
+      .resolves({id: "456"});
 
-    controller.add({name: "kim", share: 1});
+    var promise = controller.add({name: "kim", share: 1});
 
-    expect($modalInstance.close).to.have.been.calledWith({id: "456", name: "kim", share: 1});
+    promise.then(function () {
+      $modalInstance.close.should.have.been.calledWith({id: "456", name: "kim", share: 1});
+    });
   });
 
   it("should communicate the errors of the request to the view", function () {
-    Participants.add.returns(new FakePromise("catch", ["error"]));
+    Participants.add
+      .withArgs("1234", {})
+      .rejects(["error"]);
 
-    controller.add({});
+    var promise = controller.add({});
 
-    expect(controller.errors).to.deep.equal(["error"]);
+    promise.then(function () {
+      controller.errors.should.deep.equal(["error"]);
+    });
   });
 
   it("should stop loading when the request is ended", function () {
-    Participants.add.returns(new FakePromise("finally"));
+    Participants.add
+      .withArgs("1234", {})
+      .resolves({id: "456"});
 
-    controller.add({});
+    var promise = controller.add({});
 
-    expect(controller.loading).to.be.false;
+    promise.then(function () {
+      controller.loading.should.be.false;
+    });
   });
 
   it("should reject the modal with null", function () {
     controller.cancel();
 
-    expect($modalInstance.close).to.have.been.calledWith(null);
+    $modalInstance.close.should.have.been.calledWith(null);
   });
 
   it("should communicate to the view if there is any expense to include the participant in", function () {
-    expect(controller.hasExpenses()).to.be.true;
+    controller.activation.then(function () {
+      controller.hasExpenses().should.be.true;
 
-    controller.expensesMetadata = [];
-    expect(controller.hasExpenses()).to.be.false;
+      controller.expensesMetadata = [];
+      controller.hasExpenses().should.be.false;
+    });
   });
 });

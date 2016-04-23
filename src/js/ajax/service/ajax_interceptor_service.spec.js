@@ -1,6 +1,5 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
 var sinon = require("sinon");
 
 describe("The ajax interceptor", function () {
@@ -18,24 +17,24 @@ describe("The ajax interceptor", function () {
   });
 
   it("should be defined", function () {
-    expect(interceptor).to.be.defined;
+    interceptor.should.be.defined;
   });
 
   it("should emit the request started event when a request is intercepted", function () {
     interceptor.request({});
 
-    expect($rootScope.$broadcast).to.have.been.calledWith(AppEvents.HTTP.REQUEST_STARTED);
+    $rootScope.$broadcast.should.have.been.calledWith(AppEvents.HTTP.REQUEST_STARTED);
   });
 
   it("should emit the request ended event when a response is intercepted", function () {
     interceptor.response({});
 
-    expect($rootScope.$broadcast).to.have.been.calledWith(AppEvents.HTTP.REQUEST_ENDED);
+    $rootScope.$broadcast.should.have.been.calledWith(AppEvents.HTTP.REQUEST_ENDED);
   });
 
   it("should emit the request ended event when a request failed", function () {
     interceptor.response({});
 
-    expect($rootScope.$broadcast).to.have.been.calledWith(AppEvents.HTTP.REQUEST_ENDED);
+    $rootScope.$broadcast.should.have.been.calledWith(AppEvents.HTTP.REQUEST_ENDED);
   });
 });

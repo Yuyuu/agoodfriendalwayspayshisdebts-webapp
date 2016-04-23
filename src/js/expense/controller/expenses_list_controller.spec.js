@@ -1,9 +1,9 @@
 "use strict";
 
-var expect = require("chai").use(require("sinon-chai")).expect;
+var Bluebird = require("bluebird");
 var sinon = require("sinon");
 
-describe("The controller responsible for listing the expenses of an event", function () {
+describe("The expenses list controller", function () {
   var confirmed, $stateParams, $modal, expenseService, notificationService, controller;
 
   beforeEach(function () {
@@ -15,17 +15,11 @@ describe("The controller responsible for listing the expenses of an event", func
       loadMoreFrom: sinon.stub(),
       initializeForEvent: sinon.stub()
     };
-    expenseService.deleteExpense.withArgs("1234", "123").returns({then: function (callback) {
-      return callback.call(null);
-    }});
-    expenseService.loadMoreFrom.withArgs("1234").returns({finally: function (callback) {
-      return callback.call(null);
-    }});
-    expenseService.initializeForEvent.withArgs("1234").returns({finally: function (callback) {
-      return callback.call(null);
-    }});
+    expenseService.initializeForEvent
+      .withArgs("1234")
+      .resolves("hello");
     notificationService = {success: sinon.spy()};
-    $modal = {open: sinon.stub().returns({result: {then: function (callback) {callback.call(null, confirmed);}}})};
+    $modal = {open: sinon.stub()};
   });
 
   beforeEach(function () {
@@ -34,34 +28,58 @@ describe("The controller responsible for listing the expenses of an event", func
   });
 
   it("should be defined", function () {
-    expect(controller).to.be.defined;
+    controller.should.be.defined;
   });
 
   it("should initialize the expenses upon activation", function () {
-    expect(expenseService.initializeForEvent).to.have.been.calledWith("1234");
+    controller.activation.then(function (data) {
+      data.should.equal("hello");
+    });
   });
 
   it("should load more expenses", function () {
-    controller.loadMore();
+    expenseService.loadMoreFrom
+      .withArgs("1234")
+      .resolves("hello");
 
-    expect(expenseService.loadMoreFrom).to.have.been.calledWith("1234");
+    var promise = controller.loadMore();
+
+    promise.then(function (data) {
+      data.should.equal("hello");
+    });
   });
 
   it("should emit a notification if the expense was successfully deleted", function () {
-    controller.deleteExpense({id: "123"});
+    $modal.open.returns({result: new Bluebird(function (resolve) {
+      resolve(true);
+    })});
+    expenseService.deleteExpense
+      .withArgs("1234", "123")
+      .resolves(null);
+    
+    var promise = controller.deleteExpense({id: "123"});
 
-    expect($modal.open).to.have.been.calledWith(sinon.match(function (options) {
+    $modal.open.should.have.been.calledWith(sinon.match(function (options) {
       var expense = options.resolve.expense();
       return expense.id === "123";
     }));
-    expect(notificationService.success).to.have.been.calledWith("EXPENSE_DELETED_SUCCESS");
+    promise.then(function () {
+      notificationService.success.should.have.been.calledWith("EXPENSE_DELETED_SUCCESS");
+    });
   });
 
   it("should not delete the expense if the action is cancelled", function () {
-    confirmed = false;
+    $modal.open.returns({result: new Bluebird(function (resolve) {
+      resolve(false);
+    })});
+    expenseService.deleteExpense
+      .withArgs("1234", "123")
+      .resolves(null);
 
-    controller.deleteExpense("eventId", {id: "123"});
+    var promise = controller.deleteExpense("eventId", {id: "123"});
 
-    expect(notificationService.success).to.not.have.been.called;
+    promise.then(function () {
+      notificationService.success.should.not.have.been.called;
+    });
   });
 });
