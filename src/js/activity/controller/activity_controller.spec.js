@@ -7,7 +7,7 @@ describe("The activity controller", function () {
 
   beforeEach(function () {
     $stateParams = {id: "123"};
-    Activity = {get: sinon.stub()};
+    Activity = {get: sinon.stub(), next: sinon.stub(), hasNext: sinon.stub()};
   });
 
   beforeEach(function () {
@@ -35,13 +35,22 @@ describe("The activity controller", function () {
   });
 
   it("should fetch the next page when loading more activity", function () {
+    Activity.next
+      .resolves([{id: "135"}]);
+
     var loadMorePromise = controller.loadMore();
 
     loadMorePromise.then(function () {
-      Activity.get.should.have.been.calledWith("123", 2);
-      controller.operations[2].id.should.equal("456");
-      controller.operations[3].id.should.equal("789");
+      controller.operations.should.have.length(3);
+      controller.operations[2].id.should.equal("135");
       controller.loading.should.be.false;
     });
+  });
+
+  it("should be aware if all operations have been loaded", function () {
+    Activity.hasNext.returns(true);
+    controller.allLoaded.should.be.false;
+    Activity.hasNext.returns(false);
+    controller.allLoaded.should.be.true;
   });
 });
