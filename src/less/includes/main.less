@@ -36,6 +36,34 @@ a {
   .button-variant(@btn-load-more-color; @btn-load-more-bg; @btn-load-more-border);
 }
 
+.btn-o {
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  z-index: 0;
+  border: 2px solid @second-brand-color;
+  border-radius: 100%;
+  font-size: 1.3em;
+  color: @second-brand-color;
+  text-align: center;
+  transition: background .3s;
+  -webkit-user-select: none;
+
+  &:hover {
+    background-color: fade(@second-brand-color, 12%);
+  }
+}
+
+.btn-o-content {
+  position: relative;
+  top: 50%;
+
+  > i {
+    position: relative;
+    top: -12px;
+  }
+}
+
 .text-bold {
   font-weight: bold;
 }
@@ -72,6 +100,13 @@ i[ng-click] {
   margin-right: 0 !important;
 }
 
-.list-icon > li i {
-  margin-right: 0.5em;
+.list-fluent {
+  padding-left: 0;
+  list-style: none;
+  margin-left: -5px;
+
+  > li {
+    display: inline-block;
+    padding: 5px;
+  }
 }

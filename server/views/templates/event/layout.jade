@@ -10,12 +10,12 @@
   .row
     .event-layout-aside.col-md-2.col-xs-12.pull-right
       .row
-        .col-md-12.col-sm-3.col-xs-6
-          ul.list-unstyled.list-icon
-            li
-              a.action(href="javascript:void(0)" ng-click="model.addParticipant()" title=addParticipantTranslation)
+        ul.list-fluent.text-center.margin-btm-1
+          li
+            .btn-o(role="button" ng-click="model.addParticipant()" title=addParticipantTranslation
+                aria-label=addParticipantTranslation)
+              .btn-o-content
                 i.fa.fa-user-plus
-                = addParticipantTranslation
     .event-layout-content.col-md-10.col-xs-12
       include includes/nav_tabs
       div(ui-view="")
