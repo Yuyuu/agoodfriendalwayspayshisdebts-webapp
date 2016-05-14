@@ -11,11 +11,17 @@ function ExpensesListController($stateParams, expenseService) {
   activate();
 
   function loadMore() {
-    return expenseService.loadMore();
+    model.loading = true;
+    return expenseService.loadMore().finally(stopLoading);
   }
 
   function activate() {
-    model.activation = expenseService.initializeForEvent($stateParams.id);
+    model.loading = true;
+    model.activation = expenseService.initializeForEvent($stateParams.id).finally(stopLoading);
+  }
+  
+  function stopLoading() {
+    model.loading = false;
   }
 }
 

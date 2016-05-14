@@ -71,7 +71,6 @@
       "add_p": "Ajouter un participant"
     },
     "expenses": {
-      "load_more": "Voir plus de dépenses",
       "create": {
         "title": "Nouvelle dépense",
         "label": "Label",

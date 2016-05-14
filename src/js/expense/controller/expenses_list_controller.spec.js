@@ -27,8 +27,10 @@ describe("The expenses list controller", function () {
   });
 
   it("should initialize the expenses upon activation", function () {
+    controller.loading.should.be.true;
     controller.activation.then(function (data) {
       data.should.equal("hello");
+      controller.loading.should.be.false;
     });
   });
 
@@ -38,8 +40,10 @@ describe("The expenses list controller", function () {
 
     var promise = controller.loadMore();
 
+    controller.loading.should.be.true;
     promise.then(function (data) {
       data.should.equal("hello");
+      controller.loading.should.be.false;
     });
   });
 });

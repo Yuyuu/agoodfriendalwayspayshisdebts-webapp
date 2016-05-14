@@ -1,8 +1,6 @@
 .row
-  section#expenses-list(ng-controller="ExpensesListController as listModel")
-    div(masonry="" preserve-order="" load-images="false" masonry-options="{transitionDuration: 0}")
-      debts-expense-brick(ng-repeat="expense in listModel.expenses" expense="expense")
-    .row.text-center(ng-hide="listModel.loading")
-      button.btn.btn-load-more.btn-sm(type="button" ng-click="listModel.loadMore()" ng-disabled="listModel.allLoaded")
-        i.fa.fa-arrow-circle-o-down
-        = t("app.expenses.load_more")
+  #expenses-list(ng-controller="ExpensesListController as listModel")
+    section(infinite-scroll="listModel.loadMore()" infinite-scroll-immediate-check="false"
+        infinite-scroll-disabled="listModel.allLoaded || listModel.loading")
+      div(masonry="" preserve-order="" load-images="false" masonry-options="{transitionDuration: 0}")
+        debts-expense-brick(ng-repeat="expense in listModel.expenses" expense="expense")

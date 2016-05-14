@@ -71,7 +71,6 @@
       "add_p": "Add Participant"
     },
     "expenses": {
-      "load_more": "See more expenses",
       "create": {
         "title": "New expense",
         "label": "Label",
