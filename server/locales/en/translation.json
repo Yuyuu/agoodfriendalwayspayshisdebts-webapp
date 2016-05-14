@@ -70,26 +70,6 @@
       },
       "add_p": "Add Participant"
     },
-    "history": {
-      "title": "History",
-      "refresh": "Refresh",
-      "expenses": {
-        "label": "Expenses",
-        "added": "Expense added",
-        "deleted": "Expense deleted"
-      },
-      "participants": {
-        "label": "Participants",
-        "added": "Participant added",
-        "edited": "Participant edited"
-      },
-      "reminders": {
-        "label": "Reminders",
-        "delivered": "Reminder delivered",
-        "dropped": "Failed to send the reminder"
-      },
-      "older": "Older"
-    },
     "expenses": {
       "load_more": "See more expenses",
       "create": {

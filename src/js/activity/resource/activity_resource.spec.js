@@ -29,16 +29,4 @@ describe("The activity resource", function () {
       operations[0].id.should.equal("456");
     });
   });
-
-  it("should retrieve the activity with a filter", function () {
-    restService.get
-      .withArgs("/api/events/123/activity?filter=reminders&page=1")
-      .resolves([{id: "456"}]);
-
-    var operationsPromise = resource.getWithFilter("123", "reminders", 1);
-
-    operationsPromise.then(function (operations) {
-      operations[0].id.should.equal("456");
-    });
-  });
 });

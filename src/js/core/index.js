@@ -22,7 +22,6 @@ var coreModule = angular.module("app.core", [
   require("angular-loading-bar"),
   require("angular-ui-notification"),
   require("angular-masonry"),
-  angularStrap("tooltip"),
   angularStrap("select"),
   angularStrap("affix"),
   angularBootstrap("modal"),
