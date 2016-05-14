@@ -68,7 +68,8 @@
         "results": "Résultats",
         "activity": "Activité"
       },
-      "add_p": "Ajouter un participant"
+      "add_p": "Ajouter un participant",
+      "twitter": "Suivez le compte Twitter pour rester informé"
     },
     "expenses": {
       "create": {

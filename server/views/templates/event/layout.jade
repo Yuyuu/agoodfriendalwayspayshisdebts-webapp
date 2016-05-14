@@ -9,13 +9,20 @@
 .container
   .row
     .event-layout-aside.col-md-2.col-xs-12.pull-right
-      .row
+      .event-actions
         ul.list-fluent.text-center.margin-btm-1
           li
             .btn-o(role="button" ng-click="model.addParticipant()" title=addParticipantTranslation
-                aria-label=addParticipantTranslation)
+            aria-label=addParticipantTranslation)
               .btn-o-content
                 i.fa.fa-user-plus
+      .communication
+        .twitter-home
+          span.fa.fa-twitter
+        p.
+          #{t("app.event.twitter")}
+          <a href="https://twitter.com/intent/follow?user_id=731610837740359681" class="external-link" target="_blank">
+          @NoDebts4Friends</a>.
     .event-layout-content.col-md-10.col-xs-12
       include includes/nav_tabs
       div(ui-view="")
