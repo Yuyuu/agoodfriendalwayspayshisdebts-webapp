@@ -78,6 +78,7 @@ module.exports = {
       "jquery": "jQuery"
     }
   },
+  "lodash": "lodash",
   "masonry": {
     "depends": {
       "jquery": "jQuery"
@@ -97,5 +98,5 @@ module.exports = {
     },
     "exports": "angular.module('infinite-scroll').name"
   },
-  "underscore": "underscore"
+  "parse-link-header": "parse-link-header"
 };

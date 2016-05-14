@@ -1,7 +1,5 @@
 "use strict";
 
-var _ = require("underscore");
-
 /* @ngInject */
 function HistoryController($stateParams, Activity) {
   var model = this;
@@ -35,9 +33,7 @@ function HistoryController($stateParams, Activity) {
   }
 
   function addSummaries(summaries) {
-    _.each(summaries, function (summary) {
-      model.summaries.push(summary);
-    });
+    model.summaries.push.apply(model.summaries, summaries);
   }
 
   function initSummaries(summaries) {
@@ -52,11 +48,9 @@ function HistoryController($stateParams, Activity) {
         return summaries;
       })
       .then(extractSummaries)
-      .finally(stopLoading);
-  }
-
-  function stopLoading() {
-    model.loading = false;
+      .finally(function () {
+        model.loading = false;
+      });
   }
 }
 

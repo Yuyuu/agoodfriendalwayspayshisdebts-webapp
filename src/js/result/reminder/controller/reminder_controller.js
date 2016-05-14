@@ -1,7 +1,5 @@
 "use strict";
 
-var _ = require("underscore");
-
 /* @ngInject */
 function ReminderController($state, Reminders, notificationService) {
   var model = this;
@@ -28,8 +26,8 @@ function ReminderController($state, Reminders, notificationService) {
   }
 
   function filterSelectedParticipants(recipientsIds, participants) {
-    return _.filter(participants, function (participant) {
-      return _.contains(recipientsIds, participant.id);
+    return participants.filter(function (participant) {
+      return recipientsIds.indexOf(participant.id) >= 0;
     });
   }
 }

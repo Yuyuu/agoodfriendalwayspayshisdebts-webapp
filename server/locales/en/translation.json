@@ -120,11 +120,12 @@
       "delete": {
         "label": "Delete",
         "title": "Delete expense",
-        "warning_1": "Are you sure you want to",
-        "warning_2": "permanently delete",
-        "warning_3": "the expense",
+        "warning": "Are you sure you want to delete the expense",
         "question_mark": "?",
         "confirm": "Delete expense"
+      },
+      "restore": {
+        "label": "Restore"
       }
     },
     "participants": {

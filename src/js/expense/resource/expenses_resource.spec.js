@@ -20,26 +20,31 @@ describe("The expenses resource", function () {
 
   it("should retrieve the expenses", function () {
     restService.get
-      .withArgs("/api/events/1234/expenses?skip=0&limit=2")
-      .resolves({expenseCount: 1, expenses: [{label: "expense", amount: 3.4}]});
+      .withArgs("/api/events/1234/expenses?page=1")
+      .resolves({data: {totalCount: 1, items: [{label: "expense", amount: 3.4}]}, links: {}});
 
-    var expensesPromise = resource.fetch("1234", 0, 2);
+    var expensesPromise = resource.fetch("1234");
 
     expensesPromise.then(function (result) {
       result.should.deep.include.members([{label: "expense", amount: 3.4}]);
     });
   });
 
-  it("should retrieve the expenses and the total count", function () {
+  it("should store the next url", function () {
     restService.get
-      .withArgs("/api/events/1234/expenses?skip=0&limit=2")
-      .resolves({expenseCount: 1, expenses: [{label: "expense", amount: 3.4}]});
+      .withArgs("/api/events/1234/expenses?page=1")
+      .resolves({data: {items: []}, links: {next: {url: "/path"}}});
+    restService.get
+      .withArgs("/api/path")
+      .resolves({data: {items: []}, links: {}});
 
-    var expensesPromise = resource.fetchWithCount("1234", 0, 2);
+    var expensesPromise = resource.fetch("1234");
 
-    expensesPromise.then(function (result) {
-      result.expenseCount.should.equal(1);
-      result.expenses.should.deep.include.members([{label: "expense", amount: 3.4}]);
+    resource.hasNext().should.be.false;
+    expensesPromise.then(function () {
+      resource.hasNext().should.be.true;
+      resource.next();
+      restService.get.should.have.been.calledWith("/api/path", {withLinkObject: true});
     });
   });
 
@@ -69,14 +74,32 @@ describe("The expenses resource", function () {
 
   it("should retrieve the metadata of the expenses", function () {
     restService.get
-      .withArgs("/api/events/1234/expenses?format=meta")
-      .resolves([{id: "5678", label: "expense"}, {}]);
+      .withArgs("/api/events/1234/expenses?format=meta&page=1")
+      .resolves({data: {totalCount: 1, items: [{label: "expense", id: "5678"}]}, links: {}});
 
     var responsePromise = resource.metadata("1234");
 
     responsePromise.then(function (expensesMetadata) {
-      expensesMetadata.should.have.length(2);
+      expensesMetadata.should.have.length(1);
       expensesMetadata[0].should.deep.equal({id: "5678", label: "expense"});
+    });
+  });
+
+  it("should store the next metadata url", function () {
+    restService.get
+      .withArgs("/api/events/1234/expenses?format=meta&page=1")
+      .resolves({data: {items: []}, links: {next: {url: "/path"}}});
+    restService.get
+      .withArgs("/api/path")
+      .resolves({data: {items: []}, links: {}});
+
+    var expensesPromise = resource.metadata("1234");
+
+    resource.hasNextMetadata().should.be.false;
+    expensesPromise.then(function () {
+      resource.hasNextMetadata().should.be.true;
+      resource.nextMetadata();
+      restService.get.should.have.been.calledWith("/api/path", {withLinkObject: true});
     });
   });
 });

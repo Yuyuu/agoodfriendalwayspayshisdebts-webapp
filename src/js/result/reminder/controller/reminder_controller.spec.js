@@ -44,7 +44,7 @@ describe("The reminder controller", function () {
     Reminders.send.resolves(null);
     controller.recipientsIds = ["123", "456"];
 
-    var promise = controller.sendReminder([], {});
+    var promise = controller.sendReminder([], {participants: []});
 
     promise.then(function () {
       controller.recipientsIds.should.be.empty;
@@ -56,7 +56,7 @@ describe("The reminder controller", function () {
     Reminders.send.rejects(null);
     controller.recipientsIds = ["123"];
 
-    var promise = controller.sendReminder(controller.recipientsIds, {});
+    var promise = controller.sendReminder(controller.recipientsIds, {participants: []});
 
     promise.then(function () {
       controller.recipientsIds.should.have.length(1);

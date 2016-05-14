@@ -1,7 +1,5 @@
 "use strict";
 
-var _ = require("underscore");
-
 /* @ngInject */
 function InlineElementDirective($parse) {
   return {
@@ -20,7 +18,7 @@ function InlineElementDirective($parse) {
       if (value) {
         var array = getArrayFrom(scope);
         if (property) {
-          array = _.collect(array, function (object) {
+          array = array.map(function (object) {
             return object[property];
           });
         }

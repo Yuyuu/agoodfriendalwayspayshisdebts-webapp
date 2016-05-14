@@ -1,0 +1,19 @@
+- var deleteExpenseTranslation = t("app.expenses.delete.label");
+- var restoreExpenseTranslation = t("app.expenses.restore.label");
+
+.expense.masonry-brick(prepend="$first" ng-class="{'expense-deleted': brick.deleted}")
+  .expense-box
+    .expense-label
+      h5 {{::brick.expense.label}} <small>({{::brick.expense.purchaserName}})</small>
+    .expense-amount
+      span(ng-bind="::brick.expense.amount | currency:model.event.currency")
+    .expense-participants
+      i.fa.fa-exchange
+      div(debts-inline-data="::brick.expense.participantsNames")
+    .expense-description(ng-if="::brick.expense.description")
+      p(ng-bind="::brick.expense.description")
+    .expense-actions
+      a(ng-if="!brick.deleted" href="javascript:void(0)" ng-click="brick.delete()" title=deleteExpenseTranslation)
+        i.fa.fa-trash-o
+        = deleteExpenseTranslation
+      span(ng-if="brick.deleted") Deleted

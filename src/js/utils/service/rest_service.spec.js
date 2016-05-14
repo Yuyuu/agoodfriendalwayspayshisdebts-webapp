@@ -28,12 +28,31 @@ describe("The rest service", function () {
   it("should get a resource", function () {
     $http.get
       .withArgs("/uri/to/resource", {the: "config"})
-      .resolves({data: [{hello: "world"}, {foo: "bar"}]});
+      .resolves({data: [{hello: "world"}, {foo: "bar"}], config: {withLinkObject: false}});
 
     var getCall = service.get("/uri/to/resource", {the: "config"});
 
     getCall.then(function (objects) {
       objects.should.deep.equal([{hello: "world"}, {foo: "bar"}]);
+    });
+  });
+
+  it("should get a resource with the parsed link header", function () {
+    var linkHeader = "</path?key=value>; rel=\"next\", </path?page=4>; rel=\"last\"";
+    $http.get
+      .withArgs("/uri/to/resource", {withLinkObject: true})
+      .resolves({
+        data: [{hello: "world"}, {foo: "bar"}],
+        config: {withLinkObject: true},
+        headers: sinon.stub().withArgs("Link").returns(linkHeader)
+      });
+
+    var getCall = service.get("/uri/to/resource", {withLinkObject: true});
+
+    getCall.then(function (response) {
+      response.data.should.deep.equal([{hello: "world"}, {foo: "bar"}]);
+      response.links.next.url.should.equal("/path?key=value");
+      response.links.last.url.should.equal("/path?page=4");
     });
   });
 

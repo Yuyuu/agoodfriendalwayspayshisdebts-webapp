@@ -22,7 +22,7 @@ form.form-horizontal(ng-submit="model.add(model.participant)" name="model.form" 
             .col-sm-2
               input#inputParticipantShare.form-control(type="number" ng-model="model.participant.share" required=""
                   min="1" name="participantShare")
-          .form-group(ng-if="model.hasExpenses()" element-validation="model.form.selectedExpenses")
+          .form-group(ng-if="model.hasExpenses" element-validation="model.form.selectedExpenses")
             label.control-label.col-sm-5(for="inputSelectedExpenses") #{t("app.participants.add.expenses")}
             .col-sm-6
               button#inputSelectedExpenses.btn.btn-default(type="button" ng-model="model.participant.expensesUuids"

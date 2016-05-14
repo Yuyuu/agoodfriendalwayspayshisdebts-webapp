@@ -1,5 +1,8 @@
 "use strict";
 
+var parseLinks = require("parse-link-header");
+var getProperty = require("lodash/get");
+
 /* @ngInject */
 function RestService($http, $q) {
   var service = this;
@@ -33,6 +36,12 @@ function RestService($http, $q) {
   function dataPromise(httpPromise) {
     return httpPromise
       .then(function (response) {
+        if (getProperty(response, "config.withLinkObject")) {
+          return {
+            data: response.data,
+            links: parseLinks(response.headers("Link"))
+          };
+        }
         return response.data;
       })
       .catch(function (response) {

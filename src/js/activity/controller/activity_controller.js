@@ -1,7 +1,5 @@
 "use strict";
 
-var _ = require("underscore");
-
 /* @ngInject */
 function ActivityController($stateParams, Activity) {
   var model = this;
@@ -29,9 +27,7 @@ function ActivityController($stateParams, Activity) {
     if (operations.length < 10) {
       model.allLoaded = true;
     }
-    _.each(operations, function (operation) {
-      model.operations.push(operation);
-    });
+    model.operations.push.apply(model.operations, operations);
   }
 
   function stopLoading() {

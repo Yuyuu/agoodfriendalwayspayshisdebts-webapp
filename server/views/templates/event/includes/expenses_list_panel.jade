@@ -1,23 +1,7 @@
-- var deleteExpenseTranslation = t("app.expenses.delete.label");
-
 .row
   section#expenses-list(ng-controller="ExpensesListController as listModel")
     div(masonry="" preserve-order="" load-images="false" masonry-options="{transitionDuration: 0}")
-      .expense.masonry-brick(ng-repeat="expense in listModel.expenses | orderBy:$index:true" prepend="$first")
-        .expense-box
-          .expense-label
-            h5 {{::expense.label}} <small>({{::expense.purchaserName}})</small>
-          .expense-amount
-            span(ng-bind="::expense.amount | currency:model.event.currency")
-          .expense-participants
-            i.fa.fa-exchange
-            div(debts-inline-data="::expense.participantsNames")
-          .expense-description(ng-if="::expense.description")
-            p(ng-bind="::expense.description")
-          .expense-actions
-            a(href="javascript:void(0)" ng-click="listModel.deleteExpense(expense)" title=deleteExpenseTranslation)
-              i.fa.fa-trash-o
-              = deleteExpenseTranslation
+      debts-expense-brick(ng-repeat="expense in listModel.expenses" expense="expense")
     .row.text-center(ng-hide="listModel.loading")
       button.btn.btn-load-more.btn-sm(type="button" ng-click="listModel.loadMore()" ng-disabled="listModel.allLoaded")
         i.fa.fa-arrow-circle-o-down

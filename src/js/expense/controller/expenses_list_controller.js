@@ -1,38 +1,17 @@
 "use strict";
 
 /* @ngInject */
-function ExpensesListController($stateParams, $modal, expenseService, notificationService) {
+function ExpensesListController($stateParams, expenseService) {
   var model = this;
 
-  model.expenseService = expenseService;
+  model._expenseService = expenseService;
 
-  model.deleteExpense = deleteExpense;
   model.loadMore = loadMore;
-
-  var modalOptions = {
-    templateUrl: "/templates/modal/delete_expense_confirmation",
-    controller: "DeleteExpenseController",
-    controllerAs: "model"
-  };
 
   activate();
 
-  function deleteExpense(expenseToDelete) {
-    modalOptions.resolve = {expense: function () {
-      return expenseToDelete;
-    }};
-    var modalInstance = $modal.open(modalOptions);
-    return modalInstance.result.then(function (confirmed) {
-      if (confirmed) {
-        return expenseService.deleteExpense($stateParams.id, expenseToDelete.id).then(function () {
-          notificationService.success("EXPENSE_DELETED_SUCCESS");
-        });
-      }
-    });
-  }
-
   function loadMore() {
-    return expenseService.loadMoreFrom($stateParams.id);
+    return expenseService.loadMore();
   }
 
   function activate() {
@@ -45,14 +24,14 @@ Object.defineProperties(ExpensesListController.prototype, {
     enumerable: true,
     cofigurable: false,
     get: function () {
-      return this.expenseService.expenses;
+      return this._expenseService.expenses;
     }
   },
   allLoaded: {
     enumerable: true,
     cofigurable: false,
     get: function () {
-      return this.expenseService.allLoaded;
+      return this._expenseService.allLoaded;
     }
   }
 });

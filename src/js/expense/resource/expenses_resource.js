@@ -1,13 +1,23 @@
 "use strict";
 
+var getProperty = require("lodash/get");
+
 /* @ngInject */
 function ExpensesResource(restService) {
+  var resource = this;
+
+  resource._nextMetadataUrl = undefined;
+  resource._nextUrl = undefined;
+
   return {
     add: add,
     delete: deleteExpense,
     fetch: fetch,
-    fetchWithCount: fetchWithCount,
-    metadata: metadata
+    hasNext: hasNext,
+    hasNextMetadata: hasNextMetadata,
+    metadata: metadata,
+    next: next,
+    nextMetadata: nextMetadata
   };
 
   function add(eventId, expense) {
@@ -18,20 +28,35 @@ function ExpensesResource(restService) {
     return restService.delete("/api/events/" + eventId + "/expenses/" + expenseId);
   }
 
-  function fetch(eventId, skip, limit, withCount) {
-    withCount = withCount || false;
-    var url = "/api/events/" + eventId + "/expenses?skip=" + skip + "&limit=" + limit;
-    return restService.get(url).then(function (data) {
-      return withCount ? {expenseCount: data.expenseCount, expenses: data.expenses} : data.expenses;
-    });
+  function fetch(eventId) {
+    return getWithLink("/api/events/" + eventId + "/expenses?page=1", "_nextUrl");
   }
 
-  function fetchWithCount(eventId, skip, limit) {
-    return fetch(eventId, skip, limit, true);
+  function hasNext() {
+    return resource._nextUrl !== undefined;
+  }
+
+  function hasNextMetadata() {
+    return resource._nextMetadataUrl !== undefined;
   }
 
   function metadata(eventId) {
-    return restService.get("/api/events/" + eventId + "/expenses?format=meta");
+    return getWithLink("/api/events/" + eventId + "/expenses?format=meta&page=1", "_nextMetadataUrl");
+  }
+
+  function next() {
+    return getWithLink("/api" + resource._nextUrl, "_nextUrl");
+  }
+
+  function nextMetadata() {
+    return getWithLink("/api" + resource._nextMetadataUrl, "_nextMetadataUrl");
+  }
+
+  function getWithLink(url, nextUrlProperty) {
+    return restService.get(url, {withLinkObject: true}).then(function (response) {
+      resource[nextUrlProperty] = getProperty(response.links, "next.url");
+      return response.data.items;
+    });
   }
 }
 

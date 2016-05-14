@@ -75,10 +75,10 @@ describe("The add participant controller", function () {
 
   it("should communicate to the view if there is any expense to include the participant in", function () {
     controller.activation.then(function () {
-      controller.hasExpenses().should.be.true;
+      controller.hasExpenses.should.be.true;
 
       controller.expensesMetadata = [];
-      controller.hasExpenses().should.be.false;
+      controller.hasExpenses.should.be.false;
     });
   });
 });

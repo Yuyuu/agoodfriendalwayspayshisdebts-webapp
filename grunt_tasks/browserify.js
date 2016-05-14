@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
   var watchify = require("watchify");
   var browserify = require("browserify");
-  var _ = require("underscore");
+  var extend = require("lodash/extend");
 
   grunt.registerTask("js", ["vendor", "app"]);
 
@@ -46,9 +46,9 @@ module.exports = function (grunt) {
   });
 
   function createBundle(options, watch) {
-    options = _.extend(options || {}, {debug: !grunt.option("prod")});
+    options = extend(options || {}, {debug: !grunt.option("prod")});
     if (watch) {
-      return browserify(_.extend(options, watchify.args));
+      return browserify(extend(options, watchify.args));
     }
     return browserify(options);
   }

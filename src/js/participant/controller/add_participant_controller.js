@@ -8,7 +8,6 @@ function AddParticipantController($stateParams, $modalInstance, Participants, Ex
 
   model.add = add;
   model.cancel = cancel;
-  model.hasExpenses = hasExpenses;
 
   activate();
 
@@ -32,15 +31,21 @@ function AddParticipantController($stateParams, $modalInstance, Participants, Ex
     $modalInstance.close(null);
   }
 
-  function hasExpenses() {
-    return model.expensesMetadata && model.expensesMetadata.length > 0;
-  }
-
   function activate() {
     model.activation = Expenses.metadata($stateParams.id).then(function (data) {
       model.expensesMetadata = data;
     });
   }
 }
+
+Object.defineProperty(AddParticipantController.prototype,
+  "hasExpenses", {
+    enumerable: true,
+    configurable: false,
+    get: function () {
+      return this.expensesMetadata && this.expensesMetadata.length > 0;
+    }
+  }
+);
 
 module.exports = AddParticipantController;

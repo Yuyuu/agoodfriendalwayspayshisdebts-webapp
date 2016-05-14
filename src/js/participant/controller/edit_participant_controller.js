@@ -1,12 +1,12 @@
 "use strict";
 
-var _ = require("underscore");
+var assign = require("lodash/assign");
 
 /* @ngInject */
 function EditParticipantController($stateParams, $modalInstance, Participants, participant) {
   var model = this;
 
-  model.participant = _.extend({}, participant);
+  model.participant = assign({}, participant);
 
   model.cancel = cancel;
   model.update = update;
