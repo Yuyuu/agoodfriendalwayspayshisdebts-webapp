@@ -1,6 +1,6 @@
 {
   "name": "agoodfriendalwayspayshisdebts-webapp",
-  "version": "1.0.4",
+  "version": "1.0.5-SNAPSHOT",
   "description": "Web application for agoodfriendalwayspayshisdebts.com",
   "private": true,
   "repository": {
