@@ -69,7 +69,7 @@
         "activity": "Activité"
       },
       "add_p": "Ajouter un participant",
-      "twitter": "Suivez le compte Twitter pour rester informé"
+      "twitter": "Suivez le compte Twitter pour rester informé(e)"
     },
     "expenses": {
       "create": {
@@ -96,6 +96,11 @@
           "INVALID_AMOUNT": "Le somme spécifiée doit être supérieure à 0",
           "DEFAULT": "Désolé, une erreur s'est produite lors de l'ajout de la dépense"
         }
+      },
+      "switch": {
+        "label": "Dépenses supprimées",
+        "on": "Affichées",
+        "off": "Cachées"
       },
       "delete": {
         "label": "Supprimer",

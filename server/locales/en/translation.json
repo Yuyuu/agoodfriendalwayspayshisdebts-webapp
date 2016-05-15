@@ -97,6 +97,11 @@
           "DEFAULT": "Sorry, an error occurred while creating the expense"
         }
       },
+      "switch": {
+        "label": "Deleted expenses",
+        "on": "Shown",
+        "off": "Hidden"
+      },
       "delete": {
         "label": "Delete",
         "title": "Delete expense",

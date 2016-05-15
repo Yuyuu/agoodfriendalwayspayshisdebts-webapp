@@ -1,18 +1,24 @@
 "use strict";
 
 /* @ngInject */
-function ExpensesListController($stateParams, expenseService) {
+function ExpensesListController($stateParams, expenseService, masonryService) {
   var model = this;
 
   model._expenseService = expenseService;
+  model.showDeletedExpenses = false;
 
   model.loadMore = loadMore;
+  model.reloadBricks = reloadBricks;
 
   activate();
 
   function loadMore() {
     model.loading = true;
     return expenseService.loadMore().finally(stopLoading);
+  }
+
+  function reloadBricks() {
+    masonryService.reloadBricks();
   }
 
   function activate() {

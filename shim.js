@@ -2,7 +2,7 @@ module.exports = {
   "angular": {
     "exports": "angular",
     "depends": {
-      jquery: "jQuery"
+      "jquery": "jQuery"
     }
   },
   "angular-animate": {
@@ -17,6 +17,13 @@ module.exports = {
       "bootstrap": null
     },
     "exports": "angular.module('ui.bootstrap').name"
+  },
+  "angular-bootstrap-switch": {
+    "depends": {
+      "angular": "angular",
+      "bootstrap-switch": null
+    },
+    "exports": "angular.module('frapontillo.bootstrap-switch').name"
   },
   "angular-cookies": {
     "depends": {
@@ -76,6 +83,11 @@ module.exports = {
   "bootstrap": {
     "depends": {
       "jquery": "jQuery"
+    }
+  },
+  "bootstrap-switch": {
+    "depends": {
+      "bootstrap": null
     }
   },
   "lodash": "lodash",

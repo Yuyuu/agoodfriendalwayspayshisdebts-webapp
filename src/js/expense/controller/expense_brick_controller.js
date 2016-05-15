@@ -1,7 +1,7 @@
 "use strict";
 
 /* @ngInject */
-function ExpenseBrickController($stateParams, $modal, expenseService, notificationService) {
+function ExpenseBrickController($stateParams, $modal, expenseService, notificationService, masonryService) {
   var model = this;
 
   model.delete = deleteExpense;
@@ -22,6 +22,7 @@ function ExpenseBrickController($stateParams, $modal, expenseService, notificati
     return modalInstance.result.then(function (confirmed) {
       if (confirmed) {
         return expenseService.deleteExpense($stateParams.id, model.expense).then(function () {
+          masonryService.reloadBricks();
           notificationService.success("EXPENSE_DELETED_SUCCESS");
         });
       }

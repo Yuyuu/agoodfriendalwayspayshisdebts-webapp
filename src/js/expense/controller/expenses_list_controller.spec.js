@@ -3,7 +3,7 @@
 var sinon = require("sinon");
 
 describe("The expenses list controller", function () {
-  var $stateParams, expenseService, controller;
+  var $stateParams, expenseService, masonryService, controller;
 
   beforeEach(function () {
     $stateParams = {id: "1234"};
@@ -15,11 +15,12 @@ describe("The expenses list controller", function () {
     expenseService.initializeForEvent
       .withArgs("1234")
       .resolves("hello");
+    masonryService = {reloadBricks: sinon.spy()};
   });
 
   beforeEach(function () {
     var ExpensesListController = require("./expenses_list_controller");
-    controller = new ExpensesListController($stateParams, expenseService);
+    controller = new ExpensesListController($stateParams, expenseService, masonryService);
   });
 
   it("should be defined", function () {
@@ -45,5 +46,10 @@ describe("The expenses list controller", function () {
       data.should.equal("hello");
       controller.loading.should.be.false;
     });
+  });
+
+  it("should reload bricks", function () {
+    controller.reloadBricks();
+    masonryService.reloadBricks.should.have.been.called;
   });
 });

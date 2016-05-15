@@ -8,6 +8,7 @@ var expenseModule = angular.module("app.event.expense", []);
 expenseModule
   .factory("Expenses", require("./resource/expenses_resource"))
   .service("expenseService", require("./service/expense_service"))
+  .service("masonryService", require("./service/masonry_service"))
   .controller("AddExpenseController", require("./controller/add_expense_controller"))
   .controller("ExpensesListController", require("./controller/expenses_list_controller"))
   .controller("ExpenseBrickController", require("./controller/expense_brick_controller"))

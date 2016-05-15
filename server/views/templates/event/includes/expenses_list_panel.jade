@@ -1,5 +1,10 @@
-.row
-  #expenses-list(ng-controller="ExpensesListController as listModel")
+#expenses-list(ng-controller="ExpensesListController as listModel")
+  .row
+    .col-xs-12.text-right.margin-btm-1
+      input(bs-switch="" type="checkbox" ng-model="listModel.showDeletedExpenses" switch-change="listModel.reloadBricks()"
+          switch-label=t("app.expenses.switch.label") switch-on-text=t("app.expenses.switch.on")
+          switch-off-text=t("app.expenses.switch.off"))
+  .row
     section(infinite-scroll="listModel.loadMore()" infinite-scroll-immediate-check="false"
         infinite-scroll-disabled="listModel.allLoaded || listModel.loading")
       div(masonry="" preserve-order="" load-images="false" masonry-options="{transitionDuration: 0}")

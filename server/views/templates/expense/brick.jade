@@ -1,7 +1,8 @@
 - var deleteExpenseTranslation = t("app.expenses.delete.label");
 - var restoreExpenseTranslation = t("app.expenses.restore.label");
 
-.expense.masonry-brick(prepend="$first" ng-class="{'expense-deleted': brick.deleted}")
+.expense.masonry-brick(prepend="$first" ng-class="{'expense-deleted': brick.deleted}"
+    ng-show="!brick.deleted || listModel.showDeletedExpenses")
   .expense-box
     .expense-label
       h5 {{::brick.expense.label}} <small>({{::brick.expense.purchaserName}})</small>

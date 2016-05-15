@@ -4,19 +4,20 @@ var Bluebird = require("bluebird");
 var sinon = require("sinon");
 
 describe("The expense brick controller", function () {
-  var confirmed, $stateParams, $modal, expenseService, notificationService, controller;
+  var confirmed, $stateParams, $modal, expenseService, notificationService, masonryService, controller;
 
   beforeEach(function () {
     confirmed = true;
     $stateParams = {id: "1234"};
+    $modal = {open: sinon.stub()};
     expenseService = {deleteExpense: sinon.stub()};
     notificationService = {success: sinon.spy()};
-    $modal = {open: sinon.stub()};
+    masonryService = {reloadBricks: sinon.spy()};
   });
 
   beforeEach(function () {
     var ExpenseBrickController = require("./expense_brick_controller");
-    controller = new ExpenseBrickController($stateParams, $modal, expenseService, notificationService);
+    controller = new ExpenseBrickController($stateParams, $modal, expenseService, notificationService, masonryService);
     controller.expense = {id: "123", state: "ADDED"};
   });
 
@@ -39,6 +40,7 @@ describe("The expense brick controller", function () {
       return expense.id === "123";
     }));
     promise.then(function () {
+      masonryService.reloadBricks.should.have.been.called;
       notificationService.success.should.have.been.calledWith("EXPENSE_DELETED_SUCCESS");
     });
   });
